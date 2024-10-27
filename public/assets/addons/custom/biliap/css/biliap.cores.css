@@ -1,0 +1,268 @@
+/* 
+    Biliap cores components
+
+    Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
+    Author : Xanders Samoth | https://www.xsam-tech.com
+*/
+
+/* jQuery Ellipsis */
+.ellip {
+    display: block;
+    height: 100%;
+    transition: .3s;
+}
+
+.ellip-line {
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    max-width: 100%;
+}
+
+.ellip,
+.ellip-line {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Counter */
+.counter-box {
+    display: block;
+    background: #f6f6f6;
+    padding: 40px 20px 37px;
+    text-align: center
+}
+
+.counter-box p {
+    margin: 5px 0 0;
+    padding: 0;
+    color: #909090;
+    font-size: 18px;
+    font-weight: 500
+}
+
+.counter-box i {
+    font-size: 60px;
+    margin: 0 0 15px;
+    color: #d2d2d2
+}
+
+.counter {
+    display: block;
+    font-size: 32px;
+    font-weight: 700;
+    color: #666;
+    line-height: 28px
+}
+
+.counter-box.colored {
+    background: #3acf87;
+}
+
+.counter-box.colored p,
+.counter-box.colored i,
+.counter-box.colored .counter {
+    color: #fff
+}
+
+/* Miscellaneous */
+.theme-toggler {
+    font-size: 14px;
+    text-transform: inherit!important;
+    text-align: inherit!important;
+}
+
+.blp-bg-light {
+    background-color: #f3f3f3;
+}
+
+.blp-bg-dark {
+    background-color: #1b1a1a;
+}
+
+.blp-overflow-hidden {
+    overflow: hidden;
+}
+
+.blp-pointer {
+    cursor: pointer;
+}
+
+.blp-rounded {
+    -webkit-border-radius: 1.4rem;
+    border-radius: 1.4rem;
+}
+
+.blp-rounded-bottom {
+    -webkit-border-bottom-left-radius: 1.4rem;
+    -webkit-border-bottom-right-radius: 1.4rem;
+    border-bottom-left-radius: 1.4rem;
+    border-bottom-right-radius: 1.4rem;
+}
+
+/* Text */
+.blp-brown-text {
+    color: #b03939!important;
+}
+
+.blp-grey-text {
+    color: #ababab!important;
+}
+
+.blp-pink-text {
+    color: #e72ed5!important;
+}
+
+.blp-yellow-text {
+    color: #ffae00!important;
+}
+
+.blp-font-weight-700 {
+    font-weight: 700;
+}
+
+.blp-font-small {
+    font-size: 0.8rem;
+}
+
+/* Button */
+.blp-btn-transparent {
+    background: transparent;
+}
+
+.blp-btn-transparent:hover,
+.blp-btn-transparent:focus {
+    background: rgba(100, 100, 100, 0.1);
+}
+
+.blp-btn-white {
+    background: white;
+}
+
+.blp-btn-white:hover,
+.blp-btn-white:focus {
+    background: #f3f3f3;
+}
+
+.blp-btn-gray {
+    background: #f3f3f3;
+}
+
+.blp-btn-gray:hover,
+.blp-btn-gray:focus {
+    background: #eeeded;
+}
+
+.blp-btn-pink {
+    background: #e72ed5;
+}
+
+.blp-btn-pink:hover,
+.blp-btn-pink:focus {
+    background: #f102ce;
+}
+
+/* Chip */
+.blp-chip,
+.blp-chip .content,
+.blp-chip .close {
+    display: inline-block!important;
+}
+
+.blp-chip {
+    vertical-align: middle;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    overflow: hidden;
+}
+
+.blp-chip .content {
+    vertical-align: top;
+    padding: 0.05rem 0 0.1rem 0.5rem;
+}
+
+.blp-chip .close {
+    background: transparent;
+    padding: 0.1rem 0.5rem;
+    border: none;
+    cursor: pointer;
+}
+
+.blp-chip-light .close, 
+.blp-chip-info .close {
+    color: #555;
+}
+
+.blp-chip-light .close:hover, 
+.blp-chip-info .close:hover {
+    color: #000;
+}
+
+.blp-chip-primary .close, 
+.blp-chip-success .close, 
+.blp-chip-warning .close, 
+.blp-chip-danger .close {
+    color: #fff;
+}
+
+.blp-chip-primary .close:hover, 
+.blp-chip-success .close:hover, 
+.blp-chip-warning .close:hover, 
+.blp-chip-danger .close:hover {
+    color: #e0e0e0;
+}
+
+.blp-chip-light {
+    background-color: #e7e8e9;
+    color: #555;
+}
+
+.blp-chip-primary {
+    background-color: #0d6efd;
+    color: #fff;
+}
+
+.blp-chip-info {
+    background-color: #0dcaf0;
+    color: #555;
+}
+
+.blp-chip-success {
+    background-color: #198754;
+    color: #fff;
+}
+
+.blp-chip-warning {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.blp-chip-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* FROM TABLET TO LARGE SCREEN */
+@media screen and (min-width: 768px) {
+    /*
+        CUSTOM COMPONENTS
+    */
+    .blp-rounded-sm {
+        -webkit-border-radius: 1.4rem;
+        border-radius: 1.4rem;
+    }
+
+    .blp-rounded-bottom-sm {
+        -webkit-border-bottom-left-radius: 1.4rem;
+        -webkit-border-bottom-right-radius: 1.4rem;
+        border-bottom-left-radius: 1.4rem;
+        border-bottom-right-radius: 1.4rem;
+    }
+}
+
+/* SMARTPHONE SCREEN */
+@media screen and (max-width: 767px) {
+    
+}

@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
+    <title>ShowMoreLess</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/atom-one-dark-reasonable.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./show-more.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- More text -->
+      <section>
+        <h2>Configuration</h2>
+        <p>Simple configuration, just add configuration json to html</p>
+        <div class="example-html">
+          <pre>
+            <code code class="language-html">&lt;div class=&quot;element&quot; data-config='{ &quot;type&quot;: &quot;text&quot;, &quot;limit&quot;: 120, &quot;more&quot;: &quot;&amp;#8594; show more&quot;, &quot;less&quot;: &quot;&amp;#8592; less&quot; }'&gt;
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, quos qui. Recusandae minima esse qui dicta iusto quod quam exercitationem.
+&lt;/div&gt;</code>
+          </pre>
+        </div>
+        <p>And run the function</p>
+        <div class="example-html">
+          <pre>
+            <code code class="language-js">new ShowMore('.element');</code>
+          </pre>
+        </div>
+        <p>You can also use the callback function, see last example</p>
+        <div class="example-html">
+          <pre>
+            <code code class="language-js">new ShowMore('.element', {
+  onMoreLess: (type, object) => {
+    console.log(type, object);
+  }
+});</code>
+          </pre>
+        </div>
+        <p>You can add your own regular expression</p>
+        <div class="example-html">
+          <pre>
+            <code code class="language-js">new ShowMore('.element', {
+  regex: {
+    image: {
+      match: /&lt;img([\w\W]+?)[/]?&gt;/g,
+      replace: ''
+    }
+  }
+});</code>
+          </pre>
+        </div>
+        <h3>Global config</h3>
+        <p>
+          If you have one type of items that you want to shorten, you can add
+          global configuration, you don't need to add
+          <strong>data-config</strong> to each item. Below is an example:
+        </p>
+        <div class="example-html">
+          <pre>
+              <code code class="language-js">new ShowMore('.element', {
+  config: {
+    type: "text",
+    limit: 120,
+    more: "&#8594; read more",
+    less: "&#8592; read less"
+  }
+});</code>
+</pre>
+        </div>
+        <br /><br />
+        <div>
+          You can also mix, <strong>global configuration</strong> +
+          <strong>data-config</strong>. In such cases, the
+          <strong>global configuration</strong> object will merge with
+          <strong>data-config</strong>. <br />For example, we have 10 texts to
+          shorten, then we add the global configuration, but we also have a
+          table that we want to shorten, in this case we add 'data-config' to
+          table - <a href="#example-global">see global configuration</a>
+        </div>
+        <br />
+        <div>
+          If you have <strong>global configuration</strong>, you don't need to
+          specify all the variables in the
+          <strong>data-config</strong>:<br /><br />
+          <div class="example-html">
+            <pre><code code class="language-html">&lt;div class="element" data-config='{ "limit": 20 }'&gt;
+  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo, deleniti?
+&lt;/div&gt;
+</code></pre>
+          </div>
+          <div class="example-html">
+            <pre>
+              <code code class="language-js">new ShowMore('.element', {
+  config: {
+    type: "text",
+    limit: 200,
+    more: "&#8594; read more",
+    less: "&#8592; read less"
+  }
+});</code>
+</pre>
+          </div>
+        </div>
+        <br />
+      </section>
+
+      <!-- More text -->
+      <section>
+        <h2>More text - without 'after', cut after 120 characters</h2>
+        <div
+          class="element"
+          data-config='{ "type": "text", "limit": 120, "more": "&#8594; read more", "less": "&#8592; read less" }'
+        >
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia illo
+          temporibus voluptate veritatis porro, dignissimos dolore debitis!
+        </div>
+        <div class="example-html">
+          <pre>
+            <code code class="language-json">{
+  "type": "text",
+  "limit": 120, // show max chars
+  "more": "&#8594; show more",
+  "less": "&#8592; less"
+}</code>
+          </pre>
+        </div>
+        <small
+          >If the text is too short, then we have a problem, <b>after</b> should
+          prevent this. See the next example.</small
+        >
+      </section>
+
+      <!-- More text, prevent cutting -->
+      <section>
+        <h2>
+          More text - from 'after': 50, prevent cutting after 120 characters
+        </h2>
+        <div
+          class="element"
+          data-config='{ "type": "text", "limit": 120, "after": 50, "more": "&#8594; show more", "less": "&#8592; less" }'
+        >
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia illo
+          temporibus voluptate veritatis porro, dignissimos dolore debitis!
+        </div>
+        <div class="example-html">
+          <pre>
+            <code class="language-json">{
+  "type": "text",
+  "limit": 120,
+  "after": 50, // prevent cutting after 120 characters
+  "more": "&#8594; show more",
+  "less": "&#8592; less"
+}</code>
+          </pre>
+        </div>
+      </section>
+
+      <!-- More text -->
+      <section id="example-text">
+        <h2>More text</h2>
+        <div
+          class="element"
+          data-config='{ "type": "text", "limit": 120, "after": 50, "more": "&#8594; read more", "less": "&#8592; read less" }'
+        >
+          <b>Contrary to popular belief</b>, Lorem Ipsum is not simply random
+          text. It has roots in a piece of classical Latin literature from 45
+          BC, making it over 2000 years old.
+          <i
+            >Richard McClintock, a Latin professor at Hampden-Sydney College in
+            Virginia</i
+          >, looked up one of the more obscure Latin words, consectetur, from a
+          Lorem Ipsum passage, and going through the cites of the word in
+          classical literature, discovered the undoubtable source.
+          <strong>Lorem Ipsum comes from sections</strong> 1.10.32 and 1.10.33
+          of "de <sup>Finibus Bonorum et Malorum"</sup> (The Extremes of Good
+          and Evil) by Cicero, written in 45 BC. This book is a treatise on the
+          theory of ethics, very popular during the Renaissance. The first line
+          of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in
+          section 1.10.32.
+        </div>
+        <div class="example-html">
+          <pre>
+            <code class="language-json">{
+  "type": "text",
+  "limit": 120,
+  "after": 50,
+  "more": "&#8594; show more",
+  "less": "&#8592; less"
+}</code>
+          </pre>
+        </div>
+      </section>
+
+      <!-- More text, "show more" new line -->
+      <section>
+        <h2>More text, "show more" new line</h2>
+        <div
+          class="element"
+          data-config='{ "type": "text", "limit": 90, "element": "div", "after": 50, "more": "&#8595; read more", "less": "&#8593; read less" }'
+        >
+          <b>Lorem Ipsum</b> - це текст-"риба", що використовується в друкарстві
+          та дизайні. Lorem
+          <strong
+            >Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя, коли
+            невідомий друкар</strong
+          >
+          взяв шрифтову гранку та склав на ній підбірку зразків шрифтів. "Риба"
+          не тільки успішно пережила п'ять століть, але й прижилася в
+          електронному верстуванні, залишаючись по суті незмінною.
+          <strong>Вона популяризувалась в 60-их</strong> роках минулого сторіччя
+          завдяки виданню зразків шрифтів Letraset, які містили уривки з Lorem
+          Ipsum, і вдруге - нещодавно завдяки програмам комп'ютерного
+          верстування на кшталт Aldus Pagemaker, які використовували різні
+          версії Lorem Ipsum.
+        </div>
+        <div class="example-html">
+          <pre>
+              <code class="language-json">{
+  "type": "text",
+  "limit": 90,
+  "element": "div", // adds a 'div' on a new line
+  "after": 50,
+  "more": "&#8595; show more",
+  "less": "&#8593; less"
+}</code>
+            </pre>
+        </div>
+      </section>
+
+      <!-- Element list -->
+      <section id="example-list">
+        <h2>Element list</h2>
+        <ul
+          class="element"
+          data-config='{ "type": "list", "limit": 5, "element": "li", "more": "&#8595; show more", "less": "&#8593; less", "number": true }'
+        >
+          <li>Elektronika</li>
+          <li>Import win</li>
+          <li>Informacja o produktach, handlu i usługach</li>
+          <li>Glazura i terakota</li>
+          <li>Lekarze medycyny sądowej</li>
+          <li>Maszyny przemysłowe</li>
+          <li>Oprawa obrazów</li>
+          <li>Siatki ogrodzeniowe</li>
+          <li>Termodruk</li>
+          <li>Żłobki publiczne</li>
+        </ul>
+
+        <div class="example-html">
+          <pre>
+              <code class="language-json">{
+  "type": "list",
+  "limit": 5,
+  "element": "li",
+  "more": "&#8595; show more",
+  "less": "&#8593; less",
+  "number": true // adds the number of items to the button
+}</code>
+            </pre>
+        </div>
+      </section>
+
+      <!-- Element list display-inline + number of hidden/shown elements -->
+      <section id="show-number">
+        <h2>Element list display-inline</h2>
+        <ul
+          class="element display-inline"
+          data-config='{ "type": "list", "limit": 3, "element": "li", "more": "&#8594; show more", "less": "&#8592; less", "number": true }'
+        >
+          <li>Usługi murarskie i tynkarskie,</li>
+          <li>Wydobycie i sprzedaż soli,</li>
+          <li>Modemy i mobilny internet,</li>
+          <li>Łożyska przemysłowe,</li>
+          <li>Ogrzewanie podłogowe,</li>
+          <li>Hurtownie elektryczne</li>
+        </ul>
+        <div class="example-html">
+          <pre>
+            <code class="language-json">{
+  "type": "list",
+  "limit": 3,
+  "element": "li",
+  "more": "&#8594; show more",
+  "less": "&#8592; less",
+  "number": true
+}</code>
+            </pre>
+        </div>
+      </section>
+
+      <!-- Element inline -->
+      <section id="example-element">
+        <h2>Element inline</h2>
+        <div
+          class="element links-style"
+          data-config='{ "type": "list", "limit": 5, "element": "div", "more": "&#8595; show more", "less": "&#8593; less" }'
+        >
+          <a href="#">Administracja biur,</a>
+          <a href="#">Badanie i uzdatnianie wody,</a>
+          <a href="#">Motele i zajazdy,</a>
+          <a href="#">Narzędziownie,</a>
+          <a href="#">Odchudzanie,</a>
+          <a href="#">Pamiątki i upominki,</a>
+          <a href="#">Silikon,</a>
+          <a href="#">Tapety,</a>
+          <a href="#">Żegluga</a>
+        </div>
+        <div class="example-html">
+          <pre>
+            <code class="language-json">{
+  "type": "list",
+  "limit": 5,
+  "element": "div",
+  "more": "&#8595; show more",
+  "less": "&#8593; less"
+}</code>
+            </pre>
+        </div>
+      </section>
+
+      <!-- Table more/less rows -->
+      <section id="example-table">
+        <h2>Table more/less rows</h2>
+        <table
+          class="element styled-table"
+          data-config='{ "type": "table", "limit": 4, "more": "&#8595; show more", "less": "&#8593; less", "number": true }'
+        >
+          <thead>
+            <tr>
+              <th>ONE</th>
+              <th>TWO</th>
+              <th>THRE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>5</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>8</td>
+              <td>9</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>11</td>
+              <td>12</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>14</td>
+              <td>15</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>= 35</td>
+              <td>= 40</td>
+              <td>= 45</td>
+            </tr>
+          </tfoot>
+        </table>
+        <div class="example-html">
+          <pre>
+            <code class="language-json">{
+  "type": "table",
+  "limit": 4,
+  "more": "&#8595; show more",
+  "less": "&#8593; less",
+  "number": true
+}</code>
+          </pre>
+        </div>
+      </section>
+
+      <!-- Only expandable -->
+      <section id="example-onlyexpandable">
+        <h2>Only "show more"</h2>
+        <div
+          class="element links-style"
+          data-config='{ "type": "list", "limit": 5, "more": "&#8594; show more" }'
+        >
+          <a href="#">Administracja biur,</a>
+          <a href="#">Badanie i uzdatnianie wody,</a>
+          <a href="#">Motele i zajazdy,</a>
+          <a href="#">Narzędziownie,</a>
+          <a href="#">Odchudzanie,</a>
+          <a href="#">Pamiątki i upominki,</a>
+          <a href="#">Silikon,</a>
+          <a href="#">Tapety,</a>
+          <a href="#">Żegluga</a>
+        </div>
+        <div class="example-html">
+          <pre>
+            <code class="language-json">{
+  "type": "list",
+  "limit": 5,
+  "more": "&#8594; show more" // only the 'show more' button
+}</code>
+            </pre>
+        </div>
+      </section>
+
+      <!-- ellipsis -->
+      <section id="ellipsis">
+        <h2>Only the ellipsis</h2>
+        <div
+          class="element"
+          data-config='{ "type": "text", "limit": 100, "nobutton": true }'
+        >
+          It is a long established fact that a reader will be distracted by the
+          readable content of a page when looking at its layout.
+        </div>
+        <div class="example-html">
+          <pre>
+            <code code class="language-json">{ 
+  "type": "text",
+  // cropping the text after 100 characters
+  // and adding an ellipse
+  "limit": 100,
+  // parameter needed when the global configuration
+  // has a less/more button
+  "nobutton": true
+}</code>
+          </pre>
+        </div>
+      </section>
+
+      <!-- ellipsis -->
+      <section id="extending-button">
+        <h2>Individual button appearance more/less</h2>
+        <div class="explanation">
+          Additional classes to control the appearance of the more/less button
+          <code>btnClass</code> and
+          <code>btnClassAppend</code>
+        </div>
+        <div
+          class="element"
+          data-config='{ "btnClass": "extending", "element": "div", "type": "text", "limit": 100, "more": "&#8594; read more", "less": "&#8592; read less" }'
+        >
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate
+          laborum eligendi ipsa quam accusantium sit nisi. Numquam soluta
+          molestias id, ullam officia atque. Architecto assumenda dicta
+          voluptatum voluptatem, iste distinctio.
+        </div>
+        <div class="example-html">
+          <pre>
+            <code code class="language-json">{ 
+  // class that overrides the default
+  // appearance of the button
+  "btnClass": "extending",
+  "type": "text",
+  "limit": 100
+}</code>
+          </pre>
+        </div>
+      </section>
+
+      <!-- Callback text -->
+      <section>
+        <h2>Callback function</h2>
+        <div
+          class="element"
+          data-config='{ "type": "text", "limit": 120, "more": " &#8594; read more", "less": " &#8592; read less" }'
+        >
+          With the callback function you can, for example, change the color of
+          elements on the page. Click on 'show more' to see what happens.
+        </div>
+        <div class="example-html">
+          <pre>
+            <code code class="language-js">new ShowMore('.element', {
+  onMoreLess: (type, object) => {
+    const index = object.index;
+    const h2 = object.element.parentElement.firstElementChild;
+
+    if (index == 11) {
+      if (type === 'expand') {
+        h2.setAttribute('style', 'color: #eb00ff;');
+        console.log(object);
+      } else {
+        h2.removeAttribute('style');
+        console.log(object);
+      }
+    }
+  }
+});</code>
+          </pre>
+        </div>
+      </section>
+
+      <!-- html tags -->
+      <section id="html">
+        <h2>HTML tags</h2>
+        <div class="explanation">
+          It should be remembered that html elements other than
+          <code>&lt;strong&gt;&lt;/strong&gt;</code> and
+          <code>&lt;b&gt;&lt;/b&gt;</code> should be placed outside the visible
+          shortened element.
+        </div>
+        <div
+          class="element"
+          data-config='{ "type": "text", "limit": 100, "more": " &#8594; read more", "less": " &#8592; read less" }'
+        >
+          <b>Lorem ipsum dolor sit</b>, amet consectetur adipisicing elit.
+          Libero deserunt dignissimos blanditiis animi esse veritatis, quasi,
+          ab, commodi itaque quisquam delectus inventore perspiciatis corrupti!
+          <table>
+            <thead>
+              <th>one</th>
+              <th>two</th>
+              <th>three</th>
+            </thead>
+            <tr>
+              <td>a</td>
+              <td>b</td>
+              <td>c</td>
+            </tr>
+            <tr>
+              <td>d</td>
+              <td>e</td>
+              <td>f</td>
+            </tr>
+          </table>
+          Sequi debitis suscipit molestias, eligendi ab odit ullam. Vero eius
+          debitis quis corporis, possimus veniam sit fugit aliquid.
+          <img
+            src="https://grzegorztomicki.pl/images/maroko/1200/IMG_0738.jpg"
+            title="Morocco"
+          />
+          Fuga, libero eaque consequuntur ipsa esse omnis, ad eius laboriosam
+          reprehenderit iste quaerat vitae quis corrupti saepe veniam, ullam
+          placeat voluptatum sint dolore sunt quo. Voluptate fugit quo
+          architecto laboriosam
+          <i>ipsam pariatur delectus iusto consectetur provident</i> odio amet
+          tempora veniam velit at deleniti sint soluta accusamus, praesentium
+          necessitatibus maxime.<br /><br />
+          Aliquam necessitatibus porro dolores atque aliquid itaque, ad maiores!
+        </div>
+        <div class="example-html">
+          <pre>
+            <code code class="language-json">{ 
+  "type": "text",
+  "limit": 100,
+  "more": "&#8594; read more",
+  "less": "&#8592; read less"
+}</code>
+          </pre>
+        </div>
+      </section>
+
+      <!-- Global configuration -->
+      <section id="example-global">
+        <h2>Global configuration</h2>
+        <div class="element">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia illo
+          temporibus voluptate veritatis porro, dignissimos dolore debitis!
+        </div>
+        <div class="example-html">
+          <pre>
+            <code code class="language-js">new ShowMore('.element', {
+  config: {
+    type: "text",
+    limit: 20,
+    more: "&#8594; read more",
+    less: "&#8592; read less"
+  }
+});</code>
+          </pre>
+        </div>
+      </section>
+    </div>
+    <script src="./showMore.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        new ShowMore(".element", {
+          config: {
+            type: "text",
+            limit: 120,
+            more: "&#8594; read more",
+            less: "&#8592; read less",
+          },
+          onMoreLess: function (type, object) {
+            const index = object.index;
+            const h2 = object.element.parentElement.firstElementChild;
+
+            if (index == 11) {
+              if (type === "expand") {
+                h2.setAttribute("style", "color: #eb00ff;");
+              } else {
+                h2.removeAttribute("style");
+              }
+            }
+          },
+        });
+      });
+    </script>
+    <script>
+      hljs.highlightAll();
+    </script>
+    <script src="./github-corner.js"></script>
+  </body>
+</html>
