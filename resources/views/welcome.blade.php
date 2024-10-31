@@ -1,5 +1,5 @@
-@extends('layouts.guest', ['page_title' => 'Tableau de bord' ])
+@extends('layouts.app', ['page_title' => 'Tableau de bord' ])
 
-@section('guest-content')
+@section('app-content')
 
 @endsection

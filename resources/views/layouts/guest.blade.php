@@ -50,10 +50,20 @@
 
     <body class="animsition">
         <div class="page-wrapper">
-@include('components.nav-link')
-
+            <div class="page-content--bge5">
+                <div class="container">
+                    <div class="login-wrap">
+                        <div class="login-content">
+                            <div class="login-logo">
+                                <a href="#">
+                                    <img src="{{ asset('assets/img/logo-text.png') }}" alt="KinTaxi" width="200">
+                                </a>
+                            </div>
 @yield('guest-content')
-
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
