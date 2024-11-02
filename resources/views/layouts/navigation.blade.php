@@ -1,100 +1,195 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
-    <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+            <!-- HEADER MOBILE-->
+            <header class="header-mobile d-block d-lg-none">
+                <div class="header-mobile__bar">
+                    <div class="container-fluid">
+                        <div class="header-mobile-inner">
+                            <a class="logo" href="index.html">
+                                <img src="{{ asset('assets/img/logo-text.png') }}" alt="KinTaxi" width="200" />
+                            </a>
+                            <button class="hamburger hamburger--slider" type="button">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <nav class="navbar-mobile">
+                    <div class="container-fluid">
+                        <ul class="navbar-mobile__list list-unstyled">
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                    <li>
+                                        <a href="index.html">Dashboard 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="index2.html">Dashboard 2</a>
+                                    </li>
+                                    <li>
+                                        <a href="index3.html">Dashboard 3</a>
+                                    </li>
+                                    <li>
+                                        <a href="index4.html">Dashboard 4</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="chart.html">
+                                    <i class="fas fa-chart-bar"></i>Charts</a>
+                            </li>
+                            <li>
+                                <a href="table.html">
+                                    <i class="fas fa-table"></i>Tables</a>
+                            </li>
+                            <li>
+                                <a href="form.html">
+                                    <i class="far fa-check-square"></i>Forms</a>
+                            </li>
+                            <li>
+                                <a href="calendar.html">
+                                    <i class="fas fa-calendar-alt"></i>Calendar</a>
+                            </li>
+                            <li>
+                                <a href="map.html">
+                                    <i class="fas fa-map-marker-alt"></i>Maps</a>
+                            </li>
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-copy"></i>Pages</a>
+                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                    <li>
+                                        <a href="login.html">Login</a>
+                                    </li>
+                                    <li>
+                                        <a href="register.html">Register</a>
+                                    </li>
+                                    <li>
+                                        <a href="forget-pass.html">Forget Password</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-desktop"></i>UI Elements</a>
+                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                    <li>
+                                        <a href="button.html">Button</a>
+                                    </li>
+                                    <li>
+                                        <a href="badge.html">Badges</a>
+                                    </li>
+                                    <li>
+                                        <a href="tab.html">Tabs</a>
+                                    </li>
+                                    <li>
+                                        <a href="card.html">Cards</a>
+                                    </li>
+                                    <li>
+                                        <a href="alert.html">Alerts</a>
+                                    </li>
+                                    <li>
+                                        <a href="progress-bar.html">Progress Bars</a>
+                                    </li>
+                                    <li>
+                                        <a href="modal.html">Modals</a>
+                                    </li>
+                                    <li>
+                                        <a href="switch.html">Switchs</a>
+                                    </li>
+                                    <li>
+                                        <a href="grid.html">Grids</a>
+                                    </li>
+                                    <li>
+                                        <a href="fontawesome.html">Fontawesome Icon</a>
+                                    </li>
+                                    <li>
+                                        <a href="typo.html">Typography</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <!-- END HEADER MOBILE-->
+
+            <!-- MENU SIDEBAR-->
+            <aside class="menu-sidebar d-none d-lg-block">
+                <div class="logo">
+                    <a href="#">
+                        <img src="{{ asset('assets/img/logo-text.png') }}" alt="KinTaxi" width="200" />
                     </a>
                 </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+                <div class="menu-sidebar__content js-scrollbar1">
+                    <nav class="navbar-sidebar2">
+                        <ul class="list-unstyled navbar__list">
+                            <li class="active">
+                                <a href="">
+                                    <i class="fas fa-dashboard"></i>@lang('miscellaneous.menu.dashboard')
+                                </a>
+                            </li>
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-user-friends"></i>Clients
+                                    <span class="arrow">
+                                        <i class="fas fa-angle-down"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                    <li>
+                                        <a href="" class="ps-3">Courses en cours</a>
+                                    </li>
+                                    <li>
+                                        <a href="" class="ps-3">Courses terminées</a>
+                                    </li>
+                                    <li>
+                                        <a href="" class="ps-3">Locations</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fas fa-file-invoice-dollar"></i>Devise
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fas fa-credit-card"></i>Fournisseur de paiement
+                                </a>
+                            </li>
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-car"></i>Véhicule
+                                    <span class="arrow">
+                                        <i class="fas fa-angle-down"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                    <li>
+                                        <a href="" class="ps-3">Forme</a>
+                                    </li>
+                                    <li>
+                                        <a href="" class="ps-3">Catégorie</a>
+                                    </li>
+                                    <li>
+                                        <a href="" class="ps-3">Caractéristique</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fas fa-thermometer-1"></i>Etats
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fas fa-graduation-cap"></i>Rôle
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-            </div>
-
-            <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
-
-                            <div class="ms-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </button>
-                    </x-slot>
-
-                    <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
-
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
-            </div>
-
-            <!-- Hamburger -->
-            <div class="-me-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
-                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-        </div>
-
-        <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-            </div>
-
-            <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
-                </x-responsive-nav-link>
-
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-responsive-nav-link>
-                </form>
-            </div>
-        </div>
-    </div>
-</nav>
+            </aside>
+            <!-- END MENU SIDEBAR-->
