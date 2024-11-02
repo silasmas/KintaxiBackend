@@ -3,25 +3,27 @@
 @section('guest-content')
                             <div class="login-form">
                                 <form action method="post">
+                                    <h3 class="h3 mb-4 text-center fw-bold">@lang('miscellaneous.login_title2')</h3>
+
                                     <!-- User name -->
                                     <div class="form-group mb-3">
-                                        <label class="form-label">@lang('miscellaneous.login_username')</label>
+                                        <label class="form-label d-lg-inline-block d-none">@lang('miscellaneous.login_username')</label>
                                         <input type="text" name="login_username" class="au-input au-input--full" placeholder="@lang('miscellaneous.login_username')" autofocus>
                                     </div>
 
                                     <!-- Password -->
                                     <div class="form-group mb-3">
-                                        <label class="form-label">@lang('miscellaneous.password.label')</label>
+                                        <label class="form-label d-lg-inline-block d-none">@lang('miscellaneous.password.label')</label>
                                         <input type="password" name="password" class="au-input au-input--full" placeholder="@lang('miscellaneous.password.label')">
                                     </div>
 
                                     <!-- Remember -->
-                                    <div class="login-checkbox mb-4">
+                                    <div class="login-checkbox mb-4 text-center">
                                         <label>
                                             <input type="checkbox" name="remember">@lang('miscellaneous.remember_me')
                                         </label>
                                         <label>
-                                            <a href="#" class="text-decoration-underline">@lang('miscellaneous.forgotten_password')</a>
+                                            <a href="#" class="small text-decoration-underline">@lang('miscellaneous.forgotten_password')</a>
                                         </label>
                                     </div>
 
