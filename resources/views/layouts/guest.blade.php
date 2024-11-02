@@ -43,15 +43,19 @@
 @if (!empty($page_title))
             {{ $page_title }}
 @else
+    @if (!empty($exception))
+            {{ $exception->getStatusCode() . ' - ' . __('notifications.' . $exception->getStatusCode() . '_title') }}
+    @else
             {{ config('app.name') }}
+    @endif
 @endif
         </title>
     </head>
 
     <body class="animsition">
         <div class="page-wrapper">
-            <div class="page-content--bge5">
-                <div class="container">
+            <div class="page-content--bge5 pb-5">
+                <div class="container pb-5">
                     <div class="login-wrap">
                         <div class="login-content">
                             <div class="login-logo">
