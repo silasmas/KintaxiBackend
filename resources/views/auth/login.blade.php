@@ -2,7 +2,7 @@
 
 @section('guest-content')
                             <div class="login-form">
-                                <form action method="post">
+                                <form action="{{ route('login') }}" method="post">
                                     <h3 class="h3 mb-4 text-center fw-bold">@lang('miscellaneous.login_title2')</h3>
 
                                     <!-- User name -->
