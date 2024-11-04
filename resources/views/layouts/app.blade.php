@@ -116,18 +116,14 @@
                                                         <a href="{{ route('account') }}">
                                                             <i class="zmdi zmdi-account"></i>@lang('miscellaneous.menu.account.title')</a>
                                                     </div>
-                                                    <div class="account-dropdown__item">
-                                                        <a href="#">
-                                                            <i class="zmdi zmdi-settings"></i>Setting</a>
-                                                    </div>
-                                                    <div class="account-dropdown__item">
-                                                        <a href="#">
-                                                            <i class="zmdi zmdi-money-box"></i>Billing</a>
-                                                    </div>
                                                 </div>
                                                 <div class="account-dropdown__footer">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-power"></i>Logout</a>
+                                                    <form action="{{ route('logout') }}" method="POST">
+@csrf
+                                                        <button class="btn btn-sm btn-transparent p-4 border-0 shadow-0" style="text-transform: inherit!important;">
+                                                            <i class="zmdi zmdi-power me-4"></i>@lang('miscellaneous.logout')
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
