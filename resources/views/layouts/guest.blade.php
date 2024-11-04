@@ -52,18 +52,55 @@
         </title>
     </head>
 
-    <body class="animsition">
+    <body class="animsition" style="background-color: #e5e5e5;">
+        <span class="menu-sidebar2__content d-none"></span>
         <div class="page-wrapper">
-            <div class="page-content--bge5 pb-5">
-                <div class="container pb-5">
+            <div class="page-content--bge5">
+                <div class="container">
+@if (Session::has('success_message'))
+                    <div id="successMessageWrapper" class="position-fixed w-100 top-0 start-0 z-index-99">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6 col-11 mx-auto">
+                                <div class="alert alert-success alert-dismissible d-flex align-items-center" role="alert">
+                                    <i class="bi bi-info-circle me-3 fs-5"></i>
+                                    <div class="custom-message">{{ Session::get('success_message') }}</div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+@endif
+@if (Session::has('error_message'))
+                    <div id="errorMessageWrapper" class="position-fixed w-100 top-0 start-0 z-index-99">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6 col-11 mx-auto">
+                                <div class="alert alert-danger alert-dismissible d-flex align-items-center" role="alert">
+                                    <i class="bi bi-exclamation-triangle me-3 fs-5"></i>
+                                    <div class="custom-message">{{ Session::get('error_message') }}</div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+@endif
+
                     <div class="login-wrap">
                         <div class="login-content">
                             <div class="login-logo">
-                                <a href="#">
+                                <a href="{{ route('home') }}">
                                     <img src="{{ asset('assets/img/logo-text.png') }}" alt="KinTaxi" width="200">
                                 </a>
                             </div>
 @yield('guest-content')
+                        </div>
+                    </div>
+
+                    <div class="row g-0 mb-5">
+                        <div class="col-lg-4 col-sm-8 mx-auto">
+                            <div class="d-sm-flex justify-content-between text-center">
+                                <p class="small mt-3 mb-sm-0 mb-1"><i class="fa-regular fa-copyright"></i> {{ date('Y') }} <strong>KinTaxi</strong> @lang('miscellaneous.all_right_reserved')</p>
+                                <p class="small mt-sm-3 mb-0">Designed by <a class="text-decoration-underline" href="https://silasmas.com" target="_blank">SDEV</a></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -100,5 +137,14 @@
         <script src="{{ asset('assets/js/main.js') }}"></script>
         <!-- Custom Javascript -->
         <script src="{{ asset('assets/js/script.custom.js') }}"></script>
+        <script type="text/javascript">
+            /*
+             * When the user clicks on the button, scroll to the top of the document
+             */
+            function backToTop() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+        </script>
     </body>
 </html>

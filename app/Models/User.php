@@ -8,6 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -17,11 +21,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,4 +42,40 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * ONE-TO-MANY
+     * One users_role for several users
+     */
+    public function role()
+    {
+        return $this->belongsTo(UserRole::class, 'role_id');
+    }
+
+    /**
+     * ONE-TO-MANY
+     * One status for several users
+     */
+    public function status()
+    {
+        return $this->belongsTo(Status::class, 'status_id');
+    }
+
+    /**
+     * ONE-TO-MANY
+     * One country for several users
+     */
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
+    }
+
+    /**
+     * MANY-TO-ONE
+     * Several vehicles for a user
+     */
+    public function vehicles()
+    {
+        return $this->hasMany(Vehicle::class, 'user_id');
+    }
 }

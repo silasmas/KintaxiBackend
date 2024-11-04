@@ -109,7 +109,7 @@ return [
     'prohibited_unless' => 'This field is prohibited unless :other is in :values.',
     'prohibits' => 'This field prohibits :other from being present.',
     'regex' => 'The :attribute format is invalid.',
-    'required' => 'This field is required.',
+    'required' => 'The field ":attribute" is required.',
     'required_if' => 'This field is required when :other is :value.',
     'required_unless' => 'This field is required unless :other is in :values.',
     'required_with' => 'This field is required when :values is present.',
@@ -150,6 +150,10 @@ return [
         'phone' => [
             'incorrect' => 'Write a valid phone number please',
             'exists' => 'The provided phone number already exists',
+        ],
+        'username' => [
+            'incorrect' => 'Write a valid user name please',
+            'exists' => 'The provided user name already exists',
         ],
         'former_password' => [
             'empty' => 'Please enter your old password!',

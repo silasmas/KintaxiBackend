@@ -3,7 +3,7 @@
                 <div class="header-mobile__bar">
                     <div class="container-fluid">
                         <div class="header-mobile-inner">
-                            <a class="logo" href="index.html">
+                            <a class="logo" href="{{ route('home') }}">
                                 <img src="{{ asset('assets/img/logo-text.png') }}" alt="KinTaxi" width="200" />
                             </a>
                             <button class="hamburger hamburger--slider" type="button">
@@ -17,97 +17,86 @@
                 <nav class="navbar-mobile">
                     <div class="container-fluid">
                         <ul class="navbar-mobile__list list-unstyled">
+                            <!-- Home -->
+                            <li class="active">
+                                <a href="{{ route('home') }}">
+                                    <i class="fas fa-dashboard"></i>@lang('miscellaneous.menu.dashboard')
+                                </a>
+                            </li>
+                            <!-- Customer -->
                             <li class="has-sub">
                                 <a class="js-arrow" href="#">
-                                    <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                    <i class="fas fa-user-friends"></i>@lang('miscellaneous.menu.customers.title')
+                                    <span class="arrow">
+                                        <i class="fas fa-angle-down"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
-                                        <a href="index.html">Dashboard 1</a>
+                                        <a href="{{ route('customer.entity', ['entity' => 'ride-in-progress']) }}" class="ps-3">@lang('miscellaneous.menu.customers.ride-in-progress')</a>
                                     </li>
                                     <li>
-                                        <a href="index2.html">Dashboard 2</a>
+                                        <a href="{{ route('customer.entity', ['entity' => 'ride-finished']) }}" class="ps-3">@lang('miscellaneous.menu.customers.ride-finished')</a>
                                     </li>
                                     <li>
-                                        <a href="index3.html">Dashboard 3</a>
-                                    </li>
-                                    <li>
-                                        <a href="index4.html">Dashboard 4</a>
+                                        <a href="{{ route('customer.entity', ['entity' => 'rented-vehicles']) }}" class="ps-3">@lang('miscellaneous.menu.customers.rented-vehicles')</a>
                                     </li>
                                 </ul>
                             </li>
+                            <!-- Currency -->
                             <li>
-                                <a href="chart.html">
-                                    <i class="fas fa-chart-bar"></i>Charts</a>
+                                <a href="{{ route('currency') }}">
+                                    <i class="fas fa-file-invoice-dollar"></i>@lang('miscellaneous.menu.currency')
+                                </a>
                             </li>
+                            <!-- Payment gateway -->
                             <li>
-                                <a href="table.html">
-                                    <i class="fas fa-table"></i>Tables</a>
+                                <a href="{{ route('payment_gateway') }}">
+                                    <i class="fas fa-credit-card"></i>@lang('miscellaneous.menu.payment-gateway')
+                                </a>
                             </li>
-                            <li>
-                                <a href="form.html">
-                                    <i class="far fa-check-square"></i>Forms</a>
-                            </li>
-                            <li>
-                                <a href="calendar.html">
-                                    <i class="fas fa-calendar-alt"></i>Calendar</a>
-                            </li>
-                            <li>
-                                <a href="map.html">
-                                    <i class="fas fa-map-marker-alt"></i>Maps</a>
-                            </li>
+                            <!-- Vehicle -->
                             <li class="has-sub">
                                 <a class="js-arrow" href="#">
-                                    <i class="fas fa-copy"></i>Pages</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                    <i class="fas fa-car"></i>@lang('miscellaneous.menu.vehicle.title')
+                                    <span class="arrow">
+                                        <i class="fas fa-angle-down"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
-                                        <a href="login.html">Login</a>
+                                        <a href="{{ route('vehicle.entity', ['entity' => 'shape']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.shape')</a>
                                     </li>
                                     <li>
-                                        <a href="register.html">Register</a>
+                                        <a href="{{ route('vehicle.entity', ['entity' => 'category']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.category')</a>
                                     </li>
                                     <li>
-                                        <a href="forget-pass.html">Forget Password</a>
+                                        <a href="{{ route('vehicle.entity', ['entity' => 'features']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.features')</a>
                                     </li>
                                 </ul>
                             </li>
+                            <!-- Role -->
                             <li class="has-sub">
                                 <a class="js-arrow" href="#">
-                                    <i class="fas fa-desktop"></i>UI Elements</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                    <i class="fas fa-graduation-cap"></i>@lang('miscellaneous.menu.role.title')
+                                    <span class="arrow">
+                                        <i class="fas fa-angle-down"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
-                                        <a href="button.html">Button</a>
+                                        <a href="{{ route('role.entity', ['entity' => 'manage-roles']) }}" class="ps-3">@lang('miscellaneous.menu.role.manage-roles')</a>
                                     </li>
                                     <li>
-                                        <a href="badge.html">Badges</a>
-                                    </li>
-                                    <li>
-                                        <a href="tab.html">Tabs</a>
-                                    </li>
-                                    <li>
-                                        <a href="card.html">Cards</a>
-                                    </li>
-                                    <li>
-                                        <a href="alert.html">Alerts</a>
-                                    </li>
-                                    <li>
-                                        <a href="progress-bar.html">Progress Bars</a>
-                                    </li>
-                                    <li>
-                                        <a href="modal.html">Modals</a>
-                                    </li>
-                                    <li>
-                                        <a href="switch.html">Switchs</a>
-                                    </li>
-                                    <li>
-                                        <a href="grid.html">Grids</a>
-                                    </li>
-                                    <li>
-                                        <a href="fontawesome.html">Fontawesome Icon</a>
-                                    </li>
-                                    <li>
-                                        <a href="typo.html">Typography</a>
+                                        <a href="{{ route('role.entity', ['entity' => 'users']) }}" class="ps-3">@lang('miscellaneous.menu.role.users')</a>
                                     </li>
                                 </ul>
+                            </li>
+                            <!-- Status -->
+                            <li>
+                                <a href="{{ route('status') }}">
+                                    <i class="fas fa-thermometer-1"></i>@lang('miscellaneous.menu.status')
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -118,74 +107,92 @@
             <!-- MENU SIDEBAR-->
             <aside class="menu-sidebar d-none d-lg-block">
                 <div class="logo">
-                    <a href="#">
+                    <a href="{{ route('home') }}">
                         <img src="{{ asset('assets/img/logo-text.png') }}" alt="KinTaxi" width="200" />
                     </a>
                 </div>
                 <div class="menu-sidebar__content js-scrollbar1">
                     <nav class="navbar-sidebar2">
                         <ul class="list-unstyled navbar__list">
+                            <!-- Home -->
                             <li class="active">
-                                <a href="">
+                                <a href="{{ route('home') }}">
                                     <i class="fas fa-dashboard"></i>@lang('miscellaneous.menu.dashboard')
                                 </a>
                             </li>
+                            <!-- Customer -->
                             <li class="has-sub">
                                 <a class="js-arrow" href="#">
-                                    <i class="fas fa-user-friends"></i>Clients
+                                    <i class="fas fa-user-friends"></i>@lang('miscellaneous.menu.customers.title')
                                     <span class="arrow">
                                         <i class="fas fa-angle-down"></i>
                                     </span>
                                 </a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
-                                        <a href="" class="ps-3">Courses en cours</a>
+                                        <a href="{{ route('customer.entity', ['entity' => 'ride-in-progress']) }}" class="ps-3">@lang('miscellaneous.menu.customers.ride-in-progress')</a>
                                     </li>
                                     <li>
-                                        <a href="" class="ps-3">Courses terminées</a>
+                                        <a href="{{ route('customer.entity', ['entity' => 'ride-finished']) }}" class="ps-3">@lang('miscellaneous.menu.customers.ride-finished')</a>
                                     </li>
                                     <li>
-                                        <a href="" class="ps-3">Locations</a>
+                                        <a href="{{ route('customer.entity', ['entity' => 'rented-vehicles']) }}" class="ps-3">@lang('miscellaneous.menu.customers.rented-vehicles')</a>
                                     </li>
                                 </ul>
                             </li>
+                            <!-- Currency -->
                             <li>
-                                <a href="">
-                                    <i class="fas fa-file-invoice-dollar"></i>Devise
+                                <a href="{{ route('currency') }}">
+                                    <i class="fas fa-file-invoice-dollar"></i>@lang('miscellaneous.menu.currency')
                                 </a>
                             </li>
+                            <!-- Payment gateway -->
                             <li>
-                                <a href="">
-                                    <i class="fas fa-credit-card"></i>Fournisseur de paiement
+                                <a href="{{ route('payment_gateway') }}">
+                                    <i class="fas fa-credit-card"></i>@lang('miscellaneous.menu.payment-gateway')
                                 </a>
                             </li>
+                            <!-- Vehicle -->
                             <li class="has-sub">
                                 <a class="js-arrow" href="#">
-                                    <i class="fas fa-car"></i>Véhicule
+                                    <i class="fas fa-car"></i>@lang('miscellaneous.menu.vehicle.title')
                                     <span class="arrow">
                                         <i class="fas fa-angle-down"></i>
                                     </span>
                                 </a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
-                                        <a href="" class="ps-3">Forme</a>
+                                        <a href="{{ route('vehicle.entity', ['entity' => 'shape']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.shape')</a>
                                     </li>
                                     <li>
-                                        <a href="" class="ps-3">Catégorie</a>
+                                        <a href="{{ route('vehicle.entity', ['entity' => 'category']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.category')</a>
                                     </li>
                                     <li>
-                                        <a href="" class="ps-3">Caractéristique</a>
+                                        <a href="{{ route('vehicle.entity', ['entity' => 'features']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.features')</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="">
-                                    <i class="fas fa-thermometer-1"></i>Etats
+                            <!-- Role -->
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-graduation-cap"></i>@lang('miscellaneous.menu.role.title')
+                                    <span class="arrow">
+                                        <i class="fas fa-angle-down"></i>
+                                    </span>
                                 </a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                    <li>
+                                        <a href="{{ route('role.entity', ['entity' => 'manage-roles']) }}" class="ps-3">@lang('miscellaneous.menu.role.manage-roles')</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('role.entity', ['entity' => 'users']) }}" class="ps-3">@lang('miscellaneous.menu.role.users')</a>
+                                    </li>
+                                </ul>
                             </li>
+                            <!-- Status -->
                             <li>
-                                <a href="">
-                                    <i class="fas fa-graduation-cap"></i>Rôle
+                                <a href="{{ route('status') }}">
+                                    <i class="fas fa-thermometer-1"></i>@lang('miscellaneous.menu.status')
                                 </a>
                             </li>
                         </ul>

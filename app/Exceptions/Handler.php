@@ -2,9 +2,14 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class Handler extends ExceptionHandler
 {
     /**
@@ -26,5 +31,19 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    /**
+     * Display a JSON message if the API user has not authenticated
+     */
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        $is_api_request = $request->route()->getPrefix() == 'api';
+
+        if ($is_api_request == false) {
+            return response()->view('auth.login');
+        }
+
+        return response()->json(['error' => __('notifications.401_description')], 401);
     }
 }

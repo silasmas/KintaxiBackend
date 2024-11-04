@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,7 +19,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'KinTaxi'),
 
     /*
     |--------------------------------------------------------------------------
@@ -110,6 +113,19 @@ return [
     */
 
     'faker_locale' => 'en_US',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Available locales
+    |--------------------------------------------------------------------------
+    |
+    | All locales that application works with
+    |
+    */
+    'available_locales' => [
+        'English' => 'en',
+        'Français' => 'fr'
+    ],
 
     /*
     |--------------------------------------------------------------------------

@@ -12,9 +12,9 @@ return [
     |--------------------------------------------------------------------------
     |
      */
-    'welcome_title' => 'Welcome on Boongo',
-    'welcome_description' => 'Read or order books, magazines and newspapers. View geographic maps.',
-    'keywords' => 'read, order, book, newspaper, magazine, mapping',
+    'main_title' => 'Administration',
+    'main_description' => 'Management of vehicles, customers, rides and other KinTaxi app data.',
+    'keywords' => 'administation, admin, management, vehicle, ride, kintaxi',
     'all_right_reserved' => 'All right reserved',
     'follow_us' => 'Follow us:',
     'call_us' => 'Call us:',
@@ -34,6 +34,7 @@ return [
     'back_list' => 'Return to the list',
     'back_form' => 'Return to the form',
     'back_toc' => 'Return to the table of content',
+    'back_top' => 'Back to top',
     'see_all_notifications' => 'View all notifications',
     'loading' => 'Loading...',
     'yes' => 'Yes',
@@ -269,36 +270,31 @@ return [
         'home' => 'Home',
         'dashboard' => 'Dashboard',
         'about' => 'About',
-        'terms_of_use' => 'Terms',
-        'privacy_policy' => 'Privacy',
-        'cookies' => 'Cookies',
-        'contact' => 'Contact',
-        'login_register' => 'log in or register',
         'account' => [
             'title' => 'My account',
-            'cart' => 'My cart',
-            'works' => 'My books',
+            'messages' => 'Messages',
+            'notifications' => 'Notifications',
         ],
-        'messages' => 'Messages',
-        'notifications' => 'Notifications',
-        'admin' => [
-            'role' => 'Role',
-            'group' => [
-                'title' => 'Group',
-                'type' => 'Type',
-                'status' => 'Status',
-                'category' => 'Category'
-            ],
-            'subscription' => 'Subscription',
-            'work' => 'Work',
+        'customers' => [
+            'title' => 'Customers',
+            'ride-in-progress' => 'Ride in progress',
+            'ride-finished' => 'Ride finished',
+            'rented-vehicles' => 'Rented vehicles',
+        ],
+        'currency' => 'Currency',
+        'payment-gateway' => 'Passerelle de paiement',
+        'vehicle' => [
+            'title' => 'Vehicle',
+            'shape' => 'Shape',
+            'category' => 'Category',
+            'feature' => 'Features',
+        ],
+        'role' => [
+            'title' => 'Role',
+            'manage-roles' => 'Manage roles',
             'users' => 'Users',
         ],
-        'public' => [
-            'books' => 'Books',
-            'mag_newspapers' => 'Magazines & newspapers',
-            'mapping' => 'Mapping',
-            'medias' => 'Medias',
-        ],
+        'status' => 'Status',
     ],
 
     // ===== EVERY ROLES PAGES

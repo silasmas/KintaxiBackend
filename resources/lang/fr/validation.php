@@ -109,7 +109,7 @@ return [
     'prohibited_unless' => 'Ce champ est interdit à moins que :other soit dans :values.',
     'prohibits' => 'Ce champ interdit :other d\'être présent.',
     'regex' => 'Le format de :attribute est invalide.',
-    'required' => 'Ce champ est obligatoire.',
+    'required' => 'Le champ « :attribute » est obligatoire.',
     'required_if' => 'Ce champ est obligatoire lorsque :other est :value.',
     'required_unless' => 'Ce champ est obligatoire à moins que :other soit dans :values.',
     'required_with' => 'Ce champ est obligatoire lorsque :values est pr&eacure;sent.',
@@ -150,6 +150,10 @@ return [
         'phone' => [
             'incorrect' => 'Ecrivez un n° de téléphone valide s\'il vous plait',
             'exists' => 'Le n° de téléphone fourni existe déjà',
+        ],
+        'username' => [
+            'incorrect' => 'Ecrivez un nom d\'utilisateur valide s\'il vous plait',
+            'exists' => 'Le nom d\'utilisateur fourni existe déjà',
         ],
         'former_password' => [
             'empty' => 'Veuillez mettre votre ancien mot de passe !',

@@ -12,9 +12,9 @@ return [
     |--------------------------------------------------------------------------
     |
     */
-    'welcome_title' => 'Bienvenue sur Boongo',
-    'welcome_description' => 'Lire ou commander des livres, revues et journaux. Consulter des cartes geographiques.',
-    'keywords' => 'lire, commander, livre, journal, revue, cartographie',
+    'main_title' => 'Administration',
+    'main_description' => 'Gestion des véhicules, des clients, des courses et autres données de l’appli KinTaxi.',
+    'keywords' => 'administation, admin, gestion, véhicule, course, kintaxi',
     'all_right_reserved' => 'Tous droits réservés',
     'follow_us' => 'Suivez-nous :',
     'call_us' => 'Appelez-nous :',
@@ -34,6 +34,7 @@ return [
     'back_list' => 'Retourner à la liste',
     'back_form' => 'Retourner au formulaire',
     'back_toc' => 'Retourner à la table des matières',
+    'back_top' => 'Retour en haut',
     'see_all_notifications' => 'Voir toutes les notifications',
     'loading' => 'Chargement ...',
     'yes' => 'Oui',
@@ -269,36 +270,31 @@ return [
         'home' => 'Accueil',
         'dashboard' => 'Tableau de bord',
         'about' => 'A propos',
-        'terms_of_use' => 'Conditions',
-        'privacy_policy' => 'Confidentialité',
-        'cookies' => 'Cookies',
-        'contact' => 'Contact',
-        'login_register' => 's’identifier ou s’inscrire',
         'account' => [
             'title' => 'Mon compte',
-            'cart' => 'Mon panier',
-            'works' => 'Mes ouvrages',
+            'messages' => 'Messages',
+            'notifications' => 'Notifications',
         ],
-        'messages' => 'Messages',
-        'notifications' => 'Notifications',
-        'admin' => [
-            'role' => 'Rôle',
-            'group' => [
-                'title' => 'Groupe',
-                'type' => 'Type',
-                'status' => 'Etat',
-                'category' => 'Catégorie'
-            ],
-            'subscription' => 'Abonnement',
-            'work' => 'Œuvre',
+        'customers' => [
+            'title' => 'Clients',
+            'ride-in-progress' => 'Courses en cours',
+            'ride-finished' => 'Courses terminées',
+            'rented-vehicles' => 'Véhicules loués',
+        ],
+        'currency' => 'Devise',
+        'payment-gateway' => 'Payment gateway',
+        'vehicle' => [
+            'title' => 'Véhicule',
+            'shape' => 'Forme',
+            'category' => 'Catégorie',
+            'features' => 'Caractéristiques',
+        ],
+        'role' => [
+            'title' => 'Rôle',
+            'manage-roles' => 'Gérer les rôles',
             'users' => 'Utilisateurs',
         ],
-        'public' => [
-            'books' => 'Ouvrages',
-            'mag_newspapers' => 'Revues & journaux',
-            'mapping' => 'Cartographie',
-            'medias' => 'Médias',
-        ],
+        'status' => 'États',
     ],
 
     // ===== EVERY ROLES PAGES
