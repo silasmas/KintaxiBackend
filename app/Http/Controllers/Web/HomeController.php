@@ -37,6 +37,16 @@ class HomeController extends Controller
     }
 
     /**
+     * GET: Home page
+     *
+     * @return \Illuminate\View\View
+     */
+    public function index()
+    {
+        return view('dashboard');
+    }
+
+    /**
      * GET: About page
      *
      * @return \Illuminate\View\View

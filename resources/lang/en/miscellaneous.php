@@ -282,7 +282,7 @@ return [
             'rented-vehicles' => 'Rented vehicles',
         ],
         'currency' => 'Currency',
-        'payment-gateway' => 'Passerelle de paiement',
+        'payment-gateway' => 'Payment gateway',
         'vehicle' => [
             'title' => 'Vehicle',
             'shape' => 'Shape',

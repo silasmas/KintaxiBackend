@@ -56,11 +56,10 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // $request->validate([
-        //     'name' => ['required', 'string', 'max:255'],
-        //     'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-        //     'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        // ]);
+        $request->validate([
+            'phone' => [/*'required',*/ 'string', 'regex:/^[0-9]{10,15}$/', 'max:255', 'unique:users,phone',],
+            'email' => [/*'required',*/ 'string', 'email', 'max:255', 'unique:users,email',],
+        ]);
 
         // User inputs
         $inputs = [
@@ -76,7 +75,6 @@ class RegisteredUserController extends Controller
             'address_2' => $request->register_address_2,
             'p_o_box' => $request->register_p_o_box,
             'password' => $request->register_password,
-            'confirm_password' => $request->confirm_password,
             'status_id' => $this::$activated_status->id,
             'role_id' => $this::$admin_role->id
         ];
@@ -113,11 +111,11 @@ class RegisteredUserController extends Controller
             return redirect()->back()->with('error_message', __('miscellaneous.password.error'));
         }
 
-        if (trim($inputs['confirm_password']) == null) {
+        if (trim($request->confirm_password) == null) {
             return redirect()->back()->with('error_message', __('validation.required', ['attribute' => __('miscellaneous.confirm_password.label')]));
         }
 
-        if ($inputs['confirm_password'] != $inputs['password']) {
+        if ($request->confirm_password != $inputs['password']) {
             return redirect()->back()->with('error_message', __('miscellaneous.confirm_password.error'));
         }
 
@@ -151,6 +149,6 @@ class RegisteredUserController extends Controller
 
         User::create($inputs);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOME)->with('success_message', __('notifications.create_user_success'));
     }
 }

@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome/css/all.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/fonts/bootstrap-icons/bootstrap-icons.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/fonts/mdi-font/css/material-design-iconic-font.min.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.2.3/css/flag-icons.min.css">
 
         <!-- Addons CSS Files -->
         <link rel="stylesheet" href="{{ asset('assets/addons/custom/mdb/css/mdb.min.css') }}">
@@ -60,8 +61,8 @@
                         <div class="container-fluid">
                             <div class="header-wrap">
                                 <!-- Form search -->
-                                <form class="form-header" action="" method="POST">
-                                    <input class="au-input au-input--xl" type="text" name="search" placeholder="Rechercher ..." />
+                                <form class="form-header" action="{{ route('search') }}" method="POST">
+                                    <input class="au-input au-input--xl" type="text" name="q" placeholder="@lang('miscellaneous.search_input')" />
                                     <button class="au-btn--submit" type="submit">
                                         <i class="zmdi zmdi-search"></i>
                                     </button>
@@ -69,85 +70,20 @@
 
                                 <div class="header-button">
                                     <div class="noti-wrap">
-                                        <!-- Messages -->
-                                        <div class="noti__item js-item-menu">
-                                            <i class="zmdi zmdi-email"></i>
-                                            <span class="quantity">1</span>
-                                            <div class="email-dropdown js-dropdown">
-                                                <div class="email__title">
-                                                    <p>You have 3 New Emails</p>
-                                                </div>
-                                                <div class="email__item">
-                                                    <div class="image img-cir img-40">
-                                                        <img src="{{ asset('assets/img/user.png') }}" alt="Cynthia Harvey" />
-                                                    </div>
-                                                    <div class="content">
-                                                        <p>Meeting about new dashboard...</p>
-                                                        <span>Cynthia Harvey, 3 min ago</span>
-                                                    </div>
-                                                </div>
-                                                <div class="email__item">
-                                                    <div class="image img-cir img-40">
-                                                        <img src="{{ asset('assets/img/user.png') }}" alt="Cynthia Harvey" />
-                                                    </div>
-                                                    <div class="content">
-                                                        <p>Meeting about new dashboard...</p>
-                                                        <span>Cynthia Harvey, Yesterday</span>
-                                                    </div>
-                                                </div>
-                                                <div class="email__item">
-                                                    <div class="image img-cir img-40">
-                                                        <img src="{{ asset('assets/img/user.png') }}" alt="Cynthia Harvey" />
-                                                    </div>
-                                                    <div class="content">
-                                                        <p>Meeting about new dashboard...</p>
-                                                        <span>Cynthia Harvey, April 12,,2018</span>
-                                                    </div>
-                                                </div>
-                                                <div class="email__footer">
-                                                    <a href="#">See all emails</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <!-- Language -->
+                                        <div class="dropdown show">
+                                            <button class="btn btn-transparent me-4 px-2 py-0 border-0 shadow-0 fs-4" id="languageToggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="zmdi zmdi-translate"></i>
+                                            </button>
 
-                                        <!-- Notifications -->
-                                        <div class="noti__item js-item-menu">
-                                            <i class="zmdi zmdi-notifications"></i>
-                                            <span class="quantity">3</span>
-                                            <div class="notifi-dropdown js-dropdown">
-                                                <div class="notifi__title">
-                                                    <p>You have 3 Notifications</p>
-                                                </div>
-                                                <div class="notifi__item">
-                                                    <div class="bg-c1 img-cir img-40">
-                                                        <i class="zmdi zmdi-email-open"></i>
-                                                    </div>
-                                                    <div class="content">
-                                                        <p>You got a email notification</p>
-                                                        <span class="date">April 12, 2018 06:50</span>
-                                                    </div>
-                                                </div>
-                                                <div class="notifi__item">
-                                                    <div class="bg-c2 img-cir img-40">
-                                                        <i class="zmdi zmdi-account-box"></i>
-                                                    </div>
-                                                    <div class="content">
-                                                        <p>Your account has been blocked</p>
-                                                        <span class="date">April 12, 2018 06:50</span>
-                                                    </div>
-                                                </div>
-                                                <div class="notifi__item">
-                                                    <div class="bg-c3 img-cir img-40">
-                                                        <i class="zmdi zmdi-file-text"></i>
-                                                    </div>
-                                                    <div class="content">
-                                                        <p>You got a new file</p>
-                                                        <span class="date">April 12, 2018 06:50</span>
-                                                    </div>
-                                                </div>
-                                                <div class="notifi__footer">
-                                                    <a href="#">All notifications</a>
-                                                </div>
+                                            <div class="dropdown-menu py-0 overflow-hidden" aria-labelledby="languageToggle">
+@foreach ($available_locales as $locale_name => $locale)
+    @if ($locale != $current_locale)
+                                                <a class="dropdown-item" href="{{ route('change_language', ['locale' => $locale]) }}">{{ $locale_name }}<i class="fi fi-{{ $locale == 'en' ? 'us' : $locale }} mt-1 float-end"></i></a>
+    @else
+                                                <span class="dropdown-item disabled">{{ $locale_name }}<i class="fi fi-{{ $locale == 'en' ? 'us' : $locale }} mt-1 float-end"></i></span>
+    @endif
+@endforeach
                                             </div>
                                         </div>
                                     </div>

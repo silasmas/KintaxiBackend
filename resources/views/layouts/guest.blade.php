@@ -57,6 +57,7 @@
         <div class="page-wrapper">
             <div class="page-content--bge5">
                 <div class="container">
+{{-- Custom error --}}
 @if (Session::has('success_message'))
                     <div id="successMessageWrapper" class="position-fixed w-100 top-0 start-0 z-index-99">
                         <div class="row">
@@ -82,6 +83,35 @@
                             </div>
                         </div>
                     </div>
+@endif
+{{-- Laravel validation errors --}}
+@if ($errors->any())
+    @if ($errors->has('email'))
+                    <div id="errorMessageWrapper" class="position-fixed w-100 top-0 start-0 z-index-99">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6 col-11 mx-auto">
+                                <div class="alert alert-danger alert-dismissible d-flex align-items-center" role="alert">
+                                    <i class="bi bi-exclamation-triangle me-3 fs-5"></i>
+                                    <div class="custom-message">{{ $errors->first('email') }}</div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    @endif
+    @if ($errors->has('phone'))
+                    <div id="errorMessageWrapper" class="position-fixed w-100 top-0 start-0 z-index-99">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6 col-11 mx-auto">
+                                <div class="alert alert-danger alert-dismissible d-flex align-items-center" role="alert">
+                                    <i class="bi bi-exclamation-triangle me-3 fs-5"></i>
+                                    <div class="custom-message">{{ $errors->first('phone') }}</div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    @endif
 @endif
 
                     <div class="login-wrap">
