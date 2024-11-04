@@ -92,29 +92,29 @@
                                     <div class="account-wrap">
                                         <div class="account-item clearfix js-item-menu">
                                             <div class="image">
-                                                <img src="{{ asset('assets/img/user.png') }}" alt="John Doe" />
+                                                <img src="{{ $current_user['avatar_url'] }}" alt="{{ $current_user['firstname'] . ' ' . $current_user['lastname'] }}" class="rounded-circle" />
                                             </div>
                                             <div class="content">
-                                                <a class="js-acc-btn" href="#">john doe</a>
+                                                <a class="js-acc-btn" href="{{ route('account') }}">{{ $current_user['firstname'] . ' ' . $current_user['lastname'] }}</a>
                                             </div>
                                             <div class="account-dropdown js-dropdown">
                                                 <div class="info clearfix">
                                                     <div class="image">
-                                                        <a href="#">
-                                                            <img src="{{ asset('assets/img/user.png') }}" alt="John Doe" />
+                                                        <a href="{{ route('account') }}">
+                                                            <img src="{{ $current_user['avatar_url'] }}" alt="{{ $current_user['firstname'] . ' ' . $current_user['lastname'] }}" />
                                                         </a>
                                                     </div>
                                                     <div class="content">
                                                         <h5 class="name">
-                                                            <a href="#">john doe</a>
+                                                            <a href="{{ route('account') }}">{{ $current_user['firstname'] . ' ' . $current_user['lastname'] }}</a>
                                                         </h5>
-                                                        <span class="email">johndoe@example.com</span>
+                                                        <span class="email">{{ !empty($current_user['email']) ? $current_user['email'] : $current_user['username'] }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="account-dropdown__body">
                                                     <div class="account-dropdown__item">
-                                                        <a href="#">
-                                                            <i class="zmdi zmdi-account"></i>Account</a>
+                                                        <a href="{{ route('account') }}">
+                                                            <i class="zmdi zmdi-account"></i>@lang('miscellaneous.menu.account.title')</a>
                                                     </div>
                                                     <div class="account-dropdown__item">
                                                         <a href="#">
