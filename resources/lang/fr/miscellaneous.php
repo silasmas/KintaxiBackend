@@ -376,17 +376,17 @@ return [
                 ],
                 '1' => [
                     'name' => 'Activé',
-                    'icon' => 'fa-regular fa-circle-check',
+                    'icon' => 'fa-solid fa-check',
                     'color' => 'success',
                 ],
                 '2' => [
                     'name' => 'Suspendu',
-                    'icon' => 'fa-solid fa-minus-circle',
+                    'icon' => 'fa-solid fa-minus',
                     'color' => 'warning',
                 ],
                 '3' => [
                     'name' => 'Bloqué',
-                    'icon' => 'fa-regular fa-xmark-circle',
+                    'icon' => 'fa-solid fa-xmark',
                     'color' => 'danger',
                 ],
                 '4' => [
