@@ -105,13 +105,14 @@
             <!-- END HEADER MOBILE-->
 
             <!-- MENU SIDEBAR-->
-            <aside class="menu-sidebar d-none d-lg-block">
+            <aside class="menu-sidebar d-lg-block d-none">
                 <div class="logo">
                     <a href="{{ route('home') }}">
                         <img src="{{ asset('assets/img/logo-text.png') }}" alt="KinTaxi" width="200" />
                     </a>
                 </div>
-                <div class="menu-sidebar__content js-scrollbar1">
+                {{-- <div class="menu-sidebar__content js-scrollbar1"> --}}
+                <div class="menu-sidebar2__content js-scrollbar1">
                     <nav class="navbar-sidebar2">
                         <ul class="list-unstyled navbar__list">
                             <!-- Home -->

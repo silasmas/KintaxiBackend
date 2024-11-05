@@ -60,14 +60,7 @@
                     <div class="section__content section__content--p30">
                         <div class="container-fluid">
                             <div class="header-wrap">
-                                <!-- Form search -->
-                                <form class="form-header" action="{{ route('search') }}" method="POST">
-                                    <input class="au-input au-input--xl" type="text" name="q" placeholder="@lang('miscellaneous.search_input')" />
-                                    <button class="au-btn--submit" type="submit">
-                                        <i class="zmdi zmdi-search"></i>
-                                    </button>
-                                </form>
-
+@include('layouts.search')
                                 <div class="header-button">
                                     <div class="noti-wrap">
                                         <!-- Language -->
@@ -137,7 +130,7 @@
 
                 <!-- MAIN CONTENT-->
                 <div class="main-content">
-@yield('guest-content')
+@yield('app-content')
                 </div>
                 <!-- END MAIN CONTENT-->
             </div>
@@ -174,5 +167,14 @@
         <script src="{{ asset('assets/js/main.js') }}"></script>
         <!-- Custom Javascript -->
         <script src="{{ asset('assets/js/script.custom.js') }}"></script>
+        <script type="text/javascript">
+            /*
+             * When the user clicks on the button, scroll to the top of the document
+             */
+            function backToTop() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+        </script>
     </body>
 </html>

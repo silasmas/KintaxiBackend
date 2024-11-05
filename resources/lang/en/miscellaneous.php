@@ -341,12 +341,83 @@ return [
 
     // ===== ADMIN PAGES
     'admin' => [
+        'overview' => 'Overview',
+        'recent_vehicles' => 'Recent vehicles',
+        'recent_users' => 'Recent users',
+        'description' => 'Description',
+        'created_at' => 'Register date',
+        'updated_at' => 'Update date',
+        'created_by' => 'Registered by',
+        'updated_by' => 'Updated by',
         'icon_name' => 'Icon name',
         'color_name' => 'Color name',
-        'home' => [
-            'title' => 'Admin area'
+        'status' => 'Status',
+
+        // Vehicle
+        'vehicle' => [
+            'mark' => 'Mark',
+            'model' => 'Model',
+            'color' => 'Color',
+            'registration_number' => 'Registration number',
+            'regis_number_expiration' => 'Registration number expiration',
+            'vin_number' => 'VIN number',
+            'manufacture_year' => 'Manufacture year',
+            'fuel_type' => 'Fuel type',
+            'cylinder_capacity' => 'Cylinder',
+            'engine_power' => 'Engine power',
+            'shape' => [
+                'title' => 'Shape'
+            ],
+            'status' => [
+                '0' => [
+                    'name' => 'On hold',
+                    'icon' => 'fa-regular fa-clock',
+                    'color' => 'secondary',
+                ],
+                '1' => [
+                    'name' => 'Activated',
+                    'icon' => 'fa-regular fa-circle-check',
+                    'color' => 'success',
+                ],
+                '2' => [
+                    'name' => 'Suspended',
+                    'icon' => 'fa-regular fa-minus-circle',
+                    'color' => 'warning',
+                ],
+                '3' => [
+                    'name' => 'Blocked',
+                    'icon' => 'fa-regular fa-xmark-circle',
+                    'color' => 'danger',
+                ],
+                '4' => [
+                    'name' => 'Deleted',
+                    'icon' => 'fa-regular fa-trash-alt',
+                    'color' => 'primary',
+                ],
+            ],
+            'category' => [
+                'title' => 'Category'
+            ],
+            'feature' => [
+                'title' => 'Comfort',
+                'is_clean' => 'Is clean',
+                'has_helmet' => 'Has helmet',
+                'has_airbags' => 'Has airbags',
+                'has_seat_belt' => 'Has seat belt',
+                'has_ergonomic_seat' => 'Has ergonomic seat',
+                'has_air_conditioning' => 'Has air conditioning',
+                'has_suspensions' => 'Has suspensions',
+                'has_soundproofing' => 'Has soundproofing',
+                'has_sufficient_space' => 'Has sufficient space',
+                'has_quality_equipment' => 'Has quality equipment',
+                'has_on_board_technologies' => 'Has on-board technologies',
+                'has_interior_lighting' => 'Has interior lighting',
+                'has_practical_accessories' => 'Has practical accessories',
+                'has_driving_assist_system' => 'Has driving assist system'
+            ],
         ],
 
+        // Role
         'role' => [
             'details' => 'Role details',
             'link' => 'Manage roles',

@@ -341,12 +341,83 @@ return [
 
     // ===== ADMIN PAGES
     'admin' => [
+        'overview' => 'Aperçu',
+        'recent_vehicles' => 'Véhicules récents',
+        'recent_users' => 'Utilisateurs récents',
+        'description' => 'Description',
+        'created_at' => 'Date d’enregistrement',
+        'updated_at' => 'Date de modification',
+        'created_by' => 'Enregistré(e) par',
+        'updated_by' => 'Modifié(e) par',
         'icon_name' => 'Nom de l’icône',
         'color_name' => 'Nom de la couleur',
-        'home' => [
-            'title' => 'Espace de l’admin'
+        'status' => 'Etat',
+
+        // Vehicle
+        'vehicle' => [
+            'mark' => 'Marque',
+            'model' => 'Modèle',
+            'color' => 'Couleur',
+            'registration_number' => 'Matricule',
+            'regis_number_expiration' => 'Expiration matricule',
+            'vin_number' => 'Numéro VIN',
+            'manufacture_year' => 'Année de fabrication',
+            'fuel_type' => 'Type de carburant',
+            'cylinder_capacity' => 'Cylindrée',
+            'engine_power' => 'Puissance (en chevaux)',
+            'shape' => [
+                'title' => 'Forme'
+            ],
+            'status' => [
+                '0' => [
+                    'name' => 'En attente',
+                    'icon' => 'fa-regular fa-clock',
+                    'color' => 'secondary',
+                ],
+                '1' => [
+                    'name' => 'Activé',
+                    'icon' => 'fa-regular fa-circle-check',
+                    'color' => 'success',
+                ],
+                '2' => [
+                    'name' => 'Suspendu',
+                    'icon' => 'fa-regular fa-minus-circle',
+                    'color' => 'warning',
+                ],
+                '3' => [
+                    'name' => 'Bloqué',
+                    'icon' => 'fa-regular fa-xmark-circle',
+                    'color' => 'danger',
+                ],
+                '4' => [
+                    'name' => 'Supprimé',
+                    'icon' => 'fa-regular fa-trash-alt',
+                    'color' => 'primary',
+                ],
+            ],
+            'category' => [
+                'title' => 'Catégorie'
+            ],
+            'feature' => [
+                'title' => 'Confort',
+                'is_clean' => 'Est propre',
+                'has_helmet' => 'Avec des casques',
+                'has_airbags' => 'Avec airbags',
+                'has_seat_belt' => 'Avec ceinture de sécurité',
+                'has_ergonomic_seat' => 'Avec siège ergonomique',
+                'has_air_conditioning' => 'Avec climatisation',
+                'has_suspensions' => 'Avec des suspensions',
+                'has_soundproofing' => 'Avec insonorisation',
+                'has_sufficient_space' => 'Espace suffisant',
+                'has_quality_equipment' => 'Equipments de qualité',
+                'has_on_board_technologies' => 'Avec technologies embarquées',
+                'has_interior_lighting' => 'Avec lumière intérieure',
+                'has_practical_accessories' => 'Avec accessoires pratiques',
+                'has_driving_assist_system' => 'Avec système d’aide à la conduite'
+            ],
         ],
 
+        // Role
         'role' => [
             'details' => 'Détails sur le rôle',
             'link' => 'Gérer les rôles',
