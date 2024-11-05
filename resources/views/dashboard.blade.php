@@ -101,6 +101,35 @@
                                                     <td class="align-middle">ML 500</td>
                                                     <td>
                                                         <div class="btn-group">
+                                                            <button type="button" class="btn btn-sm btn-outline-{{ __('miscellaneous.admin.vehicle.status.0.color') }} pb-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="@lang('miscellaneous.admin.vehicle.status.0.icon')"></i> @lang('miscellaneous.admin.vehicle.status.0.name')
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+    @foreach ($statuses as $status)
+                                                                <li>
+                                                                    <span class="dropdown-item">
+                                                                        <form action="{{ route('vehicle.entity', ['entity' => 'update_status']) }}" method="POST">
+                                                                            <input type="hidden" name="status_id" value="{{ $status['id'] }}">
+                                                                            <button type="submit">@lang('miscellaneous.admin.vehicle.status.' . $status['id'] . '.name')</button>
+                                                                        </form>
+                                                                    </span>
+                                                                </li>
+    @endforeach
+                                                            </ul>
+                                                        </div>                                                          
+                                                    </td>
+                                                    <td class="align-middle">
+                                                        <a href="{{ route('vehicle.datas', ['id' => 1]) }}">
+                                                            @lang('miscellaneous.details') <i class="fa fa-angle-double-right"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-middle">{{ explicitDate('2018-07-04 15:30') }}</td>
+                                                    <td class="align-middle">Daihatsu</td>
+                                                    <td class="align-middle">Mira ES</td>
+                                                    <td>
+                                                        <div class="btn-group">
                                                             <button type="button" class="btn btn-sm btn-outline-{{ __('miscellaneous.admin.vehicle.status.1.color') }} pb-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <i class="@lang('miscellaneous.admin.vehicle.status.1.icon')"></i> @lang('miscellaneous.admin.vehicle.status.1.name')
                                                             </button>
@@ -119,7 +148,36 @@
                                                         </div>                                                          
                                                     </td>
                                                     <td class="align-middle">
-                                                        <a href="{{ route('vehicle.datas', ['id' => 1]) }}">
+                                                        <a href="{{ route('vehicle.datas', ['id' => 2]) }}">
+                                                            @lang('miscellaneous.details') <i class="fa fa-angle-double-right"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-middle">{{ explicitDate('2018-07-01 20:34') }}</td>
+                                                    <td class="align-middle">Toyota</td>
+                                                    <td class="align-middle">Land Cruiser Prado</td>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-sm btn-outline-{{ __('miscellaneous.admin.vehicle.status.2.color') }} pb-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="@lang('miscellaneous.admin.vehicle.status.2.icon')"></i> @lang('miscellaneous.admin.vehicle.status.2.name')
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+    @foreach ($statuses as $status)
+                                                                <li>
+                                                                    <span class="dropdown-item">
+                                                                        <form action="{{ route('vehicle.entity', ['entity' => 'update_status']) }}" method="POST">
+                                                                            <input type="hidden" name="status_id" value="{{ $status['id'] }}">
+                                                                            <button type="submit">@lang('miscellaneous.admin.vehicle.status.' . $status['id'] . '.name')</button>
+                                                                        </form>
+                                                                    </span>
+                                                                </li>
+    @endforeach
+                                                            </ul>
+                                                        </div>                                                          
+                                                    </td>
+                                                    <td class="align-middle">
+                                                        <a href="{{ route('vehicle.datas', ['id' => 3]) }}">
                                                             @lang('miscellaneous.details') <i class="fa fa-angle-double-right"></i>
                                                         </a>
                                                     </td>

@@ -381,7 +381,7 @@ return [
                 ],
                 '2' => [
                     'name' => 'Suspended',
-                    'icon' => 'fa-regular fa-minus-circle',
+                    'icon' => 'fa-solid fa-minus-circle',
                     'color' => 'warning',
                 ],
                 '3' => [
