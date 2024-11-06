@@ -83,7 +83,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h2 class="title-1 m-b-25">@lang('miscellaneous.admin.recent_vehicles')</h2>
-                                    <div class="table-responsive table--no-card m-b-40">
+                                    <div class="table-responsive table--no-card mb-2">
                                         <table class="table table-borderless table-striped table-earning">
                                             <thead>
                                                 <tr>
@@ -243,6 +243,7 @@
                                             </tbody>
                                         </table>
                                     </div>
+                                    <p class="">@lang('miscellaneous.admin.recent_vehicles')</p>
                                 </div>
                             </div>
                             <div class="row">
