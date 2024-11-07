@@ -250,15 +250,51 @@
                                     </h6>
                                 </div>
                             </div>
+
+                            <hr>
+
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="copyright">
-                                        <p>Copyright <i class="fa-regular fa-copyright"></i> {{ date('Y') }} <strong>KinTaxi</strong>. @lang('miscellaneous.all_right_reserved'). Designed by <a href="https://silasmas.com" target="_blank" class="text-decoration-underline">SDEV</a>.</p>
+                                <div class="col-12">
+                                    <h2 class="title-1 m-b-25">@lang('miscellaneous.admin.recent_users')</h2>
+                                    <div class="table-responsive table--no-card mb-3">
+                                        <table class="table table-borderless table-striped table-earning">
+                                            <thead>
+                                                <tr>
+                                                    <th>@lang('miscellaneous.names')</th>
+                                                    <th>@lang('miscellaneous.email')</th>
+                                                    <th>@lang('miscellaneous.phone')</th>
+                                                    <th>@lang('miscellaneous.menu.role.title')</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="align-middle">Amandla Stenberg</td>
+                                                    <td class="align-middle">amandlastenberg@mail.us</td>
+                                                    <td class="align-middle">+155354300</td>
+                                                    <td>
+                                                        <select class="form-select" aria-label="@lang('miscellaneous.choose_role')">
+                                                            <option class="small" disabled>@lang('miscellaneous.choose_role')</option>
+    @foreach ($roles as $role)
+                                                            <option value="{{ $role['id'] }}"{{ $current_user['role']['id'] == $role['id'] ? ' selected' : '' }}>{{ $role['role_name'] }}</option>
+    @endforeach
+                                                        </select>
+                                                    </td>
+                                                    <td class="align-middle">
+                                                        <a href="{{ route('role.entity.datas', ['entity' => 'users', 'id' => 1]) }}">
+                                                            @lang('miscellaneous.details') <i class="fa fa-angle-double-right"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
+                                    <h6 class="h6 px-3 text-end">
+                                        <a href="{{ route('role.entity', ['entity' => 'users']) }}" class="text-decoration-underline text-danger">
+                                            @lang('miscellaneous.see_all_data') <i class="fa fa-angle-double-right"></i>
+                                        </a>
+                                    </h6>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
 
 @endsection
