@@ -8,7 +8,7 @@
                                 <div class="col-md-12">
                                     <div class="overview-wrap">
                                         <h2 class="title-1">@lang('miscellaneous.admin.overview')</h2>
-                                        <button class="au-btn au-btn-icon au-btn--blue">
+                                        <button class="au-btn au-btn-icon au-btn--blue mb-sm-0 mb-2">
                                             <i class="zmdi zmdi-plus"></i>@lang('miscellaneous.add')
                                         </button>
                                     </div>
@@ -101,8 +101,8 @@
                                                     <td class="align-middle">KM250L</td>
                                                     <td>
                                                         <div class="btn-group rounded-pill shadow-0">
-                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.vehicle.status.0.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <i class="@lang('miscellaneous.admin.vehicle.status.0.icon') me-1"></i> @lang('miscellaneous.admin.vehicle.status.0.name')
+                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.group.status.icon_color.0.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="@lang('miscellaneous.admin.group.status.icon_color.0.icon') me-1"></i> @lang('miscellaneous.admin.group.status.icon_color.0.name')
                                                             </button>
                                                             <ul class="dropdown-menu">
     @foreach ($statuses as $status)
@@ -110,7 +110,7 @@
                                                                     <span class="dropdown-item">
                                                                         <form action="{{ route('vehicle.entity', ['entity' => 'update_status']) }}" method="POST">
                                                                             <input type="hidden" name="status_id" value="{{ $status['id'] }}">
-                                                                            <button type="submit">@lang('miscellaneous.admin.vehicle.status.' . $status['id'] . '.name')</button>
+                                                                            <button type="submit">@lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')</button>
                                                                         </form>
                                                                     </span>
                                                                 </li>
@@ -130,8 +130,8 @@
                                                     <td class="align-middle">DD117P</td>
                                                     <td>
                                                         <div class="btn-group rounded-pill shadow-0">
-                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.vehicle.status.1.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <i class="@lang('miscellaneous.admin.vehicle.status.1.icon') me-1"></i> @lang('miscellaneous.admin.vehicle.status.1.name')
+                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.group.status.icon_color.1.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="@lang('miscellaneous.admin.group.status.icon_color.1.icon') me-1"></i> @lang('miscellaneous.admin.group.status.icon_color.1.name')
                                                             </button>
                                                             <ul class="dropdown-menu">
     @foreach ($statuses as $status)
@@ -139,7 +139,7 @@
                                                                     <span class="dropdown-item">
                                                                         <form action="{{ route('vehicle.entity', ['entity' => 'update_status']) }}" method="POST">
                                                                             <input type="hidden" name="status_id" value="{{ $status['id'] }}">
-                                                                            <button type="submit">@lang('miscellaneous.admin.vehicle.status.' . $status['id'] . '.name')</button>
+                                                                            <button type="submit">@lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')</button>
                                                                         </form>
                                                                     </span>
                                                                 </li>
@@ -159,8 +159,8 @@
                                                     <td class="align-middle">KJ218Q</td>
                                                     <td>
                                                         <div class="btn-group rounded-pill shadow-0">
-                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.vehicle.status.2.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <i class="@lang('miscellaneous.admin.vehicle.status.2.icon') me-1"></i> @lang('miscellaneous.admin.vehicle.status.2.name')
+                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.group.status.icon_color.2.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="@lang('miscellaneous.admin.group.status.icon_color.2.icon') me-1"></i> @lang('miscellaneous.admin.group.status.icon_color.2.name')
                                                             </button>
                                                             <ul class="dropdown-menu">
     @foreach ($statuses as $status)
@@ -168,7 +168,7 @@
                                                                     <span class="dropdown-item">
                                                                         <form action="{{ route('vehicle.entity', ['entity' => 'update_status']) }}" method="POST">
                                                                             <input type="hidden" name="status_id" value="{{ $status['id'] }}">
-                                                                            <button type="submit">@lang('miscellaneous.admin.vehicle.status.' . $status['id'] . '.name')</button>
+                                                                            <button type="submit">@lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')</button>
                                                                         </form>
                                                                     </span>
                                                                 </li>
@@ -188,8 +188,8 @@
                                                     <td class="align-middle">SB300V</td>
                                                     <td>
                                                         <div class="btn-group rounded-pill shadow-0">
-                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.vehicle.status.3.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <i class="@lang('miscellaneous.admin.vehicle.status.3.icon') me-1"></i> @lang('miscellaneous.admin.vehicle.status.3.name')
+                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.group.status.icon_color.3.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="@lang('miscellaneous.admin.group.status.icon_color.3.icon') me-1"></i> @lang('miscellaneous.admin.group.status.icon_color.3.name')
                                                             </button>
                                                             <ul class="dropdown-menu">
     @foreach ($statuses as $status)
@@ -197,7 +197,7 @@
                                                                     <span class="dropdown-item">
                                                                         <form action="{{ route('vehicle.entity', ['entity' => 'update_status']) }}" method="POST">
                                                                             <input type="hidden" name="status_id" value="{{ $status['id'] }}">
-                                                                            <button type="submit">@lang('miscellaneous.admin.vehicle.status.' . $status['id'] . '.name')</button>
+                                                                            <button type="submit">@lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')</button>
                                                                         </form>
                                                                     </span>
                                                                 </li>
@@ -217,8 +217,8 @@
                                                     <td class="align-middle">FH994W</td>
                                                     <td>
                                                         <div class="btn-group rounded-pill shadow-0">
-                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.vehicle.status.4.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <i class="@lang('miscellaneous.admin.vehicle.status.4.icon') me-1"></i> @lang('miscellaneous.admin.vehicle.status.4.name')
+                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.group.status.icon_color.4.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="@lang('miscellaneous.admin.group.status.icon_color.4.icon') me-1"></i> @lang('miscellaneous.admin.group.status.icon_color.4.name')
                                                             </button>
                                                             <ul class="dropdown-menu">
     @foreach ($statuses as $status)
@@ -226,7 +226,7 @@
                                                                     <span class="dropdown-item">
                                                                         <form action="{{ route('vehicle.entity', ['entity' => 'update_status']) }}" method="POST">
                                                                             <input type="hidden" name="status_id" value="{{ $status['id'] }}">
-                                                                            <button type="submit">@lang('miscellaneous.admin.vehicle.status.' . $status['id'] . '.name')</button>
+                                                                            <button type="submit">@lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')</button>
                                                                         </form>
                                                                     </span>
                                                                 </li>
@@ -273,7 +273,7 @@
                                                     <td class="align-middle">amandlastenberg@mail.us</td>
                                                     <td class="align-middle">+155354300</td>
                                                     <td>
-                                                        <select class="form-select" aria-label="@lang('miscellaneous.choose_role')">
+                                                        <select class="form-select form-select-sm" aria-label="@lang('miscellaneous.choose_role')">
                                                             <option class="small" disabled>@lang('miscellaneous.choose_role')</option>
     @foreach ($roles as $role)
                                                             <option value="{{ $role['id'] }}"{{ $current_user['role']['id'] == $role['id'] ? ' selected' : '' }}>{{ $role['role_name'] }}</option>

@@ -370,33 +370,6 @@ return [
             'shape' => [
                 'title' => 'Forme'
             ],
-            'status' => [
-                '0' => [
-                    'name' => 'En attente',
-                    'icon' => 'fa-regular fa-clock',
-                    'color' => 'secondary',
-                ],
-                '1' => [
-                    'name' => 'Activé',
-                    'icon' => 'fa-solid fa-check',
-                    'color' => 'success',
-                ],
-                '2' => [
-                    'name' => 'Suspendu',
-                    'icon' => 'fa-solid fa-minus',
-                    'color' => 'warning',
-                ],
-                '3' => [
-                    'name' => 'Bloqué',
-                    'icon' => 'fa-solid fa-xmark',
-                    'color' => 'danger',
-                ],
-                '4' => [
-                    'name' => 'Supprimé',
-                    'icon' => 'fa-regular fa-trash-alt',
-                    'color' => 'primary',
-                ],
-            ],
             'category' => [
                 'title' => 'Catégorie'
             ],
@@ -468,6 +441,33 @@ return [
                 'list' => 'Liste des états',
                 'data' => [
                     'status_name' => 'Nom de l’état'
+                ],
+                'icon_color' => [
+                    '0' => [
+                        'name' => 'En attente',
+                        'icon' => 'fa-regular fa-clock',
+                        'color' => 'secondary',
+                    ],
+                    '1' => [
+                        'name' => 'Activé',
+                        'icon' => 'fa-solid fa-check',
+                        'color' => 'success',
+                    ],
+                    '2' => [
+                        'name' => 'Suspendu',
+                        'icon' => 'fa-solid fa-minus',
+                        'color' => 'warning',
+                    ],
+                    '3' => [
+                        'name' => 'Bloqué',
+                        'icon' => 'fa-solid fa-xmark',
+                        'color' => 'danger',
+                    ],
+                    '4' => [
+                        'name' => 'Supprimé',
+                        'icon' => 'fa-regular fa-trash-alt',
+                        'color' => 'primary',
+                    ],
                 ],
             ],
 

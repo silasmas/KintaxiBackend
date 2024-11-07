@@ -370,33 +370,6 @@ return [
             'shape' => [
                 'title' => 'Shape'
             ],
-            'status' => [
-                '0' => [
-                    'name' => 'On hold',
-                    'icon' => 'fa-regular fa-clock',
-                    'color' => 'secondary',
-                ],
-                '1' => [
-                    'name' => 'Activated',
-                    'icon' => 'fa-solid fa-check',
-                    'color' => 'success',
-                ],
-                '2' => [
-                    'name' => 'Suspended',
-                    'icon' => 'fa-solid fa-minus',
-                    'color' => 'warning',
-                ],
-                '3' => [
-                    'name' => 'Blocked',
-                    'icon' => 'fa-solid fa-xmark',
-                    'color' => 'danger',
-                ],
-                '4' => [
-                    'name' => 'Deleted',
-                    'icon' => 'fa-regular fa-trash-alt',
-                    'color' => 'primary',
-                ],
-            ],
             'category' => [
                 'title' => 'Category'
             ],
@@ -468,6 +441,33 @@ return [
                 'list' => 'Statuses list',
                 'data' => [
                     'status_name' => 'Status name'
+                ],
+                'icon_color' => [
+                    '0' => [
+                        'name' => 'On hold',
+                        'icon' => 'fa-regular fa-clock',
+                        'color' => 'secondary',
+                    ],
+                    '1' => [
+                        'name' => 'Activated',
+                        'icon' => 'fa-solid fa-check',
+                        'color' => 'success',
+                    ],
+                    '2' => [
+                        'name' => 'Suspended',
+                        'icon' => 'fa-solid fa-minus',
+                        'color' => 'warning',
+                    ],
+                    '3' => [
+                        'name' => 'Blocked',
+                        'icon' => 'fa-solid fa-xmark',
+                        'color' => 'danger',
+                    ],
+                    '4' => [
+                        'name' => 'Deleted',
+                        'icon' => 'fa-regular fa-trash-alt',
+                        'color' => 'primary',
+                    ],
                 ],
             ],
 
