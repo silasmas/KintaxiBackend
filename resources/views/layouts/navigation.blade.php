@@ -65,6 +65,9 @@
                                 </a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
+                                        <a href="{{ route('vehicle') }}" class="ps-3">@lang('miscellaneous.menu.vehicle.all')</a>
+                                    </li>
+                                    <li>
                                         <a href="{{ route('vehicle.entity', ['entity' => 'shape']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.shape')</a>
                                     </li>
                                     <li>
@@ -162,6 +165,9 @@
                                     </span>
                                 </a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                    <li>
+                                        <a href="{{ route('vehicle') }}" class="ps-3">@lang('miscellaneous.menu.vehicle.all')</a>
+                                    </li>
                                     <li>
                                         <a href="{{ route('vehicle.entity', ['entity' => 'shape']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.shape')</a>
                                     </li>

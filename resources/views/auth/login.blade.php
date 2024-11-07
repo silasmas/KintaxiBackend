@@ -24,7 +24,7 @@
                                             <input type="checkbox" name="remember" class="form-check-input" style="vertical-align: -2px;">@lang('miscellaneous.remember_me')
                                         </label>
                                         <label>
-                                            <a href="#" class="small text-decoration-underline">@lang('miscellaneous.forgotten_password')</a>
+                                            <a href="{{ route('password.request') }}" class="small text-decoration-underline">@lang('miscellaneous.forgotten_password')</a>
                                         </label>
                                     </div>
 

@@ -83,6 +83,7 @@ return [
     'all_types' => 'All types',
     'mark_all_read' => 'Mark all as read',
     'empty_list' => 'The list is empty',
+    'see_all_data' => 'See all data',
     'see_more' => 'See more',
     'see_less' => 'See less',
     'show' => 'Show',
@@ -285,6 +286,7 @@ return [
         'payment-gateway' => 'Payment gateway',
         'vehicle' => [
             'title' => 'Vehicle',
+            'all' => 'All vehicles',
             'shape' => 'Shape',
             'category' => 'Category',
             'feature' => 'Features',

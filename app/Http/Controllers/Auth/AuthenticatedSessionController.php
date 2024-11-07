@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\PasswordReset;
 use App\Models\User;
+use App\Models\UserRole;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -40,6 +41,10 @@ class AuthenticatedSessionController extends Controller
      */
     public function login(Request $request): RedirectResponse
     {
+        $admin_role = UserRole::where('role_name', 'Admin')->first();
+        $user_role = UserRole::where('role_name', 'User')->first();
+        $roleIds = [$admin_role->id, $user_role->id];
+
         // Get inputs
         $inputs = [
             'username' => $request->login_username,
@@ -65,6 +70,10 @@ class AuthenticatedSessionController extends Controller
                 return redirect()->back()->with('error_message', __('auth.password'));
             }
 
+            if (!$user->hasRole($roleIds)) {
+                return redirect()->back()->with('error_message', __('auth.unauthorized'));
+            }
+
             // Authentication datas (E-mail, Phone number or Username)
             $auth_phone = Auth::attempt(['phone' => $user->phone, 'password' => $inputs['password']], $request->remember);
             $auth_email = Auth::attempt(['email' => $user->email, 'password' => $inputs['password']], $request->remember);
@@ -85,6 +94,10 @@ class AuthenticatedSessionController extends Controller
 
             if (!Hash::check($inputs['password'], $user->password)) {
                 return redirect()->back()->with('error_message', __('auth.password'));
+            }
+
+            if (!$user->hasRole($roleIds)) {
+                return redirect()->back()->with('error_message', __('auth.unauthorized'));
             }
 
             // Authentication datas (E-mail, Phone number or Username)

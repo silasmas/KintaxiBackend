@@ -83,7 +83,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h2 class="title-1 m-b-25">@lang('miscellaneous.admin.recent_vehicles')</h2>
-                                    <div class="table-responsive table--no-card mb-2">
+                                    <div class="table-responsive table--no-card mb-3">
                                         <table class="table table-borderless table-striped table-earning">
                                             <thead>
                                                 <tr>
@@ -101,7 +101,7 @@
                                                     <td class="align-middle">KM250L</td>
                                                     <td>
                                                         <div class="btn-group rounded-pill shadow-0">
-                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-outline-{{ __('miscellaneous.admin.vehicle.status.0.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.vehicle.status.0.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <i class="@lang('miscellaneous.admin.vehicle.status.0.icon') me-1"></i> @lang('miscellaneous.admin.vehicle.status.0.name')
                                                             </button>
                                                             <ul class="dropdown-menu">
@@ -130,7 +130,7 @@
                                                     <td class="align-middle">DD117P</td>
                                                     <td>
                                                         <div class="btn-group rounded-pill shadow-0">
-                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-outline-{{ __('miscellaneous.admin.vehicle.status.1.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.vehicle.status.1.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <i class="@lang('miscellaneous.admin.vehicle.status.1.icon') me-1"></i> @lang('miscellaneous.admin.vehicle.status.1.name')
                                                             </button>
                                                             <ul class="dropdown-menu">
@@ -159,7 +159,7 @@
                                                     <td class="align-middle">KJ218Q</td>
                                                     <td>
                                                         <div class="btn-group rounded-pill shadow-0">
-                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-outline-{{ __('miscellaneous.admin.vehicle.status.2.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.vehicle.status.2.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <i class="@lang('miscellaneous.admin.vehicle.status.2.icon') me-1"></i> @lang('miscellaneous.admin.vehicle.status.2.name')
                                                             </button>
                                                             <ul class="dropdown-menu">
@@ -188,7 +188,7 @@
                                                     <td class="align-middle">SB300V</td>
                                                     <td>
                                                         <div class="btn-group rounded-pill shadow-0">
-                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-outline-{{ __('miscellaneous.admin.vehicle.status.3.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.vehicle.status.3.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <i class="@lang('miscellaneous.admin.vehicle.status.3.icon') me-1"></i> @lang('miscellaneous.admin.vehicle.status.3.name')
                                                             </button>
                                                             <ul class="dropdown-menu">
@@ -217,7 +217,7 @@
                                                     <td class="align-middle">FH994W</td>
                                                     <td>
                                                         <div class="btn-group rounded-pill shadow-0">
-                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-outline-{{ __('miscellaneous.admin.vehicle.status.4.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.vehicle.status.4.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <i class="@lang('miscellaneous.admin.vehicle.status.4.icon') me-1"></i> @lang('miscellaneous.admin.vehicle.status.4.name')
                                                             </button>
                                                             <ul class="dropdown-menu">
@@ -243,7 +243,11 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <p class="">@lang('miscellaneous.admin.recent_vehicles')</p>
+                                    <h6 class="h6 px-3 text-end">
+                                        <a href="{{ route('vehicle') }}" class="text-decoration-underline text-danger">
+                                            @lang('miscellaneous.see_all_data') <i class="fa fa-angle-double-right"></i>
+                                        </a>
+                                    </h6>
                                 </div>
                             </div>
                             <div class="row">

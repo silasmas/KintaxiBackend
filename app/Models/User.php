@@ -44,6 +44,14 @@ class User extends Authenticatable
     ];
 
     /**
+     * Check if a user has one of the roles
+     */
+    public function hasRole(array $roleIds)
+    {
+        return in_array($this->role_id, $roleIds);
+    }
+
+    /**
      * ONE-TO-MANY
      * One users_role for several users
      */

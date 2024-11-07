@@ -83,6 +83,7 @@ return [
     'all_types' => 'Tous les types',
     'mark_all_read' => 'Tout marquer comme lue',
     'empty_list' => 'La liste est vide',
+    'see_all_data' => 'Voir toutes les données',
     'see_more' => 'Voir plus',
     'see_less' => 'Voir moins',
     'show' => 'Afficher',
@@ -285,6 +286,7 @@ return [
         'payment-gateway' => 'Passerelle de paiement',
         'vehicle' => [
             'title' => 'Véhicule',
+            'all' => 'Tous les véhicules',
             'shape' => 'Forme',
             'category' => 'Catégorie',
             'features' => 'Caractéristiques',
