@@ -24,7 +24,7 @@
                                 </a>
                             </li>
                             <!-- Customer -->
-                            <li class="has-sub{{ Route::is('customer.entity') ? ' active' : '' }}">
+                            <li class="has-sub{{ Route::is('customer.entity.home') ? ' active' : '' }}">
                                 <a class="js-arrow" href="#">
                                     <i class="fas fa-user-friends"></i>@lang('miscellaneous.menu.customers.title')
                                     <span class="arrow">
@@ -33,30 +33,30 @@
                                 </a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
-                                        <a href="{{ route('customer.entity', ['entity' => 'ride-in-progress']) }}" class="ps-3">@lang('miscellaneous.menu.customers.ride-in-progress')</a>
+                                        <a href="{{ route('customer.entity.home', ['entity' => 'ride-in-progress']) }}" class="ps-3">@lang('miscellaneous.menu.customers.ride-in-progress')</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('customer.entity', ['entity' => 'ride-finished']) }}" class="ps-3">@lang('miscellaneous.menu.customers.ride-finished')</a>
+                                        <a href="{{ route('customer.entity.home', ['entity' => 'ride-finished']) }}" class="ps-3">@lang('miscellaneous.menu.customers.ride-finished')</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('customer.entity', ['entity' => 'rented-vehicles']) }}" class="ps-3">@lang('miscellaneous.menu.customers.rented-vehicles')</a>
+                                        <a href="{{ route('customer.entity.home', ['entity' => 'rented-vehicles']) }}" class="ps-3">@lang('miscellaneous.menu.customers.rented-vehicles')</a>
                                     </li>
                                 </ul>
                             </li>
                             <!-- Currency -->
-                            <li class="{{ Route::is('currency') ? 'active' : '' }}">
-                                <a href="{{ route('currency') }}">
+                            <li class="{{ Route::is('currency.home') ? 'active' : '' }}">
+                                <a href="{{ route('currency.home') }}">
                                     <i class="fas fa-file-invoice-dollar"></i>@lang('miscellaneous.menu.currency')
                                 </a>
                             </li>
                             <!-- Payment gateway -->
-                            <li class="{{ Route::is('payment_gateway') ? 'active' : '' }}">
-                                <a href="{{ route('payment_gateway') }}">
+                            <li class="{{ Route::is('payment_gateway.home') ? 'active' : '' }}">
+                                <a href="{{ route('payment_gateway.home') }}">
                                     <i class="fas fa-credit-card"></i>@lang('miscellaneous.menu.payment-gateway')
                                 </a>
                             </li>
                             <!-- Vehicle -->
-                            <li class="has-sub{{ Route::is('vehicle') || Route::is('vehicle.entity') ? ' active' : '' }}">
+                            <li class="has-sub{{ Route::is('vehicle.home') || Route::is('vehicle.entity.home') ? ' active' : '' }}">
                                 <a class="js-arrow" href="#">
                                     <i class="fas fa-car"></i>@lang('miscellaneous.menu.vehicle.title')
                                     <span class="arrow">
@@ -65,21 +65,21 @@
                                 </a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
-                                        <a href="{{ route('vehicle') }}" class="ps-3">@lang('miscellaneous.menu.vehicle.all')</a>
+                                        <a href="{{ route('vehicle.home') }}" class="ps-3">@lang('miscellaneous.menu.vehicle.all')</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('vehicle.entity', ['entity' => 'shape']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.shape')</a>
+                                        <a href="{{ route('vehicle.entity.home', ['entity' => 'shape']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.shape')</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('vehicle.entity', ['entity' => 'category']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.category')</a>
+                                        <a href="{{ route('vehicle.entity.home', ['entity' => 'category']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.category')</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('vehicle.entity', ['entity' => 'features']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.features')</a>
+                                        <a href="{{ route('vehicle.entity.home', ['entity' => 'features']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.features')</a>
                                     </li>
                                 </ul>
                             </li>
                             <!-- Role -->
-                            <li class="has-sub{{ Route::is('role.entity') ? ' active' : '' }}">
+                            <li class="has-sub{{ Route::is('role.entity.home') ? ' active' : '' }}">
                                 <a class="js-arrow" href="#">
                                     <i class="fas fa-graduation-cap"></i>@lang('miscellaneous.menu.role.title')
                                     <span class="arrow">
@@ -88,16 +88,16 @@
                                 </a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
-                                        <a href="{{ route('role.entity', ['entity' => 'manage-roles']) }}" class="ps-3">@lang('miscellaneous.menu.role.manage-roles')</a>
+                                        <a href="{{ route('role.entity.home', ['entity' => 'manage-roles']) }}" class="ps-3">@lang('miscellaneous.menu.role.manage-roles')</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('role.entity', ['entity' => 'users']) }}" class="ps-3">@lang('miscellaneous.menu.role.users')</a>
+                                        <a href="{{ route('role.entity.home', ['entity' => 'users']) }}" class="ps-3">@lang('miscellaneous.menu.role.users')</a>
                                     </li>
                                 </ul>
                             </li>
                             <!-- Status -->
-                            <li class="{{ Route::is('status') ? 'active' : '' }}">
-                                <a href="{{ route('status') }}">
+                            <li class="{{ Route::is('status.home') ? 'active' : '' }}">
+                                <a href="{{ route('status.home') }}">
                                     <i class="fas fa-thermometer-1"></i>@lang('miscellaneous.menu.status')
                                 </a>
                             </li>
@@ -125,7 +125,7 @@
                                 </a>
                             </li>
                             <!-- Customer -->
-                            <li class="has-sub{{ Route::is('customer.entity') ? ' active' : '' }}">
+                            <li class="has-sub{{ Route::is('customer.entity.home') ? ' active' : '' }}">
                                 <a class="js-arrow" href="#">
                                     <i class="fas fa-user-friends"></i>@lang('miscellaneous.menu.customers.title')
                                     <span class="arrow">
@@ -134,30 +134,30 @@
                                 </a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
-                                        <a href="{{ route('customer.entity', ['entity' => 'ride-in-progress']) }}" class="ps-3">@lang('miscellaneous.menu.customers.ride-in-progress')</a>
+                                        <a href="{{ route('customer.entity.home', ['entity' => 'ride-in-progress']) }}" class="ps-3">@lang('miscellaneous.menu.customers.ride-in-progress')</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('customer.entity', ['entity' => 'ride-finished']) }}" class="ps-3">@lang('miscellaneous.menu.customers.ride-finished')</a>
+                                        <a href="{{ route('customer.entity.home', ['entity' => 'ride-finished']) }}" class="ps-3">@lang('miscellaneous.menu.customers.ride-finished')</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('customer.entity', ['entity' => 'rented-vehicles']) }}" class="ps-3">@lang('miscellaneous.menu.customers.rented-vehicles')</a>
+                                        <a href="{{ route('customer.entity.home', ['entity' => 'rented-vehicles']) }}" class="ps-3">@lang('miscellaneous.menu.customers.rented-vehicles')</a>
                                     </li>
                                 </ul>
                             </li>
                             <!-- Currency -->
-                            <li class="{{ Route::is('currency') ? 'active' : '' }}">
-                                <a href="{{ route('currency') }}">
+                            <li class="{{ Route::is('currency.home') ? 'active' : '' }}">
+                                <a href="{{ route('currency.home') }}">
                                     <i class="fas fa-file-invoice-dollar"></i>@lang('miscellaneous.menu.currency')
                                 </a>
                             </li>
                             <!-- Payment gateway -->
-                            <li class="{{ Route::is('payment_gateway') ? 'active' : '' }}">
-                                <a href="{{ route('payment_gateway') }}">
+                            <li class="{{ Route::is('payment_gateway.home') ? 'active' : '' }}">
+                                <a href="{{ route('payment_gateway.home') }}">
                                     <i class="fas fa-credit-card"></i>@lang('miscellaneous.menu.payment-gateway')
                                 </a>
                             </li>
                             <!-- Vehicle -->
-                            <li class="has-sub{{ Route::is('vehicle') || Route::is('vehicle.entity') ? ' active' : '' }}">
+                            <li class="has-sub{{ Route::is('vehicle.home') || Route::is('vehicle.entity.home') ? ' active' : '' }}">
                                 <a class="js-arrow" href="#">
                                     <i class="fas fa-car"></i>@lang('miscellaneous.menu.vehicle.title')
                                     <span class="arrow">
@@ -166,21 +166,21 @@
                                 </a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
-                                        <a href="{{ route('vehicle') }}" class="ps-3">@lang('miscellaneous.menu.vehicle.all')</a>
+                                        <a href="{{ route('vehicle.home') }}" class="ps-3">@lang('miscellaneous.menu.vehicle.all')</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('vehicle.entity', ['entity' => 'shape']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.shape')</a>
+                                        <a href="{{ route('vehicle.entity.home', ['entity' => 'shape']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.shape')</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('vehicle.entity', ['entity' => 'category']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.category')</a>
+                                        <a href="{{ route('vehicle.entity.home', ['entity' => 'category']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.category')</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('vehicle.entity', ['entity' => 'features']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.features')</a>
+                                        <a href="{{ route('vehicle.entity.home', ['entity' => 'features']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.features')</a>
                                     </li>
                                 </ul>
                             </li>
                             <!-- Role -->
-                            <li class="has-sub{{ Route::is('role.entity') ? ' active' : '' }}">
+                            <li class="has-sub{{ Route::is('role.entity.home') ? ' active' : '' }}">
                                 <a class="js-arrow" href="#">
                                     <i class="fas fa-graduation-cap"></i>@lang('miscellaneous.menu.role.title')
                                     <span class="arrow">
@@ -189,16 +189,16 @@
                                 </a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
-                                        <a href="{{ route('role.entity', ['entity' => 'manage-roles']) }}" class="ps-3">@lang('miscellaneous.menu.role.manage-roles')</a>
+                                        <a href="{{ route('role.entity.home', ['entity' => 'manage-roles']) }}" class="ps-3">@lang('miscellaneous.menu.role.manage-roles')</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('role.entity', ['entity' => 'users']) }}" class="ps-3">@lang('miscellaneous.menu.role.users')</a>
+                                        <a href="{{ route('role.entity.home', ['entity' => 'users']) }}" class="ps-3">@lang('miscellaneous.menu.role.users')</a>
                                     </li>
                                 </ul>
                             </li>
                             <!-- Status -->
-                            <li class="{{ Route::is('status') ? 'active' : '' }}">
-                                <a href="{{ route('status') }}">
+                            <li class="{{ Route::is('status.home') ? 'active' : '' }}">
+                                <a href="{{ route('status.home') }}">
                                     <i class="fas fa-thermometer-1"></i>@lang('miscellaneous.menu.status')
                                 </a>
                             </li>

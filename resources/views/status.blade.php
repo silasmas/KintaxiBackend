@@ -50,7 +50,7 @@
                                                         <i class="{{ __('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.icon') }} mt-2 fs-3" data-bs-toggle="tooltip" data-bs-placement="right" title="@lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.icon')"></i>
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('status.datas', $status['id']) }}">
+                                                        <a href="{{ route('status.show', $status['id']) }}">
                                                             @lang('miscellaneous.change') <i class="fa fa-angle-double-right"></i>
                                                         </a>
                                                     </td>

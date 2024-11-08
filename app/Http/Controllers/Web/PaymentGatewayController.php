@@ -9,48 +9,60 @@ use Illuminate\Http\Request;
  * @author Xanders
  * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
  */
-class AccountController extends Controller
+class PaymentGatewayController extends Controller
 {
     // ==================================== HTTP GET METHODS ====================================
     /**
-     * GET: Account page
+     * GET: Gateway page
      *
      * @return \Illuminate\View\View
      */
     public function index()
     {
-        return view('account');
+        return view('gateway');
     }
 
     /**
-     * GET: Account entity page
+     * GET: Gateway datas page
      *
-     * @param  string $entity
+     * @param  int $id
      * @return \Illuminate\View\View
      */
-    public function indexEntity($entity)
+    public function show($id)
     {
-        return view('account');
+        return view('gateway');
     }
 
     // ==================================== HTTP POST METHODS ====================================
     /**
-     * PUT: Update account
+     * POST: Add gateway
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request)
+    public function store(Request $request)
     {
         // 
     }
 
     /**
-     * PUT: Update account entity
+     * POST: Update gateway
      *
-     * @param  string $entity
+     * @param  int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateEntity(Request $request, $entity)
+    public function update(Request $request, $id)
+    {
+        // 
+    }
+
+    // ==================================== HTTP DELETE METHODS ====================================
+    /**
+     * DELETE: Remove gateway
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id)
     {
         // 
     }

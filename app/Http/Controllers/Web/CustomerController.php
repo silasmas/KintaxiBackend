@@ -9,48 +9,71 @@ use Illuminate\Http\Request;
  * @author Xanders
  * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
  */
-class AccountController extends Controller
+class CustomerController extends Controller
 {
     // ==================================== HTTP GET METHODS ====================================
     /**
-     * GET: Account page
+     * GET: Customer page
      *
      * @return \Illuminate\View\View
      */
     public function index()
     {
-        return view('account');
+        return view('customer');
     }
 
     /**
-     * GET: Account entity page
+     * GET: Customer entity page
      *
      * @param  string $entity
      * @return \Illuminate\View\View
      */
     public function indexEntity($entity)
     {
-        return view('account');
+        return view('customer');
+    }
+
+    /**
+     * GET: Customer datas page
+     *
+     * @param  int $id
+     * @return \Illuminate\View\View
+     */
+    public function show($id)
+    {
+        return view('customer');
     }
 
     // ==================================== HTTP POST METHODS ====================================
     /**
-     * PUT: Update account
+     * POST: Add customer
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request)
+    public function store(Request $request)
     {
         // 
     }
 
     /**
-     * PUT: Update account entity
+     * POST: Update customer
      *
-     * @param  string $entity
+     * @param  int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateEntity(Request $request, $entity)
+    public function update(Request $request, $id)
+    {
+        // 
+    }
+
+    // ==================================== HTTP DELETE METHODS ====================================
+    /**
+     * DELETE: Remove customer
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id)
     {
         // 
     }

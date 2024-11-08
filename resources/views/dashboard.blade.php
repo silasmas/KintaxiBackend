@@ -18,7 +18,7 @@
                             <div class="row m-t-25">
                                 <div class="col-sm-6 col-lg-4">
                                     <div class="overview-item overview-item--c1">
-                                        <a href="{{ route('customer.entity', ['entity' => 'ride-in-progress']) }}">
+                                        <a href="{{ route('customer.entity.home', ['entity' => 'ride-in-progress']) }}">
                                             <div class="overview__inner">
                                                 <div class="overview-box clearfix">
                                                     <div class="icon" style="margin-top: -25px;">
@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="col-sm-6 col-lg-4">
                                     <div class="overview-item overview-item--c2">
-                                        <a href="{{ route('customer.entity', ['entity' => 'ride-finished']) }}">
+                                        <a href="{{ route('customer.entity.home', ['entity' => 'ride-finished']) }}">
                                             <div class="overview__inner">
                                                 <div class="overview-box clearfix">
                                                     <div class="icon" style="margin-top: -25px;">
@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="col-sm-6 col-lg-4">
                                     <div class="overview-item overview-item--c3">
-                                        <a href="{{ route('customer.entity', ['entity' => 'rented-vehicles']) }}">
+                                        <a href="{{ route('customer.entity.home', ['entity' => 'rented-vehicles']) }}">
                                             <div class="overview__inner">
                                                 <div class="overview-box clearfix">
                                                     <div class="icon" style="margin-top: -25px;">
@@ -108,7 +108,7 @@
     @foreach ($statuses as $status)
                                                                 <li>
                                                                     <span class="dropdown-item">
-                                                                        <form action="{{ route('vehicle.entity', ['entity' => 'update_status']) }}" method="POST">
+                                                                        <form action="{{ route('vehicle.entity.home', ['entity' => 'update_status']) }}" method="POST">
                                                                             <input type="hidden" name="status_id" value="{{ $status['id'] }}">
                                                                             <button type="submit">@lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')</button>
                                                                         </form>
@@ -119,7 +119,7 @@
                                                         </div>                                                          
                                                     </td>
                                                     <td class="align-middle">
-                                                        <a href="{{ route('vehicle.datas', ['id' => 1]) }}">
+                                                        <a href="{{ route('vehicle.show', ['id' => 1]) }}">
                                                             @lang('miscellaneous.details') <i class="fa fa-angle-double-right"></i>
                                                         </a>
                                                     </td>
@@ -137,7 +137,7 @@
     @foreach ($statuses as $status)
                                                                 <li>
                                                                     <span class="dropdown-item">
-                                                                        <form action="{{ route('vehicle.entity', ['entity' => 'update_status']) }}" method="POST">
+                                                                        <form action="{{ route('vehicle.entity.home', ['entity' => 'update_status']) }}" method="POST">
                                                                             <input type="hidden" name="status_id" value="{{ $status['id'] }}">
                                                                             <button type="submit">@lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')</button>
                                                                         </form>
@@ -148,7 +148,7 @@
                                                         </div>                                                          
                                                     </td>
                                                     <td class="align-middle">
-                                                        <a href="{{ route('vehicle.datas', ['id' => 2]) }}">
+                                                        <a href="{{ route('vehicle.show', ['id' => 2]) }}">
                                                             @lang('miscellaneous.details') <i class="fa fa-angle-double-right"></i>
                                                         </a>
                                                     </td>
@@ -166,7 +166,7 @@
     @foreach ($statuses as $status)
                                                                 <li>
                                                                     <span class="dropdown-item">
-                                                                        <form action="{{ route('vehicle.entity', ['entity' => 'update_status']) }}" method="POST">
+                                                                        <form action="{{ route('vehicle.entity.home', ['entity' => 'update_status']) }}" method="POST">
                                                                             <input type="hidden" name="status_id" value="{{ $status['id'] }}">
                                                                             <button type="submit">@lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')</button>
                                                                         </form>
@@ -177,7 +177,7 @@
                                                         </div>                                                          
                                                     </td>
                                                     <td class="align-middle">
-                                                        <a href="{{ route('vehicle.datas', ['id' => 3]) }}">
+                                                        <a href="{{ route('vehicle.show', ['id' => 3]) }}">
                                                             @lang('miscellaneous.details') <i class="fa fa-angle-double-right"></i>
                                                         </a>
                                                     </td>
@@ -195,7 +195,7 @@
     @foreach ($statuses as $status)
                                                                 <li>
                                                                     <span class="dropdown-item">
-                                                                        <form action="{{ route('vehicle.entity', ['entity' => 'update_status']) }}" method="POST">
+                                                                        <form action="{{ route('vehicle.entity.home', ['entity' => 'update_status']) }}" method="POST">
                                                                             <input type="hidden" name="status_id" value="{{ $status['id'] }}">
                                                                             <button type="submit">@lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')</button>
                                                                         </form>
@@ -206,7 +206,7 @@
                                                         </div>                                                          
                                                     </td>
                                                     <td class="align-middle">
-                                                        <a href="{{ route('vehicle.datas', ['id' => 4]) }}">
+                                                        <a href="{{ route('vehicle.show', ['id' => 4]) }}">
                                                             @lang('miscellaneous.details') <i class="fa fa-angle-double-right"></i>
                                                         </a>
                                                     </td>
@@ -224,7 +224,7 @@
     @foreach ($statuses as $status)
                                                                 <li>
                                                                     <span class="dropdown-item">
-                                                                        <form action="{{ route('vehicle.entity', ['entity' => 'update_status']) }}" method="POST">
+                                                                        <form action="{{ route('vehicle.entity.home', ['entity' => 'update_status']) }}" method="POST">
                                                                             <input type="hidden" name="status_id" value="{{ $status['id'] }}">
                                                                             <button type="submit">@lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')</button>
                                                                         </form>
@@ -235,7 +235,7 @@
                                                         </div>                                                          
                                                     </td>
                                                     <td class="align-middle">
-                                                        <a href="{{ route('vehicle.datas', ['id' => 5]) }}">
+                                                        <a href="{{ route('vehicle.show', ['id' => 5]) }}">
                                                             @lang('miscellaneous.details') <i class="fa fa-angle-double-right"></i>
                                                         </a>
                                                     </td>
@@ -244,7 +244,7 @@
                                         </table>
                                     </div>
                                     <h6 class="h6 px-3 text-end">
-                                        <a href="{{ route('vehicle') }}" class="text-decoration-underline text-danger">
+                                        <a href="{{ route('vehicle.home') }}" class="text-decoration-underline text-danger">
                                             @lang('miscellaneous.see_all_data') <i class="fa fa-angle-double-right"></i>
                                         </a>
                                     </h6>
@@ -281,7 +281,7 @@
                                                         </select>
                                                     </td>
                                                     <td class="align-middle">
-                                                        <a href="{{ route('role.entity.datas', ['entity' => 'users', 'id' => 1]) }}">
+                                                        <a href="{{ route('role.entity.show', ['entity' => 'users', 'id' => 1]) }}">
                                                             @lang('miscellaneous.details') <i class="fa fa-angle-double-right"></i>
                                                         </a>
                                                     </td>
@@ -290,7 +290,7 @@
                                         </table>
                                     </div>
                                     <h6 class="h6 px-3 text-end">
-                                        <a href="{{ route('role.entity', ['entity' => 'users']) }}" class="text-decoration-underline text-danger">
+                                        <a href="{{ route('role.entity.home', ['entity' => 'users']) }}" class="text-decoration-underline text-danger">
                                             @lang('miscellaneous.see_all_data') <i class="fa fa-angle-double-right"></i>
                                         </a>
                                     </h6>
