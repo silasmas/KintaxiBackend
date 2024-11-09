@@ -436,7 +436,7 @@ return [
                 'details' => 'Détails sur l’état',
                 'link' => 'Gérer les états',
                 'add' => 'Ajouter un état',
-                'edit' => 'Editer le état',
+                'edit' => 'Editer l’état',
                 'search' => 'Rechercher un état',
                 'list' => 'Liste des états',
                 'data' => [

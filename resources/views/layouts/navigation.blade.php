@@ -18,7 +18,7 @@
                     <div class="container-fluid">
                         <ul class="navbar-mobile__list list-unstyled">
                             <!-- Home -->
-                            <li class="{{ Route::is('home') ? 'active' : '' }}">
+                            <li class="{{ Route::is('home') || Route::is('search') ? 'active' : '' }}">
                                 <a href="{{ route('home') }}">
                                     <i class="fas fa-dashboard"></i>@lang('miscellaneous.menu.dashboard')
                                 </a>
@@ -44,19 +44,19 @@
                                 </ul>
                             </li>
                             <!-- Currency -->
-                            <li class="{{ Route::is('currency.home') ? 'active' : '' }}">
+                            <li class="{{ Route::is('currency.home') || Route::is('currency.show') ? 'active' : '' }}">
                                 <a href="{{ route('currency.home') }}">
                                     <i class="fas fa-file-invoice-dollar"></i>@lang('miscellaneous.menu.currency')
                                 </a>
                             </li>
                             <!-- Payment gateway -->
-                            <li class="{{ Route::is('payment_gateway.home') ? 'active' : '' }}">
+                            <li class="{{ Route::is('payment_gateway.home') || Route::is('payment_gateway.show') ? 'active' : '' }}">
                                 <a href="{{ route('payment_gateway.home') }}">
                                     <i class="fas fa-credit-card"></i>@lang('miscellaneous.menu.payment-gateway')
                                 </a>
                             </li>
                             <!-- Vehicle -->
-                            <li class="has-sub{{ Route::is('vehicle.home') || Route::is('vehicle.entity.home') ? ' active' : '' }}">
+                            <li class="has-sub{{ Route::is('vehicle.home') || Route::is('vehicle.show') || Route::is('vehicle.entity.home') || Route::is('vehicle.entity.show') ? ' active' : '' }}">
                                 <a class="js-arrow" href="#">
                                     <i class="fas fa-car"></i>@lang('miscellaneous.menu.vehicle.title')
                                     <span class="arrow">
@@ -79,7 +79,7 @@
                                 </ul>
                             </li>
                             <!-- Role -->
-                            <li class="has-sub{{ Route::is('role.entity.home') ? ' active' : '' }}">
+                            <li class="has-sub{{ Route::is('role.entity.home') || Route::is('role.entity.show') ? ' active' : '' }}">
                                 <a class="js-arrow" href="#">
                                     <i class="fas fa-graduation-cap"></i>@lang('miscellaneous.menu.role.title')
                                     <span class="arrow">
@@ -96,7 +96,7 @@
                                 </ul>
                             </li>
                             <!-- Status -->
-                            <li class="{{ Route::is('status.home') ? 'active' : '' }}">
+                            <li class="{{ Route::is('status.home') || Route::is('status.show') ? 'active' : '' }}">
                                 <a href="{{ route('status.home') }}">
                                     <i class="fas fa-thermometer-1"></i>@lang('miscellaneous.menu.status')
                                 </a>
@@ -119,7 +119,7 @@
                     <nav class="navbar-sidebar2">
                         <ul class="list-unstyled navbar__list">
                             <!-- Home -->
-                            <li class="{{ Route::is('home') ? 'active' : '' }}">
+                            <li class="{{ Route::is('home') || Route::is('search') ? 'active' : '' }}">
                                 <a href="{{ route('home') }}">
                                     <i class="fas fa-dashboard"></i>@lang('miscellaneous.menu.dashboard')
                                 </a>
@@ -145,19 +145,19 @@
                                 </ul>
                             </li>
                             <!-- Currency -->
-                            <li class="{{ Route::is('currency.home') ? 'active' : '' }}">
+                            <li class="{{ Route::is('currency.home') || Route::is('currency.show') ? 'active' : '' }}">
                                 <a href="{{ route('currency.home') }}">
                                     <i class="fas fa-file-invoice-dollar"></i>@lang('miscellaneous.menu.currency')
                                 </a>
                             </li>
                             <!-- Payment gateway -->
-                            <li class="{{ Route::is('payment_gateway.home') ? 'active' : '' }}">
+                            <li class="{{ Route::is('payment_gateway.home') || Route::is('payment_gateway.show') ? 'active' : '' }}">
                                 <a href="{{ route('payment_gateway.home') }}">
                                     <i class="fas fa-credit-card"></i>@lang('miscellaneous.menu.payment-gateway')
                                 </a>
                             </li>
                             <!-- Vehicle -->
-                            <li class="has-sub{{ Route::is('vehicle.home') || Route::is('vehicle.entity.home') ? ' active' : '' }}">
+                            <li class="has-sub{{ Route::is('vehicle.home') || Route::is('vehicle.show') || Route::is('vehicle.entity.home') || Route::is('vehicle.entity.show') ? ' active' : '' }}">
                                 <a class="js-arrow" href="#">
                                     <i class="fas fa-car"></i>@lang('miscellaneous.menu.vehicle.title')
                                     <span class="arrow">
@@ -180,7 +180,7 @@
                                 </ul>
                             </li>
                             <!-- Role -->
-                            <li class="has-sub{{ Route::is('role.entity.home') ? ' active' : '' }}">
+                            <li class="has-sub{{ Route::is('role.entity.home') || Route::is('role.entity.show') ? ' active' : '' }}">
                                 <a class="js-arrow" href="#">
                                     <i class="fas fa-graduation-cap"></i>@lang('miscellaneous.menu.role.title')
                                     <span class="arrow">
@@ -197,7 +197,7 @@
                                 </ul>
                             </li>
                             <!-- Status -->
-                            <li class="{{ Route::is('status.home') ? 'active' : '' }}">
+                            <li class="{{ Route::is('status.home') || Route::is('status.show') ? 'active' : '' }}">
                                 <a href="{{ route('status.home') }}">
                                     <i class="fas fa-thermometer-1"></i>@lang('miscellaneous.menu.status')
                                 </a>

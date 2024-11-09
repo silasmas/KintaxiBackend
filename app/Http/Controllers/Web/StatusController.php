@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Status;
 use Illuminate\Http\Request;
 
 /**
@@ -25,11 +26,14 @@ class StatusController extends Controller
     /**
      * GET: Status datas page
      *
+     * @param  int $id
      * @return \Illuminate\View\View
      */
-    public function show()
+    public function show($id)
     {
-        return view('status');
+        $current_status = Status::find($id);
+
+        return view('status', compact('current_status'));
     }
 
     // ==================================== HTTP POST METHODS ====================================
