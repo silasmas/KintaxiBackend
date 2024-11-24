@@ -33,7 +33,11 @@
 
                             <div class="row m-t-25">
                                 <div class="col-lg-6 col-sm-8 mx-auto">
-                                    <div class="card card-body"></div>
+                                    <div class="card card-body">
+                                        <form action="" method="post">
+                                            
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
 
