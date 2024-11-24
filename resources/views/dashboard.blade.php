@@ -7,7 +7,16 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="overview-wrap">
-                                        <h2 class="title-1">@lang('miscellaneous.admin.overview')</h2>
+                                        <div class="au-breadcrumb-content mb-sm-0 mb-3">
+                                            <div class="au-breadcrumb-left text-sm-start text-center">
+                                                <h2 class="title-1">@lang('miscellaneous.admin.overview')</h2>
+
+                                                <ul class="list-unstyled list-inline au-breadcrumb__list ms-0">
+                                                    <li class="list-inline-item">@lang('miscellaneous.menu.dashboard')</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
                                         <button class="au-btn au-btn-icon au-btn--blue mb-sm-0 mb-2">
                                             <i class="zmdi zmdi-plus"></i>@lang('miscellaneous.add')
                                         </button>

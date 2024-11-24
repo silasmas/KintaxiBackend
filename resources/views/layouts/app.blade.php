@@ -40,6 +40,11 @@
         <!-- CoolAdmin CSS File -->
         <link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}">
 
+        <!-- CoolAdmin CSS File -->
+        <style>
+            .title-1 { text-transform: inherit!important; }
+        </style>
+
         <title>
 @if (!empty($page_title))
             {{ $page_title }}

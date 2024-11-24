@@ -1,8 +1,23 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="overview-wrap mb">
-                                        <h2 class="title-1">@lang('miscellaneous.menu.status')</h2>
+                                    <div class="overview-wrap">
+                                        <div class="au-breadcrumb-content mb-sm-0 mb-3">
+                                            <div class="au-breadcrumb-left text-sm-start text-center">
+                                                <h2 class="title-1">@lang('miscellaneous.menu.status')</h2>
+
+                                                <ul class="list-unstyled list-inline au-breadcrumb__list ms-0">
+                                                    <li class="list-inline-item">
+                                                        <a href="{{ route('home') }}">@lang('miscellaneous.menu.home')</a>
+                                                    </li>
+                                                    <li class="list-inline-item seprate">
+                                                        <span><i class="fa fa-angle-right"></i></span>
+                                                    </li>
+                                                    <li class="list-inline-item">@lang('miscellaneous.menu.status')</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
                                         <button class="au-btn au-btn-icon au-btn--blue mb-sm-0 mb-2">
                                             <i class="zmdi zmdi-plus"></i>@lang('miscellaneous.admin.group.status.add')
                                         </button>
