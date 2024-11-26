@@ -18,7 +18,7 @@
                                             </div>
                                         </div>
 
-                                        <button class="au-btn au-btn-icon au-btn--blue mb-sm-0 mb-2">
+                                        <button class="au-btn au-btn-icon au-btn--blue mb-sm-0 mb-2" data-bs-toggle="modal" data-bs-target="#statusModal">
                                             <i class="zmdi zmdi-plus"></i>@lang('miscellaneous.admin.group.status.add')
                                         </button>
                                     </div>
@@ -62,6 +62,9 @@
                                                     <td>
                                                         <a href="{{ route('status.show', $status['id']) }}">
                                                             @lang('miscellaneous.change') <i class="fa fa-angle-double-right"></i>
+                                                        </a><br>
+                                                        <a href="{{ route('status.destroy', $status['id']) }}" class="text-danger">
+                                                            @lang('miscellaneous.delete')
                                                         </a>
                                                     </td>
                                                 </tr>

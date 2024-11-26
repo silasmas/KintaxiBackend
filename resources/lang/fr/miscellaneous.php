@@ -93,6 +93,7 @@ return [
     'error_label' => 'Erreur :',
     'message_label' => 'Message :',
     'message_sent' => 'Message envoyé',
+    'data_created' => 'Données enregistrées',
     'data_updated' => 'Données mises à jour',
     'recto' => 'Recto',
     'verso' => 'Verso',

@@ -48,6 +48,14 @@
                                                     <textarea name="status_description" id="status_description" class="form-control" placeholder="@lang('miscellaneous.description')">{{ $current_status['status_description'] }}</textarea>
                                                     <label for="status_description">@lang('miscellaneous.description')</label>
                                                 </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" name="icon" id="icon" class="form-control" placeholder="@lang('miscellaneous.admin.icon_name')" value="{{ $current_status['icon'] }}">
+                                                    <label for="icon">@lang('miscellaneous.admin.icon_name')</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" name="icon" id="icon" class="form-control" placeholder="@lang('miscellaneous.admin.color_name')" value="{{ $current_status['color'] }}">
+                                                    <label for="icon">@lang('miscellaneous.admin.color_name')</label>
+                                                </div>
                                                 <button type="submit" class="btn btn-primary rounded-pill w-100">@lang('miscellaneous.register')</button>
                                             </form>
                                         </div>

@@ -47,7 +47,7 @@
 
         <title>
 @if (!empty($page_title))
-            {{ $page_title }}
+            {{ 'KinTaxi / ' . $page_title }}
 @else
             {{ config('app.name') }}
 @endif
@@ -139,7 +139,15 @@
                     <div class="position-fixed w-100 top-0 start-0 d-flex justify-content-center" style="z-index: 99999;">
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <i class="bi bi-info-circle me-2"></i>{!! Session::get('success_message') !!}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="@lang('miscellaneous.close')"></button>
+                        </div>
+                    </div>
+@endif
+@if (Session::has('error_message'))
+                    <div class="position-fixed w-100 top-0 start-0 d-flex justify-content-center" style="z-index: 99999;">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="bi bi-exclamation-triangle me-2"></i>{!! Session::get('error_message') !!}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="@lang('miscellaneous.close')"></button>
                         </div>
                     </div>
 @endif
@@ -163,6 +171,10 @@
 
         <!-- Button back to top -->
         <button id="btnBackTop" class="btn btn-lg btn-floating btn-warning position-fixed d-none rounded-circle shadow" title="@lang('miscellaneous.back_top')" style="z-index: 9999; bottom: 2rem; right: 2rem; padding: 0.4rem 0.5rem;" onclick="backToTop()" data-bs-toggle="tooltip"><i class="bi bi-chevron-double-up"></i></button> 
+
+        <!-- START MODALS -->
+@include('layouts.modals')
+        <!-- END MODALS -->
 
         <!-- JavaScript Libraries -->
         <script src="{{ asset('assets/addons/custom/jquery/js/jquery.min.js') }}"></script>
@@ -198,6 +210,12 @@
                 document.body.scrollTop = 0; // For Safari
                 document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
             }
+
+            $(function () {
+                $('#statusModal').on('shown.bs.modal', function () {
+                    $('#status_name').focus();
+                });
+            });
         </script>
     </body>
 </html>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\UserRole;
 use Illuminate\Http\Request;
 
 /**
@@ -30,7 +31,13 @@ class RoleController extends Controller
      */
     public function indexEntity($entity)
     {
-        return view('role');
+        if ($entity == 'manage-roles') {
+            return view('role');
+        }
+
+        if ($entity == 'users') {
+            return view('role');
+        }
     }
 
     /**
@@ -41,7 +48,9 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        return view('role');
+        $current_role = UserRole::find($id);
+
+        return view('role', compact('current_role'));
     }
 
     /**
@@ -53,7 +62,13 @@ class RoleController extends Controller
      */
     public function showEntity($entity, $id)
     {
-        return view('role');
+        if ($entity == 'manage-roles') {
+            return view('role');
+        }
+
+        if ($entity == 'users') {
+            return view('role');
+        }
     }
 
     // ==================================== HTTP POST METHODS ====================================
@@ -64,7 +79,16 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        // 
+        $request->validate([
+            'role_name' => ['required', 'string', 'max:255', 'unique:users_roles,role_name',],
+        ]);
+
+        UserRole::create([
+            'role_name' => $request->role_name,
+            'role_description' => $request->status_description,
+        ]);
+
+        return redirect()->back()->with('success_message', __('miscellaneous.data_created'));
     }
 
     /**
@@ -86,7 +110,14 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // 
+        $role = UserRole::find($id);
+
+        $role->update([
+            'role_name' => $request->role_name,
+            'role_description' => $request->role_description,
+        ]);
+
+        return redirect()->back()->with('success_message', __('miscellaneous.data_updated'));
     }
 
     /**
