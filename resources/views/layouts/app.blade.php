@@ -134,7 +134,16 @@
                 <!-- HEADER DESKTOP-->
 
                 <!-- MAIN CONTENT-->
-                <div class="main-content">
+                <div class="main-content position-relative">
+@if (Session::has('success_message'))
+                    <div class="position-fixed w-100 top-0 start-0 d-flex justify-content-center" style="z-index: 99999;">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="bi bi-info-circle me-2"></i>{!! Session::get('success_message') !!}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+@endif
+
 @yield('app-content')
                             <div class="row">
                                 <div class="col-md-12">

@@ -55,7 +55,15 @@ class StatusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // 
+        $status = Status::find($id);
+
+        $status->update([
+            'status_name' => $request->status_name,
+            'status_description' => $request->status_description,
+            'updated_at' => now(),
+        ]);
+
+        return redirect()->back()->with('success_message', __('miscellaneous.data_updated'));
     }
 
     // ==================================== HTTP DELETE METHODS ====================================
