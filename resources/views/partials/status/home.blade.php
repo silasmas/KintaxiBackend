@@ -60,10 +60,10 @@
                                                         <i class="{{ __('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.icon') }} mt-2 fs-3" data-bs-toggle="tooltip" data-bs-placement="right" title="@lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.icon')"></i>
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('status.show', $status['id']) }}">
+                                                        <a href="{{ route('status.show', ['id' => $status['id']]) }}">
                                                             @lang('miscellaneous.change') <i class="fa fa-angle-double-right"></i>
                                                         </a><br>
-                                                        <a href="{{ route('status.destroy', $status['id']) }}" class="text-danger">
+                                                        <a href="{{ route('status.destroy', ['id' => $status['id']]) }}" class="text-danger">
                                                             @lang('miscellaneous.delete')
                                                         </a>
                                                     </td>

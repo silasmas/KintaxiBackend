@@ -215,6 +215,9 @@
                 $('#statusModal').on('shown.bs.modal', function () {
                     $('#status_name').focus();
                 });
+                $('#roleModal').on('shown.bs.modal', function () {
+                    $('#role_name').focus();
+                });
             });
         </script>
     </body>
