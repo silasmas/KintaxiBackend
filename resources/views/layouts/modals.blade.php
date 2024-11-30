@@ -41,7 +41,7 @@
         <!-- Start role -->
         <div class="modal fade" id="{{ $entity == 'manage-roles' ? 'roleModal' : 'userModal' }}" tabindex="-1" aria-labelledby="{{ $entity == 'manage-roles' ? 'roleModalLabel' : 'userModalLabel' }}" aria-hidden="true">
             <div class="modal-dialog">
-                <form action="{{ route('role.entity.home', ['entity' => 'manage-roles']) }}" method="post">
+                <form action="{{ route('role.entity.home', ['entity' => $entity]) }}" method="post">
     @csrf
                     <div class="modal-content">
                         <div class="modal-header bg-light">
@@ -118,7 +118,7 @@
 
                             <!-- Country -->
                             <div class="form-floating mt-3">
-                                <select name="country" id="country" class="form-select" aria-label="@lang('miscellaneous.choose_country')">
+                                <select name="country_id" id="country" class="form-select" aria-label="@lang('miscellaneous.choose_country')">
         @foreach ($countries as $country)
                                     <option value="{{ $country->id }}">{{ $country->name }}</option>
         @endforeach
@@ -152,7 +152,7 @@
 
                             <!-- Country -->
                             <div class="form-floating mt-3">
-                                <select name="role" id="role" class="form-select" aria-label="@lang('miscellaneous.choose_role')">
+                                <select name="role_id" id="role" class="form-select" aria-label="@lang('miscellaneous.choose_role')">
         @foreach ($roles as $role)
                                     <option value="{{ $role['id'] }}">{{ $role['role_name'] }}</option>
         @endforeach
