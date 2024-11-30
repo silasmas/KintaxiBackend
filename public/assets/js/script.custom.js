@@ -2,7 +2,7 @@
  * Custom scripts
  * 
  * @author Xanders Samoth
- * @see https://www.xsam-tech.com
+ * @see https://www.xsamtech.com
  */
 /* Some variables */
 var currentHost = $('[name="cnpr-url"]').attr('content');

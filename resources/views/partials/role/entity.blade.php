@@ -4,7 +4,7 @@
                                     <div class="overview-wrap">
                                         <div class="au-breadcrumb-content mb-sm-0 mb-3">
                                             <div class="au-breadcrumb-left text-sm-start text-center">
-                                                <h2 class="title-1">@lang('miscellaneous.menu.role.title')</h2>
+                                                <h2 class="title-1">@lang('miscellaneous.menu.role.' . $entity)</h2>
 
                                                 <ul class="list-unstyled list-inline au-breadcrumb__list ms-0">
                                                     <li class="list-inline-item">
@@ -13,13 +13,13 @@
                                                     <li class="list-inline-item seprate">
                                                         <span><i class="fa fa-angle-right"></i></span>
                                                     </li>
-                                                    <li class="list-inline-item">@lang('miscellaneous.menu.role.manage-roles')</li>
+                                                    <li class="list-inline-item">@lang('miscellaneous.menu.role.' . $entity)</li>
                                                 </ul>
                                             </div>
                                         </div>
 
-                                        <button class="au-btn au-btn-icon au-btn--blue mb-sm-0 mb-2" data-bs-toggle="modal" data-bs-target="#roleModal">
-                                            <i class="zmdi zmdi-plus"></i>@lang('miscellaneous.admin.role.add')
+                                        <button class="au-btn au-btn-icon au-btn--blue mb-sm-0 mb-2" data-bs-toggle="modal" data-bs-target="{{ $entity == 'manage-roles' ? '#roleModal' : '#userModal' }}">
+                                            <i class="zmdi zmdi-plus"></i>{{ $entity == 'manage-roles' ? __('miscellaneous.admin.role.add') : __('miscellaneous.admin.users.add') }}
                                         </button>
                                     </div>
                                 </div>

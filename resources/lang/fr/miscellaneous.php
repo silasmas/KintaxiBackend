@@ -536,7 +536,7 @@ return [
 
         // Users
         'users' => [
-            'details' => 'Détails de l’utilisateur',
+            'details' => 'Détails sur l’utilisateur',
             'link' => 'Gérer les utilisateurs',
             'add' => 'Ajouter un utilisateur',
             'edit' => 'Editer l’utilisateur',

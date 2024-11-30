@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page_title' => __('miscellaneous.menu.role.title') ])
+@extends('layouts.app', ['page_title' => __('miscellaneous.menu.role.' . $entity) ])
 
 @section('app-content')
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Country;
 use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('role');
+        // 
     }
 
     /**
@@ -33,11 +34,20 @@ class RoleController extends Controller
     public function indexEntity($entity)
     {
         if ($entity == 'manage-roles') {
-            return view('role');
+            return view('role', [
+                'entity' => $entity
+            ]);
         }
 
         if ($entity == 'users') {
-            return view('role');
+            $countries = Country::orderBy('name')->get();
+            $roles = UserRole::all();
+
+            return view('role', [
+                'entity' => $entity,
+                'countries' => $countries,
+                'roles' => $roles,
+            ]);
         }
     }
 
@@ -49,9 +59,7 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        $current_role = UserRole::find($id);
-
-        return view('role', compact('current_role'));
+        // 
     }
 
     /**
@@ -64,11 +72,21 @@ class RoleController extends Controller
     public function showEntity($entity, $id)
     {
         if ($entity == 'manage-roles') {
-            return view('role');
+            $current_role = UserRole::find($id);
+
+            return view('role', [
+                'entity' => $entity,
+                'current_role' => $current_role
+            ]);
         }
 
         if ($entity == 'users') {
-            return view('role');
+            $user = User::find($id);
+
+            return view('role', [
+                'entity' => $entity,
+                'user' => $user,
+            ]);
         }
     }
 
