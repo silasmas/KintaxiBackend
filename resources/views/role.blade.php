@@ -15,7 +15,7 @@
         @include('partials.role.entity')
     @endif
     @if (Route::is('role.entity.show'))
-        @include('partials.role.entity.datas')
+        @include('partials.role.entity_datas')
     @endif
 
 @endsection
