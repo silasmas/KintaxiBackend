@@ -485,8 +485,8 @@ return [
                     ],
                     '5' => [
                         'name' => 'Incomplete',
-                        'icon' => 'fa-regular fa-exclamation-triangle',
-                        'color' => 'secondary',
+                        'icon' => 'fa-solid fa-triangle-exclamation',
+                        'color' => 'danger',
                     ],
                 ],
             ],
