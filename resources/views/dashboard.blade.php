@@ -104,28 +104,29 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+    @forelse ($vehicles as $vehicle)
                                                 <tr>
-                                                    <td class="align-middle">Mercedes Benz</td>
-                                                    <td class="align-middle">ML 500</td>
-                                                    <td class="align-middle">KM250L</td>
+                                                    <td class="align-middle">{{ $vehicle['mark'] }}</td>
+                                                    <td class="align-middle">{{ $vehicle['model'] }}</td>
+                                                    <td class="align-middle">{{ $vehicle['registration_number'] }}</td>
                                                     <td>
                                                         <div class="btn-group rounded-pill shadow-0">
-                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.group.status.icon_color.0.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <i class="@lang('miscellaneous.admin.group.status.icon_color.0.icon') me-1"></i> @lang('miscellaneous.admin.group.status.icon_color.0.name')
+                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.group.status.icon_color.' . $vehicle['status']['id'] . '.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="@lang('miscellaneous.admin.group.status.icon_color.' . $vehicle['status']['id'] . '.icon') me-1"></i> @lang('miscellaneous.admin.group.status.icon_color.' . $vehicle['status']['id'] . '.name')
                                                             </button>
                                                             <ul class="dropdown-menu">
-    @foreach ($statuses as $status)
+        @foreach ($statuses as $status)
                                                                 <li>
-                                                                    <span class="dropdown-item{{ $status['id'] === 2 ? ' active' : '' }}">
+                                                                    <span class="dropdown-item{{ $status['id'] === $vehicle['status']['id'] ? ' active' : '' }}">
                                                                         <form action="{{ route('vehicle.entity.home', ['entity' => 'update_status']) }}" method="POST">
                                                                             <input type="hidden" name="status_id" value="{{ $status['id'] }}">
                                                                             <button type="submit">@lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')</button>
                                                                         </form>
                                                                     </span>
                                                                 </li>
-    @endforeach
+        @endforeach
                                                             </ul>
-                                                        </div>                                                          
+                                                        </div>
                                                     </td>
                                                     <td class="align-middle">
                                                         <a href="{{ route('vehicle.show', ['id' => 1]) }}">
@@ -133,127 +134,16 @@
                                                         </a>
                                                     </td>
                                                 </tr>
+    @empty
                                                 <tr>
-                                                    <td class="align-middle">Daihatsu</td>
-                                                    <td class="align-middle">Mira ES</td>
-                                                    <td class="align-middle">DD117P</td>
-                                                    <td>
-                                                        <div class="btn-group rounded-pill shadow-0">
-                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.group.status.icon_color.1.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <i class="@lang('miscellaneous.admin.group.status.icon_color.1.icon') me-1"></i> @lang('miscellaneous.admin.group.status.icon_color.1.name')
-                                                            </button>
-                                                            <ul class="dropdown-menu">
-    @foreach ($statuses as $status)
-                                                                <li>
-                                                                    <span class="dropdown-item">
-                                                                        <form action="{{ route('vehicle.entity.home', ['entity' => 'update_status']) }}" method="POST">
-                                                                            <input type="hidden" name="status_id" value="{{ $status['id'] }}">
-                                                                            <button type="submit">@lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')</button>
-                                                                        </form>
-                                                                    </span>
-                                                                </li>
-    @endforeach
-                                                            </ul>
-                                                        </div>                                                          
-                                                    </td>
-                                                    <td class="align-middle">
-                                                        <a href="{{ route('vehicle.show', ['id' => 2]) }}">
-                                                            @lang('miscellaneous.details') <i class="fa fa-angle-double-right"></i>
-                                                        </a>
-                                                    </td>
+                                                    <td colspan="5" class="text-center fst-italic">@lang('miscellaneous.empty_list')</td>
                                                 </tr>
-                                                <tr>
-                                                    <td class="align-middle">Toyota</td>
-                                                    <td class="align-middle">Land Cruiser Prado</td>
-                                                    <td class="align-middle">KJ218Q</td>
-                                                    <td>
-                                                        <div class="btn-group rounded-pill shadow-0">
-                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.group.status.icon_color.2.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <i class="@lang('miscellaneous.admin.group.status.icon_color.2.icon') me-1"></i> @lang('miscellaneous.admin.group.status.icon_color.2.name')
-                                                            </button>
-                                                            <ul class="dropdown-menu">
-    @foreach ($statuses as $status)
-                                                                <li>
-                                                                    <span class="dropdown-item">
-                                                                        <form action="{{ route('vehicle.entity.home', ['entity' => 'update_status']) }}" method="POST">
-                                                                            <input type="hidden" name="status_id" value="{{ $status['id'] }}">
-                                                                            <button type="submit">@lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')</button>
-                                                                        </form>
-                                                                    </span>
-                                                                </li>
-    @endforeach
-                                                            </ul>
-                                                        </div>                                                          
-                                                    </td>
-                                                    <td class="align-middle">
-                                                        <a href="{{ route('vehicle.show', ['id' => 3]) }}">
-                                                            @lang('miscellaneous.details') <i class="fa fa-angle-double-right"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="align-middle">Mitsubishi</td>
-                                                    <td class="align-middle">Canter</td>
-                                                    <td class="align-middle">SB300V</td>
-                                                    <td>
-                                                        <div class="btn-group rounded-pill shadow-0">
-                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.group.status.icon_color.3.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <i class="@lang('miscellaneous.admin.group.status.icon_color.3.icon') me-1"></i> @lang('miscellaneous.admin.group.status.icon_color.3.name')
-                                                            </button>
-                                                            <ul class="dropdown-menu">
-    @foreach ($statuses as $status)
-                                                                <li>
-                                                                    <span class="dropdown-item">
-                                                                        <form action="{{ route('vehicle.entity.home', ['entity' => 'update_status']) }}" method="POST">
-                                                                            <input type="hidden" name="status_id" value="{{ $status['id'] }}">
-                                                                            <button type="submit">@lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')</button>
-                                                                        </form>
-                                                                    </span>
-                                                                </li>
-    @endforeach
-                                                            </ul>
-                                                        </div>                                                          
-                                                    </td>
-                                                    <td class="align-middle">
-                                                        <a href="{{ route('vehicle.show', ['id' => 4]) }}">
-                                                            @lang('miscellaneous.details') <i class="fa fa-angle-double-right"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="align-middle">Nissan</td>
-                                                    <td class="align-middle">Caravan Van</td>
-                                                    <td class="align-middle">FH994W</td>
-                                                    <td>
-                                                        <div class="btn-group rounded-pill shadow-0">
-                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.group.status.icon_color.4.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <i class="@lang('miscellaneous.admin.group.status.icon_color.4.icon') me-1"></i> @lang('miscellaneous.admin.group.status.icon_color.4.name')
-                                                            </button>
-                                                            <ul class="dropdown-menu">
-    @foreach ($statuses as $status)
-                                                                <li>
-                                                                    <span class="dropdown-item">
-                                                                        <form action="{{ route('vehicle.entity.home', ['entity' => 'update_status']) }}" method="POST">
-                                                                            <input type="hidden" name="status_id" value="{{ $status['id'] }}">
-                                                                            <button type="submit">@lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')</button>
-                                                                        </form>
-                                                                    </span>
-                                                                </li>
-    @endforeach
-                                                            </ul>
-                                                        </div>                                                          
-                                                    </td>
-                                                    <td class="align-middle">
-                                                        <a href="{{ route('vehicle.show', ['id' => 5]) }}">
-                                                            @lang('miscellaneous.details') <i class="fa fa-angle-double-right"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
+    @endforelse
                                             </tbody>
                                         </table>
                                     </div>
                                     <h6 class="h6 px-3 text-end">
-                                        <a href="{{ route('vehicle.home') }}" class="text-decoration-underline text-danger">
+                                        <a href="{{ route('vehicle.home') }}" class="text-decoration-underline text-success">
                                             @lang('miscellaneous.see_all_data') <i class="fa fa-angle-double-right"></i>
                                         </a>
                                     </h6>
@@ -269,37 +159,48 @@
                                         <table class="table table-borderless table-striped table-earning">
                                             <thead>
                                                 <tr>
+                                                    <th>@lang('miscellaneous.photo')</th>
                                                     <th>@lang('miscellaneous.names')</th>
-                                                    <th>@lang('miscellaneous.email')</th>
                                                     <th>@lang('miscellaneous.phone')</th>
                                                     <th>@lang('miscellaneous.menu.role.title')</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+    @forelse ($users as $user)
                                                 <tr>
-                                                    <td class="align-middle">Amandla Stenberg</td>
-                                                    <td class="align-middle">amandlastenberg@mail.us</td>
-                                                    <td class="align-middle">+155354300</td>
+                                                    <td class="align-middle">
+                                                        <img src="{{ asset($user['avatar_url']) }}" alt="{{ $user['firstname'] . ' ' . $user['lastname'] }}" width="50" class="rounded-circle">
+                                                    </td>
+                                                    <td class="align-middle">{{ $user['firstname'] . ' ' . $user['lastname'] }}</td>
+                                                    <td class="align-middle">{{ $user['phone'] }}</td>
                                                     <td>
                                                         <select class="form-select form-select-sm" aria-label="@lang('miscellaneous.choose_role')">
                                                             <option class="small" disabled>@lang('miscellaneous.choose_role')</option>
-    @foreach ($roles as $role)
-                                                            <option value="{{ $role['id'] }}"{{ $current_user['role']['id'] == $role['id'] ? ' selected' : '' }}>{{ $role['role_name'] }}</option>
-    @endforeach
+        @foreach ($roles as $role)
+                                                            <option value="{{ $role['id'] }}"{{ $user['role']['id'] == $role['id'] ? ' selected' : '' }}>{{ $role['role_name'] }}</option>
+        @endforeach
                                                         </select>
                                                     </td>
                                                     <td class="align-middle">
-                                                        <a href="{{ route('role.entity.show', ['entity' => 'users', 'id' => 1]) }}">
-                                                            @lang('miscellaneous.details') <i class="fa fa-angle-double-right"></i>
+                                                        <a href="{{ route('role.entity.show', ['entity' => 'users', 'id' => $user['id']]) }}">
+                                                            @lang('miscellaneous.change') <i class="fa fa-angle-double-right"></i>
+                                                        </a><br>
+                                                        <a role="button" class="text-danger">
+                                                            @lang('miscellaneous.delete')
                                                         </a>
                                                     </td>
                                                 </tr>
+    @empty
+                                                <tr>
+                                                    <td colspan="5" class="text-center fst-italic">@lang('miscellaneous.empty_list')</td>
+                                                </tr>
+    @endforelse
                                             </tbody>
                                         </table>
                                     </div>
                                     <h6 class="h6 px-3 text-end">
-                                        <a href="{{ route('role.entity.home', ['entity' => 'users']) }}" class="text-decoration-underline text-danger">
+                                        <a href="{{ route('role.entity.home', ['entity' => 'users']) }}" class="text-decoration-underline text-success">
                                             @lang('miscellaneous.see_all_data') <i class="fa fa-angle-double-right"></i>
                                         </a>
                                     </h6>
