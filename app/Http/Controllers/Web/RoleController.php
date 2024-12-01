@@ -5,13 +5,16 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\BaseController;
 use App\Http\Resources\PasswordReset as ResourcesPasswordReset;
 use App\Http\Resources\User as ResourcesUser;
+use App\Http\Resources\Vehicle as ResourcesVehicle;
 use App\Models\Country;
 use App\Models\PasswordReset;
 use App\Models\Status;
 use App\Models\User;
 use App\Models\UserRole;
+use App\Models\Vehicle;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -57,15 +60,18 @@ class RoleController extends BaseController
         }
 
         if ($entity == 'users') {
-            $countries = Country::orderBy('name')->get();
-            $users = User::orderByDesc('id')->get();
-            $roles = UserRole::all();
+            $users_collection = User::where('id', '<>', Auth::user()->id)->get();
+            $users_data = ResourcesUser::collection($users_collection)->sortByDesc('updated_at')->toArray();
+            $vehicles_collection = Vehicle::orderByDesc('created_at')->get();
+            $vehicles_data = ResourcesVehicle::collection($vehicles_collection)->sortByDesc('updated_at')->toArray();
+            $countries_collection = Country::all();
+            $countries_data = ResourcesUser::collection($countries_collection)->sortBy('name')->toArray();
 
             return view('role', [
                 'entity' => $entity,
-                'users' => $users,
-                'countries' => $countries,
-                'roles' => $roles,
+                'users' => $users_data,
+                'vehicles' => $vehicles_data,
+                'countries' => $countries_data,
             ]);
         }
     }
@@ -91,20 +97,24 @@ class RoleController extends BaseController
     public function showEntity($entity, $id)
     {
         if ($entity == 'manage-roles') {
-            $current_role = UserRole::find($id);
+            $role_request = UserRole::find($id);
+            $user_resource = new ResourcesUser($role_request);
+            $role_data = $user_resource->toArray(request());
 
             return view('role', [
                 'entity' => $entity,
-                'current_role' => $current_role
+                'current_role' => $role_data
             ]);
         }
 
         if ($entity == 'users') {
-            $user = User::find($id);
+            $user_request = User::find($id);
+            $user_resource = new ResourcesUser($user_request);
+            $user_data = $user_resource->toArray(request());
 
             return view('role', [
                 'entity' => $entity,
-                'user' => $user,
+                'user' => $user_data,
             ]);
         }
     }
@@ -233,9 +243,9 @@ class RoleController extends BaseController
             }
 
             if ($inputs['password'] != null) {
-                // if ($request->confirm_password != $inputs['password'] or $request->confirm_password == null) {
-                //     return $this->handleError($request->confirm_password, __('notifications.confirm_password_error'), 400);
-                // }
+                if ($request->confirm_password != $request->password or $request->confirm_password == null) {
+                    return $this->handleError($request->confirm_password, __('notifications.confirm_password_error'), 400);
+                }
 
                 $random_int_stringified = (string) random_int(1000000, 9999999);
 
@@ -244,7 +254,7 @@ class RoleController extends BaseController
                         'email' => $inputs['email'],
                         'phone' => $inputs['phone'],
                         'token' => $random_int_stringified,
-                        'former_password' => $inputs['password'],
+                        'former_password' => $request->password,
                     ]);
 
                 } else {
@@ -252,7 +262,7 @@ class RoleController extends BaseController
                         $password_reset = PasswordReset::create([
                             'email' => $inputs['email'],
                             'token' => $random_int_stringified,
-                            'former_password' => $inputs['password'],
+                            'former_password' => $request->password,
                         ]);
                     }
 
@@ -260,7 +270,7 @@ class RoleController extends BaseController
                         $password_reset = PasswordReset::create([
                             'phone' => $inputs['phone'],
                             'token' => $random_int_stringified,
-                            'former_password' => $inputs['password'],
+                            'former_password' => $request->password,
                         ]);
                     }
                 }

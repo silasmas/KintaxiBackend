@@ -260,6 +260,10 @@ return [
         'error' => 'Your confirmation doesn’t match the new password',
     ],
     'choose_role' => 'Choose a role',
+    'is_driver_of' => [
+        'label' => 'Is the driver of the vehicle',
+        'placeholder' => 'Choose vehicle',
+    ],
     'go_login' => 'Already have an account',
     'api_token' => 'Your key for using of APIs',
     'amount' => 'Amount',

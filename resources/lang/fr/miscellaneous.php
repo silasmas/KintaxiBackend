@@ -260,6 +260,10 @@ return [
         'error' => 'Votre confirmation ne correspond pas au mot de passe',
     ],
     'choose_role' => 'Choisir un rôle',
+    'is_driver_of' => [
+        'label' => 'Est chauffeur du véhicule',
+        'placeholder' => 'Choisir véhicule',
+    ],
     'go_login' => 'J’ai déjà un compte',
     'api_token' => 'Votre clé pour utiliser les APIs',
     'amount' => 'Montant',

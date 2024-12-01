@@ -41,7 +41,11 @@
         <!-- Start role -->
         <div class="modal fade" id="{{ $entity == 'manage-roles' ? 'roleModal' : 'userModal' }}" tabindex="-1" aria-labelledby="{{ $entity == 'manage-roles' ? 'roleModalLabel' : 'userModalLabel' }}" aria-hidden="true">
             <div class="modal-dialog">
+    @if ($entity == 'manage-roles')
                 <form action="{{ route('role.entity.home', ['entity' => $entity]) }}" method="post">
+    @else
+                <form>
+    @endif
     @csrf
                     <div class="modal-content">
                         <div class="modal-header bg-light">
@@ -120,7 +124,7 @@
                             <div class="form-floating mt-3">
                                 <select name="country_id" id="country" class="form-select" aria-label="@lang('miscellaneous.choose_country')">
         @foreach ($countries as $country)
-                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                    <option value="{{ $country['id'] }}">{{ $country['name'] }}</option>
         @endforeach
                                 </select>
                                 <label class="form-label" for="country">@lang('miscellaneous.choose_country')</label>
@@ -158,6 +162,19 @@
         @endforeach
                                 </select>
                                 <label class="form-label" for="role">@lang('miscellaneous.choose_role')</label>
+                            </div>
+
+                            <!-- Is driver of -->
+                            <div id="belongs_to_wrapper" class="form-floating mt-3 d-none">
+                                <select name="belongs_to" id="belongs_to" class="form-select" aria-label="@lang('miscellaneous.is_driver_of.label')">
+                                    <option class="small" disabled selected>@lang('miscellaneous.is_driver_of.placeholder')</option>
+        @forelse ($vehicles as $vehicle)
+                                    <option value="{{ $vehicle['id'] }}">{{ $user['mark'] . ' - ' . $user['model'] . ' (' . $user['registration_number'] . ')' }}</option>
+        @empty
+                                    <option class="fst-italic" disabled>@lang('miscellaneous.empty_list')</option>
+        @endforelse
+                                </select>
+                                <label class="form-label" for="belongs_to">@lang('miscellaneous.is_driver_of.label')</label>
                             </div>
 
                             <!-- Password -->

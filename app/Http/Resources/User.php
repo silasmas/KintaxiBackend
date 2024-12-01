@@ -39,7 +39,7 @@ class User extends JsonResource
             'phone_verified_at' => $this->phone_verified_at,
             'remember_token' => $this->remember_token,
             'api_token' => $this->api_token,
-            'avatar_url' => !empty($this->avatar_url) ? getWebURL() . $this->avatar_url : getWebURL() . '/assets/img/user.png',
+            'avatar_url' => !empty($this->avatar_url) ? getWebURL() . '/storage/' . $this->avatar_url : getWebURL() . '/assets/img/user.png',
             'session_socket_io' => $this->session_socket_io,
             'fcm_token' => $this->fcm_token,
             'rate' => $this->rate,

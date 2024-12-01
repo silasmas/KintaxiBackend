@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="col-sm-6 mx-auto">
                                     <div class="card card-body text-center">
-                                        <img src="{{ $user['avatar_url'] }}" alt="" width="100" class="rounded-circle">
+                                        <img src="{{ asset($user['avatar_url']) }}" alt="{{ $user['firstname'] . ' ' . $user['lastname'] }}" width="100" class="rounded-circle">
                                         <h3 class="h3">{{ $user['firstname'] . ' ' . $user['lastname'] }}</h3>
                                     </div>
                                 </div>
