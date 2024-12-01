@@ -116,7 +116,7 @@
                                                             <ul class="dropdown-menu">
     @foreach ($statuses as $status)
                                                                 <li>
-                                                                    <span class="dropdown-item">
+                                                                    <span class="dropdown-item{{ $status['id'] === 2 ? ' active' : '' }}">
                                                                         <form action="{{ route('vehicle.entity.home', ['entity' => 'update_status']) }}" method="POST">
                                                                             <input type="hidden" name="status_id" value="{{ $status['id'] }}">
                                                                             <button type="submit">@lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')</button>

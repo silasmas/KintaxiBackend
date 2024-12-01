@@ -362,6 +362,7 @@ return [
 
         // Vehicle
         'vehicle' => [
+            'add' => 'Add a vehicle',
             'mark' => 'Mark',
             'model' => 'Model',
             'color' => 'Color',
@@ -373,12 +374,15 @@ return [
             'cylinder_capacity' => 'Cylinder',
             'engine_power' => 'Engine power',
             'shape' => [
+                'add' => 'Add a shape',
                 'title' => 'Shape'
             ],
             'category' => [
+                'add' => 'Add a category',
                 'title' => 'Category'
             ],
             'feature' => [
+                'add' => 'Add features',
                 'title' => 'Comfort',
                 'is_clean' => 'Is clean',
                 'has_helmet' => 'Has helmet',

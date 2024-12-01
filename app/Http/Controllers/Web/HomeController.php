@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\User as ResourcesUser;
+use App\Http\Resources\Vehicle as ResourcesVehicle;
+use App\Models\User;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @author Xanders
@@ -43,7 +48,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $vehicles_collection = Vehicle::limit(7)->get();
+        $vehicles_data = ResourcesVehicle::collection($vehicles_collection)->sortByDesc('updated_at')->toArray();
+        $users_collection = User::where('id', '<>', Auth::user()->id)->limit(7)->get();
+        $users_data = ResourcesUser::collection($users_collection)->sortByDesc('updated_at')->toArray();
+
+        return view('dashboard', [
+            'vehicles' => $vehicles_data,
+            'users' => $users_data,
+        ]);
     }
 
     /**
