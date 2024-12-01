@@ -46,8 +46,8 @@
                                         <!-- Birth date -->
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label role="button" for="register_birthdate" class="form-label d-lg-inline-block d-none">@lang('miscellaneous.birth_date.label')</label>
-                                                <input type="text" name="register_birthdate" id="register_birthdate" class="au-input au-input--full" placeholder="@lang('miscellaneous.birth_date.label')">
+                                                <label role="button" for="birthdate" class="form-label d-lg-inline-block d-none">@lang('miscellaneous.birth_date.label')</label>
+                                                <input type="text" name="register_birthdate" id="birthdate" class="au-input au-input--full" placeholder="@lang('miscellaneous.birth_date.label')">
                                             </div>
                                         </div>
 
