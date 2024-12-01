@@ -69,8 +69,8 @@
                                         <table class="table table-borderless table-striped table-earning">
                                             <thead>
                                                 <tr>
+                                                    <th>@lang('miscellaneous.photo')</th>
                                                     <th>@lang('miscellaneous.names')</th>
-                                                    <th>@lang('miscellaneous.email')</th>
                                                     <th>@lang('miscellaneous.phone')</th>
                                                     <th>@lang('miscellaneous.menu.role.title')</th>
                                                     <th></th>
@@ -78,9 +78,12 @@
                                             </thead>
                                             <tbody>
     @forelse ($users as $user)
+{{-- {{ dd($user['role']['id']) }} --}}
                                                 <tr>
+                                                    <td class="align-middle">
+                                                        <img src="{{ asset($user['avatar_url']) }}" alt="{{ $user['firstname'] . ' ' . $user['lastname'] }}" width="50" class="rounded-circle">
+                                                    </td>
                                                     <td class="align-middle">{{ $user['firstname'] . ' ' . $user['lastname'] }}</td>
-                                                    <td class="align-middle">{{ $user['email'] }}</td>
                                                     <td class="align-middle">{{ $user['phone'] }}</td>
                                                     <td>
                                                         <select class="form-select form-select-sm" aria-label="@lang('miscellaneous.choose_role')">
@@ -100,6 +103,9 @@
                                                     </td>
                                                 </tr>
     @empty
+                                                <tr>
+                                                    <td colspan="5" class="text-center fst-italic">@lang('miscellaneous.empty_list')</td>
+                                                </tr>
     @endforelse
                                             </tbody>
                                         </table>

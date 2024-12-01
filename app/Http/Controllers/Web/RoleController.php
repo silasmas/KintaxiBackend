@@ -61,9 +61,9 @@ class RoleController extends BaseController
 
         if ($entity == 'users') {
             $users_collection = User::where('id', '<>', Auth::user()->id)->get();
-            $users_data = ResourcesUser::collection($users_collection)->sortByDesc('updated_at')->toArray();
+            $users_data = ResourcesUser::collection($users_collection)->toArray(request());
             $vehicles_collection = Vehicle::orderByDesc('created_at')->get();
-            $vehicles_data = ResourcesVehicle::collection($vehicles_collection)->sortByDesc('updated_at')->toArray();
+            $vehicles_data = ResourcesVehicle::collection($vehicles_collection)->toArray(request());
             $countries_collection = Country::all();
             $countries_data = ResourcesUser::collection($countries_collection)->sortBy('name')->toArray();
 

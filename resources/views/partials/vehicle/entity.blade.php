@@ -32,7 +32,7 @@
                                         <table class="table table-borderless table-striped table-earning">
                                             <thead>
                                                 <tr>
-                                                    <th></th>
+                                                    <th>@lang('miscellaneous.photo')</th>
                                                     <th>@lang('miscellaneous.admin.vehicle.shape.title')</th>
                                                     <th>@lang('miscellaneous.admin.description')</th>
                                                     <th></th>
@@ -63,7 +63,49 @@
                                                 </tr>
     @empty
                                                 <tr>
-                                                    <td colspan="3" class="text-center fst-italic">@lang('miscellaneous.empty_list')</td>
+                                                    <td colspan="4" class="text-center fst-italic">@lang('miscellaneous.empty_list')</td>
+                                                </tr>
+    @endforelse
+                                            </tbody>
+                                        </table>
+@endif
+
+@if ($entity == 'category')
+                                        <table class="table table-borderless table-striped table-earning">
+                                            <thead>
+                                                <tr>
+                                                    <th>@lang('')</th>
+                                                    <th>@lang('miscellaneous.admin.vehicle.shape.title')</th>
+                                                    <th>@lang('miscellaneous.admin.description')</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+    @forelse ($vehicle_shapes as $shape)
+                                                <tr>
+                                                    <td><img src="{{ asset('assets/img/blank-id-doc.png') }}" alt="{{ ucfirst($shape['shape_name']) }}" width="70"></td>
+                                                    <td>
+                                                        <p class="m-0" style="max-width: 300px; white-space: normal;">
+                                                            {{ ucfirst($shape['shape_name']) }}
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p class="m-0" style="max-width: 300px; white-space: normal;">
+                                                            {{ ucfirst($shape['shape_description']) }}
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('vehicle.entity.show', ['entity' => 'shape', 'id' => $shape['id']]) }}">
+                                                            @lang('miscellaneous.change') <i class="fa fa-angle-double-right"></i>
+                                                        </a><br>
+                                                        <a href="{{ route('vehicle.entity.destroy', ['entity' => 'shape', 'id' => $shape['id']]) }}" class="text-danger">
+                                                            @lang('miscellaneous.delete')
+                                                        </a>
+                                                    </td>
+                                                </tr>
+    @empty
+                                                <tr>
+                                                    <td colspan="4" class="text-center fst-italic">@lang('miscellaneous.empty_list')</td>
                                                 </tr>
     @endforelse
                                             </tbody>
