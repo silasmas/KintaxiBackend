@@ -60,6 +60,9 @@
                                                     </td>
                                                 </tr>
     @empty
+                                                <tr>
+                                                    <td colspan="3" class="text-center fst-italic">@lang('miscellaneous.empty_list')</td>
+                                                </tr>
     @endforelse
                                             </tbody>
                                         </table>

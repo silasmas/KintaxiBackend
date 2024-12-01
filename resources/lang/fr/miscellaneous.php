@@ -300,7 +300,7 @@ return [
             'all' => 'Tous les véhicules',
             'shape' => 'Forme',
             'category' => 'Catégorie',
-            'features' => 'Caractéristiques',
+            'features' => 'Confort',
         ],
         'role' => [
             'title' => 'Rôle',
@@ -368,6 +368,8 @@ return [
 
         // Vehicle
         'vehicle' => [
+            'details' => 'Détails sur le véhicule',
+            'link' => 'Gérer les véhicules',
             'add' => 'Ajouter un véhicule',
             'mark' => 'Marque',
             'model' => 'Modèle',
@@ -380,14 +382,20 @@ return [
             'cylinder_capacity' => 'Cylindrée',
             'engine_power' => 'Puissance (en chevaux)',
             'shape' => [
+                'details' => 'Détails sur la forme',
+                'link' => 'Gérer les formes',
                 'add' => 'Ajouter une forme',
                 'title' => 'Forme'
             ],
             'category' => [
+                'details' => 'Détails sur la catégorie',
+                'link' => 'Gérer les catégories',
                 'add' => 'Ajouter une catégorie',
                 'title' => 'Catégorie'
             ],
-            'feature' => [
+            'features' => [
+                'details' => 'Détails sur le confort',
+                'link' => 'Gérer les conforts',
                 'add' => 'Ajouter un confort',
                 'title' => 'Confort',
                 'is_clean' => 'Est propre',

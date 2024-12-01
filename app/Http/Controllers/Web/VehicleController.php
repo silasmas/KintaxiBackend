@@ -40,7 +40,7 @@ class VehicleController extends Controller
     public function index()
     {
         $vehicles_collection = Vehicle::all();
-        $vehicles_data = ResourcesVehicle::collection($vehicles_collection)->sortByDesc('updated_at')->toArray();
+        $vehicles_data = ResourcesVehicle::collection($vehicles_collection)->toArray(request());
 
         return view('vehicle', [
             'vehicles' => $vehicles_data,
@@ -57,7 +57,7 @@ class VehicleController extends Controller
     {
         if ($entity == 'shape') {
             $vehicle_shapes_collection = VehicleShape::all();
-            $vehicle_shapes_data = ResourcesVehicleShape::collection($vehicle_shapes_collection)->sortByDesc('updated_at')->toArray();
+            $vehicle_shapes_data = ResourcesVehicleShape::collection($vehicle_shapes_collection)->toArray(request());
 
             return view('vehicle', [
                 'entity' => $entity,
@@ -67,7 +67,7 @@ class VehicleController extends Controller
 
         if ($entity == 'category') {
             $vehicle_categories_collection = VehicleCategory::all();
-            $vehicle_categories_data = ResourcesVehicleCategory::collection($vehicle_categories_collection)->sortByDesc('updated_at')->toArray();
+            $vehicle_categories_data = ResourcesVehicleCategory::collection($vehicle_categories_collection)->toArray(request());
 
             return view('vehicle', [
                 'entity' => $entity,
@@ -77,7 +77,7 @@ class VehicleController extends Controller
 
         if ($entity == 'features') {
             $vehicle_features_collection = VehicleFeature::all();
-            $vehicle_features_data = ResourcesVehicleFeature::collection($vehicle_features_collection)->sortByDesc('updated_at')->toArray();
+            $vehicle_features_data = ResourcesVehicleFeature::collection($vehicle_features_collection)->toArray(request());
 
             return view('vehicle', [
                 'entity' => $entity,

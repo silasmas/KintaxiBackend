@@ -13,6 +13,12 @@
                                                     <li class="list-inline-item seprate">
                                                         <span><i class="fa fa-angle-right"></i></span>
                                                     </li>
+                                                    <li class="list-inline-item">
+                                                        <a href="{{ route('vehicle.home') }}">@lang('miscellaneous.menu.vehicle.title')</a>
+                                                    </li>
+                                                    <li class="list-inline-item seprate">
+                                                        <span><i class="fa fa-angle-right"></i></span>
+                                                    </li>
                                                     <li class="list-inline-item">@lang('miscellaneous.menu.vehicle.' . $entity)</li>
                                                 </ul>
                                             </div>
@@ -74,31 +80,31 @@
                                         <table class="table table-borderless table-striped table-earning">
                                             <thead>
                                                 <tr>
-                                                    <th>@lang('')</th>
-                                                    <th>@lang('miscellaneous.admin.vehicle.shape.title')</th>
+                                                    <th>@lang('miscellaneous.photo')</th>
+                                                    <th>@lang('miscellaneous.admin.vehicle.category.title')</th>
                                                     <th>@lang('miscellaneous.admin.description')</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-    @forelse ($vehicle_shapes as $shape)
+    @forelse ($vehicle_categories as $category)
                                                 <tr>
-                                                    <td><img src="{{ asset('assets/img/blank-id-doc.png') }}" alt="{{ ucfirst($shape['shape_name']) }}" width="70"></td>
+                                                    <td><img src="{{ asset('assets/img/blank-id-doc.png') }}" alt="{{ ucfirst($category['category_name']) }}" width="70"></td>
                                                     <td>
                                                         <p class="m-0" style="max-width: 300px; white-space: normal;">
-                                                            {{ ucfirst($shape['shape_name']) }}
+                                                            {{ ucfirst($category['category_name']) }}
                                                         </p>
                                                     </td>
                                                     <td>
                                                         <p class="m-0" style="max-width: 300px; white-space: normal;">
-                                                            {{ ucfirst($shape['shape_description']) }}
+                                                            {{ ucfirst($category['category_description']) }}
                                                         </p>
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('vehicle.entity.show', ['entity' => 'shape', 'id' => $shape['id']]) }}">
+                                                        <a href="{{ route('vehicle.entity.show', ['entity' => 'shape', 'id' => $category['id']]) }}">
                                                             @lang('miscellaneous.change') <i class="fa fa-angle-double-right"></i>
                                                         </a><br>
-                                                        <a href="{{ route('vehicle.entity.destroy', ['entity' => 'shape', 'id' => $shape['id']]) }}" class="text-danger">
+                                                        <a href="{{ route('vehicle.entity.destroy', ['entity' => 'shape', 'id' => $category['id']]) }}" class="text-danger">
                                                             @lang('miscellaneous.delete')
                                                         </a>
                                                     </td>

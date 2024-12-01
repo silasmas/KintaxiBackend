@@ -4,7 +4,7 @@
                                     <div class="overview-wrap mb">
                                         <div class="au-breadcrumb-content mb-sm-0 mb-3">
                                             <div class="au-breadcrumb-left text-sm-start text-center">
-                                                <h2 class="title-1">{{ $entity == 'manage-roles' ? __('miscellaneous.admin.role.details') : __('miscellaneous.admin.users.details') }}</h2>
+                                                <h2 class="title-1">@lang('miscellaneous.admin.vehicle.' . $entity . '.details')</h2>
 
                                                 <ul class="list-unstyled list-inline au-breadcrumb__list ms-0">
                                                     <li class="list-inline-item">

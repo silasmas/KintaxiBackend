@@ -300,7 +300,7 @@ return [
             'all' => 'All vehicles',
             'shape' => 'Shape',
             'category' => 'Category',
-            'feature' => 'Features',
+            'features' => 'Features',
         ],
         'role' => [
             'title' => 'Role',
@@ -368,6 +368,8 @@ return [
 
         // Vehicle
         'vehicle' => [
+            'details' => 'Vehicle details',
+            'link' => 'Manage vehicles',
             'add' => 'Add a vehicle',
             'mark' => 'Mark',
             'model' => 'Model',
@@ -380,14 +382,20 @@ return [
             'cylinder_capacity' => 'Cylinder',
             'engine_power' => 'Engine power',
             'shape' => [
+                'details' => 'Shape details',
+                'link' => 'Manage shapes',
                 'add' => 'Add a shape',
                 'title' => 'Shape'
             ],
             'category' => [
+                'details' => 'Category details',
+                'link' => 'Manage categories',
                 'add' => 'Add a category',
                 'title' => 'Category'
             ],
-            'feature' => [
+            'features' => [
+                'details' => 'Feature details',
+                'link' => 'Manage features',
                 'add' => 'Add features',
                 'title' => 'Comfort',
                 'is_clean' => 'Is clean',

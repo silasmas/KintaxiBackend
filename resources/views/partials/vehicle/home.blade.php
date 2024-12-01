@@ -13,7 +13,7 @@
                                                     <li class="list-inline-item seprate">
                                                         <span><i class="fa fa-angle-right"></i></span>
                                                     </li>
-                                                    <li class="list-inline-item">@lang('miscellaneous.menu.vehicle.all')</li>
+                                                    <li class="list-inline-item">@lang('miscellaneous.menu.vehicle.title')</li>
                                                 </ul>
                                             </div>
                                         </div>
