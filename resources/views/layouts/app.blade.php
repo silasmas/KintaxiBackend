@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        {{-- <meta name="kntx-url" content="{{ getWebURL() }}"> --}}
+        <meta name="kntx-url" content="{{ getWebURL() }}">
         <meta name="kntx-visitor" content="{{ !empty($current_user) ? $current_user['id'] : null }}">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="kntx-ref" content="{{ !empty($current_user) ? $current_user['api_token'] : null }}">
@@ -43,6 +43,12 @@
         <!-- CoolAdmin CSS File -->
         <style>
             .title-1 { text-transform: inherit!important; }
+            @media (min-width: 900px) {
+                #userModal .modal-body { max-height: 430px; overflow: hidden; overflow-y: auto; }
+            }
+            @media (max-width: 899px) and (min-width: 768px) {
+                #userModal .modal-body { max-height: 340px; overflow: hidden; overflow-y: auto; }
+            }
         </style>
 
         <title>
@@ -135,6 +141,22 @@
 
                 <!-- MAIN CONTENT-->
                 <div class="main-content position-relative">
+                    <div id="successMessageWrapper" class="position-fixed w-100 top-0 start-0 d-flex justify-content-center d-none" style="z-index: 99999;">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="bi bi-info-circle me-2"></i>
+                            <div class="small d-inline-block custom-message"></div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="@lang('miscellaneous.close')"></button>
+                        </div>
+                    </div>
+
+                    <div id="errorMessageWrapper" class="position-fixed w-100 top-0 start-0 d-flex justify-content-center d-none" style="z-index: 99999;">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="bi bi-exclamation-triangle me-2"></i>
+                            <div class="small d-inline-block custom-message"></div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="@lang('miscellaneous.close')"></button>
+                        </div>
+                    </div>
+
 @if (Session::has('success_message'))
                     <div class="position-fixed w-100 top-0 start-0 d-flex justify-content-center" style="z-index: 99999;">
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -217,6 +239,60 @@
                 });
                 $('#roleModal').on('shown.bs.modal', function () {
                     $('#role_name').focus();
+                });
+                $('#userModal').on('shown.bs.modal', function () {
+                    $('#firstname').focus();
+
+                    $('#userModal form').submit(function (e) { 
+                        e.preventDefault();
+
+                        var formData = new FormData(this);
+
+                        $.ajaxSetup({
+                            headers: { 'X-CSRF-TOKEN': csrfToken }
+                        });
+                        $.ajax({
+                            type: 'POST',
+                            url: currentHost + '/role/users',
+                            data: formData,
+                            beforeSend: function () {
+                                $('#userModal form button').addClass('disabled');
+                                $('#userModal form button .spinner-border').removeClass('opacity-0');
+                            },
+                            success: function (res) {
+                                $('#userModal form button').removeClass('disabled');
+                                $('#userModal form button .spinner-border').addClass('opacity-0');
+
+                                if (!$('#errorMessageWrapper').hasClass('d-none')) {
+                                    $('#errorMessageWrapper').addClass('d-none');
+                                }
+
+                                $('#successMessageWrapper').removeClass('d-none');
+                                $('#successMessageWrapper .custom-message').html(res.message);
+
+                                window.location.href = window.location.href;
+                            },
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            error: function (xhr, error, status_description) {
+                                $('#userModal form button').removeClass('disabled');
+                                $('#userModal form button .spinner-border').addClass('opacity-0');
+
+                                if (!$('#successMessageWrapper').hasClass('d-none')) {
+                                    $('#successMessageWrapper').addClass('d-none');
+                                }
+
+                                $('#errorMessageWrapper').removeClass('d-none');
+                                $('#errorMessageWrapper .custom-message').html(xhr.responseJSON.message);
+
+                                console.log(xhr.responseJSON);
+                                console.log(xhr.status);
+                                console.log(error);
+                                console.log(status_description);
+                            }
+                        });
+                    });
                 });
             });
         </script>

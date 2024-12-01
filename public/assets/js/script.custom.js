@@ -2,13 +2,14 @@
  * Custom scripts
  * 
  * @author Xanders Samoth
- * @see https://www.xsamtech.com
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
  */
 /* Some variables */
-var currentHost = $('[name="cnpr-url"]').attr('content');
-var currentUser = $('[name="cnpr-visitor"]').attr('content');
+var currentHost = $('[name="kntx-url"]').attr('content');
+var currentUser = $('[name="kntx-visitor"]').attr('content');
 var currentLanguage = $('html').attr('lang');
-var headers = { 'Authorization': 'Bearer ' + $('[name="cnpr-ref"]').attr('content'), 'Accept': 'application/json', 'X-localization': navigator.language };
+var headers = { 'Authorization': 'Bearer ' + $('[name="kntx-ref"]').attr('content'), 'Accept': 'application/json', 'X-localization': navigator.language };
+var csrfToken = $('[name="csrf-token"]').attr('content');
 var modalUser = $('#cropModalUser');
 var retrievedAvatar = document.getElementById('retrieved_image');
 var retrievedImageOtherUser = document.getElementById('retrieved_image_other_user');
@@ -72,7 +73,7 @@ $(document).ready(function () {
     autosize($('textarea'));
 
     /* jQuery UI date picker */
-    $('#register_birthdate, #register_otherdate').datepicker({
+    $('#birthdate, #otherdate').datepicker({
         dateFormat: currentLanguage.startsWith('fr') ? 'dd/mm/yy' : 'mm/dd/yy',
         onSelect: function () {
             $(this).focus();

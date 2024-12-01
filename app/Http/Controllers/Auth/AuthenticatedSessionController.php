@@ -12,6 +12,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -21,6 +23,8 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
+        Session::put('url.intended', URL::previous());
+
         return view('auth.login');
     }
 
@@ -82,7 +86,12 @@ class AuthenticatedSessionController extends Controller
             if ($auth_phone || $auth_email || $auth_username) {
                 $request->session()->regenerate();
 
-                return redirect(RouteServiceProvider::HOME);
+                if (Session::has('url.intended')) {
+                    return redirect(Session::get('url.intended'));
+
+                } else {
+                    return redirect(RouteServiceProvider::HOME);
+                }
             }
 
         } else {
@@ -108,7 +117,12 @@ class AuthenticatedSessionController extends Controller
             if ($auth_phone || $auth_email || $auth_username) {
                 $request->session()->regenerate();
 
-                return redirect(RouteServiceProvider::HOME);
+                if (Session::has('url.intended')) {
+                    return redirect(Session::get('url.intended'));
+
+                } else {
+                    return redirect(RouteServiceProvider::HOME);
+                }
             }
         }
     }

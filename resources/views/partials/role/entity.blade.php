@@ -28,6 +28,7 @@
                             <div class="row m-t-25">
                                 <div class="col-md-12">
                                     <div class="table-responsive table--no-card mb-3">
+@if ($entity == 'manage-roles')
                                         <table class="table table-borderless table-striped table-earning">
                                             <thead>
                                                 <tr>
@@ -62,8 +63,48 @@
     @endforelse
                                             </tbody>
                                         </table>
-                                    </div>
+@endif
 
+@if ($entity == 'users')
+                                        <table class="table table-borderless table-striped table-earning">
+                                            <thead>
+                                                <tr>
+                                                    <th>@lang('miscellaneous.names')</th>
+                                                    <th>@lang('miscellaneous.email')</th>
+                                                    <th>@lang('miscellaneous.phone')</th>
+                                                    <th>@lang('miscellaneous.menu.role.title')</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+    @forelse ($users as $user)
+                                                <tr>
+                                                    <td class="align-middle">{{ $user['firstname'] . ' ' . $user['lastname'] }}</td>
+                                                    <td class="align-middle">{{ $user['email'] }}</td>
+                                                    <td class="align-middle">{{ $user['phone'] }}</td>
+                                                    <td>
+                                                        <select class="form-select form-select-sm" aria-label="@lang('miscellaneous.choose_role')">
+                                                            <option class="small" disabled>@lang('miscellaneous.choose_role')</option>
+        @foreach ($roles as $role)
+                                                            <option value="{{ $role['id'] }}"{{ $user['role']['id'] == $role['id'] ? ' selected' : '' }}>{{ $role['role_name'] }}</option>
+        @endforeach
+                                                        </select>
+                                                    </td>
+                                                    <td class="align-middle">
+                                                        <a href="{{ route('role.entity.show', ['entity' => 'users', 'id' => $user['id']]) }}">
+                                                            @lang('miscellaneous.change') <i class="fa fa-angle-double-right"></i>
+                                                        </a><br>
+                                                        <a role="button" class="text-danger">
+                                                            @lang('miscellaneous.delete')
+                                                        </a>
+                                                    </td>
+                                                </tr>
+    @empty
+    @endforelse
+                                            </tbody>
+                                        </table>
+@endif
+                                    </div>
                                 </div>
                             </div>
 

@@ -48,7 +48,7 @@
                             <h1 class="modal-title fs-5" id="{{ $entity == 'manage-roles' ? 'roleModalLabel' : 'userModalLabel' }}">{{ $entity == 'manage-roles' ? __('miscellaneous.admin.role.add') : __('miscellaneous.admin.users.add') }}</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="@lang('miscellaneous.close')"></button>
                         </div>
-                        <div class="modal-body pb-0">
+                        <div class="modal-body py-0">
     @if ($entity == 'manage-roles')
                             <div class="form-floating mb-3">
                                 <input type="text" name="role_name" id="role_name" class="form-control" placeholder="@lang('miscellaneous.admin.role.data.role_name')" required>
@@ -81,8 +81,8 @@
 
                             <!-- Birth city/date -->
                             <div class="form-floating mt-3">
-                                <input type="text" name="birthdate" id="birth_date" class="form-control" placeholder="@lang('miscellaneous.birth_date.label')" />
-                                <label class="form-label" for="birth_date">@lang('miscellaneous.birth_date.label')</label>
+                                <input type="text" name="birthdate" id="birthdate" class="form-control" placeholder="@lang('miscellaneous.birth_date.label')" />
+                                <label class="form-label" for="birthdate">@lang('miscellaneous.birth_date.label')</label>
                             </div>
 
                             <!-- Gender -->
@@ -100,13 +100,13 @@
 
                             <!-- Username -->
                             <div class="form-floating mt-3">
-                                <input type="text" name="username" id="username" class="form-control" placeholder="@lang('miscellaneous.username')" required />
+                                <input type="text" name="username" id="username" class="form-control" placeholder="@lang('miscellaneous.username')" />
                                 <label class="form-label" for="username">@lang('miscellaneous.username')</label>
                             </div>
 
                             <!-- Phone -->
                             <div class="form-floating mt-3">
-                                <input type="text" name="phone" id="phone" class="form-control" placeholder="@lang('miscellaneous.phone')" required />
+                                <input type="text" name="phone" id="phone" class="form-control" placeholder="@lang('miscellaneous.phone')" />
                                 <label class="form-label" for="phone">@lang('miscellaneous.phone')</label>
                             </div>
 
@@ -193,7 +193,10 @@
     @endif
                         </div>
                         <div class="modal-footer d-block border-0">
-                            <button type="submit" class="btn btn-primary w-100 rounded-pill">@lang('miscellaneous.register')</button>
+                            <button class="btn btn-primary w-100 rounded-pill position-relative">
+                                <span class="text-uppercase">@lang('miscellaneous.register')</span>
+                                <div class="spinner-border text-white position-absolute opacity-0" role="status" style="top: 0.2rem; right: 0.2rem;"><span class="visually-hidden">@lang('miscellaneous.loading')</span></div>
+                            </button>
                         </div>
                     </div>
                 </form>
