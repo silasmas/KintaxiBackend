@@ -483,6 +483,11 @@ return [
                         'icon' => 'fa-regular fa-trash-alt',
                         'color' => 'primary',
                     ],
+                    '5' => [
+                        'name' => 'Incomplete',
+                        'icon' => 'fa-regular fa-exclamation-triangle',
+                        'color' => 'secondary',
+                    ],
                 ],
             ],
 
