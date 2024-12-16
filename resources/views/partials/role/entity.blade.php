@@ -80,8 +80,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+{{-- {{ dd($users) }} --}}
     @forelse ($users as $user)
-{{-- {{ dd($user['role']['id']) }} --}}
                                                 <tr>
                                                     <td class="align-middle">
                                                         <img src="{{ asset($user['avatar_url']) }}" alt="{{ $user['firstname'] . ' ' . $user['lastname'] }}" width="50" class="rounded-circle">

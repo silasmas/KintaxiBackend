@@ -52,13 +52,13 @@
                             <h1 class="modal-title fs-5" id="{{ $entity == 'manage-roles' ? 'roleModalLabel' : 'userModalLabel' }}">{{ $entity == 'manage-roles' ? __('miscellaneous.admin.role.add') : __('miscellaneous.admin.users.add') }}</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="@lang('miscellaneous.close')"></button>
                         </div>
-                        <div class="modal-body py-0">
+                        <div class="modal-body pb-0">
     @if ($entity == 'manage-roles')
                             <div class="form-floating mb-3">
                                 <input type="text" name="role_name" id="role_name" class="form-control" placeholder="@lang('miscellaneous.admin.role.data.role_name')" required>
                                 <label for="role_name">@lang('miscellaneous.admin.role.data.role_name')</label>
                             </div>
-                            <div class="form-floating mb-4">
+                            <div class="form-floating">
                                 <textarea name="role_description" id="role_description" class="form-control" placeholder="@lang('miscellaneous.description')"></textarea>
                                 <label for="role_description">@lang('miscellaneous.description')</label>
                             </div>

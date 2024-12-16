@@ -46,6 +46,9 @@
             @media (min-width: 900px) {
                 #userModal .modal-body { max-height: 430px; overflow: hidden; overflow-y: auto; }
             }
+            @media (min-width: 768px) {
+                #updateUserStatus { position: absolute; top: 0.9rem; right: 0.9rem; cursor: pointer; }
+            }
             @media (max-width: 899px) and (min-width: 768px) {
                 #userModal .modal-body { max-height: 340px; overflow: hidden; overflow-y: auto; }
             }

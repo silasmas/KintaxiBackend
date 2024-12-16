@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\BaseController;
 use App\Http\Resources\PasswordReset as ResourcesPasswordReset;
 use App\Http\Resources\User as ResourcesUser;
+use App\Http\Resources\UserRole as ResourcesUserRole;
 use App\Http\Resources\Vehicle as ResourcesVehicle;
 use App\Models\Country;
 use App\Models\PasswordReset;
@@ -60,7 +61,7 @@ class RoleController extends BaseController
         }
 
         if ($entity == 'users') {
-            $users_collection = User::where('id', '<>', Auth::user()->id)->get();
+            $users_collection = User::where('id', '<>', Auth::user()->id)->orderByDesc('created_at')->get();
             $users_data = ResourcesUser::collection($users_collection)->toArray(request());
             $vehicles_collection = Vehicle::orderByDesc('created_at')->get();
             $vehicles_data = ResourcesVehicle::collection($vehicles_collection)->toArray(request());
@@ -98,7 +99,7 @@ class RoleController extends BaseController
     {
         if ($entity == 'manage-roles') {
             $role_request = UserRole::find($id);
-            $user_resource = new ResourcesUser($role_request);
+            $user_resource = new ResourcesUserRole($role_request);
             $role_data = $user_resource->toArray(request());
 
             return view('role', [
@@ -111,10 +112,17 @@ class RoleController extends BaseController
             $user_request = User::find($id);
             $user_resource = new ResourcesUser($user_request);
             $user_data = $user_resource->toArray(request());
+            $vehicles_collection = Vehicle::orderByDesc('created_at')->get();
+            $vehicles_data = ResourcesVehicle::collection($vehicles_collection)->toArray(request());
+            $countries_collection = Country::all();
+            $countries_data = ResourcesUser::collection($countries_collection)->sortBy('name')->toArray();
 
+            // dd($user_data);
             return view('role', [
                 'entity' => $entity,
                 'user' => $user_data,
+                'vehicles' => $vehicles_data,
+                'countries' => $countries_data,
             ]);
         }
     }

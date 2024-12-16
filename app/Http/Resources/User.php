@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Models\User as ModelsUser;
+use App\Models\Vehicle as ModelsVehicle;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,6 +20,13 @@ class User extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $user_vehicles_request = ModelsVehicle::where('user_id', $this->id)->orderByDesc('created_at')->get();
+        $user_vehicles_resource = Vehicle::collection($user_vehicles_request);
+        $user_vehicles = $user_vehicles_resource->toArray($request);
+        $user_drivers_request = ModelsUser::where('belongs_to', $this->id)->orderByDesc('created_at')->get();
+        $user_drivers_resource = User::collection($user_drivers_request);
+        $user_drivers = $user_drivers_resource->toArray($request);
+
         return [
             'id' => $this->id,
             'firstname' => $this->firstname,
@@ -28,7 +37,7 @@ class User extends JsonResource
             'phone' => $this->phone,
             'gender' => $this->gender,
             'birthdate' => $this->birthdate,
-            'country_id' => $this->country_id,
+            'country' => Country::make($this->country),
             'city' => $this->city,
             'address_1' => $this->address_1,
             'address_2' => $this->address_2,
@@ -46,6 +55,8 @@ class User extends JsonResource
             'activation_otp' => $this->activation_otp,
             'role' => UserRole::make($this->role)->toArray($request),
             'status' => Status::make($this->status)->toArray($request),
+            'user_vehicles' => $user_vehicles,
+            'user_drivers' => $user_drivers,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s')
         ];

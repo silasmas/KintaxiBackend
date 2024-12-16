@@ -221,7 +221,7 @@ return [
     'serial_number' => 'Serial number',
     'names' => 'Names',
     'tnameMess' => 'Message',
-    'option' => 'Option',
+    'change_status' => 'Change status',
     'firstname' => 'First name',
     'lastname' => 'Last name',
     'surname' => 'Surname',
@@ -254,6 +254,7 @@ return [
         'neighborhood' => 'Neighborhood',
         'area' => 'Area',
         'city' => 'City',
+        'country' => 'Country',
     ],
     'addresses' => 'Addresses',
     'username' => 'User name',
@@ -270,6 +271,8 @@ return [
         'label' => 'Is the driver of the vehicle',
         'placeholder' => 'Choose vehicle',
     ],
+    'user_vehicles' => ':firstname vehicles',
+    'user_drivers' => ':firstname drivers',
     'go_login' => 'Already have an account',
     'api_token' => 'Your key for using of APIs',
     'amount' => 'Amount',
@@ -563,7 +566,7 @@ return [
 
         // Users
         'users' => [
-            'details' => 'user details',
+            'details' => 'User details',
             'link' => 'Manage users',
             'add' => 'Add a user',
             'edit' => 'Edit the user',
