@@ -80,7 +80,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-{{-- {{ dd($users) }} --}}
     @forelse ($users as $user)
                                                 <tr>
                                                     <td class="align-middle">
@@ -100,7 +99,7 @@
                                                         <a href="{{ route('role.entity.show', ['entity' => 'users', 'id' => $user['id']]) }}">
                                                             @lang('miscellaneous.change') <i class="fa fa-angle-double-right"></i>
                                                         </a><br>
-                                                        <a role="button" class="text-danger">
+                                                        <a href="{{ route('role.entity.destroy', ['entity' => 'users', 'id' => $user['id']]) }}" class="text-danger">
                                                             @lang('miscellaneous.delete')
                                                         </a>
                                                     </td>

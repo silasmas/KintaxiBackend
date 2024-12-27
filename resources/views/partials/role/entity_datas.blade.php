@@ -184,13 +184,13 @@
 
                                                 <!-- Password -->
                                                 <div class="form-floating mt-3">
-                                                    <input type="password" name="password" id="password" class="form-control" placeholder="@lang('miscellaneous.password.label')" required />
+                                                    <input type="password" name="password" id="password" class="form-control" placeholder="@lang('miscellaneous.password.label')" />
                                                     <label class="form-label" for="password">@lang('miscellaneous.password.label')</label>
                                                 </div>
 
                                                 <!-- Confirm password -->
                                                 <div class="form-floating mt-3">
-                                                    <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="@lang('miscellaneous.confirm_password.label')" required />
+                                                    <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="@lang('miscellaneous.confirm_password.label')" />
                                                     <label class="form-label" for="confirm_password">@lang('miscellaneous.confirm_password.label')</label>
                                                 </div>
 

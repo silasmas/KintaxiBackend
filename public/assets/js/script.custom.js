@@ -14,6 +14,8 @@ var modalUser = $('#cropModalUser');
 var retrievedAvatar = document.getElementById('retrieved_image');
 var retrievedImageOtherUser = document.getElementById('retrieved_image_other_user');
 var currentImageOtherUser = document.querySelector('#otherUserImageWrapper img');
+var retrievedImageVehicle = document.getElementById('retrieved_image_vehicle');
+var currentImageVehicle = document.querySelector('#vehicleImageWrapper img');
 var cropper;
 
 $(document).ready(function () {
@@ -168,7 +170,7 @@ $(document).ready(function () {
         });
     });
 
-    /* Display cropped image */
+    /* Display cropped user image */
     $('#image_other_user').on('change', function (e) {
         var files = e.target.files;
         var done = function (url) {
@@ -220,6 +222,62 @@ $(document).ready(function () {
                 $(currentImageOtherUser).attr('src', base64_data);
                 $('#data_other_user').attr('value', base64_data);
                 $('#otherUserImageWrapper p').removeClass('d-none');
+            };
+        });
+    });
+
+    /* Display cropped vehicle image */
+    $('#image_vehicle').on('change', function (e) {
+        var files = e.target.files;
+        var done = function (url) {
+            retrievedImageVehicle.src = url;
+            var modal = new bootstrap.Modal(document.getElementById('cropModalVehicle'), { keyboard: false });
+
+            modal.show();
+        };
+
+        if (files && files.length > 0) {
+            var reader = new FileReader();
+
+            reader.onload = function () {
+                done(reader.result);
+            };
+            reader.readAsDataURL(files[0]);
+        }
+    });
+
+    $('#cropModalVehicle').on('shown.bs.modal', function () {
+        cropper = new Cropper(retrievedImageVehicle, {
+            aspectRatio: 16 / 9,
+            viewMode: 3,
+            preview: '#cropModalVehicle .preview',
+            done: function (data) { console.log(data); },
+            error: function (data) { console.log(data); }
+        });
+
+    }).on('hidden.bs.modal', function () {
+        cropper.destroy();
+
+        cropper = null;
+    });
+
+    $('#cropModalVehicle #crop_vehicle').on('click', function () {
+        var canvas = cropper.getCroppedCanvas({
+            width: 1280,
+            height: 720
+        });
+
+        canvas.toBlob(function (blob) {
+            URL.createObjectURL(blob);
+            var reader = new FileReader();
+
+            reader.readAsDataURL(blob);
+            reader.onloadend = function () {
+                var base64_data = reader.result;
+
+                $(currentImageVehicle).attr('src', base64_data);
+                $('#data_vehicle').attr('value', base64_data);
+                $('#vehicleImageWrapper p').removeClass('d-none');
             };
         });
     });

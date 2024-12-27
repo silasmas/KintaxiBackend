@@ -22,7 +22,7 @@ class VehicleCategory extends JsonResource
             'id' => $this->id,
             'category_name' => $this->category_name,
             'category_description' => $this->category_description,
-            'image' => $this->image,
+            'image' => !empty($this->image) ? getWebURL() . '/storage/' . $this->image : getWebURL() . '/assets/img/blank-id-doc.png',
             'status' => Status::make($this->status)->toArray($request),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),

@@ -50,11 +50,11 @@ class StatusController extends Controller
         ]);
 
         Status::create([
+            'created_by' => Auth::user()->id,
             'status_name' => $request->status_name,
             'status_description' => $request->status_description,
             'icon' => $request->icon,
             'color' => $request->color,
-            'created_by' => Auth::user()->id,
         ]);
 
         return redirect()->back()->with('success_message', __('miscellaneous.data_created'));
@@ -70,13 +70,33 @@ class StatusController extends Controller
     {
         $status = Status::find($id);
 
-        $status->update([
-            'status_name' => $request->status_name,
-            'status_description' => $request->status_description,
-            'icon' => $request->icon,
-            'color' => $request->color,
-            'updated_at' => now(),
-        ]);
+        if ($request->status_name != null) {
+            $status->update([
+                'updated_at' => now(),
+                'status_name' => $request->status_name,
+            ]);
+        }
+
+        if ($request->status_description != null) {
+            $status->update([
+                'updated_at' => now(),
+                'status_description' => $request->status_description,
+            ]);
+        }
+
+        if ($request->icon != null) {
+            $status->update([
+                'updated_at' => now(),
+                'icon' => $request->icon,
+            ]);
+        }
+
+        if ($request->color != null) {
+            $status->update([
+                'updated_at' => now(),
+                'color' => $request->color,
+            ]);
+        }
 
         return redirect()->back()->with('success_message', __('miscellaneous.data_updated'));
     }

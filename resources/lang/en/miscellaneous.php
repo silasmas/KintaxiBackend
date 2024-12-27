@@ -388,18 +388,21 @@ return [
                 'details' => 'Shape details',
                 'link' => 'Manage shapes',
                 'add' => 'Add a shape',
+                'edit' => 'Edit the shape',
                 'title' => 'Shape'
             ],
             'category' => [
                 'details' => 'Category details',
                 'link' => 'Manage categories',
                 'add' => 'Add a category',
+                'edit' => 'Edit the category',
                 'title' => 'Category'
             ],
             'features' => [
                 'details' => 'Feature details',
                 'link' => 'Manage features',
                 'add' => 'Add features',
+                'edit' => 'Edit the features',
                 'title' => 'Comfort',
                 'is_clean' => 'Is clean',
                 'has_helmet' => 'Has helmet',

@@ -22,7 +22,7 @@ class VehicleShape extends JsonResource
             'id' => $this->id,
             'shape_name' => $this->shape_name,
             'shape_description' => $this->shape_description,
-            'photo' => $this->photo,
+            'photo' => !empty($this->photo) ? getWebURL() . '/storage/' . $this->photo : getWebURL() . '/assets/img/blank-id-doc.png',
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
             'created_by' => $this->created_by,

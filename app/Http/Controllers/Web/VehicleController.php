@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Status as ResourcesStatus;
 use App\Http\Resources\Vehicle as ResourcesVehicle;
 use App\Http\Resources\VehicleCategory as ResourcesVehicleCategory;
 use App\Http\Resources\VehicleFeature as ResourcesVehicleFeature;
@@ -13,6 +14,7 @@ use App\Models\Vehicle;
 use App\Models\VehicleCategory;
 use App\Models\VehicleFeature;
 use App\Models\VehicleShape;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -25,10 +27,12 @@ use Illuminate\Support\Str;
 class VehicleController extends Controller
 {
     public static $activated_status;
+    public static $created_status;
 
     public function __construct()
     {
         $this::$activated_status = Status::where('status_name', 'activé/confirmé/récu')->first();
+        $this::$created_status = Status::where('status_name', 'créé/en attente de confirmation')->first();
     }
 
     // ==================================== HTTP GET METHODS ====================================
@@ -127,10 +131,14 @@ class VehicleController extends Controller
             $category_request = VehicleCategory::find($id);
             $category_resource = new ResourcesVehicleCategory($category_request);
             $category_data = $category_resource->toArray(request());
+            $statuses_collection = Status::all();
+            $statuses_resource = ResourcesStatus::collection($statuses_collection);
+            $statuses_data = $statuses_resource->toArray(request());
 
             return view('vehicle', [
                 'entity' => $entity,
                 'category' => $category_data,
+                'statuses' => $statuses_data,
             ]);
         }
 
@@ -228,37 +236,61 @@ class VehicleController extends Controller
                 'shape_description' => $request->shape_description,
             ]);
 
-            if ($request->hasFile('photo')) {
-                $file_url = 'images/vehicles/shapes/' . $shape->id . '/' . Str::random(50) . '.' . $request->file('file_url')->extension();
+            if ($request->data_vehicle != null) {
+                // $extension = explode('/', explode(':', substr($request->data_vehicle, 0, strpos($request->data_vehicle, ';')))[1])[1];
+                $replace = substr($request->data_vehicle, 0, strpos($request->data_vehicle, ',') + 1);
+                // Find substring from replace here eg: data:image/png;base64,
+                $image = str_replace($replace, '', $request->data_vehicle);
+                $image = str_replace(' ', '+', $image);
 
-                // Upload file
-                $dir_result = Storage::url(Storage::disk('public')->put($file_url, $request->file('photo')));
+                // Clean "vehicles/shapes" directory
+                $file = new Filesystem;
+                $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/vehicles/shapes/' . $shape->id);
+                // Create image URL
+                $image_url = 'images/vehicles/shapes/' . $shape->id . '/' . Str::random(50) . '.png';
 
-                $photo = File::create([
-                    'file_name' => trim($request->file_name) != null ? $request->file_name : null,
-                    'file_url' => $dir_result
-                ]);
+                // Upload image
+                Storage::url(Storage::disk('public')->put($image_url, base64_decode($image)));
 
                 $shape->update([
-                    'photo' => $photo->id,
-                    'updated_at' => now()
+                    'updated_at' => now(),
+                    'updated_by' => Auth::user()->id,
+                    'photo' => $image_url,
                 ]);
             }
-
-            return redirect()->back()->with('success_message', __('miscellaneous.data_created'));
         }
 
         if ($entity == 'category') {
-            VehicleCategory::create([
-                'status_id' => $this::$activated_status->id,
+            $category = VehicleCategory::create([
+                'status_id' => $this::$created_status->id,
                 'created_by' => Auth::user()->id,
                 'updated_by' => Auth::user()->id,
                 'category_name' => $request->category_name,
                 'category_description' => $request->category_description,
-                'image' => $request->image,
             ]);
 
-            return redirect()->back()->with('success_message', __('miscellaneous.data_created'));
+            if ($request->data_vehicle != null) {
+                // $extension = explode('/', explode(':', substr($request->data_vehicle, 0, strpos($request->data_vehicle, ';')))[1])[1];
+                $replace = substr($request->data_vehicle, 0, strpos($request->data_vehicle, ',') + 1);
+                // Find substring from replace here eg: data:image/png;base64,
+                $image = str_replace($replace, '', $request->data_vehicle);
+                $image = str_replace(' ', '+', $image);
+
+                // Clean "vehicles/categories" directory
+                $file = new Filesystem;
+                $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/vehicles/categories/' . $category->id);
+                // Create image URL
+                $image_url = 'images/vehicles/categories/' . $category->id . '/' . Str::random(50) . '.png';
+
+                // Upload image
+                Storage::url(Storage::disk('public')->put($image_url, base64_decode($image)));
+
+                $category->update([
+                    'updated_at' => now(),
+                    'updated_by' => Auth::user()->id,
+                    'image' => $image_url,
+                ]);
+            }
         }
 
         if ($entity == 'features') {
@@ -282,9 +314,9 @@ class VehicleController extends Controller
                 'has_practical_accessories' => $request->has_practical_accessories,
                 'has_driving_assist_system' => $request->has_driving_assist_system,
             ]);
-
-            return redirect()->back()->with('success_message', __('miscellaneous.data_created'));
         }
+
+        return redirect()->back()->with('success_message', __('miscellaneous.data_created'));
     }
 
     /**
@@ -297,24 +329,103 @@ class VehicleController extends Controller
     {
         $vehicle = Vehicle::find($id);
 
-        $vehicle->update([
-            'status_id' => $request->status_id,
-            'created_by' => Auth::user()->id,
-            'updated_by' => Auth::user()->id,
-            'user_id' => $request->user_id,
-            'model' => $request->model,
-            'mark' => $request->mark,
-            'color' => $request->color,
-            'registration_number' => $request->registration_number,
-            'regis_number_expiration' => $request->regis_number_expiration,
-            'vin_number' => $request->vin_number,
-            'manufacture_year' => $request->manufacture_year,
-            'fuel_type' => $request->fuel_type,
-            'cylinder_capacity' => $request->cylinder_capacity,
-            'engine_power' => $request->engine_power,
-            'shape_id' => $request->shape_id,
-            'category_id' => $request->category_id,
-        ]);
+        if ($request->status_id != null) {
+            $vehicle->update([
+                'status_id' => $request->status_id,
+                'updated_by' => Auth::user()->id,
+            ]);
+        }
+
+        if ($request->user_id != null) {
+            $vehicle->update([
+                'updated_by' => Auth::user()->id,
+                'user_id' => $request->user_id,
+            ]);
+        }
+
+        if ($request->model != null) {
+            $vehicle->update([
+                'updated_by' => Auth::user()->id,
+                'model' => $request->model,
+            ]);
+        }
+
+        if ($request->mark != null) {
+            $vehicle->update([
+                'updated_by' => Auth::user()->id,
+                'mark' => $request->mark,
+            ]);
+        }
+
+        if ($request->color != null) {
+            $vehicle->update([
+                'updated_by' => Auth::user()->id,
+                'color' => $request->color,
+            ]);
+        }
+
+        if ($request->registration_number != null) {
+            $vehicle->update([
+                'updated_by' => Auth::user()->id,
+                'registration_number' => $request->registration_number,
+            ]);
+        }
+
+        if ($request->regis_number_expiration != null) {
+            $vehicle->update([
+                'updated_by' => Auth::user()->id,
+                'regis_number_expiration' => $request->regis_number_expiration,
+            ]);
+        }
+
+        if ($request->vin_number != null) {
+            $vehicle->update([
+                'updated_by' => Auth::user()->id,
+                'vin_number' => $request->vin_number,
+            ]);
+        }
+
+        if ($request->manufacture_year != null) {
+            $vehicle->update([
+                'updated_by' => Auth::user()->id,
+                'manufacture_year' => $request->manufacture_year,
+            ]);
+        }
+
+        if ($request->fuel_type != null) {
+            $vehicle->update([
+                'updated_by' => Auth::user()->id,
+                'fuel_type' => $request->fuel_type,
+            ]);
+        }
+
+        if ($request->cylinder_capacity != null) {
+            $vehicle->update([
+                'updated_by' => Auth::user()->id,
+                'cylinder_capacity' => $request->cylinder_capacity,
+            ]);
+        }
+
+        if ($request->engine_power != null) {
+            $vehicle->update([
+                'updated_by' => Auth::user()->id,
+                'engine_power' => $request->engine_power,
+            ]);
+        }
+
+        if ($request->shape_id != null) {
+            $vehicle->update([
+                'updated_by' => Auth::user()->id,
+                'shape_id' => $request->shape_id,
+            ]);
+        }
+
+        if ($request->category_id != null) {
+            $vehicle->update([
+                'updated_by' => Auth::user()->id,
+                'category_id' => $request->category_id,
+            ]);
+        }
 
         if ($request->hasFile('images_urls') != null) {
             foreach ($request->file('images_urls') as $key => $image):
@@ -346,77 +457,98 @@ class VehicleController extends Controller
         if ($entity == 'shape') {
             $shape = VehicleShape::find($id);
 
-            $shape->update([
-                'created_by' => Auth::user()->id,
-                'updated_by' => Auth::user()->id,
-                'shape_name' => $request->shape_name,
-                'shape_description' => $request->shape_description,
-                'updated_at' => now(),
-            ]);
-
-            if ($request->hasFile('photo')) {
-                $file_url = 'images/vehicles/shapes/' . $shape->id . '/' . Str::random(50) . '.' . $request->file('file_url')->extension();
-
-                // Upload file
-                $dir_result = Storage::url(Storage::disk('public')->put($file_url, $request->file('photo')));
-
-                $photo = File::create([
-                    'file_name' => trim($request->file_name) != null ? $request->file_name : null,
-                    'file_url' => $dir_result
-                ]);
-
+            if ($request->shape_name != null) {
                 $shape->update([
-                    'photo' => $photo->id,
-                    'updated_at' => now()
+                    'updated_at' => now(),
+                    'updated_by' => Auth::user()->id,
+                    'shape_name' => $request->shape_name,
                 ]);
             }
 
-            return redirect()->back()->with('success_message', __('miscellaneous.data_updated'));
+            if ($request->shape_description != null) {
+                $shape->update([
+                    'updated_at' => now(),
+                    'updated_by' => Auth::user()->id,
+                    'shape_description' => $request->shape_description,
+                ]);
+            }
+
+            if ($request->data_vehicle != null) {
+                // $extension = explode('/', explode(':', substr($request->data_vehicle, 0, strpos($request->data_vehicle, ';')))[1])[1];
+                $replace = substr($request->data_vehicle, 0, strpos($request->data_vehicle, ',') + 1);
+                // Find substring from replace here eg: data:image/png;base64,
+                $image = str_replace($replace, '', $request->data_vehicle);
+                $image = str_replace(' ', '+', $image);
+
+                // Clean "vehicles/shapes" directory
+                $file = new Filesystem;
+                $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/vehicles/shapes/' . $shape->id);
+                // Create image URL
+                $image_url = 'images/vehicles/shapes/' . $shape->id . '/' . Str::random(50) . '.png';
+
+                // Upload image
+                Storage::url(Storage::disk('public')->put($image_url, base64_decode($image)));
+
+                $shape->update([
+                    'updated_at' => now(),
+                    'updated_by' => Auth::user()->id,
+                    'photo' => $image_url,
+                ]);
+            }
         }
 
         if ($entity == 'category') {
             $category = VehicleCategory::find($id);
 
-            $category->update([
-                'status_id' => $request->status_id,
-                'created_by' => Auth::user()->id,
-                'updated_by' => Auth::user()->id,
-                'category_name' => $request->category_name,
-                'category_description' => $request->category_description,
-                'image' => $request->image,
-                'updated_at' => now(),
-            ]);
+            if ($request->status_id != null) {
+                $category->update([
+                    'updated_at' => now(),
+                    'updated_by' => Auth::user()->id,
+                    'status_id' => $request->status_id,
+                ]);
+            }
 
-            return redirect()->back()->with('success_message', __('miscellaneous.data_updated'));
+            if ($request->category_name != null) {
+                $category->update([
+                    'updated_at' => now(),
+                    'updated_by' => Auth::user()->id,
+                    'category_name' => $request->category_name,
+                ]);
+            }
+
+            if ($request->category_description != null) {
+                $category->update([
+                    'updated_at' => now(),
+                    'updated_by' => Auth::user()->id,
+                    'category_description' => $request->category_description,
+                ]);
+            }
+
+            if ($request->data_vehicle != null) {
+                // $extension = explode('/', explode(':', substr($request->data_vehicle, 0, strpos($request->data_vehicle, ';')))[1])[1];
+                $replace = substr($request->data_vehicle, 0, strpos($request->data_vehicle, ',') + 1);
+                // Find substring from replace here eg: data:image/png;base64,
+                $image = str_replace($replace, '', $request->data_vehicle);
+                $image = str_replace(' ', '+', $image);
+
+                // Clean "vehicles/categories" directory
+                $file = new Filesystem;
+                $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/vehicles/categories/' . $category->id);
+                // Create image URL
+                $image_url = 'images/vehicles/categories/' . $category->id . '/' . Str::random(50) . '.png';
+
+                // Upload image
+                Storage::url(Storage::disk('public')->put($image_url, base64_decode($image)));
+
+                $category->update([
+                    'updated_at' => now(),
+                    'updated_by' => Auth::user()->id,
+                    'image' => $image_url,
+                ]);
+            }
         }
 
-        if ($entity == 'features') {
-            $feature = VehicleFeature::find($id);
-
-            $feature->update([
-                'created_by' => Auth::user()->id,
-                'updated_by' => Auth::user()->id,
-                'vehicle_id' => $request->vehicle_id,
-                'icon' => $request->icon,
-                'is_clean' => $request->is_clean,
-                'has_helmet' => $request->has_helmet,
-                'has_airbags' => $request->has_airbags,
-                'has_seat_belt' => $request->has_seat_belt,
-                'has_ergonomic_seat' => $request->has_ergonomic_seat,
-                'has_air_conditioning' => $request->has_air_conditioning,
-                'has_suspensions' => $request->has_suspensions,
-                'has_soundproofing' => $request->has_soundproofing,
-                'has_sufficient_space' => $request->has_sufficient_space,
-                'has_quality_equipment' => $request->has_quality_equipment,
-                'has_on_board_technologies' => $request->has_on_board_technologies,
-                'has_interior_lighting' => $request->has_interior_lighting,
-                'has_practical_accessories' => $request->has_practical_accessories,
-                'has_driving_assist_system' => $request->has_driving_assist_system,
-                'updated_at' => now(),
-            ]);
-
-            return redirect()->back()->with('success_message', __('miscellaneous.data_updated'));
-        }
+        return redirect()->to('/vehicle/' . $entity)->with('success_message', __('miscellaneous.data_updated'));
     }
 
     // ==================================== HTTP DELETE METHODS ====================================
@@ -428,7 +560,18 @@ class VehicleController extends Controller
      */
     public function destroy($id)
     {
-        // 
+        $vehicle = VehicleShape::find($id);
+        $directory = $_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/vehicles/' . $vehicle->id;
+        $feature = VehicleFeature::where('vehicle_id', $vehicle->id)->first();
+
+        $feature->delete();
+        $vehicle->delete();
+
+        if (Storage::exists($directory)) {
+            Storage::deleteDirectory($directory);
+        }
+
+        return redirect()->back()->with('success_message', __('miscellaneous.delete_success'));
     }
 
     /**
@@ -440,6 +583,28 @@ class VehicleController extends Controller
      */
     public function destroyEntity($entity, $id)
     {
-        // 
+        if ($entity == 'shape') {
+            $shape = VehicleShape::find($id);
+            $directory = $_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/vehicles/shapes/' . $shape->id;
+
+            $shape->delete();
+
+            if (Storage::exists($directory)) {
+                Storage::deleteDirectory($directory);
+            }
+        }
+
+        if ($entity == 'category') {
+            $category = VehicleCategory::find($id);
+            $directory = $_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/vehicles/categories/' . $category->id;
+
+            $category->delete();
+
+            if (Storage::exists($directory)) {
+                Storage::deleteDirectory($directory);
+            }
+        }
+
+        return redirect()->back()->with('success_message', __('miscellaneous.delete_success'));
     }
 }

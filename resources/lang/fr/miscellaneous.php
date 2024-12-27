@@ -388,18 +388,21 @@ return [
                 'details' => 'Détails sur la forme',
                 'link' => 'Gérer les formes',
                 'add' => 'Ajouter une forme',
+                'edit' => 'Editer la forme',
                 'title' => 'Forme'
             ],
             'category' => [
                 'details' => 'Détails sur la catégorie',
                 'link' => 'Gérer les catégories',
                 'add' => 'Ajouter une catégorie',
+                'edit' => 'Editer la catégorie',
                 'title' => 'Catégorie'
             ],
             'features' => [
                 'details' => 'Détails sur le confort',
                 'link' => 'Gérer les conforts',
                 'add' => 'Ajouter un confort',
+                'edit' => 'Editer le confort',
                 'title' => 'Confort',
                 'is_clean' => 'Est propre',
                 'has_helmet' => 'Avec des casques',

@@ -388,11 +388,19 @@ class RoleController extends BaseController
         if ($entity == 'manage-roles') {
             $role = UserRole::find($id);
 
-            $role->update([
-                'role_name' => $request->role_name,
-                'role_description' => $request->role_description,
-                'updated_at' => now(),
-            ]);
+            if ($request->role_name != null) {
+                $role->update([
+                    'updated_at' => now(),
+                    'role_name' => $request->role_name,
+                ]);
+            }
+
+            if ($request->role_description != null) {
+                $role->update([
+                    'updated_at' => now(),
+                    'role_description' => $request->role_description,
+                ]);
+            }
 
             return redirect()->back()->with('success_message', __('miscellaneous.data_updated'));
         }
@@ -758,8 +766,13 @@ class RoleController extends BaseController
 
         if ($entity == 'users') {
             $user = User::find($id);
+            $directory = $_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $user->id;
 
             $user->delete();
+
+            if (Storage::exists($directory)) {
+                Storage::deleteDirectory($directory);
+            }
 
             return redirect()->back()->with('success_message', __('miscellaneous.delete_success'));
         }

@@ -24,7 +24,7 @@
                                             </div>
                                         </div>
 
-                                        <button class="au-btn au-btn-icon au-btn--blue mb-sm-0 mb-2" data-bs-toggle="modal" data-bs-target="{{ $entity == 'manage-roles' ? '#roleModal' : '#userModal' }}">
+                                        <button class="au-btn au-btn-icon au-btn--blue mb-sm-0 mb-2" data-bs-toggle="modal" data-bs-target="{{ $entity == 'shape' ? '#vehicleShapeModal' : ($entity == 'category' ? '#vehicleCategoryModal' : '#vehicleFeatureModal') }}">
                                             <i class="zmdi zmdi-plus"></i>@lang('miscellaneous.admin.vehicle.' . $entity . '.add')
                                         </button>
                                     </div>
@@ -47,7 +47,7 @@
                                             <tbody>
     @forelse ($vehicle_shapes as $shape)
                                                 <tr>
-                                                    <td><img src="{{ asset('assets/img/blank-id-doc.png') }}" alt="{{ ucfirst($shape['shape_name']) }}" width="70"></td>
+                                                    <td><img src="{{ $shape['photo'] }}" alt="{{ ucfirst($shape['shape_name']) }}" width="70"></td>
                                                     <td>
                                                         <p class="m-0" style="max-width: 300px; white-space: normal;">
                                                             {{ ucfirst($shape['shape_name']) }}
@@ -83,13 +83,14 @@
                                                     <th>@lang('miscellaneous.photo')</th>
                                                     <th>@lang('miscellaneous.admin.vehicle.category.title')</th>
                                                     <th>@lang('miscellaneous.admin.description')</th>
+                                                    <th>@lang('miscellaneous.admin.status')</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
     @forelse ($vehicle_categories as $category)
                                                 <tr>
-                                                    <td><img src="{{ asset('assets/img/blank-id-doc.png') }}" alt="{{ ucfirst($category['category_name']) }}" width="70"></td>
+                                                    <td><img src="{{ $category['image'] }}" alt="{{ ucfirst($category['category_name']) }}" width="70"></td>
                                                     <td>
                                                         <p class="m-0" style="max-width: 300px; white-space: normal;">
                                                             {{ ucfirst($category['category_name']) }}
@@ -101,10 +102,15 @@
                                                         </p>
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('vehicle.entity.show', ['entity' => 'shape', 'id' => $category['id']]) }}">
+                                                        <span class="btn btn-{{ __('miscellaneous.admin.group.status.icon_color.' . $category['status']['id'] . '.color') }} rounded-pill" style="min-width: 120px;">
+                                                            {{ ucfirst(explode('/', $category['status']['status_name'])[0]) }}
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('vehicle.entity.show', ['entity' => 'category', 'id' => $category['id']]) }}">
                                                             @lang('miscellaneous.change') <i class="fa fa-angle-double-right"></i>
                                                         </a><br>
-                                                        <a href="{{ route('vehicle.entity.destroy', ['entity' => 'shape', 'id' => $category['id']]) }}" class="text-danger">
+                                                        <a href="{{ route('vehicle.entity.destroy', ['entity' => 'category', 'id' => $category['id']]) }}" class="text-danger">
                                                             @lang('miscellaneous.delete')
                                                         </a>
                                                     </td>
@@ -117,7 +123,10 @@
                                             </tbody>
                                         </table>
 @endif
+
                                     </div>
                                 </div>
+@if ($entity == 'features')
+@endif
                             </div>
 
