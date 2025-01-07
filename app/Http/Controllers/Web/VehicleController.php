@@ -427,6 +427,141 @@ class VehicleController extends Controller
             ]);
         }
 
+        if ($request->icon != null) {
+            $vehicle_feature = VehicleFeature::where('vehicle_id', $vehicle->id)->first();
+
+            $vehicle_feature->update([
+                'updated_by' => Auth::user()->id,
+                'icon' => $request->icon,
+            ]);
+        }
+
+        if ($request->is_clean != null) {
+            $vehicle_feature = VehicleFeature::where('vehicle_id', $vehicle->id)->first();
+
+            $vehicle_feature->update([
+                'updated_by' => Auth::user()->id,
+                'is_clean' => $request->is_clean,
+            ]);
+        }
+
+        if ($request->has_helmet != null) {
+            $vehicle_feature = VehicleFeature::where('vehicle_id', $vehicle->id)->first();
+
+            $vehicle_feature->update([
+                'updated_by' => Auth::user()->id,
+                'has_helmet' => $request->has_helmet,
+            ]);
+        }
+
+        if ($request->has_airbags != null) {
+            $vehicle_feature = VehicleFeature::where('vehicle_id', $vehicle->id)->first();
+
+            $vehicle_feature->update([
+                'updated_by' => Auth::user()->id,
+                'has_airbags' => $request->has_airbags,
+            ]);
+        }
+
+        if ($request->has_seat_belt != null) {
+            $vehicle_feature = VehicleFeature::where('vehicle_id', $vehicle->id)->first();
+
+            $vehicle_feature->update([
+                'updated_by' => Auth::user()->id,
+                'has_seat_belt' => $request->has_seat_belt,
+            ]);
+        }
+
+        if ($request->has_ergonomic_seat != null) {
+            $vehicle_feature = VehicleFeature::where('vehicle_id', $vehicle->id)->first();
+
+            $vehicle_feature->update([
+                'updated_by' => Auth::user()->id,
+                'has_ergonomic_seat' => $request->has_ergonomic_seat,
+            ]);
+        }
+
+        if ($request->has_air_conditioning != null) {
+            $vehicle_feature = VehicleFeature::where('vehicle_id', $vehicle->id)->first();
+
+            $vehicle_feature->update([
+                'updated_by' => Auth::user()->id,
+                'has_air_conditioning' => $request->has_air_conditioning,
+            ]);
+        }
+
+        if ($request->has_suspensions != null) {
+            $vehicle_feature = VehicleFeature::where('vehicle_id', $vehicle->id)->first();
+
+            $vehicle_feature->update([
+                'updated_by' => Auth::user()->id,
+                'has_suspensions' => $request->has_suspensions,
+            ]);
+        }
+
+        if ($request->has_soundproofing != null) {
+            $vehicle_feature = VehicleFeature::where('vehicle_id', $vehicle->id)->first();
+
+            $vehicle_feature->update([
+                'updated_by' => Auth::user()->id,
+                'has_soundproofing' => $request->has_soundproofing,
+            ]);
+        }
+
+        if ($request->has_sufficient_space != null) {
+            $vehicle_feature = VehicleFeature::where('vehicle_id', $vehicle->id)->first();
+
+            $vehicle_feature->update([
+                'updated_by' => Auth::user()->id,
+                'has_sufficient_space' => $request->has_sufficient_space,
+            ]);
+        }
+
+        if ($request->has_quality_equipment != null) {
+            $vehicle_feature = VehicleFeature::where('vehicle_id', $vehicle->id)->first();
+
+            $vehicle_feature->update([
+                'updated_by' => Auth::user()->id,
+                'has_quality_equipment' => $request->has_quality_equipment,
+            ]);
+        }
+
+        if ($request->has_on_board_technologies != null) {
+            $vehicle_feature = VehicleFeature::where('vehicle_id', $vehicle->id)->first();
+
+            $vehicle_feature->update([
+                'updated_by' => Auth::user()->id,
+                'has_on_board_technologies' => $request->has_on_board_technologies,
+            ]);
+        }
+
+        if ($request->has_interior_lighting != null) {
+            $vehicle_feature = VehicleFeature::where('vehicle_id', $vehicle->id)->first();
+
+            $vehicle_feature->update([
+                'updated_by' => Auth::user()->id,
+                'has_interior_lighting' => $request->has_interior_lighting,
+            ]);
+        }
+
+        if ($request->has_practical_accessories != null) {
+            $vehicle_feature = VehicleFeature::where('vehicle_id', $vehicle->id)->first();
+
+            $vehicle_feature->update([
+                'updated_by' => Auth::user()->id,
+                'has_practical_accessories' => $request->has_practical_accessories,
+            ]);
+        }
+
+        if ($request->has_driving_assist_system != null) {
+            $vehicle_feature = VehicleFeature::where('vehicle_id', $vehicle->id)->first();
+
+            $vehicle_feature->update([
+                'updated_by' => Auth::user()->id,
+                'has_driving_assist_system' => $request->has_driving_assist_system,
+            ]);
+        }
+
         if ($request->hasFile('images_urls') != null) {
             foreach ($request->file('images_urls') as $key => $image):
                 $file_url = 'images/vehicles/' . $vehicle->id . '/' . Str::random(50) . '.' . $image->extension();
