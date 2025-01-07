@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Status as ResourcesStatus;
 use App\Http\Resources\Vehicle as ResourcesVehicle;
 use App\Http\Resources\VehicleCategory as ResourcesVehicleCategory;
-use App\Http\Resources\VehicleFeature as ResourcesVehicleFeature;
 use App\Http\Resources\VehicleShape as ResourcesVehicleShape;
 use App\Models\File;
 use App\Models\Status;
@@ -78,16 +77,6 @@ class VehicleController extends Controller
                 'vehicle_categories' => $vehicle_categories_data,
             ]);
         }
-
-        if ($entity == 'features') {
-            $vehicle_features_collection = VehicleFeature::all();
-            $vehicle_features_data = ResourcesVehicleFeature::collection($vehicle_features_collection)->toArray(request());
-
-            return view('vehicle', [
-                'entity' => $entity,
-                'vehicle_features' => $vehicle_features_data,
-            ]);
-        }
     }
 
     /**
@@ -139,17 +128,6 @@ class VehicleController extends Controller
                 'entity' => $entity,
                 'category' => $category_data,
                 'statuses' => $statuses_data,
-            ]);
-        }
-
-        if ($entity == 'features') {
-            $feature_request = VehicleFeature::find($id);
-            $feature_resource = new ResourcesVehicleFeature($feature_request);
-            $feature_data = $feature_resource->toArray(request());
-
-            return view('vehicle', [
-                'entity' => $entity,
-                'feature' => $feature_data,
             ]);
         }
     }
@@ -291,29 +269,6 @@ class VehicleController extends Controller
                     'image' => $image_url,
                 ]);
             }
-        }
-
-        if ($entity == 'features') {
-            VehicleFeature::create([
-                'created_by' => Auth::user()->id,
-                'updated_by' => Auth::user()->id,
-                'vehicle_id' => $request->vehicle_id,
-                'icon' => $request->icon,
-                'is_clean' => $request->is_clean,
-                'has_helmet' => $request->has_helmet,
-                'has_airbags' => $request->has_airbags,
-                'has_seat_belt' => $request->has_seat_belt,
-                'has_ergonomic_seat' => $request->has_ergonomic_seat,
-                'has_air_conditioning' => $request->has_air_conditioning,
-                'has_suspensions' => $request->has_suspensions,
-                'has_soundproofing' => $request->has_soundproofing,
-                'has_sufficient_space' => $request->has_sufficient_space,
-                'has_quality_equipment' => $request->has_quality_equipment,
-                'has_on_board_technologies' => $request->has_on_board_technologies,
-                'has_interior_lighting' => $request->has_interior_lighting,
-                'has_practical_accessories' => $request->has_practical_accessories,
-                'has_driving_assist_system' => $request->has_driving_assist_system,
-            ]);
         }
 
         return redirect()->back()->with('success_message', __('miscellaneous.data_created'));
@@ -695,7 +650,7 @@ class VehicleController extends Controller
      */
     public function destroy($id)
     {
-        $vehicle = VehicleShape::find($id);
+        $vehicle = Vehicle::find($id);
         $directory = $_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/vehicles/' . $vehicle->id;
         $feature = VehicleFeature::where('vehicle_id', $vehicle->id)->first();
 

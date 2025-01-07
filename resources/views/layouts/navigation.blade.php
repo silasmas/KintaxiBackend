@@ -73,9 +73,6 @@
                                     <li>
                                         <a href="{{ route('vehicle.entity.home', ['entity' => 'category']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.category')</a>
                                     </li>
-                                    <li>
-                                        <a href="{{ route('vehicle.entity.home', ['entity' => 'features']) }}" class="ps-3">@lang('miscellaneous.menu.vehicle.features')</a>
-                                    </li>
                                 </ul>
                             </li>
                             <!-- Role -->
