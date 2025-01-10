@@ -20,12 +20,12 @@ class User extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $user_vehicles_request = ModelsVehicle::where('user_id', $this->id)->orderByDesc('created_at')->get();
-        $user_vehicles_resource = Vehicle::collection($user_vehicles_request);
-        $user_vehicles = $user_vehicles_resource->toArray($request);
-        $user_drivers_request = ModelsUser::where('belongs_to', $this->id)->orderByDesc('created_at')->get();
-        $user_drivers_resource = User::collection($user_drivers_request);
-        $user_drivers = $user_drivers_resource->toArray($request);
+        // $user_vehicles_request = ModelsVehicle::where('user_id', $this->id)->orderByDesc('created_at')->get();
+        // $user_vehicles_resource = Vehicle::collection($user_vehicles_request);
+        // $user_vehicles = $user_vehicles_resource->toArray($request);
+        // $user_drivers_request = ModelsUser::where('belongs_to', $this->id)->orderByDesc('created_at')->get();
+        // $user_drivers_resource = User::collection($user_drivers_request);
+        // $user_drivers = $user_drivers_resource->toArray($request);
 
         return [
             'id' => $this->id,
@@ -55,8 +55,8 @@ class User extends JsonResource
             'activation_otp' => $this->activation_otp,
             'role' => UserRole::make($this->role)->toArray($request),
             'status' => Status::make($this->status)->toArray($request),
-            'user_vehicles' => $user_vehicles,
-            'user_drivers' => $user_drivers,
+            // 'user_vehicles' => $user_vehicles,
+            // 'user_drivers' => $user_drivers,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s')
         ];
