@@ -347,7 +347,12 @@
                                             <h3 class="card-title m-0 text-center">@lang('miscellaneous.user_drivers', ['firstname' => $user['firstname']])</h3>
                                         </div>
                                         <div class="list-group list-group-flush">
-    @forelse ($user['user_drivers'] as $driver)
+<?php
+$user_drivers_request = App\Models\User::where('belongs_to', $user['id'])->orderByDesc('created_at')->get();
+$user_drivers_resource = App\Http\Resources\User::collection($user_drivers_request);
+$user_drivers = $user_drivers_resource->toArray($request);
+?>
+    @forelse ($user_drivers as $driver)
                                             <a href="{{ route('role.entity.show', ['entity' => 'users', 'id' => $driver['id']]) }}" class="list-group-item list-group-item-action">
                                                 <div class="d-flex align-items-center">
                                                     <img src="{{ asset($driver['avatar_url']) }}" alt="{{ $driver['firstname'] . ' ' . $driver['lastname'] }}" width="40" class="rounded-circle me-3">
