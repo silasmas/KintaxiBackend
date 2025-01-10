@@ -63,6 +63,11 @@
 @endif
 
 @if ($entity == 'users')
+<?php
+$user_drivers_request = App\Models\User::where('belongs_to', $user['id'])->orderByDesc('created_at')->get();
+$user_drivers_resource = App\Http\Resources\User::collection($user_drivers_request);
+$user_drivers = $user_drivers_resource->toArray(request());
+?>
                                 <div class="col-sm-6 mx-auto">
                                     <div class="card">
                                         <div class="card-header">
@@ -327,18 +332,19 @@
                                         </div>
                                     </div>
 
+    @if ($user['role']->resource != null && $user['role']->role_name == 'Professional')
                                     <div class="card">
                                         <div class="card-header">
                                             <h3 class="card-title m-0 text-center">@lang('miscellaneous.user_vehicles', ['firstname' => $user['firstname']])</h3>
                                         </div>
                                         <div class="list-group list-group-flush">
-    @forelse ($user['user_vehicles'] as $vehicle)
+        @forelse ($user['user_vehicles'] as $vehicle)
                                             <a href="{{ route('vehicle.show', ['id' => $vehicle['id']]) }}" class="list-group-item list-group-item-action">
                                                 <h5 class="h5">{{ $vehicle['mark'] . ' (' . $vehicle['model'] . ')' }}</h5>
                                             </a>
-    @empty
+        @empty
                                             <span class="list-group-item text-secondary fst-italic">@lang('miscellaneous.empty_list')</span>
-    @endforelse
+        @endforelse
                                         </div>
                                     </div>
 
@@ -347,12 +353,7 @@
                                             <h3 class="card-title m-0 text-center">@lang('miscellaneous.user_drivers', ['firstname' => $user['firstname']])</h3>
                                         </div>
                                         <div class="list-group list-group-flush">
-<?php
-$user_drivers_request = App\Models\User::where('belongs_to', $user['id'])->orderByDesc('created_at')->get();
-$user_drivers_resource = App\Http\Resources\User::collection($user_drivers_request);
-$user_drivers = $user_drivers_resource->toArray(request());
-?>
-    @forelse ($user_drivers as $driver)
+        @forelse ($user_drivers as $driver)
                                             <a href="{{ route('role.entity.show', ['entity' => 'users', 'id' => $driver['id']]) }}" class="list-group-item list-group-item-action">
                                                 <div class="d-flex align-items-center">
                                                     <img src="{{ asset($driver['avatar_url']) }}" alt="{{ $driver['firstname'] . ' ' . $driver['lastname'] }}" width="40" class="rounded-circle me-3">
@@ -362,11 +363,12 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                     </div>
                                                 </div>
                                             </a>
-    @empty
+        @empty
                                             <span class="list-group-item text-secondary fst-italic">@lang('miscellaneous.empty_list')</span>
-    @endforelse
+        @endforelse
                                         </div>
                                     </div>
+    @endif
                                 </div>
 @endif
                             </div>
