@@ -48,15 +48,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $vehicles_collection = Vehicle::limit(5)->orderByDesc('updated_at')->get();
-        $vehicles_data = ResourcesVehicle::collection($vehicles_collection)->toArray(request());
+        // $vehicles_collection = Vehicle::limit(5)->orderByDesc('updated_at')->get();
+        // $vehicles_data = ResourcesVehicle::collection($vehicles_collection)->toArray(request());
         // $users_collection = User::where('id', '<>', Auth::user()->id)->limit(5)->orderByDesc('updated_at')->get();
         // $users_data = ResourcesUser::collection($users_collection)->toArray(request());
 
-        return view('dashboard', [
-            'vehicles' => $vehicles_data,
-            // 'users' => $users_data,
-        ]);
+        // return view('dashboard', [
+        //     'vehicles' => $vehicles_data,
+        //     'users' => $users_data,
+        // ]);
+        return view('dashboard');
     }
 
     /**

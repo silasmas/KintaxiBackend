@@ -104,7 +104,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-    @forelse ($vehicles as $vehicle)
+    {{-- @forelse ($vehicles as $vehicle)
                                                 <tr>
                                                     <td class="align-middle">{{ $vehicle['mark'] }}</td>
                                                     <td class="align-middle">{{ $vehicle['model'] }}</td>
@@ -138,7 +138,7 @@
                                                 <tr>
                                                     <td colspan="5" class="text-center fst-italic">@lang('miscellaneous.empty_list')</td>
                                                 </tr>
-    @endforelse
+    @endforelse --}}
                                             </tbody>
                                         </table>
                                     </div>
