@@ -179,7 +179,7 @@
                                 <select name="belongs_to" id="belongs_to" class="form-select" aria-label="@lang('miscellaneous.is_driver_of.label')">
                                     <option class="small" disabled selected>@lang('miscellaneous.is_driver_of.placeholder')</option>
         @forelse ($vehicles as $vehicle)
-                                    <option value="{{ $vehicle['id'] }}">{{ $user['mark'] . ' - ' . $user['model'] . ' (' . $user['registration_number'] . ')' }}</option>
+                                    <option value="{{ $vehicle['id'] }}">{{ $vehicle['mark'] . ' - ' . $vehicle['model'] . ' (' . $vehicle['registration_number'] . ')' }}</option>
         @empty
                                     <option class="fst-italic" disabled>@lang('miscellaneous.empty_list')</option>
         @endforelse
