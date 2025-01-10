@@ -125,7 +125,7 @@
                                                 <div class="form-floating mt-3">
                                                     <select name="country_id" id="country" class="form-select" aria-label="@lang('miscellaneous.choose_country')">
     @foreach ($countries as $country)
-                                                        <option value="{{ $country['id'] }}"{{ $country['id'] == $user['country']['id'] ? ' selected' : '' }}>{{ $country['name'] }}</option>
+                                                        <option value="{{ $country['id'] }}"{{ $country['id'] == $user['country']->id ? ' selected' : '' }}>{{ $country['name'] }}</option>
     @endforeach
                                                     </select>
                                                     <label class="form-label" for="country">@lang('miscellaneous.choose_country')</label>
@@ -159,13 +159,13 @@
                                                 <div class="form-floating mt-3">
                                                     <select name="role_id" id="role" class="form-select" aria-label="@lang('miscellaneous.choose_role')">
     @foreach ($roles as $role)
-                                                        <option value="{{ $role['id'] }}"{{ $role['id'] == $user['role']['id'] ? ' selected' : '' }}>{{ $role['role_name'] }}</option>
+                                                        <option value="{{ $role['id'] }}"{{ $role['id'] == $user['role']->id ? ' selected' : '' }}>{{ $role['role_name'] }}</option>
     @endforeach
                                                     </select>
                                                     <label class="form-label" for="role">@lang('miscellaneous.choose_role')</label>
                                                 </div>
 
-    @if ($user['role']['id'] == 4)
+    @if ($user['role']->id == 4)
                                                 <!-- Is driver of -->
                                                 <div id="belongs_to_wrapper" class="form-floating mt-3 d-none">
                                                     <select name="belongs_to" id="belongs_to" class="form-select" aria-label="@lang('miscellaneous.is_driver_of.label')">
@@ -226,8 +226,8 @@
                                                 <h3 class="h3 mb-0">{{ $user['firstname'] . ' ' . $user['lastname'] }}</h3>
                                                 <p class="mb-sm-0 mb-1">{{ '@' . $user['username'] }}</p>
                                                 <div id="updateUserStatus" class="form-check form-switch" title="@lang('miscellaneous.change_status')" data-bs-toggle="tooltip">
-                                                    <input role="switch" type="checkbox" id="user-status" class="form-check-input"{{ $user['status']['id'] == 1 ? ' checked' : '' }}>
-                                                    <label for="user-status" class="form-check-label position-relative" style="top: -2px;">{{ ucfirst(explode('/', $user['status']['status_name'])[0]) }}</label>
+                                                    <input role="switch" type="checkbox" id="user-status" class="form-check-input"{{ $user['status']->id == 1 ? ' checked' : '' }}>
+                                                    <label for="user-status" class="form-check-label position-relative" style="top: -2px;">{{ ucfirst(explode('/', $user['status']->status_name)[0]) }}</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -304,7 +304,7 @@
                                                     <tr>
                                                         <td><strong>@lang('miscellaneous.menu.role.title')</strong></td>
                                                         <td>@lang('miscellaneous.colon_after_word')</td>
-                                                        <td>{{ $user['role']['role_name'] }}</td>
+                                                        <td>{{ $user['role']->role_name }}</td>
                                                     </tr>
 
                                                     <!-- City -->
@@ -318,7 +318,7 @@
                                                     <tr>
                                                         <td class="border-bottom-0"><strong>@lang('miscellaneous.address.country')</strong></td>
                                                         <td class="border-bottom-0">@lang('miscellaneous.colon_after_word')</td>
-                                                        <td class="border-bottom-0">{{ $user['country']['name'] . ' (' . $user['country']['a3'] . ')' }}</td>
+                                                        <td class="border-bottom-0">{{ $user['country']->name . ' (' . $user['country']->a3 . ')' }}</td>
                                                     </tr>
                                                 </table>
                                             </div>
