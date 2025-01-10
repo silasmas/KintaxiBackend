@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\BaseController;
+use App\Http\Resources\Country as ResourcesCountry;
 use App\Http\Resources\PasswordReset as ResourcesPasswordReset;
 use App\Http\Resources\User as ResourcesUser;
 use App\Http\Resources\UserRole as ResourcesUserRole;
@@ -115,9 +116,9 @@ class RoleController extends BaseController
             $vehicles_collection = Vehicle::orderByDesc('created_at')->get();
             $vehicles_data = ResourcesVehicle::collection($vehicles_collection)->toArray(request());
             $countries_collection = Country::all();
-            $countries_data = ResourcesUser::collection($countries_collection)->sortBy('name')->toArray();
+            $countries_data = ResourcesCountry::collection($countries_collection)->sortBy('name')->toArray();
 
-            dd($countries_data);
+            // dd($user_data);
             return view('role', [
                 'entity' => $entity,
                 'user' => $user_data,
