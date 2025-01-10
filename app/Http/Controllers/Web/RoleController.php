@@ -116,9 +116,8 @@ class RoleController extends BaseController
             $vehicles_collection = Vehicle::orderByDesc('created_at')->get();
             $vehicles_data = ResourcesVehicle::collection($vehicles_collection)->toArray(request());
             $countries_collection = Country::orderBy('name_en')->get();
-            $countries_data = ResourcesCountry::collection($countries_collection)->toArray(request());
+            $countries_data = ResourcesCountry::collection($countries_collection);
 
-            // dd($countries_data);
             return view('role', [
                 'entity' => $entity,
                 'user' => $user_data,
