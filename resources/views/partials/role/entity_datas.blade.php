@@ -306,7 +306,7 @@
                                                     <tr>
                                                         <td><strong>@lang('miscellaneous.menu.role.title')</strong></td>
                                                         <td>@lang('miscellaneous.colon_after_word')</td>
-                                                        <td>{{ $user['role']->role_name }}</td>
+                                                        <td>{{ $user['country']->resource != null ? $user['role']->role_name : '- - - - - -' }}</td>
                                                     </tr>
 
                                                     <!-- City -->
@@ -320,7 +320,7 @@
                                                     <tr>
                                                         <td class="border-bottom-0"><strong>@lang('miscellaneous.address.country')</strong></td>
                                                         <td class="border-bottom-0">@lang('miscellaneous.colon_after_word')</td>
-                                                        <td class="border-bottom-0">{{ $user['country']->resource != null ? $user['country']->name_en . ' (' . $user['country']->a3 . ')' : '' }}</td>
+                                                        <td class="border-bottom-0">{{ $user['country']->resource != null ? $user['country']->name_en . ' (' . $user['country']->a3 . ')' : '- - - - - -' }}</td>
                                                     </tr>
                                                 </table>
                                             </div>
