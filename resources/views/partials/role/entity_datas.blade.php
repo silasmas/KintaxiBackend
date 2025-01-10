@@ -122,7 +122,7 @@
                                                 </div>
 
     @foreach ($countries as $country)
-                                                        <p>{{ $country['id'] . ': ' . $country['name_en'] }}</p>
+                                                        <p>{{ $country['id'] . ': ' . $country['name_en'] . ': ' . (!empty($user['country']) ? $user['country']->id : '') }}</p>
     @endforeach
 
 {{ dd($countries[0]) }}
