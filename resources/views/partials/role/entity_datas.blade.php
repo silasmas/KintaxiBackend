@@ -350,7 +350,7 @@
 <?php
 $user_drivers_request = App\Models\User::where('belongs_to', $user['id'])->orderByDesc('created_at')->get();
 $user_drivers_resource = App\Http\Resources\User::collection($user_drivers_request);
-$user_drivers = $user_drivers_resource->toArray($request);
+$user_drivers = $user_drivers_resource->toArray(request());
 ?>
     @forelse ($user_drivers as $driver)
                                             <a href="{{ route('role.entity.show', ['entity' => 'users', 'id' => $driver['id']]) }}" class="list-group-item list-group-item-action">
