@@ -21,7 +21,6 @@ class Vehicle extends JsonResource
         return [
             'id' => $this->id,
             'status' => Status::make($this->status),
-            'user' => User::make($this->user),
             'shape' => VehicleShape::make($this->shape),
             'category' => VehicleCategory::make($this->category),
             'model' => $this->model,
