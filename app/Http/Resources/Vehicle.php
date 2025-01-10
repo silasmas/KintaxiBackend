@@ -20,10 +20,10 @@ class Vehicle extends JsonResource
     {
         return [
             'id' => $this->id,
-            'status' => Status::make($this->status)->toArray($request),
-            'user' => User::make($this->user)->toArray($request),
-            'shape' => VehicleShape::make($this->shape)->toArray($request),
-            'category' => VehicleCategory::make($this->category)->toArray($request),
+            'status' => Status::make($this->status),
+            'user' => User::make($this->user),
+            'shape' => VehicleShape::make($this->shape),
+            'category' => VehicleCategory::make($this->category),
             'model' => $this->model,
             'mark' => $this->mark,
             'color' => $this->color,
