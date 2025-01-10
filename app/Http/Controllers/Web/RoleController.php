@@ -118,6 +118,7 @@ class RoleController extends BaseController
             $countries_collection = Country::orderBy('name_' . app()->getLocale())->get();
             $countries_data = ResourcesCountry::collection($countries_collection)->toArray(request());
 
+            dd($countries_data);
             return view('role', [
                 'entity' => $entity,
                 'user' => $user_data,
