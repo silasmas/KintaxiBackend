@@ -167,7 +167,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-    {{-- @forelse ($users as $user)
+    @forelse ($users as $user)
                                                 <tr>
                                                     <td class="align-middle">
                                                         <img src="{{ asset($user['avatar_url']) }}" alt="{{ $user['firstname'] . ' ' . $user['lastname'] }}" width="50" class="rounded-circle">
@@ -195,7 +195,7 @@
                                                 <tr>
                                                     <td colspan="5" class="text-center fst-italic">@lang('miscellaneous.empty_list')</td>
                                                 </tr>
-    @endforelse --}}
+    @endforelse
                                             </tbody>
                                         </table>
                                     </div>
