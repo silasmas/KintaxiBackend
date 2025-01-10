@@ -125,7 +125,7 @@
                                                 <div class="form-floating mt-3">
                                                     <select name="country_id" id="country" class="form-select" aria-label="@lang('miscellaneous.choose_country')">
     @foreach ($countries as $country)
-                                                        <option value="{{ $country['id'] }}"{{ $country['id'] == $user['country']->id ? ' selected' : '' }}>{{ $country['name'] }}</option>
+                                                        <option value="{{ $country['id'] }}"{{ !empty($user['country']) ? ($country['id'] == $user['country']->id ? ' selected' : '') : '' }}>{{ $country['name'] }}</option>
     @endforeach
                                                     </select>
                                                     <label class="form-label" for="country">@lang('miscellaneous.choose_country')</label>
@@ -159,27 +159,29 @@
                                                 <div class="form-floating mt-3">
                                                     <select name="role_id" id="role" class="form-select" aria-label="@lang('miscellaneous.choose_role')">
     @foreach ($roles as $role)
-                                                        <option value="{{ $role['id'] }}"{{ $role['id'] == $user['role']->id ? ' selected' : '' }}>{{ $role['role_name'] }}</option>
+                                                        <option value="{{ $role['id'] }}"{{ !empty($user['role']) ? ($role['id'] == $user['role']->id ? ' selected' : '') : '' }}>{{ $role['role_name'] }}</option>
     @endforeach
                                                     </select>
                                                     <label class="form-label" for="role">@lang('miscellaneous.choose_role')</label>
                                                 </div>
 
-    @if ($user['role']->id == 4)
+    @if (!empty($user['role']))
+        @if ($user['role']->id == 4)
                                                 <!-- Is driver of -->
                                                 <div id="belongs_to_wrapper" class="form-floating mt-3 d-none">
                                                     <select name="belongs_to" id="belongs_to" class="form-select" aria-label="@lang('miscellaneous.is_driver_of.label')">
                                                         <option class="small" disabled selected>@lang('miscellaneous.is_driver_of.placeholder')</option>
-        @forelse ($vehicles as $vehicle)
+            @forelse ($vehicles as $vehicle)
                                                         <option value="{{ $vehicle['id'] }}"{{ inArrayR('id', $user['user_vehicles'], $vehicle['id']) ? ' selected' : '' }}>
                                                             {{ $vehicle['mark'] . ' - ' . $vehicle['model'] . ' (' . $vehicle['registration_number'] . ')' }}
                                                         </option>
-        @empty
+            @empty
                                                         <option class="fst-italic" disabled>@lang('miscellaneous.empty_list')</option>
-        @endforelse
+            @endforelse
                                                     </select>
                                                     <label class="form-label" for="belongs_to">@lang('miscellaneous.is_driver_of.label')</label>
                                                 </div>
+        @endif
     @endif
 
                                                 <!-- Password -->
