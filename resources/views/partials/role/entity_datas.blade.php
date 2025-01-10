@@ -122,10 +122,10 @@
                                                 </div>
 
     @foreach ($countries as $country)
-                                                        <p>{{ $country['id'] . ': ' . $country['name_en'] . ': ' . (!empty($user['country']) ? $user['country']->id : '') }}</p>
+                                                        <p>{{ $country['id'] . ': ' . $country['name_en'] }}</p>
     @endforeach
 
-{{ dd($countries[0]) }}
+{{ dd($user['country']) }}
                                                 <!-- Country -->
                                                 {{-- <div class="form-floating mt-3">
                                                     <select name="country_id" id="country" class="form-select" aria-label="@lang('miscellaneous.choose_country')">
