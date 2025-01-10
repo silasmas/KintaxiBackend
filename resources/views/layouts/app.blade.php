@@ -64,7 +64,7 @@
 
     <body class="animsition">
         <div class="page-wrapper">
-@include('layouts.navigation')
+{{-- @include('layouts.navigation') --}}
 
             <!-- PAGE CONTAINER-->
             <div class="page-container">
