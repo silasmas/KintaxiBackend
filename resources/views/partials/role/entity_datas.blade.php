@@ -125,7 +125,7 @@
                                                         <p>{{ $country['id'] . ': ' . $country['name_en'] }}</p>
     @endforeach
 
-{{ dd($user->country) }}
+{{ dd($user['country']->toArray()) }}
                                                 <!-- Country -->
                                                 {{-- <div class="form-floating mt-3">
                                                     <select name="country_id" id="country" class="form-select" aria-label="@lang('miscellaneous.choose_country')">
