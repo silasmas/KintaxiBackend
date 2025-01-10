@@ -306,14 +306,14 @@
                                                     <tr>
                                                         <td><strong>@lang('miscellaneous.menu.role.title')</strong></td>
                                                         <td>@lang('miscellaneous.colon_after_word')</td>
-                                                        <td>{{ $user['country']->resource != null ? $user['role']->role_name : '- - - - - -' }}</td>
+                                                        <td>{{ $user['role']->resource != null ? $user['role']->role_name : '- - - - - -' }}</td>
                                                     </tr>
 
                                                     <!-- City -->
                                                     <tr>
                                                         <td><strong>@lang('miscellaneous.address.city')</strong></td>
                                                         <td>@lang('miscellaneous.colon_after_word')</td>
-                                                        <td>{{ $user['city'] }}</td>
+                                                        <td>{{ !empty($user['city']) ? $user['city'] : '- - - - - -' }}</td>
                                                     </tr>
 
                                                     <!-- Country -->
