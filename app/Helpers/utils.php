@@ -6,6 +6,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Str;
 
 // Get web URL
 if (!function_exists('getWebURL')) {
@@ -23,11 +24,11 @@ if (!function_exists('getApiURL')) {
     }
 }
 
-// Get API token
-if (!function_exists('getApiToken')) {
-    function getApiToken()
+// Check if the URL is from AWS
+if (!function_exists('isFromAWS')) {
+    function isFromAWS($url)
     {
-        return '';
+        return Str::startsWith($url, 'https://kintaxi.s3');
     }
 }
 

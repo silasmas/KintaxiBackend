@@ -21,8 +21,8 @@ class PaymentMethod extends JsonResource
         return [
             'id' => $this->id,
             'method_name' => $this->method_name,
-            'status' => Status::make($this->status)->toArray($request),
-            'payment_gateway' => PaymentGateway::make($this->payment_gateway)->toArray($request),
+            'status' => Status::make($this->status),
+            'payment_gateway' => PaymentGateway::make($this->payment_gateway),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
             'created_by' => $this->created_by,

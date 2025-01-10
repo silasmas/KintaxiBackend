@@ -24,8 +24,8 @@ class Review extends JsonResource
             'reviewee_id' => $this->reviewee_id,
             'rating' => $this->rating,
             'comment' => $this->comment,
-            'ride' => Ride::make($this->ride)->toArray($request),
-            'status' => Status::make($this->status)->toArray($request),
+            'ride' => Ride::make($this->ride),
+            'status' => Status::make($this->status),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s')
         ];

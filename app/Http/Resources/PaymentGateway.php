@@ -21,7 +21,7 @@ class PaymentGateway extends JsonResource
         return [
             'id' => $this->id,
             'gateway_name' => $this->gateway_name,
-            'status' => Status::make($this->status)->toArray($request),
+            'status' => Status::make($this->status),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
             'created_by' => $this->created_by,

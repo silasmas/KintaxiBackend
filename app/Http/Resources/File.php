@@ -21,9 +21,9 @@ class File extends JsonResource
         return [
             'id' => $this->id,
             'vehicle_id' => $this->vehicle_id,
-            'status' => Status::make($this->status)->toArray($request),
+            'status' => Status::make($this->status),
             'file_name' => $this->file_name,
-            'file_url' => $this->file_url,
+            'file_url' => !empty($this->file_url) ? (isFromAWS($this->file_url)? $this->file_url : getWebURL() . '/storage/' . $this->file_url) : null,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
             'created_by' => $this->created_by,

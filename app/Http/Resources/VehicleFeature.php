@@ -36,7 +36,7 @@ class VehicleFeature extends JsonResource
             'has_interior_lighting' => $this->has_interior_lighting,
             'has_practical_accessories' => $this->has_practical_accessories,
             'has_driving_assist_system' => $this->has_driving_assist_system,
-            'status' => Status::make($this->status)->toArray($request),
+            'status' => Status::make($this->status),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
             'created_by' => $this->created_by,

@@ -21,7 +21,7 @@ class Notification extends JsonResource
         return [
             'id' => $this->id,
             'object_id' => $this->object_id,
-            'status' => Status::make($this->status)->toArray($request),
+            'status' => Status::make($this->status),
             'object_name' => $this->object_name,
             'notification_from' => $this->notification_from,
             'notification_to' => $this->notification_to,
