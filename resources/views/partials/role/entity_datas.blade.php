@@ -159,13 +159,13 @@
                                                 <div class="form-floating mt-3">
                                                     <select name="role_id" id="role" class="form-select" aria-label="@lang('miscellaneous.choose_role')">
     @foreach ($roles as $role)
-                                                        <option value="{{ $role['id'] }}"{{ !empty($user['role']) ? ($role['id'] == $user['role']->id ? ' selected' : '') : '' }}>{{ $role['role_name'] }}</option>
+                                                        <option value="{{ $role['id'] }}"{{ $user['role']->resource != null ? ($role['id'] == $user['role']->id ? ' selected' : '') : '' }}>{{ $role['role_name'] }}</option>
     @endforeach
                                                     </select>
                                                     <label class="form-label" for="role">@lang('miscellaneous.choose_role')</label>
                                                 </div>
 
-    @if (!empty($user['role']))
+    @if ($user['role']->resource != null)
         @if ($user['role']->id == 4)
                                                 <!-- Is driver of -->
                                                 <div id="belongs_to_wrapper" class="form-floating mt-3 d-none">
@@ -320,7 +320,7 @@
                                                     <tr>
                                                         <td class="border-bottom-0"><strong>@lang('miscellaneous.address.country')</strong></td>
                                                         <td class="border-bottom-0">@lang('miscellaneous.colon_after_word')</td>
-                                                        <td class="border-bottom-0">{{ $user['country']->name . ' (' . $user['country']->a3 . ')' }}</td>
+                                                        <td class="border-bottom-0">{{ $user['country']->resource != null ? $user['country']->name_en . ' (' . $user['country']->a3 . ')' : '' }}</td>
                                                     </tr>
                                                 </table>
                                             </div>
