@@ -64,7 +64,7 @@
 
     <body class="animsition">
         <div class="page-wrapper">
-{{-- @include('layouts.navigation') --}}
+@include('layouts.navigation')
 
             <!-- PAGE CONTAINER-->
             <div class="page-container">
@@ -73,7 +73,7 @@
                     <div class="section__content section__content--p30">
                         <div class="container-fluid">
                             <div class="header-wrap">
-{{-- @include('layouts.search') --}}
+@include('layouts.search')
                                 <div class="header-button">
                                     <div class="noti-wrap">
                                         <!-- Language -->
@@ -83,13 +83,13 @@
                                             </button>
 
                                             <div class="dropdown-menu py-0 overflow-hidden" aria-labelledby="languageToggle">
-{{-- @foreach ($available_locales as $locale_name => $locale)
+@foreach ($available_locales as $locale_name => $locale)
     @if ($locale != $current_locale)
                                                 <a class="dropdown-item" href="{{ route('change_language', ['locale' => $locale]) }}">{{ $locale_name }}<i class="fi fi-{{ $locale == 'en' ? 'us' : $locale }} mt-1 float-end"></i></a>
     @else
                                                 <span class="dropdown-item disabled">{{ $locale_name }}<i class="fi fi-{{ $locale == 'en' ? 'us' : $locale }} mt-1 float-end"></i></span>
     @endif
-@endforeach --}}
+@endforeach
                                             </div>
                                         </div>
                                     </div>
@@ -197,7 +197,7 @@
         <button id="btnBackTop" class="btn btn-lg btn-floating btn-warning position-fixed d-none rounded-circle shadow" title="@lang('miscellaneous.back_top')" style="z-index: 9999; bottom: 2rem; right: 2rem; padding: 0.4rem 0.5rem;" onclick="backToTop()" data-bs-toggle="tooltip"><i class="bi bi-chevron-double-up"></i></button> 
 
         <!-- START MODALS -->
-{{-- @include('layouts.modals') --}}
+@include('layouts.modals')
         <!-- END MODALS -->
 
         <!-- JavaScript Libraries -->
