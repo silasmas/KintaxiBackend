@@ -49,8 +49,8 @@ class User extends JsonResource
             'fcm_token' => $this->fcm_token,
             'rate' => $this->rate,
             'activation_otp' => $this->activation_otp,
-            'role' => UserRole::make($this->role)->toArray($request),
-            'status' => Status::make($this->status)->toArray($request),
+            'role' => UserRole::make($this->role),
+            'status' => Status::make($this->status),
             'user_vehicles' => $user_vehicles,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s')
