@@ -121,10 +121,10 @@
                                                     <label class="form-label" for="email">@lang('miscellaneous.email')</label>
                                                 </div>
 
+{{ dd($countries) }}
                                                 <!-- Country -->
                                                 <div class="form-floating mt-3">
                                                     <select name="country_id" id="country" class="form-select" aria-label="@lang('miscellaneous.choose_country')">
-{{ dd($countries) }}
     @foreach ($countries as $country)
                                                         <option value="{{ $country['id'] }}"{{ !empty($user['country']) ? ($country['id'] == $user['country']->id ? ' selected' : '') : '' }}>{{ $country['name'] }}</option>
     @endforeach
