@@ -8,6 +8,8 @@
 var currentHost = $('[name="kntx-url"]').attr('content');
 var currentUser = $('[name="kntx-visitor"]').attr('content');
 var currentLanguage = $('html').attr('lang');
+var dateFormat = currentLanguage === 'fr' ? 'j M Y à H:i' : 'M j, Y \\a\\t H:i K';
+var locale = currentLanguage === 'fr' ? 'fr' : 'en';
 var headers = { 'Authorization': 'Bearer ' + $('[name="kntx-ref"]').attr('content'), 'Accept': 'application/json', 'X-localization': navigator.language };
 var csrfToken = $('[name="csrf-token"]').attr('content');
 var modalUser = $('#cropModalUser');

@@ -233,15 +233,77 @@
         <!-- End role -->
 @endif
 
+@if (Route::is('vehicle.home'))
+        <!-- Start role -->
+        <div class="modal fade" id="vehicleModal" tabindex="-1" aria-labelledby="vehicleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <form action="{{ route('vehicle.home') }}" method="post">
+    @csrf
+                    <div class="modal-content">
+                        <div class="modal-header bg-light">
+                            <h1 class="modal-title fs-5" id="vehicleModalLabel">@lang('miscellaneous.admin.vehicle.add')</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="@lang('miscellaneous.close')"></button>
+                        </div>
+                        <div class="modal-body pb-0">
+                            <!-- Mark -->
+                            <div class="form-floating mt-3">
+                                <input type="text" name="mark" id="mark" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.mark')" required />
+                                <label class="form-label" for="mark">@lang('miscellaneous.admin.vehicle.mark')</label>
+                            </div>
+
+                            <!-- Model -->
+                            <div class="form-floating mt-3">
+                                <input type="text" name="model" id="model" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.model')" required />
+                                <label class="form-label" for="model">@lang('miscellaneous.admin.vehicle.model')</label>
+                            </div>
+
+                            <!-- Color -->
+                            <div class="form-floating mt-3">
+                                <input type="text" name="color" id="color" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.color')" />
+                                <label class="form-label" for="color">@lang('miscellaneous.admin.vehicle.color')</label>
+                            </div>
+
+                            <!-- Registration number -->
+                            <div class="form-floating mt-3">
+                                <input type="text" name="registration_number" id="registration_number" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.registration_number')" required />
+                                <label class="form-label" for="registration_number">@lang('miscellaneous.admin.vehicle.registration_number')</label>
+                            </div>
+
+                            <!-- Registration number -->
+                            <input type="hidden" name="regis_number_expiration" id="regis_number_expiration" value="{{ date('Y-m-d H:i') }}">
+                            <div class="form-floating mt-3">
+                                <input type="text" name="regis_num_exp" id="regis_num_exp" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.regis_number_expiration')" value="{{ explicitDateTime(date('Y-m-d H:i:s')) }}">
+                                <label class="form-label" for="regis_num_exp">@lang('miscellaneous.admin.vehicle.regis_number_expiration')</label>
+                            </div>
+
+                            <!-- Registration number -->
+                            <div class="form-floating mt-3">
+                                <input type="text" name="regis_number_expiration" id="regis_number_expiration" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.regis_number_expiration')" required />
+                                <label class="form-label" for="regis_number_expiration">@lang('miscellaneous.admin.vehicle.regis_number_expiration')</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer d-block border-0">
+                            <button class="btn btn-primary w-100 rounded-pill position-relative">
+                                <span class="text-uppercase">@lang('miscellaneous.register')</span>
+                                <div class="spinner-border text-white position-absolute opacity-0" role="status" style="top: 0.2rem; right: 0.2rem;"><span class="visually-hidden">@lang('miscellaneous.loading')</span></div>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- End role -->
+@endif
+
 @if (Route::is('vehicle.entity.home'))
         <!-- Start status -->
-        <div class="modal fade" id="{{ $entity == 'shape' ? 'vehicleShapeModal' : ($entity == 'category' ? 'vehicleCategoryModal' : 'vehicleFeatureModal') }}" tabindex="-1" aria-labelledby="{{ $entity == 'shape' ? 'vehicleShapeModalLabel' : ($entity == 'category' ? 'vehicleCategoryModalLabel' : 'vehicleFeatureModalLabel') }}" aria-hidden="true">
+        <div class="modal fade" id="{{ $entity == 'shape' ? 'vehicleShapeModal' : 'vehicleCategoryModal' }}" tabindex="-1" aria-labelledby="{{ $entity == 'shape' ? 'vehicleShapeModalLabel' : 'vehicleCategoryModalLabel' }}" aria-hidden="true">
             <div class="modal-dialog">
                 <form action="{{ route('vehicle.entity.home', ['entity' => $entity]) }}" method="post">
     @csrf
                     <div class="modal-content">
                         <div class="modal-header bg-light">
-                            <h1 class="modal-title fs-5" id="{{ $entity == 'shape' ? 'vehicleShapeModalLabel' : ($entity == 'category' ? 'vehicleCategoryModalLabel' : 'vehicleFeatureModalLabel') }}">@lang('miscellaneous.admin.vehicle.' . $entity . '.add')</h1>
+                            <h1 class="modal-title fs-5" id="{{ $entity == 'shape' ? 'vehicleShapeModalLabel' : 'vehicleCategoryModalLabel' }}">@lang('miscellaneous.admin.vehicle.' . $entity . '.add')</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="@lang('miscellaneous.close')"></button>
                         </div>
                         <div class="modal-body pb-0">
@@ -271,9 +333,6 @@
                                 <textarea name="category_description" id="category_description" class="form-control" placeholder="@lang('miscellaneous.description')"></textarea>
                                 <label for="category_description">@lang('miscellaneous.description')</label>
                             </div>
-    @endif
-
-    @if ($entity == 'features')
     @endif
 
     @if ($entity == 'shape' || $entity == 'category')

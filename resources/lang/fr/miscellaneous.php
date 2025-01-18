@@ -378,7 +378,7 @@ return [
             'model' => 'Modèle',
             'color' => 'Couleur',
             'registration_number' => 'Matricule',
-            'regis_number_expiration' => 'Expiration matricule',
+            'regis_number_expiration' => 'Expiration du matricule',
             'vin_number' => 'Numéro VIN',
             'manufacture_year' => 'Année de fabrication',
             'fuel_type' => 'Type de carburant',

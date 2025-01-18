@@ -68,6 +68,20 @@ if (!function_exists('explicitDate')) {
     }
 }
 
+// Date/Time fully readable
+if (!function_exists('explicitDateTime')) {
+    function explicitDateTime($date)
+    {
+        $locale = app()->getLocale();
+        $currentDate = Carbon::parse($date);
+        $format = $locale === 'fr' ? 'j M Y à H:i' : 'M j, Y \a\t g:i A';
+
+        Carbon::setlocale($locale);
+
+        return $currentDate->translatedFormat($format);
+    }
+}
+
 // Delete item from exploded array
 if (!function_exists('deleteExplodedArrayItem')) {
     function deleteExplodedArrayItem($separator, $subject, $item)
