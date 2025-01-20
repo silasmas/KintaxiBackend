@@ -255,7 +255,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                         <td>{{ !empty($user['gender']) ? ($user['gender'] == 'F' ? __('miscellaneous.gender2') : __('miscellaneous.gender1')) : '- - - - - -' }}</td>
                                                     </tr>
 
-                                                    <!-- Birth city/date -->
+                                                    <!-- Birth date -->
                                                     <tr>
                                                         <td><strong>@lang('miscellaneous.birth_date.label')</strong></td>
                                                         <td>@lang('miscellaneous.colon_after_word')</td>

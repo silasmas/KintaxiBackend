@@ -44,9 +44,15 @@ class VehicleController extends Controller
     {
         $vehicles_collection = Vehicle::all();
         $vehicles_data = ResourcesVehicle::collection($vehicles_collection)->toArray(request());
+        $vehicle_shapes_collection = VehicleShape::all();
+        $vehicle_shapes_data = ResourcesVehicleShape::collection($vehicle_shapes_collection)->toArray(request());
+        $vehicle_categories_collection = VehicleCategory::all();
+        $vehicle_categories_data = ResourcesVehicleCategory::collection($vehicle_categories_collection)->toArray(request());
 
         return view('vehicle', [
             'vehicles' => $vehicles_data,
+            'vehicle_shapes' => $vehicle_shapes_data,
+            'vehicle_categories' => $vehicle_categories_data,
         ]);
     }
 

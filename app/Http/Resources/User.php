@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Country as ModelsCountry;
 use App\Models\Vehicle as ModelsVehicle;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -19,6 +20,7 @@ class User extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $user_country = !empty($this->country_code) ? ModelsCountry::where('code', $this->country_code)->first() : null;
         $user_vehicles_request = ModelsVehicle::where('user_id', $this->id)->orderByDesc('created_at')->get();
         $user_vehicles_resource = Vehicle::collection($user_vehicles_request);
         $user_vehicles = $user_vehicles_resource->toArray($request);
@@ -33,7 +35,7 @@ class User extends JsonResource
             'phone' => $this->phone,
             'gender' => $this->gender,
             'birthdate' => $this->birthdate,
-            'country' => Country::make($this->country),
+            'country' => !empty($user_country) ? $user_country->toArray($request) : null,
             'city' => $this->city,
             'address_1' => $this->address_1,
             'address_2' => $this->address_2,

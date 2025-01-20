@@ -259,27 +259,106 @@
 
                             <!-- Color -->
                             <div class="form-floating mt-3">
-                                <input type="text" name="color" id="color" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.color')" />
+                                <input type="text" name="color" id="color" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.color')" required />
                                 <label class="form-label" for="color">@lang('miscellaneous.admin.vehicle.color')</label>
                             </div>
 
                             <!-- Registration number -->
                             <div class="form-floating mt-3">
-                                <input type="text" name="registration_number" id="registration_number" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.registration_number')" required />
+                                <input type="text" name="registration_number" id="registration_number" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.registration_number')" />
                                 <label class="form-label" for="registration_number">@lang('miscellaneous.admin.vehicle.registration_number')</label>
                             </div>
 
-                            <!-- Registration number -->
+                            <!-- Registration number expiration -->
                             <input type="hidden" name="regis_number_expiration" id="regis_number_expiration" value="{{ date('Y-m-d H:i') }}">
                             <div class="form-floating mt-3">
                                 <input type="text" name="regis_num_exp" id="regis_num_exp" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.regis_number_expiration')" value="{{ explicitDateTime(date('Y-m-d H:i:s')) }}">
                                 <label class="form-label" for="regis_num_exp">@lang('miscellaneous.admin.vehicle.regis_number_expiration')</label>
                             </div>
 
-                            <!-- Registration number -->
+                            <!-- VIN number -->
                             <div class="form-floating mt-3">
-                                <input type="text" name="regis_number_expiration" id="regis_number_expiration" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.regis_number_expiration')" required />
-                                <label class="form-label" for="regis_number_expiration">@lang('miscellaneous.admin.vehicle.regis_number_expiration')</label>
+                                <input type="text" name="vin_number" id="vin_number" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.vin_number')" />
+                                <label class="form-label" for="vin_number">@lang('miscellaneous.admin.vehicle.vin_number')</label>
+                            </div>
+
+                            <!-- Manufacture year -->
+                            <div class="form-floating mt-3">
+                                <input type="number" name="manufacture_year" id="manufacture_year" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.manufacture_year')" />
+                                <label class="form-label" for="manufacture_year">@lang('miscellaneous.admin.vehicle.manufacture_year')</label>
+                            </div>
+
+                            <!-- Fuel type -->
+                            <div class="form-floating mt-3">
+                                <select name="fuel_type" id="fuel_type" class="form-select" aria-label="@lang('miscellaneous.admin.vehicle.fuel_type.label')">
+                                    <option class="small" disabled selected>@lang('miscellaneous.admin.vehicle.fuel_type.label')</option>
+                                    <option>@lang('miscellaneous.admin.vehicle.fuel_type.gasoline')</option>
+                                    <option>@lang('miscellaneous.admin.vehicle.fuel_type.diesel')</option>
+                                    <option>@lang('miscellaneous.admin.vehicle.fuel_type.electric')</option>
+                                    <option>@lang('miscellaneous.admin.vehicle.fuel_type.hybrid_electric')</option>
+                                    <option>@lang('miscellaneous.admin.vehicle.fuel_type.plugin_hybrid_electric')</option>
+                                    <option>@lang('miscellaneous.admin.vehicle.fuel_type.hydrogen_fuel_cell')</option>
+                                    <option>@lang('miscellaneous.admin.vehicle.fuel_type.compressed_natural_gas')</option>
+                                    <option>@lang('miscellaneous.admin.vehicle.fuel_type.liquefied_petroleum_gas')</option>
+                                    <option>@lang('miscellaneous.admin.vehicle.fuel_type.biofuel_powered')</option>
+                                    <option>@lang('miscellaneous.admin.vehicle.fuel_type.rotary_engine')</option>
+                                </select>
+                                <label class="form-label" for="fuel_type">@lang('miscellaneous.admin.vehicle.fuel_type.label')</label>
+                            </div>
+
+                            <!-- Cylinder capacity -->
+                            <div class="form-floating mt-3">
+                                <input type="number" name="cylinder_capacity" id="cylinder_capacity" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.cylinder_capacity')" />
+                                <label class="form-label" for="cylinder_capacity">@lang('miscellaneous.admin.vehicle.cylinder_capacity')</label>
+                            </div>
+
+                            <!-- Engine power -->
+                            <div class="form-floating mt-3">
+                                <input type="number" name="engine_power" id="engine_power" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.engine_power')" />
+                                <label class="form-label" for="engine_power">@lang('miscellaneous.admin.vehicle.engine_power')</label>
+                            </div>
+
+                            <!-- Shape -->
+                            <div class="form-floating mt-3">
+                                <select name="shape_id" id="shape_id" class="form-select" aria-label="@lang('miscellaneous.admin.vehicle.shape.title')">
+                                    <option class="small" disabled selected>@lang('miscellaneous.admin.vehicle.shape.choose')</option>
+    @forelse ($vehicle_shapes as $shape)
+                                    <option value="{{ $shape['id'] }}">{{ $shape['shape_name'] }}</option>
+    @empty
+                                    <option><i>@lang('miscellaneous.empty_list')</i></option>
+    @endforelse
+                                </select>
+                                <label class="form-label" for="shape_id">@lang('miscellaneous.admin.vehicle.shape.title')</label>
+                            </div>
+
+                            <!-- Category -->
+                            <div class="form-floating mt-3">
+                                <select name="category_id" id="category_id" class="form-select" aria-label="@lang('miscellaneous.admin.vehicle.category.title')">
+                                    <option class="small" disabled selected>@lang('miscellaneous.admin.vehicle.category.choose')</option>
+    @forelse ($vehicle_categories as $category)
+                                    <option value="{{ $category['id'] }}">{{ $category['category_name'] }}</option>
+    @empty
+                                    <option><i>@lang('miscellaneous.empty_list')</i></option>
+    @endforelse
+                                </select>
+                                <label class="form-label" for="shape_id">@lang('miscellaneous.admin.vehicle.category.title')</label>
+                            </div>
+
+                            <!-- Vehicle features -->
+                            <div class="card card-body mt-3">
+                                <h5 class="h5 mb-0 text-center">@lang('miscellaneous.admin.vehicle.features.title')</h5>
+                                <hr>
+                                <!-- Has helmet -->
+                                <div class="row g-2 mb-3">
+                                    <div class="col-6 text-end text-dark">@lang('miscellaneous.admin.vehicle.features.has_helmet')</div>
+                                    <div class="col-6">
+                                        <input type="radio" class="btn-check" name="has_helmet" id="has_helmet_yes" autocomplete="off">
+                                        <label class="btn btn-sm btn-dark" for="has_helmet_yes">@lang('miscellaneous.yes')</label>
+
+                                        <input type="radio" class="btn-check" name="has_helmet" id="has_helmet_no" autocomplete="off" checked>
+                                        <label class="btn btn-sm btn-dark" for="has_helmet_no">@lang('miscellaneous.no')</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer d-block border-0">
