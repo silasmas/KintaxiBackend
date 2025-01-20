@@ -169,7 +169,7 @@
                                                             <tr>
                                                                 <td class="border-bottom-0"><strong>@lang('miscellaneous.address.country')</strong></td>
                                                                 <td class="border-bottom-0">@lang('miscellaneous.colon_after_word')</td>
-                                                                <td class="border-bottom-0">{{ $current_user['country']->resource != null ? $current_user['country']->name_en . ' (' . $current_user['country']->a3 . ')' : '- - - - - -' }}</td>
+                                                                <td class="border-bottom-0">{{ $current_user['country'] != null ? $current_user['country']->name_en . ' (' . $current_user['country']->a3 . ')' : '- - - - - -' }}</td>
                                                             </tr>
                                                         </table>
                                                     </div>
