@@ -35,7 +35,7 @@ class User extends JsonResource
             'phone' => $this->phone,
             'gender' => $this->gender,
             'birthdate' => $this->birthdate,
-            'country' => !empty($user_country) ? $user_country->toArray($request) : null,
+            'country' => !empty($user_country) ? $user_country : null,
             'city' => $this->city,
             'address_1' => $this->address_1,
             'address_2' => $this->address_2,
