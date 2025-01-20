@@ -130,7 +130,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                 <div class="form-floating mt-3">
                                                     <select name="country_id" id="country" class="form-select" aria-label="@lang('miscellaneous.choose_country')">
     @foreach ($countries as $country)
-                                                        <option value="{{ $country['id'] }}"{{ $user['country']->resource != null ? ($country['id'] == $user['country']->id ? ' selected' : '') : '' }}>{{ $country['name_en'] }}</option>
+                                                        <option value="{{ $country['id'] }}"{{ $user['country'] != null ? ($country['id'] == $user['country']->id ? ' selected' : '') : '' }}>{{ $country['name_en'] }}</option>
     @endforeach
                                                     </select>
                                                     <label class="form-label" for="country">@lang('miscellaneous.choose_country')</label>
