@@ -325,7 +325,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                     <tr>
                                                         <td class="border-bottom-0"><strong>@lang('miscellaneous.address.country')</strong></td>
                                                         <td class="border-bottom-0">@lang('miscellaneous.colon_after_word')</td>
-                                                        <td class="border-bottom-0">{{ $user['country']->resource != null ? $user['country']->name_en . ' (' . $user['country']->a3 . ')' : '- - - - - -' }}</td>
+                                                        <td class="border-bottom-0">{{ $user['country'] != null ? $user['country']->name_en . ' (' . $user['country']->a3 . ')' : '- - - - - -' }}</td>
                                                     </tr>
                                                 </table>
                                             </div>
