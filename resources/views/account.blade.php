@@ -169,7 +169,7 @@
                                                             <tr>
                                                                 <td class="border-bottom-0"><strong>@lang('miscellaneous.address.country')</strong></td>
                                                                 <td class="border-bottom-0">@lang('miscellaneous.colon_after_word')</td>
-                                                                <td class="border-bottom-0">{{ $current_user['country'] != null ? $current_user['country']->name_en . ' (' . $current_user['country']->a3 . ')' : '- - - - - -' }}</td>
+                                                                <td class="border-bottom-0">{{ $current_user['country'] != null ? $current_user['country']['name_' . app()->getLocale()] . ' (' . $current_user['country']['country_code'] . ')' : '- - - - - -' }}</td>
                                                             </tr>
                                                         </table>
                                                     </div>
@@ -184,14 +184,6 @@
                                                         <input type="hidden" name="user_id" value="{{ $current_user['id'] }}">
 
                                                         <div class="row g-3 mb-3">
-                                                            <div class="col-lg-6">
-                                                                <!-- Number -->
-                                                                <div class="form-floating">
-                                                                    <input type="text" name="register_number" id="register_number" class="form-control{{ $current_user->roles[0]->role_name == 'Employé' ? ' bg-white border-0' : '' }}" placeholder="@lang('miscellaneous.number')" value="{{ $current_user->number }}"{{ $current_user->roles[0]->role_name == 'Employé' ? ' disabled' : '' }} />
-                                                                    <label class="form-label" for="register_number">@lang('miscellaneous.number')</label>
-                                                                </div>
-                                                            </div>
-
                                                             <div class="col-lg-6">
                                                                 <!-- First name -->
                                                                 <div class="form-floating">

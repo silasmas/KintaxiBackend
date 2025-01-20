@@ -180,7 +180,7 @@ class RoleController extends BaseController
                 'phone' => $request->phone,
                 'gender' => $request->gender,
                 'birthdate' => !empty($request->birthdate) ? (str_replace('_', '-', app()->getLocale()) == 'fr' ? explode('/', $request->birthdate)[2] . '-' . explode('/', $request->birthdate)[1] . '-' . explode('/', $request->birthdate)[0] : explode('/', $request->birthdate)[2] . '-' . explode('/', $request->birthdate)[0] . '-' . explode('/', $request->birthdate)[1]) : null,
-                'country_id' => $request->country_id,
+                'country_code' => $request->country_code,
                 'city' => $request->city,
                 'address_1' => $request->address_1,
                 'address_2' => $request->address_2,
@@ -627,9 +627,9 @@ class RoleController extends BaseController
                 ]);
             }
 
-            if ($request->country_id != null) {
+            if ($request->country_code != null) {
                 $user->update([
-                    'country_id' => $request->country_id,
+                    'country_code' => $request->country_code,
                     'updated_at' => now(),
                 ]);
             }

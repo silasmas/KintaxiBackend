@@ -132,9 +132,9 @@
 
                             <!-- Country -->
                             <div class="form-floating mt-3">
-                                <select name="country_id" id="country" class="form-select" aria-label="@lang('miscellaneous.choose_country')">
+                                <select name="country_code" id="country" class="form-select" aria-label="@lang('miscellaneous.choose_country')">
         @foreach ($countries as $country)
-                                    <option value="{{ $country['id'] }}">{{ $country['name'] }}</option>
+                                    <option value="{{ $country['code'] }}">{{ $country['name_' . app()->getLocale()] }}</option>
         @endforeach
                                 </select>
                                 <label class="form-label" for="country">@lang('miscellaneous.choose_country')</label>
