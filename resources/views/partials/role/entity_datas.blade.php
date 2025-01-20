@@ -1,4 +1,3 @@
-{{ dd($countries) }}
 
                             <div class="row">
                                 <div class="col-md-12">
@@ -131,7 +130,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                 <div class="form-floating mt-3">
                                                     <select name="country_code" id="country" class="form-select" aria-label="@lang('miscellaneous.choose_country')">
     @foreach ($countries as $country)
-                                                        <option value="{{ $country['code'] }}"{{ $user['country'] != null ? ($country['code'] == $user['country']['country_code'] ? ' selected' : '') : '' }}>{{ $country['name_' . app()->getLocale()] }}</option>
+                                                        <option value="{{ $country['code'] }}"{{ $user['country'] != null ? ($country['code'] == $user['country']['code'] ? ' selected' : '') : '' }}>{{ $country['name_' . app()->getLocale()] }}</option>
     @endforeach
                                                     </select>
                                                     <label class="form-label" for="country">@lang('miscellaneous.choose_country')</label>
@@ -326,7 +325,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                     <tr>
                                                         <td class="border-bottom-0"><strong>@lang('miscellaneous.address.country')</strong></td>
                                                         <td class="border-bottom-0">@lang('miscellaneous.colon_after_word')</td>
-                                                        <td class="border-bottom-0">{{ $user['country'] != null ? $user['country']->name_en . ' (' . $user['country']->a3 . ')' : '- - - - - -' }}</td>
+                                                        <td class="border-bottom-0">{{ $user['country'] != null ? $user['country']['name_' . app()->getLocale()] : '- - - - - -' }}</td>
                                                     </tr>
                                                 </table>
                                             </div>

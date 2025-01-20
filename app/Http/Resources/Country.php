@@ -20,11 +20,10 @@ class Country extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'code' => $this->code,
             'name_en' => $this->name_en,
-            'a2' => $this->a2,
-            'a3' => $this->a3,
-            'phone_code' => $this->phone_code
+            'name_fr' => $this->name_fr,
+            'code_tel' => $this->code_tel
         ];
     }
 }
