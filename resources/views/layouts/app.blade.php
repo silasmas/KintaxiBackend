@@ -42,6 +42,7 @@
         <link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}">
 
         <style>
+            .align-middle { vertical-align: -4px!important; }
             .title-1 { text-transform: inherit!important; }
             @media (min-width: 900px) {
                 #userModal .modal-body { max-height: 430px; overflow: hidden; overflow-y: auto; }

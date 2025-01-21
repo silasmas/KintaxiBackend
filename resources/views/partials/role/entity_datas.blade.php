@@ -77,19 +77,37 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                             <form action="{{ route('role.entity.show', ['entity' => 'users', 'id' => $user['id']]) }}" method="POST">
     @csrf
 
-                                                <!-- Last name -->
+                                                <!-- Status -->
+                                                <div class="form-floating mb-3">
+                                                    <select name="status_id" id="status" class="form-select" aria-label="@lang('miscellaneous.admin.work.data.choose_status')">
+    @foreach ($statuses as $status)
+        @if ($status['status_name'] != 'Données incomplete')
+                                                        <option value="{{ $status['id'] }}"{{ $user['status']->resource != null ? ($status['id'] == $user['status']->id ? ' selected' : '') : '' }}>{{ ucfirst(explode('/', $status['status_name'])[0]) }}</option>
+        @endif
+    @endforeach
+                                                    </select>
+                                                    <label class="form-label" for="status">@lang('miscellaneous.admin.status')</label>
+                                                </div>
+
+                                                <!-- First name -->
                                                 <div class="form-floating mb-3">
                                                     <input type="text" name="firstname" id="firstname" class="form-control" placeholder="@lang('miscellaneous.firstname')" value="{{ $user['firstname'] }}" autofocus>
                                                     <label for="firstname">@lang('miscellaneous.firstname')</label>
                                                 </div>
 
-                                                <!-- Surname -->
+                                                <!-- Last name -->
                                                 <div class="form-floating mb-3">
                                                     <input type="text" name="lastname" id="lastname" class="form-control" placeholder="@lang('miscellaneous.lastname')" value="{{ $user['lastname'] }}">
                                                     <label for="lastname">@lang('miscellaneous.lastname')</label>
                                                 </div>
 
-                                                <!-- Birth city/date -->
+                                                <!-- Surname -->
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" name="surname" id="surname" class="form-control" placeholder="@lang('miscellaneous.surname')" value="{{ $user['surname'] }}">
+                                                    <label for="surname">@lang('miscellaneous.surname')</label>
+                                                </div>
+
+                                                <!-- Birth date -->
                                                 <div class="form-floating mt-3">
                                                     <input type="text" name="birthdate" id="birthdate" class="form-control" placeholder="@lang('miscellaneous.birth_date.label')" value="{{ !empty($user['birthdate']) ? str_starts_with(app()->getLocale(), 'fr') ? \Carbon\Carbon::createFromFormat('Y-m-d', $user['birthdate'])->format('d/m/Y') : \Carbon\Carbon::createFromFormat('Y-m-d', $user['birthdate'])->format('m/d/Y') : null }}" />
                                                     <label class="form-label" for="birthdate">@lang('miscellaneous.birth_date.label')</label>
@@ -160,7 +178,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                     <label class="form-label" for="p_o_box">@lang('miscellaneous.p_o_box')</label>
                                                 </div>
 
-                                                <!-- Country -->
+                                                <!-- Role -->
                                                 <div class="form-floating mt-3">
                                                     <select name="role_id" id="role" class="form-select" aria-label="@lang('miscellaneous.choose_role')">
     @foreach ($roles as $role)
@@ -231,11 +249,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                             <img src="{{ asset($user['avatar_url']) }}" alt="{{ $user['firstname'] . ' ' . $user['lastname'] }}" width="70" class="rounded-circle me-3">
                                             <div>
                                                 <h3 class="h3 mb-0">{{ $user['firstname'] . ' ' . $user['lastname'] }}</h3>
-                                                <p class="mb-sm-0 mb-1">{{ '@' . $user['username'] }}</p>
-                                                <div id="updateUserStatus" class="form-check form-switch" title="@lang('miscellaneous.change_status')" data-bs-toggle="tooltip">
-                                                    <input role="switch" type="checkbox" id="user-status" class="form-check-input"{{ $user['status']->id == 1 ? ' checked' : '' }}>
-                                                    <label for="user-status" class="form-check-label position-relative" style="top: -2px;">{{ ucfirst(explode('/', $user['status']->status_name)[0]) }}</label>
-                                                </div>
+                                                <p class="mb-sm-0 mb-1">{{ $user['username'] }}</p>
                                             </div>
                                         </div>
                                         <div class="card-body pt-0 pb-1">
@@ -359,7 +373,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                     <img src="{{ asset($driver['avatar_url']) }}" alt="{{ $driver['firstname'] . ' ' . $driver['lastname'] }}" width="40" class="rounded-circle me-3">
                                                     <div>
                                                         <h5 class="h5 mb-0">{{ $driver['firstname'] . ' ' . $driver['lastname'] }}</h5>
-                                                        <p class="mb-sm-0 mb-1 small">{{ '@' . $driver['username'] }}</p>
+                                                        <p class="mb-sm-0 mb-1 small">{{ $driver['username'] }}</p>
                                                     </div>
                                                 </div>
                                             </a>
