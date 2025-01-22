@@ -62,7 +62,7 @@ $(document).ready(function () {
     let btnBackTop = document.getElementById('btnBackTop');
 
     /* When the user scrolls down 20px from the top of the document, show the button */
-    window.onscroll = function() { scrollFunction() };
+    window.onscroll = function () { scrollFunction() };
 
     function scrollFunction() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -146,16 +146,18 @@ $(document).ready(function () {
             reader.readAsDataURL(blob);
             reader.onloadend = function () {
                 var base64_data = reader.result;
-                var userId = document.getElementById('user_id').value;
-                var mUrl = currentHost + '/api/user/update_avatar_picture/' + parseInt(currentUser.split('-')[1]);
-                var datas = JSON.stringify({ 'id': parseInt(currentUser.split('-')[1]), 'user_id': userId, 'image_64': base64_data, 'account_owner_id': userId });
+                var mUrl = currentHost + '/account/account_settings';
+                var datas = { 'image_64': base64_data };
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    }
+                });
 
                 $.ajax({
-                    headers: headers,
-                    type: 'PUT',
-                    contentType: 'application/json',
+                    type: 'POST',
                     url: mUrl,
-                    dataType: 'json',
                     data: datas,
                     success: function (res) {
                         $('.user-image').attr('src', res);

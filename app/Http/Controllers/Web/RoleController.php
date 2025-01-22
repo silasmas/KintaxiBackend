@@ -196,14 +196,14 @@ class RoleController extends BaseController
 
             // If "email" and "phone" are NULL, return error
             if (trim($inputs['email']) == null and trim($inputs['phone']) == null) {
-                return $this->handleError($inputs['phone'], __('validation.custom.email_or_phone.required'), 400);
+                return redirect()->back()->with('error_message', __('validation.custom.email_or_phone.required'));
             }
 
             if ($inputs['email'] != null) {
                 // Check if user phone already exists
                 foreach ($users as $another_user):
                     if ($another_user->phone == $inputs['email']) {
-                        return $this->handleError($inputs['phone'], __('validation.custom.email.exists'), 400);
+                        return redirect()->back()->with('error_message', __('validation.custom.email.exists'));
                     }
                 endforeach;
 
@@ -221,7 +221,7 @@ class RoleController extends BaseController
                 // Check if user phone already exists
                 foreach ($users as $another_user):
                     if ($another_user->phone == $inputs['phone']) {
-                        return $this->handleError($inputs['phone'], __('validation.custom.phone.exists'), 400);
+                        return redirect()->back()->with('error_message', __('validation.custom.phone.exists'));
                     }
                 endforeach;
 
@@ -239,7 +239,7 @@ class RoleController extends BaseController
                 // Check if username already exists
                 foreach ($users as $another_user):
                     if ($another_user->username == $inputs['username']) {
-                        return $this->handleError($inputs['username'], __('validation.custom.username.exists'), 400);
+                        return redirect()->back()->with('error_message', __('validation.custom.phone.exists'));
                     }
                 endforeach;
             }
@@ -249,13 +249,13 @@ class RoleController extends BaseController
                 $parent = User::find($inputs['belongs_to']);
 
                 if (is_null($parent)) {
-                    return $this->handleError(__('notifications.find_parent_404'));
+                    return redirect()->back()->with('error_message', __('notifications.find_user_404' . ': PARENT'));
                 }
             }
 
             if ($inputs['password'] != null) {
                 if ($request->confirm_password != $request->password or $request->confirm_password == null) {
-                    return $this->handleError($request->confirm_password, __('notifications.confirm_password_error'), 400);
+                    return redirect()->back()->with('error_message', __('notifications.confirm_password_error'));
                 }
 
                 $random_int_stringified = (string) random_int(1000000, 9999999);
@@ -453,7 +453,7 @@ class RoleController extends BaseController
                     if (!empty($current_user->username)) {
                         if ($user->username != $request->username) {
                             if ($another_user->username == $request->username) {
-                                return $this->handleError($request->username, __('validation.custom.username.exists'), 400);
+                                return redirect()->back()->with('error_message', __('validation.custom.username.exists'));
                             }
                         }
                     }
@@ -471,7 +471,7 @@ class RoleController extends BaseController
                     if (!empty($current_user->email)) {
                         if ($user->email != $request->email) {
                             if ($another_user->email == $request->email) {
-                                return $this->handleError($request->email, __('validation.custom.email.exists'), 400);
+                                return redirect()->back()->with('error_message', __('validation.custom.email.exists'));
                             }
                         }
                     }
@@ -548,7 +548,7 @@ class RoleController extends BaseController
                     if (!empty($current_user->phone)) {
                         if ($user->phone != $request->phone) {
                             if ($another_user->phone == $request->phone) {
-                                return $this->handleError($request->phone, __('validation.custom.phone.exists'), 400);
+                                return redirect()->back()->with('error_message', __('validation.custom.phone.exists'));
                             }
                         }
                     }
@@ -674,7 +674,7 @@ class RoleController extends BaseController
 
             if ($request->password != null) {
                 if ($request->confirm_password != $request->password or $request->confirm_password == null) {
-                    return $this->handleError($request->confirm_password, __('notifications.confirm_password_error'), 400);
+                    return redirect()->back()->with('error_message', __('notifications.confirm_password_error'));
                 }
 
                 if (!empty($current_user->email)) {

@@ -74,16 +74,16 @@
                                                             <div class="col-lg-6">
                                                                 <!-- Phone -->
                                                                 <div class="form-floating">
-                                                                    <input type="text" name="register_phone" id="register_phone" class="form-control" placeholder="@lang('miscellaneous.phone')" aria-describedby="phone_error_message" value="{{ $current_user['phone'] }}" />
-                                                                    <label class="form-label" for="register_phone">@lang('miscellaneous.phone')</label>
+                                                                    <input type="text" name="phone" id="phone" class="form-control" placeholder="@lang('miscellaneous.phone')" aria-describedby="phone_error_message" value="{{ $current_user['phone'] }}" />
+                                                                    <label class="form-label" for="phone">@lang('miscellaneous.phone')</label>
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-lg-6">
                                                                 <!-- E-mail -->
                                                                 <div class="form-floating">
-                                                                    <input type="text" name="register_email" id="register_email" class="form-control" placeholder="@lang('miscellaneous.email')" value="{{ $current_user['email'] }}" />
-                                                                    <label class="form-label" for="register_email">@lang('miscellaneous.email')</label>
+                                                                    <input type="text" name="email" id="email" class="form-control" placeholder="@lang('miscellaneous.email')" value="{{ $current_user['email'] }}" />
+                                                                    <label class="form-label" for="email">@lang('miscellaneous.email')</label>
                                                                 </div>
                                                             </div>
 
@@ -142,12 +142,12 @@
                                                                 <button class="btn btn-primary btn-block mt-2 rounded-pill" type="submit">@lang('miscellaneous.account.personal_infos.link')</button>
                                                             </div>
                                                         </div>
-
+{{-- 
                                                         <hr class="my-4">
 
                                                         <a role="button" class="btn btn-block btn-outline-danger rounded-pill py-2 px-5" data-ktx-status="{{ $current_user['status']->id }}" onclick="event.preventDefault(); toggleStatus('user', this)">
                                                             <i class="bi bi-x-circle-fill me-2 align-middle fs-4"></i>@lang('miscellaneous.account.deactivated.link')
-                                                        </a>
+                                                        </a> --}}
                                                     </form>
                                                 </div>
 
@@ -167,20 +167,20 @@
 
                                                                 <!-- Former password -->
                                                                 <div class="form-floating">
-                                                                    <input type="password" name="register_former_password" id="register_former_password" class="form-control" placeholder="@lang('miscellaneous.account.update_password.former_password')" />
-                                                                    <label class="form-label" for="register_former_password">@lang('miscellaneous.account.update_password.former_password')</label>
+                                                                    <input type="password" name="former_password" id="former_password" class="form-control" placeholder="@lang('miscellaneous.account.update_password.former_password')" required />
+                                                                    <label class="form-label" for="former_password">@lang('miscellaneous.account.update_password.former_password')</label>
                                                                 </div>
 
                                                                 <!-- New password -->
                                                                 <div class="form-floating mt-3">
-                                                                    <input type="password" name="register_new_password" id="register_new_password" class="form-control" placeholder="@lang('miscellaneous.account.update_password.new_password')" />
-                                                                    <label class="form-label" for="register_new_password">@lang('miscellaneous.account.update_password.new_password')</label>
+                                                                    <input type="password" name="new_password" id="new_password" class="form-control" placeholder="@lang('miscellaneous.account.update_password.new_password')" required />
+                                                                    <label class="form-label" for="new_password">@lang('miscellaneous.account.update_password.new_password')</label>
                                                                 </div>
 
                                                                 <!-- Confirm new password -->
                                                                 <div class="form-floating mt-3">
-                                                                    <input type="password" name="register_confirm_new_password" id="register_confirm_new_password" class="form-control" placeholder="@lang('miscellaneous.account.update_password.confirm_new_password')" />
-                                                                    <label class="form-label" for="register_confirm_new_password">@lang('miscellaneous.account.update_password.confirm_new_password')</label>
+                                                                    <input type="password" name="confirm_new_password" id="confirm_new_password" class="form-control" placeholder="@lang('miscellaneous.account.update_password.confirm_new_password')" required />
+                                                                    <label class="form-label" for="confirm_new_password">@lang('miscellaneous.account.update_password.confirm_new_password')</label>
                                                                 </div>
 
                                                                 <div class="row g-2 mt-3">
@@ -191,12 +191,6 @@
                                                                         <button class="btn btn-light btn-block border rounded-pill" type="reset">@lang('miscellaneous.reset')</button>
                                                                     </div>
                                                                 </div>
-
-    @if (\Session::has('response_pw_error'))
-                                                                <div class="alert alert-danger mt-3 mb-0 py-2 small rounded-0 cnpr-line-height-1" role="alert">
-                                                                    <i class="bi bi-exclamation-triangle me-2 fs-4" style="vertical-align: -3px;"></i> {{ explode('~', \Session::get('response_pw_error'))[5] }}
-                                                                </div>
-    @endif
                                                             </form>
                                                         </div>
                                                     </div>

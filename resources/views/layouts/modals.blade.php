@@ -348,15 +348,157 @@
                             <div class="card card-body mt-3">
                                 <h5 class="h5 mb-0 text-center">@lang('miscellaneous.admin.vehicle.features.title')</h5>
                                 <hr>
-                                <!-- Has helmet -->
-                                <div class="row g-2 mb-3">
-                                    <div class="col-6 text-end text-dark">@lang('miscellaneous.admin.vehicle.features.has_helmet')</div>
-                                    <div class="col-6">
-                                        <input type="radio" class="btn-check" name="has_helmet" id="has_helmet_yes" autocomplete="off">
-                                        <label class="btn btn-sm btn-dark" for="has_helmet_yes">@lang('miscellaneous.yes')</label>
+                                <!-- Is clean -->
+                                <div class="row g-2">
+                                    <div class="col-8 text-dark">@lang('miscellaneous.admin.vehicle.features.is_clean')</div>
+                                    <div class="col-4">
+                                        <select name="is_clean" id="is_clean" class="form-select">
+                                            <option value="0">@lang('miscellaneous.no')</option>
+                                            <option value="1">@lang('miscellaneous.yes')</option>
+                                        </select>
+                                    </div>
+                                </div>
 
-                                        <input type="radio" class="btn-check" name="has_helmet" id="has_helmet_no" autocomplete="off" checked>
-                                        <label class="btn btn-sm btn-dark" for="has_helmet_no">@lang('miscellaneous.no')</label>
+                                <!-- Has helmet -->
+                                <div class="row g-2 mt-3">
+                                    <div class="col-8 text-dark">@lang('miscellaneous.admin.vehicle.features.has_helmet')</div>
+                                    <div class="col-4">
+                                        <select name="has_helmet" id="has_helmet" class="form-select">
+                                            <option value="0">@lang('miscellaneous.no')</option>
+                                            <option value="1">@lang('miscellaneous.yes')</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Has airbags -->
+                                <div class="row g-2 mt-3">
+                                    <div class="col-8 text-dark">@lang('miscellaneous.admin.vehicle.features.has_airbags')</div>
+                                    <div class="col-4">
+                                        <select name="has_airbags" id="has_airbags" class="form-select">
+                                            <option value="0">@lang('miscellaneous.no')</option>
+                                            <option value="1">@lang('miscellaneous.yes')</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Has seat belt -->
+                                <div class="row g-2 mt-3">
+                                    <div class="col-8 text-dark">@lang('miscellaneous.admin.vehicle.features.has_seat_belt')</div>
+                                    <div class="col-4">
+                                        <select name="has_seat_belt" id="has_seat_belt" class="form-select">
+                                            <option value="0">@lang('miscellaneous.no')</option>
+                                            <option value="1">@lang('miscellaneous.yes')</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Has ergonomic seat -->
+                                <div class="row g-2 mt-3">
+                                    <div class="col-8 text-dark">@lang('miscellaneous.admin.vehicle.features.has_ergonomic_seat')</div>
+                                    <div class="col-4">
+                                        <select name="has_ergonomic_seat" id="has_ergonomic_seat" class="form-select">
+                                            <option value="0">@lang('miscellaneous.no')</option>
+                                            <option value="1">@lang('miscellaneous.yes')</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Has air conditioning -->
+                                <div class="row g-2 mt-3">
+                                    <div class="col-8 text-dark">@lang('miscellaneous.admin.vehicle.features.has_air_conditioning')</div>
+                                    <div class="col-4">
+                                        <select name="has_air_conditioning" id="has_air_conditioning" class="form-select">
+                                            <option value="0">@lang('miscellaneous.no')</option>
+                                            <option value="1">@lang('miscellaneous.yes')</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Has suspensions -->
+                                <div class="row g-2 mt-3">
+                                    <div class="col-8 text-dark">@lang('miscellaneous.admin.vehicle.features.has_suspensions')</div>
+                                    <div class="col-4">
+                                        <select name="has_suspensions" id="has_suspensions" class="form-select">
+                                            <option value="0">@lang('miscellaneous.no')</option>
+                                            <option value="1">@lang('miscellaneous.yes')</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Has soundproofing -->
+                                <div class="row g-2 mt-3">
+                                    <div class="col-8 text-dark">@lang('miscellaneous.admin.vehicle.features.has_soundproofing')</div>
+                                    <div class="col-4">
+                                        <select name="has_soundproofing" id="has_soundproofing" class="form-select">
+                                            <option value="0">@lang('miscellaneous.no')</option>
+                                            <option value="1">@lang('miscellaneous.yes')</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Has sufficient space -->
+                                <div class="row g-2 mt-3">
+                                    <div class="col-8 text-dark">@lang('miscellaneous.admin.vehicle.features.has_sufficient_space')</div>
+                                    <div class="col-4">
+                                        <select name="has_sufficient_space" id="has_sufficient_space" class="form-select">
+                                            <option value="0">@lang('miscellaneous.no')</option>
+                                            <option value="1">@lang('miscellaneous.yes')</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Has quality equipment -->
+                                <div class="row g-2 mt-3">
+                                    <div class="col-8 text-dark">@lang('miscellaneous.admin.vehicle.features.has_quality_equipment')</div>
+                                    <div class="col-4">
+                                        <select name="has_quality_equipment" id="has_quality_equipment" class="form-select">
+                                            <option value="0">@lang('miscellaneous.no')</option>
+                                            <option value="1">@lang('miscellaneous.yes')</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Has on_board technologies -->
+                                <div class="row g-2 mt-3">
+                                    <div class="col-8 text-dark">@lang('miscellaneous.admin.vehicle.features.has_on_board_technologies')</div>
+                                    <div class="col-4">
+                                        <select name="has_on_board_technologies" id="has_on_board_technologies" class="form-select">
+                                            <option value="0">@lang('miscellaneous.no')</option>
+                                            <option value="1">@lang('miscellaneous.yes')</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Has interior lighting -->
+                                <div class="row g-2 mt-3">
+                                    <div class="col-8 text-dark">@lang('miscellaneous.admin.vehicle.features.has_interior_lighting')</div>
+                                    <div class="col-4">
+                                        <select name="has_interior_lighting" id="has_interior_lighting" class="form-select">
+                                            <option value="0">@lang('miscellaneous.no')</option>
+                                            <option value="1">@lang('miscellaneous.yes')</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Has practical accessories -->
+                                <div class="row g-2 mt-3">
+                                    <div class="col-8 text-dark">@lang('miscellaneous.admin.vehicle.features.has_practical_accessories')</div>
+                                    <div class="col-4">
+                                        <select name="has_practical_accessories" id="has_practical_accessories" class="form-select">
+                                            <option value="0">@lang('miscellaneous.no')</option>
+                                            <option value="1">@lang('miscellaneous.yes')</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Has driving assist system -->
+                                <div class="row g-2 mt-3">
+                                    <div class="col-8 text-dark">@lang('miscellaneous.admin.vehicle.features.has_driving_assist_system')</div>
+                                    <div class="col-4">
+                                        <select name="has_driving_assist_system" id="has_driving_assist_system" class="form-select">
+                                            <option value="0">@lang('miscellaneous.no')</option>
+                                            <option value="1">@lang('miscellaneous.yes')</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -506,7 +648,7 @@
         <!-- Start crop other user image -->
 @endif
 
-@if (Route::is('account'))
+@if (Route::is('account.entity'))
         <!-- Start crop avatar image -->
         <div class="modal fade" id="cropModalUser" tabindex="-1" aria-labelledby="cropModalUserLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">

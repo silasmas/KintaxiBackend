@@ -101,7 +101,7 @@
                                     <div class="account-wrap">
                                         <div class="account-item clearfix js-item-menu">
                                             <div class="image">
-                                                <img src="{{ $current_user['avatar_url'] }}" alt="{{ $current_user['firstname'] . ' ' . $current_user['lastname'] }}" class="rounded-circle" />
+                                                <img src="{{ $current_user['avatar_url'] }}" alt="{{ $current_user['firstname'] . ' ' . $current_user['lastname'] }}" class="rounded-circle user-image" />
                                             </div>
                                             <div class="content">
                                                 <a class="js-acc-btn" href="{{ route('account') }}">{{ $current_user['firstname'] . ' ' . $current_user['lastname'] }}</a>
@@ -110,7 +110,7 @@
                                                 <div class="info clearfix">
                                                     <div class="image">
                                                         <a href="{{ route('account') }}">
-                                                            <img src="{{ $current_user['avatar_url'] }}" alt="{{ $current_user['firstname'] . ' ' . $current_user['lastname'] }}" />
+                                                            <img src="{{ $current_user['avatar_url'] }}" alt="{{ $current_user['firstname'] . ' ' . $current_user['lastname'] }}" class="user-image" />
                                                         </a>
                                                     </div>
                                                     <div class="content">
