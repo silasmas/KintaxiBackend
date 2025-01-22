@@ -374,6 +374,8 @@ return [
             'details' => 'Vehicle details',
             'link' => 'Manage vehicles',
             'add' => 'Add a vehicle',
+            'owner' => 'Vehicle owner',
+            'choose_person' => 'Choose a person',
             'mark' => 'Mark',
             'model' => 'Model',
             'color' => 'Color',
@@ -381,6 +383,7 @@ return [
             'regis_number_expiration' => 'Registration number expiration',
             'vin_number' => 'VIN number',
             'manufacture_year' => 'Manufacture year',
+            'nb_places' => 'Number of places',
             'fuel_type' => [
                 'label' => 'Fuel type',
                 'gasoline' => 'Gasoline',

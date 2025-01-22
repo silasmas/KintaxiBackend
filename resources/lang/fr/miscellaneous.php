@@ -374,6 +374,8 @@ return [
             'details' => 'Détails sur le véhicule',
             'link' => 'Gérer les véhicules',
             'add' => 'Ajouter un véhicule',
+            'owner' => 'Propiétaire du véhicule',
+            'choose_person' => 'Choisir une personne',
             'mark' => 'Marque',
             'model' => 'Modèle',
             'color' => 'Couleur',
@@ -381,6 +383,7 @@ return [
             'regis_number_expiration' => 'Expiration du matricule',
             'vin_number' => 'Numéro VIN',
             'manufacture_year' => 'Année de fabrication',
+            'nb_places' => 'Nombre de places',
             'fuel_type' => [
                 'label' => 'Type de carburant',
                 'gasoline' => 'Essence',

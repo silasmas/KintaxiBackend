@@ -245,6 +245,21 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="@lang('miscellaneous.close')"></button>
                         </div>
                         <div class="modal-body pb-0">
+                            <!-- Owner -->
+                            <div class="form-floating mt-3">
+                                <select name="user_id" id="user_id" class="form-select" aria-label="@lang('miscellaneous.admin.vehicle.owner')">
+                                    <option class="small" disabled selected>@lang('miscellaneous.admin.vehicle.choose_person')</option>
+    @forelse ($drivers as $driver)
+                                    <option value="{{ $driver['id'] }}">
+                                        {{ $driver['firstname'] . ' ' . $driver['lastname'] }}</small>
+                                    </option>
+    @empty
+                                    <option><i>@lang('miscellaneous.empty_list')</i></option>
+    @endforelse
+                                </select>
+                                <label class="form-label" for="user_id">@lang('miscellaneous.admin.vehicle.owner')</label>
+                            </div>
+
                             <!-- Mark -->
                             <div class="form-floating mt-3">
                                 <input type="text" name="mark" id="mark" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.mark')" required />
@@ -270,11 +285,11 @@
                             </div>
 
                             <!-- Registration number expiration -->
-                            <input type="hidden" name="regis_number_expiration" id="regis_number_expiration" value="{{ date('Y-m-d H:i') }}">
+                            {{-- <input type="hidden" name="regis_number_expiration" id="regis_number_expiration" value="{{ date('Y-m-d H:i') }}">
                             <div class="form-floating mt-3">
                                 <input type="text" name="regis_num_exp" id="regis_num_exp" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.regis_number_expiration')" value="{{ explicitDateTime(date('Y-m-d H:i:s')) }}">
                                 <label class="form-label" for="regis_num_exp">@lang('miscellaneous.admin.vehicle.regis_number_expiration')</label>
-                            </div>
+                            </div> --}}
 
                             <!-- VIN number -->
                             <div class="form-floating mt-3">
@@ -316,6 +331,12 @@
                             <div class="form-floating mt-3">
                                 <input type="number" name="engine_power" id="engine_power" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.engine_power')" />
                                 <label class="form-label" for="engine_power">@lang('miscellaneous.admin.vehicle.engine_power')</label>
+                            </div>
+
+                            <!-- Number of places -->
+                            <div class="form-floating mt-3">
+                                <input type="number" name="nb_places" id="nb_places" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.nb_places')" />
+                                <label class="form-label" for="nb_places">@lang('miscellaneous.admin.vehicle.nb_places')</label>
                             </div>
 
                             <!-- Shape -->
@@ -415,7 +436,7 @@
                                 </div>
 
                                 <!-- Has suspensions -->
-                                <div class="row g-2 mt-3">
+                                {{-- <div class="row g-2 mt-3">
                                     <div class="col-8 text-dark">@lang('miscellaneous.admin.vehicle.features.has_suspensions')</div>
                                     <div class="col-4">
                                         <select name="has_suspensions" id="has_suspensions" class="form-select">
@@ -423,7 +444,7 @@
                                             <option value="1">@lang('miscellaneous.yes')</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <!-- Has soundproofing -->
                                 <div class="row g-2 mt-3">
@@ -504,7 +525,7 @@
                             </div>
                         </div>
                         <div class="modal-footer d-block border-0">
-                            <button class="btn btn-primary w-100 rounded-pill position-relative">
+                            <button type="submit" class="btn btn-primary w-100 rounded-pill position-relative">
                                 <span class="text-uppercase">@lang('miscellaneous.register')</span>
                                 <div class="spinner-border text-white position-absolute opacity-0" role="status" style="top: 0.2rem; right: 0.2rem;"><span class="visually-hidden">@lang('miscellaneous.loading')</span></div>
                             </button>

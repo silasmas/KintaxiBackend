@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Status as ResourcesStatus;
+use App\Http\Resources\User as ResourcesUser;
 use App\Http\Resources\Vehicle as ResourcesVehicle;
 use App\Http\Resources\VehicleCategory as ResourcesVehicleCategory;
 use App\Http\Resources\VehicleShape as ResourcesVehicleShape;
 use App\Models\File;
 use App\Models\Status;
+use App\Models\User;
 use App\Models\Vehicle;
 use App\Models\VehicleCategory;
 use App\Models\VehicleFeature;
@@ -48,11 +50,14 @@ class VehicleController extends Controller
         $vehicle_shapes_data = ResourcesVehicleShape::collection($vehicle_shapes_collection)->toArray(request());
         $vehicle_categories_collection = VehicleCategory::all();
         $vehicle_categories_data = ResourcesVehicleCategory::collection($vehicle_categories_collection)->toArray(request());
+        $drivers_collection = User::whereIn('role_id', [4, 5])->orderByDesc('created_at')->get();
+        $drivers_data = ResourcesUser::collection($drivers_collection)->toArray(request());
 
         return view('vehicle', [
             'vehicles' => $vehicles_data,
             'vehicle_shapes' => $vehicle_shapes_data,
             'vehicle_categories' => $vehicle_categories_data,
+            'drivers' => $drivers_data,
         ]);
     }
 
@@ -150,12 +155,12 @@ class VehicleController extends Controller
             'status_id' => $this::$activated_status->id,
             'created_by' => Auth::user()->id,
             'updated_by' => Auth::user()->id,
-            'user_id' => $request->user_id,
+            'user_id' => isset($request->user_id) AND is_numeric($request->user_id) ? $request->user_id : null,
             'model' => $request->model,
             'mark' => $request->mark,
             'color' => $request->color,
             'registration_number' => $request->registration_number,
-            'regis_number_expiration' => $request->regis_number_expiration,
+            // 'regis_number_expiration' => $request->regis_number_expiration,
             'vin_number' => $request->vin_number,
             'manufacture_year' => $request->manufacture_year,
             'fuel_type' => $request->fuel_type,
@@ -163,6 +168,7 @@ class VehicleController extends Controller
             'engine_power' => $request->engine_power,
             'shape_id' => $request->shape_id,
             'category_id' => $request->category_id,
+            'nb_places' => $request->nb_places,
         ]);
 
         if ($request->hasFile('images_urls') != null) {
@@ -184,14 +190,14 @@ class VehicleController extends Controller
             'created_by' => Auth::user()->id,
             'updated_by' => Auth::user()->id,
             'vehicle_id' => $vehicle->id,
-            'icon' => $request->icon,
+            // 'icon' => $request->icon,
             'is_clean' => $request->is_clean,
             'has_helmet' => $request->has_helmet,
             'has_airbags' => $request->has_airbags,
             'has_seat_belt' => $request->has_seat_belt,
             'has_ergonomic_seat' => $request->has_ergonomic_seat,
             'has_air_conditioning' => $request->has_air_conditioning,
-            'has_suspensions' => $request->has_suspensions,
+            // 'has_suspensions' => $request->has_suspensions,
             'has_soundproofing' => $request->has_soundproofing,
             'has_sufficient_space' => $request->has_sufficient_space,
             'has_quality_equipment' => $request->has_quality_equipment,
@@ -201,7 +207,7 @@ class VehicleController extends Controller
             'has_driving_assist_system' => $request->has_driving_assist_system,
         ]);
 
-        return redirect()->back()->with('success_message', __('miscellaneous.data_created'));
+        return redirect()->to('/vehicle/' . $vehicle->id)->with('success_message', __('miscellaneous.data_created'));
     }
 
     /**
