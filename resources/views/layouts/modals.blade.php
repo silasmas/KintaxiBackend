@@ -254,7 +254,7 @@
                                         {{ $driver['firstname'] . ' ' . $driver['lastname'] }}</small>
                                     </option>
     @empty
-                                    <option><i>@lang('miscellaneous.empty_list')</i></option>
+                                    <option disabled><i>@lang('miscellaneous.empty_list')</i></option>
     @endforelse
                                 </select>
                                 <label class="form-label" for="user_id">@lang('miscellaneous.admin.vehicle.owner')</label>
@@ -280,7 +280,7 @@
 
                             <!-- Registration number -->
                             <div class="form-floating mt-3">
-                                <input type="text" name="registration_number" id="registration_number" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.registration_number')" />
+                                <input type="text" name="registration_number" id="registration_number" class="form-control" placeholder="@lang('miscellaneous.admin.vehicle.registration_number')" required />
                                 <label class="form-label" for="registration_number">@lang('miscellaneous.admin.vehicle.registration_number')</label>
                             </div>
 
@@ -346,7 +346,7 @@
     @forelse ($vehicle_shapes as $shape)
                                     <option value="{{ $shape['id'] }}">{{ $shape['shape_name'] }}</option>
     @empty
-                                    <option><i>@lang('miscellaneous.empty_list')</i></option>
+                                    <option disabled><i>@lang('miscellaneous.empty_list')</i></option>
     @endforelse
                                 </select>
                                 <label class="form-label" for="shape_id">@lang('miscellaneous.admin.vehicle.shape.title')</label>
@@ -359,10 +359,10 @@
     @forelse ($vehicle_categories as $category)
                                     <option value="{{ $category['id'] }}">{{ $category['category_name'] }}</option>
     @empty
-                                    <option><i>@lang('miscellaneous.empty_list')</i></option>
+                                    <option disabled><i>@lang('miscellaneous.empty_list')</i></option>
     @endforelse
                                 </select>
-                                <label class="form-label" for="shape_id">@lang('miscellaneous.admin.vehicle.category.title')</label>
+                                <label class="form-label" for="category_id">@lang('miscellaneous.admin.vehicle.category.title')</label>
                             </div>
 
                             <!-- Vehicle features -->

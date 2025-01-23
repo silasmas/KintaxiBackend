@@ -26,9 +26,9 @@
                             </div>
 
                             <div class="row m-t-25">
+@if ($entity == 'manage-roles')
                                 <div class="col-md-12">
                                     <div class="table-responsive table--no-card mb-3">
-@if ($entity == 'manage-roles')
                                         <table class="table table-borderless table-striped table-earning">
                                             <thead>
                                                 <tr>
@@ -66,9 +66,13 @@
     @endforelse
                                             </tbody>
                                         </table>
+                                    </div>
+                                </div>
 @endif
 
 @if ($entity == 'users')
+                                <div class="col-md-12">
+                                    <div class="table-responsive table--no-card mb-3">
                                         <table class="table table-borderless table-striped table-earning">
                                             <thead>
                                                 <tr>
@@ -111,8 +115,11 @@
     @endforelse
                                             </tbody>
                                         </table>
-@endif
                                     </div>
                                 </div>
+                                <div class="col-12 d-flex justify-content-center">
+                                    {{ $users_req->links() }}
+                                </div>
+@endif
                             </div>
 

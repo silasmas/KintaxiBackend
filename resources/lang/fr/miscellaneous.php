@@ -374,6 +374,7 @@ return [
             'details' => 'Détails sur le véhicule',
             'link' => 'Gérer les véhicules',
             'add' => 'Ajouter un véhicule',
+            'edit' => 'Editer le véhicule',
             'owner' => 'Propiétaire du véhicule',
             'choose_person' => 'Choisir une personne',
             'mark' => 'Marque',

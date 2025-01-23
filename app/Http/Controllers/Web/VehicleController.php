@@ -44,7 +44,7 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $vehicles_collection = Vehicle::all();
+        $vehicles_collection = Vehicle::orderByDesc('created_at')->paginate(7);
         $vehicles_data = ResourcesVehicle::collection($vehicles_collection)->toArray(request());
         $vehicle_shapes_collection = VehicleShape::all();
         $vehicle_shapes_data = ResourcesVehicleShape::collection($vehicle_shapes_collection)->toArray(request());
@@ -55,6 +55,7 @@ class VehicleController extends Controller
 
         return view('vehicle', [
             'vehicles' => $vehicles_data,
+            'vehicles_req' => $vehicles_collection,
             'vehicle_shapes' => $vehicle_shapes_data,
             'vehicle_categories' => $vehicle_categories_data,
             'drivers' => $drivers_data,
@@ -101,9 +102,18 @@ class VehicleController extends Controller
         $vehicle_request = Vehicle::find($id);
         $vehicle_resource = new ResourcesVehicle($vehicle_request);
         $vehicle_data = $vehicle_resource->toArray(request());
+        $vehicle_shapes_collection = VehicleShape::all();
+        $vehicle_shapes_data = ResourcesVehicleShape::collection($vehicle_shapes_collection)->toArray(request());
+        $vehicle_categories_collection = VehicleCategory::all();
+        $vehicle_categories_data = ResourcesVehicleCategory::collection($vehicle_categories_collection)->toArray(request());
+        $drivers_collection = User::whereIn('role_id', [4, 5])->orderByDesc('created_at')->get();
+        $drivers_data = ResourcesUser::collection($drivers_collection)->toArray(request());
 
         return view('vehicle', [
-            'vehicle' => $vehicle_data
+            'vehicle' => $vehicle_data,
+            'vehicle_shapes' => $vehicle_shapes_data,
+            'vehicle_categories' => $vehicle_categories_data,
+            'drivers' => $drivers_data,
         ]);
     }
 
@@ -338,13 +348,6 @@ class VehicleController extends Controller
             ]);
         }
 
-        if ($request->regis_number_expiration != null) {
-            $vehicle->update([
-                'updated_by' => Auth::user()->id,
-                'regis_number_expiration' => $request->regis_number_expiration,
-            ]);
-        }
-
         if ($request->vin_number != null) {
             $vehicle->update([
                 'updated_by' => Auth::user()->id,
@@ -391,15 +394,6 @@ class VehicleController extends Controller
             $vehicle->update([
                 'updated_by' => Auth::user()->id,
                 'category_id' => $request->category_id,
-            ]);
-        }
-
-        if ($request->icon != null) {
-            $vehicle_feature = VehicleFeature::where('vehicle_id', $vehicle->id)->first();
-
-            $vehicle_feature->update([
-                'updated_by' => Auth::user()->id,
-                'icon' => $request->icon,
             ]);
         }
 

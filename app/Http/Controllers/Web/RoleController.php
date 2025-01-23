@@ -62,7 +62,7 @@ class RoleController extends BaseController
         }
 
         if ($entity == 'users') {
-            $users_collection = User::where('id', '<>', Auth::user()->id)->orderByDesc('created_at')->get();
+            $users_collection = User::where('id', '<>', Auth::user()->id)->orderByDesc('created_at')->paginate(5);
             $users_data = ResourcesUser::collection($users_collection)->toArray(request());
             $vehicles_collection = Vehicle::orderByDesc('created_at')->get();
             $vehicles_data = ResourcesVehicle::collection($vehicles_collection)->toArray(request());
@@ -72,6 +72,7 @@ class RoleController extends BaseController
             return view('role', [
                 'entity' => $entity,
                 'users' => $users_data,
+                'users_req' => $users_collection,
                 'vehicles' => $vehicles_data,
                 'countries' => $countries_data,
             ]);

@@ -8,6 +8,7 @@ use App\Http\Resources\UserRole as ResourcesUserRole;
 use App\Models\Status;
 use App\Models\User;
 use App\Models\UserRole;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,6 +31,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Paginator::useBootstrap();
+
         view()->composer('*', function ($view) {
             // Users with role "Admin"
             $admin_role = UserRole::where('role_name', 'Admin')->first();

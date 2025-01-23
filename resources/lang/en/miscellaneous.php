@@ -374,6 +374,7 @@ return [
             'details' => 'Vehicle details',
             'link' => 'Manage vehicles',
             'add' => 'Add a vehicle',
+            'edit' => 'Edit the vehicle',
             'owner' => 'Vehicle owner',
             'choose_person' => 'Choose a person',
             'mark' => 'Mark',

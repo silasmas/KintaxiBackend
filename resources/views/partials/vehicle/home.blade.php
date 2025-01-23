@@ -78,4 +78,7 @@
                                         </table>
                                     </div>
                                 </div>
+                                <div class="col-12 d-flex justify-content-center">
+                                    {{ $vehicles_req->links() }}
+                                </div>
                             </div>
