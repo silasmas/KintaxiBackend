@@ -693,6 +693,26 @@
         <!-- Start crop other user image -->
 @endif
 
+@if (Route::is('role.entity.show'))
+        <!-- Start crop avatar image -->
+        <div class="modal fade" id="documentDetails" tabindex="-1" aria-labelledby="documentDetailsLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-light">
+                        <h5 class="modal-title" id="documentDetailsLabel">Title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="bg-image">
+                            <img src="" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Start crop avatar image -->
+@endif
+
 @if (Route::is('account.entity'))
         <!-- Start crop avatar image -->
         <div class="modal fade" id="cropModalUser" tabindex="-1" aria-labelledby="cropModalUserLabel" aria-hidden="true">
@@ -716,26 +736,6 @@
                     <div class="modal-footer d-flex justify-content-between">
                         <button type="button" class="btn btn-light border rounded-pill" data-bs-dismiss="modal">@lang('miscellaneous.cancel')</button>
                         <button type="button" id="crop_avatar" class="btn btn-primary rounded-pill"data-bs-dismiss="modal">{{ __('miscellaneous.register') }}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Start crop avatar image -->
-@endif
-
-@if (Route::is('role.entity.show'))
-        <!-- Start crop avatar image -->
-        <div class="modal fade" id="documentDetails" tabindex="-1" aria-labelledby="documentDetailsLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="documentDetailsLabel">Title</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="bg-image">
-                            <img src="" class="img-fluid" alt="">
-                        </div>
                     </div>
                 </div>
             </div>
