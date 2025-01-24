@@ -294,7 +294,7 @@ return [
             'notifications' => 'Notifications',
         ],
         'customers' => [
-            'title' => 'Clients',
+            'title' => 'Courses',
             'ride-in-progress' => 'Courses en cours',
             'ride-finished' => 'Courses terminées',
             'rented-vehicles' => 'Véhicules loués',
@@ -309,7 +309,7 @@ return [
             'features' => 'Confort',
         ],
         'role' => [
-            'title' => 'Rôle',
+            'title' => 'Utilisateurs et rôles',
             'manage-roles' => 'Gérer les rôles',
             'users' => 'Utilisateurs',
         ],

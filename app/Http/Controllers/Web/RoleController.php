@@ -125,7 +125,7 @@ class RoleController extends BaseController
             $statuses_collection = Status::orderByDesc('status_name')->get();
             $statuses_data = ResourcesStatus::collection($statuses_collection)->toArray(request());
 
-            // dd($user_data['user_id_card']['id']);
+            // dd($user_data);
             return view('role', [
                 'entity' => $entity,
                 'user' => $user_data,

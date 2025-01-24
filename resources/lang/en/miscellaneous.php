@@ -294,7 +294,7 @@ return [
             'notifications' => 'Notifications',
         ],
         'customers' => [
-            'title' => 'Customers',
+            'title' => 'Rides',
             'ride-in-progress' => 'Ride in progress',
             'ride-finished' => 'Ride finished',
             'rented-vehicles' => 'Rented vehicles',
@@ -309,7 +309,7 @@ return [
             'features' => 'Features',
         ],
         'role' => [
-            'title' => 'Role',
+            'title' => 'Users and roles',
             'manage-roles' => 'Manage roles',
             'users' => 'Users',
         ],
