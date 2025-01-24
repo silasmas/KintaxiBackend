@@ -151,7 +151,7 @@
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <i class="bi bi-info-circle me-2"></i>
                             <div class="small d-inline-block custom-message"></div>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="@lang('miscellaneous.close')"></button>
+                            <button type="button" class="btn-close" aria-label="@lang('miscellaneous.close')" onclick="document.getElementById('successMessageWrapper').classList.add('d-none')"></button>
                         </div>
                     </div>
 
@@ -159,7 +159,7 @@
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <i class="bi bi-exclamation-triangle me-2"></i>
                             <div class="small d-inline-block custom-message"></div>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="@lang('miscellaneous.close')"></button>
+                            <button type="button" class="btn-close" aria-label="@lang('miscellaneous.close')" onclick="document.getElementById('errorMessageWrapper').classList.add('d-none')"></button>
                         </div>
                     </div>
 
@@ -243,6 +243,32 @@
             }
 
             $(function () {
+                $('#id_card, #driving_license, #vehicle_registration, #vehicle_insurance').on('change', function (event) {
+                    var files = event.target.files;
+                    var validExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
+
+                    // File type validation (Image only)
+                    var validFiles = Array.from(files).filter(function (file) {
+                        var extension = file.name.split('.').pop().toLowerCase(); // Retrieves the file extension
+
+                        return validExtensions.includes(extension); // Check if the extension is valid
+                    });
+
+                    if (validFiles.length === 0) {
+                        $('#errorMessageWrapper').removeClass('d-none');
+                        $('#errorMessageWrapper .custom-message').html(window.Laravel.lang.upload.image_error);
+
+                        // Clear the input field (remove the invalid file)
+                        $(event.target).val('');
+
+                        return;
+
+                    } else {
+                        if (!$('#errorMessageWrapper').hasClass('d-none')) {
+                            $('#errorMessageWrapper').addClass('d-none');
+                        }
+                    }
+                });
                 $('#statusModal').on('shown.bs.modal', function () {
                     $('#status_name').focus();
                 });
@@ -336,6 +362,18 @@
                     // }, 1000);
                 });
             });
+
+            window.Laravel = {
+                lang: {
+                    upload: {
+                        use_camera: "@lang('miscellaneous.upload.use_camera')",
+                        upload_file: "@lang('miscellaneous.upload.upload_file')",
+                        choose_existing_file: "@lang('miscellaneous.upload.choose_existing_file')",
+                        image_error: "@lang('miscellaneous.upload.image_error')",
+                        document_error: "@lang('miscellaneous.upload.document_error')",
+                    },
+                }
+            }
         </script>
     </body>
 </html>

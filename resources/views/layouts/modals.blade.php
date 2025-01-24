@@ -218,6 +218,30 @@
                                     <p class="d-none mt-2 mb-0 small text-center text-success fst-italic">@lang('miscellaneous.waiting_register')</p>
                                 </div>
                             </div>
+
+                            <!-- ID card -->
+                            <div class="mt-3">
+                                <label for="id_card" class="form-label small mb-0">@lang('miscellaneous.account.identity_document.choose_type.identity_card')</label>
+                                <input type="file" name="id_card" id="id_card" class="form-control" placeholder="@lang('miscellaneous.account.identity_document.choose_type.identity_card')" />
+                            </div>
+
+                            <!-- Driving licence -->
+                            <div class="mt-3">
+                                <label for="driving_license" class="form-label small mb-0">@lang('miscellaneous.account.identity_document.choose_type.driving_license')</label>
+                                <input type="file" name="driving_license" id="driving_license" class="form-control" placeholder="@lang('miscellaneous.account.identity_document.choose_type.driving_license')" />
+                            </div>
+
+                            <!-- Vehicle registration -->
+                            <div class="mt-3">
+                                <label for="vehicle_registration" class="form-label small mb-0">@lang('miscellaneous.account.identity_document.choose_type.vehicle_registration')</label>
+                                <input type="file" name="vehicle_registration" id="vehicle_registration" class="form-control" placeholder="@lang('miscellaneous.account.identity_document.choose_type.vehicle_registration')" />
+                            </div>
+
+                            <!-- Vehicle insurance -->
+                            <div class="mt-3">
+                                <label for="vehicle_insurance" class="form-label small mb-0">@lang('miscellaneous.account.identity_document.choose_type.vehicle_insurance')</label>
+                                <input type="file" name="vehicle_insurance" id="vehicle_insurance" class="form-control" placeholder="@lang('miscellaneous.account.identity_document.choose_type.vehicle_insurance')" />
+                            </div>
     @endif
                         </div>
                         <div class="modal-footer d-block border-0">

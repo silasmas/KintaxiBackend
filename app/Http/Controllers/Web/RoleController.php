@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\BaseController;
 use App\Http\Resources\Country as ResourcesCountry;
 use App\Http\Resources\PasswordReset as ResourcesPasswordReset;
+use App\Http\Resources\Status as ResourcesStatus;
 use App\Http\Resources\User as ResourcesUser;
 use App\Http\Resources\UserRole as ResourcesUserRole;
 use App\Http\Resources\Vehicle as ResourcesVehicle;
 use App\Models\Country;
+use App\Models\Document;
 use App\Models\PasswordReset;
 use App\Models\Status;
 use App\Models\User;
@@ -29,10 +31,12 @@ use stdClass;
  */
 class RoleController extends BaseController
 {
+    public static $created_status;
     public static $activated_status;
 
     public function __construct()
     {
+        $this::$created_status = Status::where('status_name', 'créé/en attente de confirmation')->first();
         $this::$activated_status = Status::where('status_name', 'activé/confirmé/récu')->first();
     }
 
@@ -118,9 +122,10 @@ class RoleController extends BaseController
             $vehicles_data = ResourcesVehicle::collection($vehicles_collection)->toArray(request());
             $countries_collection = Country::orderBy('name_' . app()->getLocale())->get();
             $countries_data = ResourcesCountry::collection($countries_collection)->toArray(request());
-            $statuses_collection = Country::orderBy('name_' . app()->getLocale())->get();
-            $statuses_data = ResourcesCountry::collection($statuses_collection)->toArray(request());
+            $statuses_collection = Status::orderByDesc('status_name')->get();
+            $statuses_data = ResourcesStatus::collection($statuses_collection)->toArray(request());
 
+            // dd($user_data['user_id_card']['id']);
             return view('role', [
                 'entity' => $entity,
                 'user' => $user_data,
@@ -332,6 +337,70 @@ class RoleController extends BaseController
             //     'updated_at' => now(),
             // ]);
 
+            if ($request->hasFile('id_card') != null) {
+                $image = $request->file('id_card');
+                $file_url = 'images/users/' . $user->id . '/id_card' . '.' . $image->extension();
+
+                // Upload file
+                $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
+
+                Document::create([
+                    'status_id' => $this::$activated_status->id,
+                    'created_by' => Auth::user()->id,
+                    'user_id' => $user->id,
+                    'type' => 'id_card',
+                    'file_url' => $dir_result,
+                ]);
+            }
+
+            if ($request->hasFile('driving_license') != null) {
+                $image = $request->file('driving_license');
+                $file_url = 'images/users/' . $user->id . '/driving_license' . '.' . $image->extension();
+
+                // Upload file
+                $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
+
+                Document::create([
+                    'status_id' => $this::$activated_status->id,
+                    'created_by' => Auth::user()->id,
+                    'user_id' => $user->id,
+                    'type' => 'driving_license',
+                    'file_url' => $dir_result,
+                ]);
+            }
+
+            if ($request->hasFile('vehicle_registration') != null) {
+                $image = $request->file('vehicle_registration');
+                $file_url = 'images/users/' . $user->id . '/vehicle_registration' . '.' . $image->extension();
+
+                // Upload file
+                $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
+
+                Document::create([
+                    'status_id' => $this::$activated_status->id,
+                    'created_by' => Auth::user()->id,
+                    'user_id' => $user->id,
+                    'type' => 'vehicle_registration',
+                    'file_url' => $dir_result,
+                ]);
+            }
+
+            if ($request->hasFile('vehicle_insurance') != null) {
+                $image = $request->file('vehicle_insurance');
+                $file_url = 'images/users/' . $user->id . '/vehicle_insurance' . '.' . $image->extension();
+
+                // Upload file
+                $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
+
+                Document::create([
+                    'status_id' => $this::$activated_status->id,
+                    'created_by' => Auth::user()->id,
+                    'user_id' => $user->id,
+                    'type' => 'vehicle_insurance',
+                    'file_url' => $dir_result,
+                ]);
+            }
+
             if ($request->data_other_user != null) {
                 // $extension = explode('/', explode(':', substr($request->data_other_user, 0, strpos($request->data_other_user, ';')))[1])[1];
                 $replace = substr($request->data_other_user, 0, strpos($request->data_other_user, ',') + 1);
@@ -403,6 +472,31 @@ class RoleController extends BaseController
                 $role->update([
                     'updated_at' => now(),
                     'role_description' => $request->role_description,
+                ]);
+            }
+
+            return redirect()->back()->with('success_message', __('miscellaneous.data_updated'));
+        }
+
+        if ($entity == 'document') {
+            $document = Document::find($id);
+
+            if ($request->status_id != null) {
+                $document->update([
+                    'updated_at' => now(),
+                    'updated_by' => Auth::user()->id,
+                    'verified' => 1,
+                    'verified_at' => now(),
+                    'verified_by' => Auth::user()->id,
+                    'status_id' => $request->status_id
+                ]);
+            }
+
+            if ($request->vehicle_id != null) {
+                $document->update([
+                    'updated_at' => now(),
+                    'updated_by' => Auth::user()->id,
+                    'vehicle_id' => $request->vehicle_id,
                 ]);
             }
 
@@ -713,6 +807,70 @@ class RoleController extends BaseController
                 ]);
             }
 
+            if ($request->hasFile('id_card') != null) {
+                $image = $request->file('id_card');
+                $file_url = 'images/users/' . $user->id . '/id_card' . '.' . $image->extension();
+
+                // Upload file
+                $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
+
+                Document::create([
+                    'status_id' => $this::$created_status->id,
+                    'created_by' => Auth::user()->id,
+                    'user_id' => $user->id,
+                    'type' => 'id_card',
+                    'file_url' => $dir_result,
+                ]);
+            }
+
+            if ($request->hasFile('driving_license') != null) {
+                $image = $request->file('driving_license');
+                $file_url = 'images/users/' . $user->id . '/driving_license' . '.' . $image->extension();
+
+                // Upload file
+                $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
+
+                Document::create([
+                    'status_id' => $this::$created_status->id,
+                    'created_by' => Auth::user()->id,
+                    'user_id' => $user->id,
+                    'type' => 'driving_license',
+                    'file_url' => $dir_result,
+                ]);
+            }
+
+            if ($request->hasFile('vehicle_registration') != null) {
+                $image = $request->file('vehicle_registration');
+                $file_url = 'images/users/' . $user->id . '/vehicle_registration' . '.' . $image->extension();
+
+                // Upload file
+                $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
+
+                Document::create([
+                    'status_id' => $this::$created_status->id,
+                    'created_by' => Auth::user()->id,
+                    'user_id' => $user->id,
+                    'type' => 'vehicle_registration',
+                    'file_url' => $dir_result,
+                ]);
+            }
+
+            if ($request->hasFile('vehicle_insurance') != null) {
+                $image = $request->file('vehicle_insurance');
+                $file_url = 'images/users/' . $user->id . '/vehicle_insurance' . '.' . $image->extension();
+
+                // Upload file
+                $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
+
+                Document::create([
+                    'status_id' => $this::$created_status->id,
+                    'created_by' => Auth::user()->id,
+                    'user_id' => $user->id,
+                    'type' => 'vehicle_insurance',
+                    'file_url' => $dir_result,
+                ]);
+            }
+
             if ($request->data_other_user != null) {
                 // $extension = explode('/', explode(':', substr($request->data_other_user, 0, strpos($request->data_other_user, ';')))[1])[1];
                 $replace = substr($request->data_other_user, 0, strpos($request->data_other_user, ',') + 1);
@@ -764,8 +922,6 @@ class RoleController extends BaseController
             $role = UserRole::find($id);
 
             $role->delete();
-
-            return redirect()->back()->with('success_message', __('miscellaneous.delete_success'));
         }
 
         if ($entity == 'users') {
@@ -777,8 +933,14 @@ class RoleController extends BaseController
             if (Storage::exists($directory)) {
                 Storage::deleteDirectory($directory);
             }
-
-            return redirect()->back()->with('success_message', __('miscellaneous.delete_success'));
         }
+
+        if ($entity == 'document') {
+            $document = Document::find($id);
+
+            $document->delete();
+        }
+
+        return redirect()->back()->with('success_message', __('miscellaneous.delete_success'));
     }
 }

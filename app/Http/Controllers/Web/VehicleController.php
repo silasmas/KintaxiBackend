@@ -108,12 +108,15 @@ class VehicleController extends Controller
         $vehicle_categories_data = ResourcesVehicleCategory::collection($vehicle_categories_collection)->toArray(request());
         $drivers_collection = User::whereIn('role_id', [4, 5])->orderByDesc('created_at')->get();
         $drivers_data = ResourcesUser::collection($drivers_collection)->toArray(request());
+        $statuses_collection = Status::orderByDesc('status_name')->get();
+        $statuses_data = ResourcesStatus::collection($statuses_collection)->toArray(request());
 
         return view('vehicle', [
             'vehicle' => $vehicle_data,
             'vehicle_shapes' => $vehicle_shapes_data,
             'vehicle_categories' => $vehicle_categories_data,
             'drivers' => $drivers_data,
+            'statuses' => $statuses_data,
         ]);
     }
 
@@ -180,21 +183,6 @@ class VehicleController extends Controller
             'category_id' => $request->category_id,
             'nb_places' => $request->nb_places,
         ]);
-
-        if ($request->hasFile('images_urls') != null) {
-            foreach ($request->file('images_urls') as $key => $image):
-                $file_url = 'images/vehicles/' . $vehicle->id . '/' . Str::random(50) . '.' . $image->extension();
-
-                // Upload file
-                $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
-
-                File::create([
-                    'file_name' => trim($request->files_names[$key]) != null ? $request->files_names[$key] : null,
-                    'file_url' => $dir_result,
-                    'vehicle_id' => $vehicle->id
-                ]);
-            endforeach;
-        }
 
         VehicleFeature::create([
             'created_by' => Auth::user()->id,
@@ -536,6 +524,20 @@ class VehicleController extends Controller
                     'vehicle_id' => $vehicle->id
                 ]);
             endforeach;
+        }
+
+        if ($request->hasFile('image_url') != null) {
+            $image = $request->file('image_url');
+            $file_url = 'images/vehicles/' . $vehicle->id . '/' . Str::random(50) . '.' . $image->extension();
+
+            // Upload file
+            $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
+
+            File::create([
+                'file_name' => trim($request->file_name) != null ? $request->file_name : null,
+                'file_url' => $dir_result,
+                'vehicle_id' => $vehicle->id
+            ]);
         }
 
         return redirect()->back()->with('success_message', __('miscellaneous.data_updated'));

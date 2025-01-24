@@ -40,6 +40,16 @@
                                         <div class="card-body">
                                             <form action="{{ route('vehicle.show', ['id' => $vehicle['id']]) }}" method="POST">
     @csrf
+                                                <!-- Status -->
+                                                <div class="form-floating">
+                                                    <select name="status_id" id="status" class="form-select" aria-label="@lang('miscellaneous.admin.work.data.choose_status')">
+    @foreach ($statuses as $status)
+                                                        <option value="{{ $status['id'] }}"{{ $vehicle['status']->resource != null ? ($status['id'] == $vehicle['status']->id ? ' selected' : '') : '' }}>{{ ucfirst(explode('/', $status['status_name'])[0]) }}</option>
+    @endforeach
+                                                    </select>
+                                                    <label class="form-label" for="status">@lang('miscellaneous.admin.status')</label>
+                                                </div>
+
                                                 <!-- Owner -->
                                                 <div class="form-floating mt-3">
                                                     <select name="user_id" id="user_id" class="form-select" aria-label="@lang('miscellaneous.admin.vehicle.owner')">

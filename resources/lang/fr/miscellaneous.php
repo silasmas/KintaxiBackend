@@ -77,7 +77,9 @@ return [
         'upload_document' => 'Uploader document',
         'upload_image' => 'Uploader image (Photo/Video)',
         'register_audio' => 'Enregistrer un audio',
-        'choose_existing_file' => 'Choisir fichier existant'
+        'choose_existing_file' => 'Choisir fichier existant',
+        'image_error' => 'Veuillez sélectionner uniquement les images',
+        'document_error' => 'Veuillez sélectionner uniquement les documents'
     ],
     'activate' => 'Activer',
     'deactivate' => 'Désactiver',
@@ -273,6 +275,7 @@ return [
     ],
     'user_vehicles' => 'Véhicules de :firstname',
     'user_drivers' => 'Chauffeurs de :firstname',
+    'user_documents' => 'Documents de :firstname',
     'go_login' => 'J’ai déjà un compte',
     'api_token' => 'Votre clé pour utiliser les APIs',
     'amount' => 'Montant',
@@ -348,6 +351,8 @@ return [
                 'voter_card' => 'Carte d’électeur',
                 'passport' => 'Passeport',
                 'driving_license' => 'Permis de conduire',
+                'vehicle_registration' => 'Certificat d’immatriculation (Carte grise)',
+                'vehicle_insurance' => 'Papier d’assurance automobile',
                 'other' => 'Autre',
             ],
             'other_descriprion' => 'Décrivez votre pièce d’identité',
@@ -912,14 +917,14 @@ return [
                 'anonyme' => 'Faites votre don',
                 'partner' => 'Devenir un partenaire',
                 'your_identity' => 'Votre identité',
-                'choosen_subscription' => 'Type d\'abonnement choisi :',
+                'choosen_subscription' => 'Type d’abonnement choisi :',
                 'period' => [
                     'title' => 'Period',
                     'choose' => 'Choose a period',
                     'unique' => 'One-time payment'
                 ],
                 'send_money' => [
-                    'title' => 'Envoyer de l\'argent',
+                    'title' => 'Envoyer de l’argent',
                     'description' => 'Choisir le mode de paiement',
                     'mobile_money' => 'Mobile money',
                     'bank_card' => 'Carte bancaire',

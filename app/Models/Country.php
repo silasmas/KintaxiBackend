@@ -21,13 +21,4 @@ class Country extends Model
      * @var array<int, string>
      */
     protected $guarded = [];
-
-    /**
-     * MANY-TO-ONE
-     * Several users for a country
-     */
-    public function users()
-    {
-        return $this->hasMany(User::class, 'country_id');
-    }
 }
