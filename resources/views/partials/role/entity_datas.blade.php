@@ -413,7 +413,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                             <form action="{{ route('role.entity.show', ['entity' => 'document', 'id' => $user['user_id_card']->id]) }}" method="post">
         @csrf
                                                                 <input type="hidden" name="status_id" value="{{ $user['user_id_card']->status->id == 1 ? 3 : 1 }}">
-                                                                <button type="submit" class="btn btn-sm btn-{{ $user['user_vehicle_insurance']->status->id == 1 ? 'danger' : 'success' }} mb-2 px-5 rounded-pill">
+                                                                <button type="submit" class="btn btn-sm btn-{{ $user['user_id_card']->status->id == 1 ? 'danger' : 'success' }} mb-2 px-5 rounded-pill">
         @if ($user['user_id_card']->status->id == 1)
                                                                     @lang('miscellaneous.deactivate')
         @else
@@ -460,7 +460,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                             <form action="{{ route('role.entity.show', ['entity' => 'document', 'id' => $user['user_driving_license']->id]) }}" method="post">
         @csrf
                                                                 <input type="hidden" name="status_id" value="{{ $user['user_driving_license']->status->id == 1 ? 3 : 1 }}">
-                                                                <button type="submit" class="btn btn-sm btn-{{ $user['user_vehicle_insurance']->status->id == 1 ? 'danger' : 'success' }} mb-2 px-5 rounded-pill">
+                                                                <button type="submit" class="btn btn-sm btn-{{ $user['user_driving_license']->status->id == 1 ? 'danger' : 'success' }} mb-2 px-5 rounded-pill">
         @if ($user['user_driving_license']->status->id == 1)
                                                                     @lang('miscellaneous.deactivate')
         @else
@@ -507,7 +507,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                             <form action="{{ route('role.entity.show', ['entity' => 'document', 'id' => $user['user_vehicle_registration']->id]) }}" method="post">
         @csrf
                                                                 <input type="hidden" name="status_id" value="{{ $user['user_vehicle_registration']->status->id == 1 ? 3 : 1 }}">
-                                                                <button type="submit" class="btn btn-sm btn-{{ $user['user_vehicle_insurance']->status->id == 1 ? 'danger' : 'success' }} mb-2 px-5 rounded-pill">
+                                                                <button type="submit" class="btn btn-sm btn-{{ $user['user_vehicle_registration']->status->id == 1 ? 'danger' : 'success' }} mb-2 px-5 rounded-pill">
         @if ($user['user_vehicle_registration']->status->id == 1)
                                                                     @lang('miscellaneous.deactivate')
         @else
