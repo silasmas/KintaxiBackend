@@ -411,6 +411,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                                 <strong class="text-{{ $user['user_id_card']->status->color }}">{{ $user['user_id_card']->status->id == 0 ? ucfirst(explode('/', $user['user_id_card']->status->status_name)[1]) : ucfirst(explode('/', $user['user_id_card']->status->status_name)[0]) }}</strong>
                                                             </p>
                                                             <form action="{{ route('role.entity.show', ['entity' => 'document', 'id' => $user['user_id_card']->id]) }}" method="post">
+        @csrf
                                                                 <input type="hidden" name="status_id" value="{{ $user['user_id_card']->status->id == 1 ? 3 : 1 }}">
                                                                 <button type="submit" class="btn btn-sm btn-danger mb-2 px-5 rounded-pill">
         @if ($user['user_id_card']->status->id == 1)
@@ -428,6 +429,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                 </div>
     @else
                                                 <form action="{{ route('role.entity.show', ['entity' => 'users', 'id' => $user['id']]) }}" method="post">
+        @csrf
                                                     <input type="file" name="id_card" id="id_card" class="form-control" placeholder="@lang('miscellaneous.account.identity_document.choose_type.identity_card')" />
                                                     <button type="submit" class="btn btn-block btn-primary mt-2 py-1 rounded-pill float-end">@lang('miscellaneous.register')</button>
                                                 </form>
@@ -456,6 +458,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                                 <strong class="text-{{ $user['user_driving_license']->status->color }}">{{ $user['user_driving_license']->status->id == 0 ? ucfirst(explode('/', $user['user_driving_license']->status->status_name)[1]) : ucfirst(explode('/', $user['user_driving_license']->status->status_name)[0]) }}</strong>
                                                             </p>
                                                             <form action="{{ route('role.entity.show', ['entity' => 'document', 'id' => $user['user_driving_license']->id]) }}" method="post">
+        @csrf
                                                                 <input type="hidden" name="status_id" value="{{ $user['user_driving_license']->status->id == 1 ? 3 : 1 }}">
                                                                 <button type="submit" class="btn btn-sm btn-danger mb-2 px-5 rounded-pill">
         @if ($user['user_driving_license']->status->id == 1)
@@ -473,6 +476,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                 </div>
     @else
                                                 <form action="{{ route('role.entity.show', ['entity' => 'users', 'id' => $user['id']]) }}" method="post">
+        @csrf
                                                     <input type="file" name="driving_license" id="driving_license" class="form-control" placeholder="@lang('miscellaneous.account.identity_document.choose_type.driving_license')" />
                                                     <button type="submit" class="btn btn-block btn-primary mt-2 py-1 rounded-pill float-end">@lang('miscellaneous.register')</button>
                                                 </form>
@@ -501,6 +505,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                                 <strong class="text-{{ $user['user_vehicle_registration']->status->color }}">{{ $user['user_vehicle_registration']->status->id == 0 ? ucfirst(explode('/', $user['user_vehicle_registration']->status->status_name)[1]) : ucfirst(explode('/', $user['user_vehicle_registration']->status->status_name)[0]) }}</strong>
                                                             </p>
                                                             <form action="{{ route('role.entity.show', ['entity' => 'document', 'id' => $user['user_vehicle_registration']->id]) }}" method="post">
+        @csrf
                                                                 <input type="hidden" name="status_id" value="{{ $user['user_vehicle_registration']->status->id == 1 ? 3 : 1 }}">
                                                                 <button type="submit" class="btn btn-sm btn-danger mb-2 px-5 rounded-pill">
         @if ($user['user_vehicle_registration']->status->id == 1)
@@ -518,6 +523,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                 </div>
     @else
                                                 <form action="{{ route('role.entity.show', ['entity' => 'users', 'id' => $user['id']]) }}" method="post">
+        @csrf
                                                     <input type="file" name="vehicle_registration" id="vehicle_registration" class="form-control" placeholder="@lang('miscellaneous.account.identity_document.choose_type.vehicle_registration')" />
                                                     <button type="submit" class="btn btn-block btn-primary mt-2 py-1 rounded-pill float-end">@lang('miscellaneous.register')</button>
                                                 </form>
@@ -546,6 +552,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                                 <strong class="text-{{ $user['user_vehicle_insurance']->status->color }}">{{ $user['user_vehicle_insurance']->status->id == 0 ? ucfirst(explode('/', $user['user_vehicle_insurance']->status->status_name)[1]) : ucfirst(explode('/', $user['user_vehicle_insurance']->status->status_name)[0]) }}</strong>
                                                             </p>
                                                             <form action="{{ route('role.entity.show', ['entity' => 'document', 'id' => $user['user_vehicle_insurance']->id]) }}" method="post">
+        @csrf
                                                                 <input type="hidden" name="status_id" value="{{ $user['user_vehicle_insurance']->status->id == 1 ? 3 : 1 }}">
                                                                 <button type="submit" class="btn btn-sm btn-danger mb-2 px-5 rounded-pill">
         @if ($user['user_vehicle_insurance']->status->id == 1)
@@ -563,6 +570,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                 </div>
     @else
                                                 <form action="{{ route('role.entity.show', ['entity' => 'users', 'id' => $user['id']]) }}" method="post">
+        @csrf
                                                     <input type="file" name="vehicle_insurance" id="vehicle_insurance" class="form-control" placeholder="@lang('miscellaneous.account.identity_document.choose_type.vehicle_insurance')" />
                                                     <button type="submit" class="btn btn-block btn-primary mt-2 py-1 rounded-pill float-end">@lang('miscellaneous.register')</button>
                                                 </form>

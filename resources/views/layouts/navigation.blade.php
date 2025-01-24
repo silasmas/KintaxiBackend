@@ -26,7 +26,7 @@
                             <!-- Customer -->
                             <li class="has-sub{{ Route::is('customer.entity.home') ? ' active' : '' }}">
                                 <a class="js-arrow" href="#">
-                                    <i class="fas fa-user-friends"></i>@lang('miscellaneous.menu.customers.title')
+                                    <i class="fas fa-map-location"></i>@lang('miscellaneous.menu.customers.title')
                                     <span class="arrow">
                                         <i class="fas fa-angle-down"></i>
                                     </span>
@@ -78,7 +78,7 @@
                             <!-- Role -->
                             <li class="has-sub{{ Route::is('role.entity.home') || Route::is('role.entity.show') ? ' active' : '' }}">
                                 <a class="js-arrow" href="#">
-                                    <i class="fas fa-graduation-cap"></i>@lang('miscellaneous.menu.role.title')
+                                    <i class="fas fa-user-friends"></i>@lang('miscellaneous.menu.role.title')
                                     <span class="arrow">
                                         <i class="fas fa-angle-down"></i>
                                     </span>
@@ -124,7 +124,7 @@
                             <!-- Customer -->
                             <li class="has-sub{{ Route::is('customer.entity.home') ? ' active' : '' }}">
                                 <a class="js-arrow" href="#">
-                                    <i class="fas fa-user-friends"></i>@lang('miscellaneous.menu.customers.title')
+                                    <i class="fas fa-map-location"></i>@lang('miscellaneous.menu.customers.title')
                                     <span class="arrow">
                                         <i class="fas fa-angle-down"></i>
                                     </span>
@@ -176,7 +176,7 @@
                             <!-- Role -->
                             <li class="has-sub{{ Route::is('role.entity.home') || Route::is('role.entity.show') ? ' active' : '' }}">
                                 <a class="js-arrow" href="#">
-                                    <i class="fas fa-graduation-cap"></i>@lang('miscellaneous.menu.role.title')
+                                    <i class="fas fa-user-friends"></i>@lang('miscellaneous.menu.role.title')
                                     <span class="arrow">
                                         <i class="fas fa-angle-down"></i>
                                     </span>
