@@ -392,11 +392,11 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                             <!-- ID card -->
                                             <div class="card card-body mb-0 pt-2">
                                                 <p for="id_card" class="mb-2 pb-1 fw-bold border-bottom">@lang('miscellaneous.account.identity_document.choose_type.identity_card')</p>
-    @if ($user['user_id_card'] != null)
+    @if ($user['user_id_card']->resource != null)
                                                 <div class="row">
                                                     <div class="col-sm-6">
                                                         <div class="bg-image hover-overlay">
-                                                            <img src="{{ $user['user_id_card']['file_url'] }}" alt="" class="img-fluid img-thumbnail rounded">
+                                                            <img src="{{ $user['user_id_card']->file_url }}" alt="" class="img-fluid img-thumbnail rounded">
                                                             <div class="mask rounded" style="background-color: rgba(5, 5, 5, 0.5);">
                                                                 <a role="button" for="image_other_user" class="d-flex h-100 justify-content-center align-items-center">
                                                                     <i class="bi bi-zoom-in text-white fs-4"></i>
@@ -408,19 +408,19 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                         <div class="text-black">
                                                             <p class="mb-2">
                                                                 <u>@lang('miscellaneous.admin.status')</u>@lang('miscellaneous.colon_after_word')
-                                                                <strong class="text-{{ $user['user_id_card']['status']->color }}">{{ $user['user_id_card']['status']->id == 0 ? ucfirst(explode('/', $user['user_id_card']['status']->status_name)[1]) : ucfirst(explode('/', $user['user_id_card']['status']->status_name)[0]) }}</strong>
+                                                                <strong class="text-{{ $user['user_id_card']->status->color }}">{{ $user['user_id_card']->status->id == 0 ? ucfirst(explode('/', $user['user_id_card']->status->status_name)[1]) : ucfirst(explode('/', $user['user_id_card']->status->status_name)[0]) }}</strong>
                                                             </p>
-                                                            <form action="{{ route('role.entity.show', ['entity' => 'document', 'id' => $user['user_id_card']['id']]) }}" method="post">
-                                                                <input type="hidden" name="status_id" value="{{ $user['user_id_card']['status']->id == 1 ? 3 : 1 }}">
+                                                            <form action="{{ route('role.entity.show', ['entity' => 'document', 'id' => $user['user_id_card']->id]) }}" method="post">
+                                                                <input type="hidden" name="status_id" value="{{ $user['user_id_card']->status->id == 1 ? 3 : 1 }}">
                                                                 <button type="submit" class="btn btn-sm btn-danger mb-2 px-5 rounded-pill">
-        @if ($user['user_id_card']['status']->id == 1)
+        @if ($user['user_id_card']->status->id == 1)
                                                                     @lang('miscellaneous.deactivate')
         @else
                                                                     @lang('miscellaneous.activate')
         @endif
                                                                 </button>
                                                             </form>
-                                                            <a href="{{ route('role.entity.destroy', ['entity' => 'document', 'id' => $user['user_id_card']['id']]) }}" class="btn btn-sm btn-secondary px-5 rounded-pill">
+                                                            <a href="{{ route('role.entity.destroy', ['entity' => 'document', 'id' => $user['user_id_card']->id]) }}" class="btn btn-sm btn-secondary px-5 rounded-pill">
                                                                 {{ __('miscellaneous.delete') }}
                                                             </a>
                                                         </div>
@@ -437,11 +437,11 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                             <!-- Driving licence -->
                                             <div class="card card-body mt-3 mb-0 pt-2">
                                                 <p for="driving_license" class="mb-2 pb-1 fw-bold border-bottom">@lang('miscellaneous.account.identity_document.choose_type.driving_license')</p>
-    @if ($user['user_driving_license'] != null)
+    @if ($user['user_driving_license']->resource != null)
                                                 <div class="row">
                                                     <div class="col-sm-6">
                                                         <div class="bg-image hover-overlay">
-                                                            <img src="{{ $user['user_driving_license']['file_url'] }}" alt="" class="img-fluid img-thumbnail rounded">
+                                                            <img src="{{ $user['user_driving_license']->file_url }}" alt="" class="img-fluid img-thumbnail rounded">
                                                             <div class="mask rounded" style="background-color: rgba(5, 5, 5, 0.5);">
                                                                 <a role="button" for="image_other_user" class="d-flex h-100 justify-content-center align-items-center">
                                                                     <i class="bi bi-zoom-in text-white fs-4"></i>
@@ -453,19 +453,19 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                         <div class="text-black">
                                                             <p class="mb-2">
                                                                 <u>@lang('miscellaneous.admin.status')</u>@lang('miscellaneous.colon_after_word')
-                                                                <strong class="text-{{ $user['user_driving_license']['status']->color }}">{{ $user['user_driving_license']['status']->id == 0 ? ucfirst(explode('/', $user['user_driving_license']['status']->status_name)[1]) : ucfirst(explode('/', $user['user_driving_license']['status']->status_name)[0]) }}</strong>
+                                                                <strong class="text-{{ $user['user_driving_license']->status->color }}">{{ $user['user_driving_license']->status->id == 0 ? ucfirst(explode('/', $user['user_driving_license']->status->status_name)[1]) : ucfirst(explode('/', $user['user_driving_license']->status->status_name)[0]) }}</strong>
                                                             </p>
-                                                            <form action="{{ route('role.entity.show', ['entity' => 'document', 'id' => $user['user_driving_license']['id']]) }}" method="post">
-                                                                <input type="hidden" name="status_id" value="{{ $user['user_driving_license']['status']->id == 1 ? 3 : 1 }}">
+                                                            <form action="{{ route('role.entity.show', ['entity' => 'document', 'id' => $user['user_driving_license']->id]) }}" method="post">
+                                                                <input type="hidden" name="status_id" value="{{ $user['user_driving_license']->status->id == 1 ? 3 : 1 }}">
                                                                 <button type="submit" class="btn btn-sm btn-danger mb-2 px-5 rounded-pill">
-        @if ($user['user_driving_license']['status']->id == 1)
+        @if ($user['user_driving_license']->status->id == 1)
                                                                     @lang('miscellaneous.deactivate')
         @else
                                                                     @lang('miscellaneous.activate')
         @endif
                                                                 </button>
                                                             </form>
-                                                            <a href="{{ route('role.entity.destroy', ['entity' => 'document', 'id' => $user['user_driving_license']['id']]) }}" class="btn btn-sm btn-secondary px-5 rounded-pill">
+                                                            <a href="{{ route('role.entity.destroy', ['entity' => 'document', 'id' => $user['user_driving_license']->id]) }}" class="btn btn-sm btn-secondary px-5 rounded-pill">
                                                                 {{ __('miscellaneous.delete') }}
                                                             </a>
                                                         </div>
@@ -482,11 +482,11 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                             <!-- Vehicle registration -->
                                             <div class="card card-body mt-3 mb-0 pt-2">
                                                 <p for="vehicle_registration" class="mb-2 pb-1 fw-bold border-bottom">@lang('miscellaneous.account.identity_document.choose_type.vehicle_registration')</p>
-    @if ($user['user_vehicle_registration'] != null)
+    @if ($user['user_vehicle_registration']->resource != null)
                                                 <div class="row">
                                                     <div class="col-sm-6">
                                                         <div class="bg-image hover-overlay">
-                                                            <img src="{{ $user['user_vehicle_registration']['file_url'] }}" alt="" class="img-fluid img-thumbnail rounded">
+                                                            <img src="{{ $user['user_vehicle_registration']->file_url }}" alt="" class="img-fluid img-thumbnail rounded">
                                                             <div class="mask rounded" style="background-color: rgba(5, 5, 5, 0.5);">
                                                                 <a role="button" for="image_other_user" class="d-flex h-100 justify-content-center align-items-center">
                                                                     <i class="bi bi-zoom-in text-white fs-4"></i>
@@ -498,19 +498,19 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                         <div class="text-black">
                                                             <p class="mb-2">
                                                                 <u>@lang('miscellaneous.admin.status')</u>@lang('miscellaneous.colon_after_word')
-                                                                <strong class="text-{{ $user['user_vehicle_registration']['status']->color }}">{{ $user['user_vehicle_registration']['status']->id == 0 ? ucfirst(explode('/', $user['user_vehicle_registration']['status']->status_name)[1]) : ucfirst(explode('/', $user['user_vehicle_registration']['status']->status_name)[0]) }}</strong>
+                                                                <strong class="text-{{ $user['user_vehicle_registration']->status->color }}">{{ $user['user_vehicle_registration']->status->id == 0 ? ucfirst(explode('/', $user['user_vehicle_registration']->status->status_name)[1]) : ucfirst(explode('/', $user['user_vehicle_registration']->status->status_name)[0]) }}</strong>
                                                             </p>
-                                                            <form action="{{ route('role.entity.show', ['entity' => 'document', 'id' => $user['user_vehicle_registration']['id']]) }}" method="post">
-                                                                <input type="hidden" name="status_id" value="{{ $user['user_vehicle_registration']['status']->id == 1 ? 3 : 1 }}">
+                                                            <form action="{{ route('role.entity.show', ['entity' => 'document', 'id' => $user['user_vehicle_registration']->id]) }}" method="post">
+                                                                <input type="hidden" name="status_id" value="{{ $user['user_vehicle_registration']->status->id == 1 ? 3 : 1 }}">
                                                                 <button type="submit" class="btn btn-sm btn-danger mb-2 px-5 rounded-pill">
-        @if ($user['user_vehicle_registration']['status']->id == 1)
+        @if ($user['user_vehicle_registration']->status->id == 1)
                                                                     @lang('miscellaneous.deactivate')
         @else
                                                                     @lang('miscellaneous.activate')
         @endif
                                                                 </button>
                                                             </form>
-                                                            <a href="{{ route('role.entity.destroy', ['entity' => 'document', 'id' => $user['user_vehicle_registration']['id']]) }}" class="btn btn-sm btn-secondary px-5 rounded-pill">
+                                                            <a href="{{ route('role.entity.destroy', ['entity' => 'document', 'id' => $user['user_vehicle_registration']->id]) }}" class="btn btn-sm btn-secondary px-5 rounded-pill">
                                                                 {{ __('miscellaneous.delete') }}
                                                             </a>
                                                         </div>
@@ -527,11 +527,11 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                             <!-- Vehicle insurance -->
                                             <div class="card card-body mt-3 mb-0 pt-2">
                                                 <p for="vehicle_insurance" class="mb-2 pb-1 fw-bold border-bottom">@lang('miscellaneous.account.identity_document.choose_type.vehicle_insurance')</p>
-    @if ($user['user_vehicle_insurance'] != null)
+    @if ($user['user_vehicle_insurance']->resource != null)
                                                 <div class="row">
                                                     <div class="col-sm-6">
                                                         <div class="bg-image hover-overlay">
-                                                            <img src="{{ $user['user_vehicle_insurance']['file_url'] }}" alt="" class="img-fluid img-thumbnail rounded">
+                                                            <img src="{{ $user['user_vehicle_insurance']->file_url }}" alt="" class="img-fluid img-thumbnail rounded">
                                                             <div class="mask rounded" style="background-color: rgba(5, 5, 5, 0.5);">
                                                                 <a role="button" for="image_other_user" class="d-flex h-100 justify-content-center align-items-center">
                                                                     <i class="bi bi-zoom-in text-white fs-4"></i>
@@ -543,19 +543,19 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                         <div class="text-black">
                                                             <p class="mb-2">
                                                                 <u>@lang('miscellaneous.admin.status')</u>@lang('miscellaneous.colon_after_word')
-                                                                <strong class="text-{{ $user['user_vehicle_insurance']['status']->color }}">{{ $user['user_vehicle_insurance']['status']->id == 0 ? ucfirst(explode('/', $user['user_vehicle_insurance']['status']->status_name)[1]) : ucfirst(explode('/', $user['user_vehicle_insurance']['status']->status_name)[0]) }}</strong>
+                                                                <strong class="text-{{ $user['user_vehicle_insurance']->status->color }}">{{ $user['user_vehicle_insurance']->status->id == 0 ? ucfirst(explode('/', $user['user_vehicle_insurance']->status->status_name)[1]) : ucfirst(explode('/', $user['user_vehicle_insurance']->status->status_name)[0]) }}</strong>
                                                             </p>
-                                                            <form action="{{ route('role.entity.show', ['entity' => 'document', 'id' => $user['user_vehicle_insurance']['id']]) }}" method="post">
-                                                                <input type="hidden" name="status_id" value="{{ $user['user_vehicle_insurance']['status']->id == 1 ? 3 : 1 }}">
+                                                            <form action="{{ route('role.entity.show', ['entity' => 'document', 'id' => $user['user_vehicle_insurance']->id]) }}" method="post">
+                                                                <input type="hidden" name="status_id" value="{{ $user['user_vehicle_insurance']->status->id == 1 ? 3 : 1 }}">
                                                                 <button type="submit" class="btn btn-sm btn-danger mb-2 px-5 rounded-pill">
-        @if ($user['user_vehicle_insurance']['status']->id == 1)
+        @if ($user['user_vehicle_insurance']->status->id == 1)
                                                                     @lang('miscellaneous.deactivate')
         @else
                                                                     @lang('miscellaneous.activate')
         @endif
                                                                 </button>
                                                             </form>
-                                                            <a href="{{ route('role.entity.destroy', ['entity' => 'document', 'id' => $user['user_vehicle_insurance']['id']]) }}" class="btn btn-sm btn-secondary px-5 rounded-pill">
+                                                            <a href="{{ route('role.entity.destroy', ['entity' => 'document', 'id' => $user['user_vehicle_insurance']->id]) }}" class="btn btn-sm btn-secondary px-5 rounded-pill">
                                                                 {{ __('miscellaneous.delete') }}
                                                             </a>
                                                         </div>

@@ -309,7 +309,7 @@ return [
             'features' => 'Confort',
         ],
         'role' => [
-            'title' => 'Utilisateurs et rôles',
+            'title' => 'Rôle',
             'manage-roles' => 'Gérer les rôles',
             'users' => 'Utilisateurs',
         ],

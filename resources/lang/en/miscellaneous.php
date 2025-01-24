@@ -309,7 +309,7 @@ return [
             'features' => 'Features',
         ],
         'role' => [
-            'title' => 'Users and roles',
+            'title' => 'Role',
             'manage-roles' => 'Manage roles',
             'users' => 'Users',
         ],
