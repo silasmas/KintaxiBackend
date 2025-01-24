@@ -363,6 +363,21 @@
                 });
             });
 
+            document.querySelectorAll('.enlarge-image').forEach(function(image) {
+                image.addEventListener('click', function() {
+                    var dataTitle = image.getAttribute('data-title');
+                    var dataSrc = image.getAttribute('data-src');
+
+                    document.querySelector('#documentDetails .modal-header .modal-title').innerHTML = dataTitle;
+                    document.querySelector('#documentDetails .modal-body img').setAttribute('src', dataSrc);
+                    document.querySelector('#documentDetails .modal-body img').setAttribute('alt', dataTitle);
+
+                    var modal = new bootstrap.Modal(document.getElementById('documentDetails'));
+
+                    modal.show();
+                });
+            });
+
             window.Laravel = {
                 lang: {
                     upload: {
