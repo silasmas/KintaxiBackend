@@ -243,11 +243,12 @@
             }
 
             $(function () {
+                /*
+                 * File type validation (Image only)
+                 */
                 $('#id_card, #driving_license, #vehicle_registration, #vehicle_insurance').on('change', function (event) {
                     var files = event.target.files;
                     var validExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
-
-                    // File type validation (Image only)
                     var validFiles = Array.from(files).filter(function (file) {
                         var extension = file.name.split('.').pop().toLowerCase(); // Retrieves the file extension
 
@@ -269,7 +270,11 @@
                         }
                     }
                 });
-                $('#statusModal').on('shown.bs.modal', function () {
+
+                /*
+                 * Focus to specific input for each concerned modal
+                 */
+                 $('#statusModal').on('shown.bs.modal', function () {
                     $('#status_name').focus();
                 });
                 $('#roleModal').on('shown.bs.modal', function () {
@@ -278,6 +283,7 @@
                 $('#userModal').on('shown.bs.modal', function () {
                     $('#firstname').focus();
 
+                    // Show / Hide "belongs_to" input according to selected role
                     $('#role').change(function (e) { 
                         e.preventDefault();
 
@@ -289,6 +295,7 @@
                         }
                     });
 
+                    // Send user data
                     $('#userModal form').submit(function (e) { 
                         e.preventDefault();
 
@@ -363,21 +370,55 @@
                 });
             });
 
-            document.querySelectorAll('.enlarge-image').forEach(function(image) {
+            /*
+             * Enlarge content (image) in the modal
+             */
+            document.querySelectorAll('.enlarge-content').forEach(function(image) {
                 image.addEventListener('click', function() {
                     var dataTitle = image.getAttribute('data-title');
                     var dataSrc = image.getAttribute('data-src');
 
-                    document.querySelector('#documentDetails .modal-header .modal-title').innerHTML = dataTitle;
-                    document.querySelector('#documentDetails .modal-body img').setAttribute('src', dataSrc);
-                    document.querySelector('#documentDetails .modal-body img').setAttribute('alt', dataTitle);
+                    document.querySelector('#enlargeContent .modal-header .modal-title').innerHTML = dataTitle;
+                    document.querySelector('#enlargeContent .modal-body img').setAttribute('src', dataSrc);
+                    document.querySelector('#enlargeContent .modal-body img').setAttribute('alt', dataTitle);
 
-                    var modal = new bootstrap.Modal(document.getElementById('documentDetails'));
+                    var modal = new bootstrap.Modal(document.getElementById('enlargeContent'));
 
                     modal.show();
                 });
             });
+        </script>
 
+@if (Route::is('vehicle.show'))
+        <script type="text/javascript">
+            /*
+             * Instance of Dropzone object to upload image data 
+             */
+            new Dropzone('#image-upload', {
+                url: "{{ route('vehicle.upload_image', ['id' => $vehicle['id']]) }}",
+                method: "POST",
+                paramName: "file",
+                thumbnailWidth: 200,
+                maxFilesize: 10,
+                acceptedFiles: '.jpg, .jpeg, .png, .gif, .bmp, .webp, .mp4, .avi, .ogg',
+                headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                sending: function(file, xhr, formData) {
+                    console.log("Fichier envoyé:", file);
+                },
+                success: function(file, response) {
+                    console.log(response);
+                },
+                error: function(file, response) {
+                    console.error(response);
+                }
+            });
+        </script>
+@endif
+
+        <script type="text/javascript">
+            /*
+             * Injected data from Laravel
+             */
             window.Laravel = {
                 lang: {
                     upload: {

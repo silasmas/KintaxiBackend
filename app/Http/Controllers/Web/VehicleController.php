@@ -514,7 +514,6 @@ class VehicleController extends Controller
         if ($request->hasFile('images_urls') != null) {
             foreach ($request->file('images_urls') as $key => $image):
                 $file_url = 'images/vehicles/' . $vehicle->id . '/' . Str::random(50) . '.' . $image->extension();
-
                 // Upload file
                 $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
 
@@ -529,7 +528,6 @@ class VehicleController extends Controller
         if ($request->hasFile('image_url') != null) {
             $image = $request->file('image_url');
             $file_url = 'images/vehicles/' . $vehicle->id . '/' . Str::random(50) . '.' . $image->extension();
-
             // Upload file
             $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
 
@@ -647,6 +645,33 @@ class VehicleController extends Controller
         }
 
         return redirect()->to('/vehicle/' . $entity)->with('success_message', __('miscellaneous.data_updated'));
+    }
+
+    /**
+     * POST: Upload vehicle image
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function uploadImage(Request $request, $id)
+    {
+        $vehicle = Vehicle::find($id);
+
+        if (!$request->hasFile('file') || !$request->file('file')->isValid()) {
+            return response()->json(['success' => false, 'message' => __('notifications.process_failed')]);
+        }
+
+        $image = $request->file('file');
+        $file_url = 'images/vehicles/' . $vehicle->id . '/' . Str::random(50) . '.' . $image->extension();
+        // Upload file
+        $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
+
+        File::create([
+            'file_url' => $dir_result,
+            'vehicle_id' => $vehicle->id
+        ]);
+
+        return response()->json(['success' => true, 'message' => __('notifications.registered_data'), 'data' => $dir_result]);
     }
 
     // ==================================== HTTP DELETE METHODS ====================================

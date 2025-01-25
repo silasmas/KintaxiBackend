@@ -693,13 +693,13 @@
         <!-- Start crop other user image -->
 @endif
 
-@if (Route::is('role.entity.show'))
+@if (Route::is('role.entity.show') || Route::is('vehicle.show'))
         <!-- Start crop avatar image -->
-        <div class="modal fade" id="documentDetails" tabindex="-1" aria-labelledby="documentDetailsLabel" aria-hidden="true">
+        <div class="modal fade" id="enlargeContent" tabindex="-1" aria-labelledby="enlargeContentLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-light">
-                        <h5 class="modal-title" id="documentDetailsLabel">Title</h5>
+                        <h5 class="modal-title" id="enlargeContentLabel">Title</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">

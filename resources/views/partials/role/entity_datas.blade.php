@@ -398,7 +398,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                         <div class="bg-image hover-overlay">
                                                             <img src="{{ $user['user_id_card']->file_url }}" alt="" class="img-fluid img-thumbnail rounded">
                                                             <div class="mask rounded" style="background-color: rgba(5, 5, 5, 0.5);">
-                                                                <a role="button" data-title="@lang('miscellaneous.account.identity_document.choose_type.identity_card')" data-src="{{ $user['user_id_card']->file_url }}" class="d-flex h-100 justify-content-center align-items-center enlarge-image">
+                                                                <a role="button" data-title="@lang('miscellaneous.account.identity_document.choose_type.identity_card')" data-src="{{ $user['user_id_card']->file_url }}" class="d-flex h-100 justify-content-center align-items-center enlarge-content">
                                                                     <i class="bi bi-zoom-in text-white fs-4"></i>
                                                                 </a>
                                                             </div>
@@ -445,7 +445,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                         <div class="bg-image hover-overlay">
                                                             <img src="{{ $user['user_driving_license']->file_url }}" alt="" class="img-fluid img-thumbnail rounded">
                                                             <div class="mask rounded" style="background-color: rgba(5, 5, 5, 0.5);">
-                                                                <a role="button" data-title="@lang('miscellaneous.account.identity_document.choose_type.driving_license')" data-src="{{ $user['user_driving_license']->file_url }}" class="d-flex h-100 justify-content-center align-items-center enlarge-image">
+                                                                <a role="button" data-title="@lang('miscellaneous.account.identity_document.choose_type.driving_license')" data-src="{{ $user['user_driving_license']->file_url }}" class="d-flex h-100 justify-content-center align-items-center enlarge-content">
                                                                     <i class="bi bi-zoom-in text-white fs-4"></i>
                                                                 </a>
                                                             </div>
@@ -492,7 +492,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                         <div class="bg-image hover-overlay">
                                                             <img src="{{ $user['user_vehicle_registration']->file_url }}" alt="" class="img-fluid img-thumbnail rounded">
                                                             <div class="mask rounded" style="background-color: rgba(5, 5, 5, 0.5);">
-                                                                <a role="button" data-title="@lang('miscellaneous.account.identity_document.choose_type.vehicle_registration')" data-src="{{ $user['user_vehicle_registration']->file_url }}" class="d-flex h-100 justify-content-center align-items-center enlarge-image">
+                                                                <a role="button" data-title="@lang('miscellaneous.account.identity_document.choose_type.vehicle_registration')" data-src="{{ $user['user_vehicle_registration']->file_url }}" class="d-flex h-100 justify-content-center align-items-center enlarge-content">
                                                                     <i class="bi bi-zoom-in text-white fs-4"></i>
                                                                 </a>
                                                             </div>
@@ -539,7 +539,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                         <div class="bg-image hover-overlay">
                                                             <img src="{{ $user['user_vehicle_insurance']->file_url }}" alt="" class="img-fluid img-thumbnail rounded">
                                                             <div class="mask rounded" style="background-color: rgba(5, 5, 5, 0.5);">
-                                                                <a role="button" data-title="@lang('miscellaneous.account.identity_document.choose_type.vehicle_insurance')" data-src="{{ $user['user_vehicle_insurance']->file_url }}" class="d-flex h-100 justify-content-center align-items-center enlarge-image">
+                                                                <a role="button" data-title="@lang('miscellaneous.account.identity_document.choose_type.vehicle_insurance')" data-src="{{ $user['user_vehicle_insurance']->file_url }}" class="d-flex h-100 justify-content-center align-items-center enlarge-content">
                                                                     <i class="bi bi-zoom-in text-white fs-4"></i>
                                                                 </a>
                                                             </div>

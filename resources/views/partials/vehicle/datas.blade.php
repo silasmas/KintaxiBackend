@@ -335,8 +335,20 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6 mx-auto">
-                                    <div class="card card-body text-center">
+                                    <div class="card card-body">
 
+                                    </div>
+                                    <div class="card mt-3">
+                                        <div class="card-header text-center">
+                                            <h4 class="mb-0 card-title fw-normal">@lang('miscellaneous.upload.upload_image')</h4>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <form action="{{ route('vehicle.upload_image', ['id' => $vehicle['id']]) }}" method="post" enctype="multipart/form-data" id="image-upload" class="dropzone">
+    @csrf
+                                                <div class="dz-message" data-dz-message><span>@lang('miscellaneous.upload.click_drop')</span></div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
