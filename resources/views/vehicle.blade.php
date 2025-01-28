@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page_title' => !empty($entity) ? __('miscellaneous.menu.vehicle.' . $entity) : __('miscellaneous.menu.vehicle.all') ])
+@extends('layouts.app', ['page_title' => !empty($entity) ? __('miscellaneous.menu.vehicle.' . $entity) : (Route::is('vehicle.home') ? __('miscellaneous.menu.vehicle.all') : __('miscellaneous.admin.vehicle.details')) ])
 
 @section('app-content')
 

@@ -49,6 +49,8 @@
             .imagePreview img { width: 100%; height: 100%; object-fit: cover; }
             .remove-btn { position: absolute; top: 5px; right: 5px; background-color: rgba(100, 0, 0, 0.5); color: white; width: 25px; height: 25px; padding: 0; border: none; border-radius: 50%; cursor: pointer; transition: .5s all ease }
             .remove-btn:hover { background-color: rgba(30, 0, 0, 0.5); }
+            #vehicleImage { height: 150px; }
+            #vehicleImage img { object-fit: cover; }
             /* Miscellaneous */
             .align-middle { vertical-align: -4px!important; }
             .title-1 { text-transform: inherit!important; }

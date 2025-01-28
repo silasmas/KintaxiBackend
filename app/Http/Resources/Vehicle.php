@@ -22,8 +22,7 @@ class Vehicle extends JsonResource
     {
         $vehicle_features_request = ModelsVehicleFeature::where('vehicle_id', $this->id)->first();
         $vehicle_features = new VehicleFeature($vehicle_features_request);
-        $vehicle_images_request = ModelsFile::where('vehicle_id', $this->id)->get();
-        $vehicle_images = new File($vehicle_images_request);
+        $vehicle_images = ModelsFile::where('vehicle_id', $this->id)->get();
 
         return [
             'id' => $this->id,

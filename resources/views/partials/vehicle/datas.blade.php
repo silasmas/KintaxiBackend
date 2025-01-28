@@ -341,10 +341,10 @@
                                         </div>
 
                                         <div class="card-body">
-                                            <form action="{{ route('vehicle.show', ['id' => $vehicle['id']]) }}" method="post" enctype="multipart/form-data" id="image-upload">
+                                            <form action="{{ route('vehicle.show', ['id' => $vehicle['id']]) }}" method="POST" enctype="multipart/form-data" id="image-upload">
     @csrf
                                                 <div id="imagePreviewContainer" class="d-none mb-3"></div>
-                                                <input type="file" name="images_urls" id="imageInput" class="form-control" multiple accept="image/*">
+                                                <input type="file" name="images_urls[]" id="imageInput" class="form-control" multiple accept="image/*">
                                                 <button type="submit" class="btn btn-block btn-primary mt-3 rounded-pill">@lang('miscellaneous.register')</button>
                                             </form>
                                         </div>
@@ -352,15 +352,14 @@
 
                                     <div class="card card-body mt-3">
                                         <h3>{{ $vehicle['mark'] . ' ' . $vehicle['model'] }}</h3>
-                                        <h2>{{ $vehicle['vehicle_images']->count() }}</h2>
     @if ($vehicle['vehicle_images']->count() > 0)
                                         <div class="row">
         @foreach ($vehicle['vehicle_images'] as $image)
                                             <div class="col-sm-6">
-                                                <div class="bg-image hover-overlay">
+                                                <div id="vehicleImage" class="bg-image hover-overlay">
                                                     <img src="{{ $image->file_url }}" alt="" class="img-fluid img-thumbnail rounded">
                                                     <div class="mask rounded" style="background-color: rgba(5, 5, 5, 0.5);">
-                                                        <a role="button" data-title="@lang('miscellaneous.account.identity_document.choose_type.vehicle_insurance')" data-src="{{ $image->file_url }}" class="d-flex h-100 justify-content-center align-items-center enlarge-content">
+                                                        <a role="button" data-title="{{ $vehicle['mark'] . ' ' . $vehicle['model'] }}" data-src="{{ $image->file_url }}" class="d-flex h-100 justify-content-center align-items-center enlarge-content">
                                                             <i class="bi bi-zoom-in text-white fs-4"></i>
                                                         </a>
                                                     </div>

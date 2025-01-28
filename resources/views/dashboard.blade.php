@@ -129,7 +129,7 @@
                                                         </div>
                                                     </td>
                                                     <td class="align-middle">
-                                                        <a href="{{ route('vehicle.show', ['id' => 1]) }}">
+                                                        <a href="{{ route('vehicle.show', ['id' => $vehicle['id']]) }}">
                                                             @lang('miscellaneous.details') <i class="fa fa-angle-double-right"></i>
                                                         </a>
                                                     </td>

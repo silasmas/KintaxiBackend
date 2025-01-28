@@ -17,6 +17,7 @@ use App\Models\VehicleFeature;
 use App\Models\VehicleShape;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -111,6 +112,7 @@ class VehicleController extends Controller
         $statuses_collection = Status::orderByDesc('status_name')->get();
         $statuses_data = ResourcesStatus::collection($statuses_collection)->toArray(request());
 
+        // dd($vehicle_data);
         return view('vehicle', [
             'vehicle' => $vehicle_data,
             'vehicle_shapes' => $vehicle_shapes_data,
@@ -511,31 +513,23 @@ class VehicleController extends Controller
             ]);
         }
 
-        if ($request->hasFile('images_urls') != null) {
-            foreach ($request->file('images_urls') as $key => $image):
-                $file_url = 'images/vehicles/' . $vehicle->id . '/' . Str::random(50) . '.' . $image->extension();
-                // Upload file
-                $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
+        if ($request->hasFile('images_urls')) {
+            $images = $request->file('images_urls');
 
-                File::create([
-                    'file_name' => trim($request->files_names[$key]) != null ? $request->files_names[$key] : null,
-                    'file_url' => $dir_result,
-                    'vehicle_id' => $vehicle->id
-                ]);
-            endforeach;
-        }
+            foreach ($images as $image) {
+                if ($image instanceof UploadedFile) {
+                    $file_url = 'images/vehicles/' . $vehicle->id . '/' . Str::random(50) . '.' . $image->getClientOriginalExtension();
+                    // Upload file
+                    $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
 
-        if ($request->hasFile('image_url') != null) {
-            $image = $request->file('image_url');
-            $file_url = 'images/vehicles/' . $vehicle->id . '/' . Str::random(50) . '.' . $image->extension();
-            // Upload file
-            $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
-
-            File::create([
-                'file_name' => trim($request->file_name) != null ? $request->file_name : null,
-                'file_url' => $dir_result,
-                'vehicle_id' => $vehicle->id
-            ]);
+                    File::create([
+                        'created_by' => Auth::user()->id,
+                        'status_id' => $this::$activated_status->id,
+                        'file_url' => $dir_result,
+                        'vehicle_id' => $vehicle->id
+                    ]);
+                }
+            }
         }
 
         return redirect()->back()->with('success_message', __('miscellaneous.data_updated'));
