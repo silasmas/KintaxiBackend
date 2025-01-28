@@ -337,7 +337,7 @@
                                 <div class="col-sm-6 mx-auto">
                                     <div class="card">
                                         <div class="card-header text-center">
-                                            <h4 class="mb-0 card-title fw-normal">@lang('miscellaneous.upload.upload_image')</h4>
+                                            <h3 class="card-title m-0 text-center">@lang('miscellaneous.upload.upload_image')</h3>
                                         </div>
 
                                         <div class="card-body">
@@ -350,24 +350,173 @@
                                         </div>
                                     </div>
 
-                                    <div class="card card-body mt-3">
-                                        <h3>{{ $vehicle['mark'] . ' ' . $vehicle['model'] }}</h3>
-    @if ($vehicle['vehicle_images']->count() > 0)
-                                        <div class="row">
-        @foreach ($vehicle['vehicle_images'] as $image)
-                                            <div class="col-sm-6">
-                                                <div id="vehicleImage" class="bg-image hover-overlay">
-                                                    <img src="{{ $image->file_url }}" alt="" class="img-fluid img-thumbnail rounded">
-                                                    <div class="mask rounded" style="background-color: rgba(5, 5, 5, 0.5);">
-                                                        <a role="button" data-title="{{ $vehicle['mark'] . ' ' . $vehicle['model'] }}" data-src="{{ $image->file_url }}" class="d-flex h-100 justify-content-center align-items-center enlarge-content">
-                                                            <i class="bi bi-zoom-in text-white fs-4"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-        @endforeach
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title m-0 text-center">@lang('miscellaneous.admin.vehicle.details')</h3>
                                         </div>
+                                        <div class="card-body pt-2">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <!-- Mark -->
+                                                    <tr>
+                                                        <td><strong>@lang('miscellaneous.admin.vehicle.mark')</strong></td>
+                                                        <td>@lang('miscellaneous.colon_after_word')</td>
+                                                        <td>{{ !empty($vehicle['mark']) ? $vehicle['mark'] : '- - - - - -' }}</td>
+                                                    </tr>
+
+                                                    <!-- Model -->
+                                                    <tr>
+                                                        <td><strong>@lang('miscellaneous.admin.vehicle.model')</strong></td>
+                                                        <td>@lang('miscellaneous.colon_after_word')</td>
+                                                        <td>{{ !empty($vehicle['model']) ? $vehicle['model'] : '- - - - - -' }}</td>
+                                                    </tr>
+
+                                                    <!-- Color -->
+                                                    <tr>
+                                                        <td><strong>@lang('miscellaneous.admin.vehicle.color')</strong></td>
+                                                        <td>@lang('miscellaneous.colon_after_word')</td>
+                                                        <td>{{ !empty($vehicle['color']) ? $vehicle['color'] : '- - - - - -' }}</td>
+                                                    </tr>
+
+                                                    <!-- Registration number -->
+                                                    <tr>
+                                                        <td><strong>@lang('miscellaneous.admin.vehicle.registration_number')</strong></td>
+                                                        <td>@lang('miscellaneous.colon_after_word')</td>
+                                                        <td>{{ !empty($vehicle['registration_number']) ? $vehicle['registration_number'] : '- - - - - -' }}</td>
+                                                    </tr>
+
+                                                    <!-- VIN number -->
+                                                    <tr>
+                                                        <td><strong>@lang('miscellaneous.admin.vehicle.vin_number')</strong></td>
+                                                        <td>@lang('miscellaneous.colon_after_word')</td>
+                                                        <td>{{ !empty($vehicle['vin_number']) ? $vehicle['vin_number'] : '- - - - - -' }}</td>
+                                                    </tr>
+
+                                                    <!-- Manufacture year -->
+                                                    <tr>
+                                                        <td><strong>@lang('miscellaneous.admin.vehicle.manufacture_year')</strong></td>
+                                                        <td>@lang('miscellaneous.colon_after_word')</td>
+                                                        <td>{{ !empty($vehicle['manufacture_year']) ? $vehicle['manufacture_year'] : '- - - - - -' }}</td>
+                                                    </tr>
+
+                                                    <!-- Fuel type -->
+                                                    <tr>
+                                                        <td><strong>@lang('miscellaneous.admin.vehicle.fuel_type.label')</strong></td>
+                                                        <td>@lang('miscellaneous.colon_after_word')</td>
+                                                        <td>{{ !empty($vehicle['fuel_type']) ? $vehicle['fuel_type'] : '- - - - - -' }}</td>
+                                                    </tr>
+
+                                                    <!-- Cylinder capacity -->
+                                                    <tr>
+                                                        <td><strong>@lang('miscellaneous.admin.vehicle.cylinder_capacity')</strong></td>
+                                                        <td>@lang('miscellaneous.colon_after_word')</td>
+                                                        <td>{{ !empty($vehicle['cylinder_capacity']) ? $vehicle['cylinder_capacity'] : '- - - - - -' }}</td>
+                                                    </tr>
+
+                                                    <!-- Engine power -->
+                                                    <tr>
+                                                        <td><strong>@lang('miscellaneous.admin.vehicle.engine_power')</strong></td>
+                                                        <td>@lang('miscellaneous.colon_after_word')</td>
+                                                        <td>{{ !empty($vehicle['engine_power']) ? $vehicle['engine_power'] : '- - - - - -' }}</td>
+                                                    </tr>
+
+                                                    <!-- Number of places -->
+                                                    <tr>
+                                                        <td><strong>@lang('miscellaneous.admin.vehicle.nb_places')</strong></td>
+                                                        <td>@lang('miscellaneous.colon_after_word')</td>
+                                                        <td>{{ !empty($vehicle['nb_places']) ? $vehicle['nb_places'] : '- - - - - -' }}</td>
+                                                    </tr>
+
+                                                    <!-- Shape -->
+                                                    <tr>
+                                                        <td><strong>@lang('miscellaneous.admin.vehicle.shape.title')</strong></td>
+                                                        <td>@lang('miscellaneous.colon_after_word')</td>
+                                                        <td>{{ !empty($vehicle['shape']->shape_name) ? $vehicle['shape']->shape_name : '- - - - - -' }}</td>
+                                                    </tr>
+
+                                                    <!-- Category -->
+                                                    <tr>
+                                                        <td><strong>@lang('miscellaneous.admin.vehicle.category.title')</strong></td>
+                                                        <td>@lang('miscellaneous.colon_after_word')</td>
+                                                        <td>{{ !empty($vehicle['category']->category_name) ? $vehicle['category']->category_name : '- - - - - -' }}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+
+                                            <h4 class="card-title mt-3 mb-0 text-center text-uppercase fw-normal">@lang('miscellaneous.admin.vehicle.features.title')</h4>
+                                            <h4 class="text-center">
+    @if ($vehicle['vehicle_features']->is_clean == 1)
+                                                <!-- Is clean -->
+                                                <div class="badge badge-primary me-2 mt-3 pb-2 text-primary fw-semibold">@lang('miscellaneous.admin.vehicle.features.is_clean')</div>
     @endif
+    @if ($vehicle['vehicle_features']->has_helmet == 1)
+                                                <!-- Has helmet -->
+                                                <div class="badge badge-primary me-2 mt-3 pb-2 text-primary fw-semibold">@lang('miscellaneous.admin.vehicle.features.has_helmet')</div>
+    @endif
+    @if ($vehicle['vehicle_features']->has_airbags == 1)
+                                                <!-- Has airbags -->
+                                                <div class="badge badge-primary me-2 mt-3 pb-2 text-primary fw-semibold">@lang('miscellaneous.admin.vehicle.features.has_airbags')</div>
+    @endif
+    @if ($vehicle['vehicle_features']->has_seat_belt == 1)
+                                                <!-- Has seat belt -->
+                                                <div class="badge badge-primary me-2 mt-3 pb-2 text-primary fw-semibold">@lang('miscellaneous.admin.vehicle.features.has_seat_belt')</div>
+    @endif
+    @if ($vehicle['vehicle_features']->has_ergonomic_seat == 1)
+                                                <!-- Has ergonomic seat -->
+                                                <div class="badge badge-primary me-2 mt-3 pb-2 text-primary fw-semibold">@lang('miscellaneous.admin.vehicle.features.has_ergonomic_seat')</div>
+    @endif
+    @if ($vehicle['vehicle_features']->has_air_conditioning == 1)
+                                                <!-- Has air conditioning -->
+                                                <div class="badge badge-primary me-2 mt-3 pb-2 text-primary fw-semibold">@lang('miscellaneous.admin.vehicle.features.has_air_conditioning')</div>
+    @endif
+    @if ($vehicle['vehicle_features']->has_soundproofing == 1)
+                                                <!-- Has soundproofing -->
+                                                <div class="badge badge-primary me-2 mt-3 pb-2 text-primary fw-semibold">@lang('miscellaneous.admin.vehicle.features.has_soundproofing')</div>
+    @endif
+    @if ($vehicle['vehicle_features']->has_sufficient_space == 1)
+                                                <!-- Has sufficient space -->
+                                                <div class="badge badge-primary me-2 mt-3 pb-2 text-primary fw-semibold">@lang('miscellaneous.admin.vehicle.features.has_sufficient_space')</div>
+    @endif
+    @if ($vehicle['vehicle_features']->has_quality_equipment == 1)
+                                                <!-- Has quality equipment -->
+                                                <div class="badge badge-primary me-2 mt-3 pb-2 text-primary fw-semibold">@lang('miscellaneous.admin.vehicle.features.has_quality_equipment')</div>
+    @endif
+    @if ($vehicle['vehicle_features']->has_on_board_technologies == 1)
+                                                <!-- Has on_board technologies -->
+                                                <div class="badge badge-primary me-2 mt-3 pb-2 text-primary fw-semibold">@lang('miscellaneous.admin.vehicle.features.has_on_board_technologies')</div>
+    @endif
+    @if ($vehicle['vehicle_features']->has_interior_lighting == 1)
+                                                <!-- Has interior lighting -->
+                                                <div class="badge badge-primary me-2 mt-3 pb-2 text-primary fw-semibold">@lang('miscellaneous.admin.vehicle.features.has_interior_lighting')</div>
+    @endif
+    @if ($vehicle['vehicle_features']->has_practical_accessories == 1)
+                                                <!-- Has practical accessories -->
+                                                <div class="badge badge-primary me-2 mt-3 pb-2 text-primary fw-semibold">@lang('miscellaneous.admin.vehicle.features.has_practical_accessories')</div>
+    @endif
+    @if ($vehicle['vehicle_features']->has_driving_assist_system == 1)
+                                                <!-- Has driving assist system -->
+                                                <div class="badge badge-primary me-2 mt-3 pb-2 text-primary fw-semibold">@lang('miscellaneous.admin.vehicle.features.has_driving_assist_system')</div>
+    @endif
+                                            </h4>
+
+    @if ($vehicle['vehicle_images']->count() > 0)
+                                            <div class="row g-3 mt-2">
+        @foreach ($vehicle['vehicle_images'] as $image)
+                                                <div class="col-sm-6">
+                                                    <div id="vehicleImage" class="bg-image hover-overlay rounded-4">
+                                                        <img src="{{ $image->file_url }}" alt="" class="img-fluid rounded-4">
+                                                        <div class="mask rounded-4" style="background-color: rgba(5, 5, 5, 0.5);">
+                                                            <a role="button" data-title="{{ $vehicle['mark'] . ' ' . $vehicle['model'] }}" data-src="{{ $image->file_url }}" class="d-flex h-100 justify-content-center align-items-center enlarge-content">
+                                                                <i class="bi bi-zoom-in text-white fs-4"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="{{ route('vehicle.entity.destroy', ['entity' => 'image', 'id' => $image->id]) }}" class="btn btn-sm btn-block"><i class="bi bi-trash me-2"></i>@lang('miscellaneous.delete')</a>
+                                                </div>
+        @endforeach
+                                            </div>
+    @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>

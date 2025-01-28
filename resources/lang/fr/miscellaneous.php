@@ -75,7 +75,7 @@ return [
     'upload' => [
         'use_camera' => 'Utiliser caméra',
         'upload_document' => 'Uploader document',
-        'upload_image' => 'Uploader image (Photo/Video)',
+        'upload_image' => 'Uploader image',
         'register_audio' => 'Enregistrer un audio',
         'choose_existing_file' => 'Choisir fichier existant',
         'click' => 'Cliquez ici pour choisir des fichiers',

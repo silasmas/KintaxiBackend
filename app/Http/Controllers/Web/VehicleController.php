@@ -19,6 +19,7 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File as FacadesFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -693,6 +694,19 @@ class VehicleController extends Controller
             if (Storage::exists($directory)) {
                 Storage::deleteDirectory($directory);
             }
+        }
+
+        if ($entity == 'image') {
+            $file = File::find($id);
+            $filePath = $_SERVER['DOCUMENT_ROOT'] . $file->file_url;
+            $directory = $_SERVER['DOCUMENT_ROOT'] . explode('/', $file->file_url)[3];
+
+            dd($filePath);
+            // $file->delete();
+
+            // if (FacadesFile::exists($filePath)) {
+            //     FacadesFile::delete($filePath);
+            // }
         }
 
         return redirect()->back()->with('success_message', __('miscellaneous.delete_success'));
