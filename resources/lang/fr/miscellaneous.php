@@ -78,6 +78,7 @@ return [
         'upload_image' => 'Uploader image (Photo/Video)',
         'register_audio' => 'Enregistrer un audio',
         'choose_existing_file' => 'Choisir fichier existant',
+        'click' => 'Cliquez ici pour choisir des fichiers',
         'click_drop' => 'Cliquez ici ou déposez les fichiers ici',
         'image_error' => 'Veuillez sélectionner uniquement les images',
         'document_error' => 'Veuillez sélectionner uniquement les documents'

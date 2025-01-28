@@ -22,13 +22,13 @@ class User extends JsonResource
     public function toArray(Request $request): array
     {
         $user_country = !empty($this->country_code) ? ModelsCountry::where('code', $this->country_code)->first() : null;
-        $user_id_card_request = ModelsDocument::where([['user_id', $this->id], ['type', 'id_card'], ])->first();
+        $user_id_card_request = ModelsDocument::where([['user_id', $this->id], ['type', 'id_card']])->first();
         $user_id_card = new Document($user_id_card_request);
-        $user_driving_license_request = ModelsDocument::where([['user_id', $this->id], ['type', 'driving_license'], ])->first();
+        $user_driving_license_request = ModelsDocument::where([['user_id', $this->id], ['type', 'driving_license']])->first();
         $user_driving_license = new Document($user_driving_license_request);
-        $user_vehicle_registration_request = ModelsDocument::where([['user_id', $this->id], ['type', 'vehicle_registration'], ])->first();
+        $user_vehicle_registration_request = ModelsDocument::where([['user_id', $this->id], ['type', 'vehicle_registration']])->first();
         $user_vehicle_registration = new Document($user_vehicle_registration_request);
-        $user_vehicle_insurance_request = ModelsDocument::where([['user_id', $this->id], ['type', 'vehicle_insurance'], ])->first();
+        $user_vehicle_insurance_request = ModelsDocument::where([['user_id', $this->id], ['type', 'vehicle_insurance']])->first();
         $user_vehicle_insurance = new Document($user_vehicle_insurance_request);
         $user_vehicles_request = ModelsVehicle::where('user_id', $this->id)->orderByDesc('created_at')->get();
         $user_vehicles_resource = Vehicle::collection($user_vehicles_request);
@@ -62,10 +62,10 @@ class User extends JsonResource
             'activation_otp' => $this->activation_otp,
             'role' => UserRole::make($this->role),
             'status' => Status::make($this->status),
-            'user_id_card' => !empty($user_id_card) ? $user_id_card : null,
-            'user_driving_license' => !empty($user_driving_license) ? $user_driving_license : null,
-            'user_vehicle_registration' => !empty($user_vehicle_registration) ? $user_vehicle_registration : null,
-            'user_vehicle_insurance' => !empty($user_vehicle_insurance) ? $user_vehicle_insurance : null,
+            'user_id_card' => $user_id_card,
+            'user_driving_license' => $user_driving_license,
+            'user_vehicle_registration' => $user_vehicle_registration,
+            'user_vehicle_insurance' => $user_vehicle_insurance,
             'user_vehicles' => $user_vehicles,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s')

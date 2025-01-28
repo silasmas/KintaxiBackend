@@ -43,6 +43,13 @@
         <link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}">
 
         <style>
+            /* Image preview */
+            #imagePreviewContainer { display: flex; flex-wrap: wrap; gap: 10px; }
+            .imagePreview { position: relative; width: 100px; height: 100px; overflow: hidden; border: 1px solid #ccc; border-radius: 8px; }
+            .imagePreview img { width: 100%; height: 100%; object-fit: cover; }
+            .remove-btn { position: absolute; top: 5px; right: 5px; background-color: rgba(100, 0, 0, 0.5); color: white; width: 25px; height: 25px; padding: 0; border: none; border-radius: 50%; cursor: pointer; transition: .5s all ease }
+            .remove-btn:hover { background-color: rgba(30, 0, 0, 0.5); }
+            /* Miscellaneous */
             .align-middle { vertical-align: -4px!important; }
             .title-1 { text-transform: inherit!important; }
             @media (min-width: 900px) {
@@ -387,35 +394,76 @@
                     modal.show();
                 });
             });
-        </script>
 
-@if (Route::is('vehicle.show'))
-        <script type="text/javascript">
             /*
-             * Instance of Dropzone object to upload image data 
+             * Image preview from input:file multiple
              */
-            new Dropzone('#image-upload', {
-                url: "{{ route('vehicle.upload_image', ['id' => $vehicle['id']]) }}",
-                method: "POST",
-                paramName: "file",
-                thumbnailWidth: 200,
-                maxFilesize: 10,
-                acceptedFiles: '.jpg, .jpeg, .png, .gif, .bmp, .webp, .mp4, .avi, .ogg',
-                headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-                sending: function(file, xhr, formData) {
-                    console.log("Fichier envoyé:", file);
-                },
-                success: function(file, response) {
-                    console.log(response);
-                },
-                error: function(file, response) {
-                    console.error(response);
-                }
-            });
-        </script>
-@endif
+            let selectedFiles = []; // Table to maintain the list of selected files
 
-        <script type="text/javascript">
+            document.getElementById('imageInput').addEventListener('change', function(event) {
+                const newFiles = event.target.files;
+                const previewContainer = document.getElementById('imagePreviewContainer');
+
+                // Add new files to the existing list (without deleting old ones)
+                selectedFiles = [...selectedFiles, ...Array.from(newFiles)];
+
+                // Show previews for all files (old and new)
+                previewContainer.innerHTML = ''; // Clear existing previews to update the list
+
+                previewContainer.classList.remove('d-none');
+
+                selectedFiles.forEach((file, index) => {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        const imagePreview = document.createElement('div');
+
+                        imagePreview.classList.add('imagePreview');
+            
+                        const img = document.createElement('img');
+
+                        img.src = e.target.result;
+
+                        const removeBtn = document.createElement('button');
+
+                        removeBtn.classList.add('remove-btn');
+                        removeBtn.innerHTML = '<i class="bi bi-x-lg"></i>';
+
+                        removeBtn.addEventListener('click', () => {
+                            // Delete the file from the table and update the entry
+                            selectedFiles.splice(index, 1); // Remove file from table
+                            imagePreview.remove(); // Remove DOM preview
+                            updateInput(); // Update the input with the new list of files
+
+                            // If the file list is empty, reset the input
+                            if (selectedFiles.length === 0 || !previewContainer.hasChildNodes()) {
+                                document.getElementById('imageInput').value = ''; // Reset the input
+
+                                previewContainer.classList.add('d-none');
+                            }
+                        });
+
+                        imagePreview.appendChild(img);
+                        imagePreview.appendChild(removeBtn);
+                        previewContainer.appendChild(imagePreview);
+                    };
+                    reader.readAsDataURL(file);
+                });
+
+                updateInput(); // Update the entry to reflect the list of files
+            });
+
+            // Function to update the input with the list of selected files
+            function updateInput() {
+                const dataTransfer = new DataTransfer();
+
+                selectedFiles.forEach(file => {
+                    dataTransfer.items.add(file);
+                });
+
+                document.getElementById('imageInput').files = dataTransfer.files;
+            }
+
             /*
              * Injected data from Laravel
              */

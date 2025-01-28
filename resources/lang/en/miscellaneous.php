@@ -78,6 +78,7 @@ return [
         'upload_image' => 'Upload image (Photo/Video)',
         'register_audio' => 'Register an audio',
         'choose_existing_file' => 'Choose existing file',
+        'click' => 'Click here to choose files',
         'click_drop' => 'Click here or drop files here',
         'image_error' => 'Please select images only',
         'document_error' => 'Please select only documents'

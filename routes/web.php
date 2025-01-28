@@ -45,7 +45,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/vehicle/{entity}', 'App\Http\Controllers\Web\VehicleController@storeEntity');
     Route::get('/vehicle/{entity}/{id}', 'App\Http\Controllers\Web\VehicleController@showEntity')->whereNumber('id')->name('vehicle.entity.show');
     Route::post('/vehicle/{entity}/{id}', 'App\Http\Controllers\Web\VehicleController@updateEntity')->whereNumber('id');
-    Route::post('/vehicle/upload-image/{id}', 'App\Http\Controllers\Web\VehicleController@uploadImage')->whereNumber('id')->name('vehicle.upload_image');
     Route::get('/vehicle/delete/{entity}/{id}', 'App\Http\Controllers\Web\VehicleController@destroyEntity')->whereNumber('id')->name('vehicle.entity.destroy');
     Route::get('/role', 'App\Http\Controllers\Web\RoleController@index')->name('role.home');
     Route::post('/role', 'App\Http\Controllers\Web\RoleController@store');

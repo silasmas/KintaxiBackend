@@ -335,20 +335,40 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6 mx-auto">
-                                    <div class="card card-body">
-
-                                    </div>
-                                    <div class="card mt-3">
+                                    <div class="card">
                                         <div class="card-header text-center">
                                             <h4 class="mb-0 card-title fw-normal">@lang('miscellaneous.upload.upload_image')</h4>
                                         </div>
 
                                         <div class="card-body">
-                                            <form action="{{ route('vehicle.upload_image', ['id' => $vehicle['id']]) }}" method="post" enctype="multipart/form-data" id="image-upload" class="dropzone">
+                                            <form action="{{ route('vehicle.show', ['id' => $vehicle['id']]) }}" method="post" enctype="multipart/form-data" id="image-upload">
     @csrf
-                                                <div class="dz-message" data-dz-message><span>@lang('miscellaneous.upload.click_drop')</span></div>
+                                                <div id="imagePreviewContainer" class="d-none mb-3"></div>
+                                                <input type="file" name="images_urls" id="imageInput" class="form-control" multiple accept="image/*">
+                                                <button type="submit" class="btn btn-block btn-primary mt-3 rounded-pill">@lang('miscellaneous.register')</button>
                                             </form>
                                         </div>
+                                    </div>
+
+                                    <div class="card card-body mt-3">
+                                        <h3>{{ $vehicle['mark'] . ' ' . $vehicle['model'] }}</h3>
+                                        <h2>{{ $vehicle['vehicle_images']->count() }}</h2>
+    @if ($vehicle['vehicle_images']->count() > 0)
+                                        <div class="row">
+        @foreach ($vehicle['vehicle_images'] as $image)
+                                            <div class="col-sm-6">
+                                                <div class="bg-image hover-overlay">
+                                                    <img src="{{ $image->file_url }}" alt="" class="img-fluid img-thumbnail rounded">
+                                                    <div class="mask rounded" style="background-color: rgba(5, 5, 5, 0.5);">
+                                                        <a role="button" data-title="@lang('miscellaneous.account.identity_document.choose_type.vehicle_insurance')" data-src="{{ $image->file_url }}" class="d-flex h-100 justify-content-center align-items-center enlarge-content">
+                                                            <i class="bi bi-zoom-in text-white fs-4"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+        @endforeach
+                                        </div>
+    @endif
                                     </div>
                                 </div>
                             </div>
