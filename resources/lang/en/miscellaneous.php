@@ -459,6 +459,23 @@ return [
             ],
         ],
 
+        // Payment gateway
+        'payment-gateway' => [
+            'details' => 'Gateway details',
+            'link' => 'Manage gateways',
+            'add' => 'Add a gateway',
+            'edit' => 'Edit the gateway',
+            'search' => 'Search a gateway',
+            'list' => 'Gateways list',
+            'data' => [
+                'gateway_name' => 'Gateway name',
+                'status' => [
+                    'label' => 'Status',
+                    'choose' => 'Choose status',
+                ],
+            ],
+        ],
+
         // Group
         'group' => [
             'details' => 'Group details',

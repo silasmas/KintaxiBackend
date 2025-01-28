@@ -713,6 +713,33 @@
         <!-- Start crop avatar image -->
 @endif
 
+@if (Route::is('payment_gateway.home'))
+        <div class="modal fade" id="gatewayModal" tabindex="-1" aria-labelledby="gatewayModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <form action="{{ route('payment_gateway.home') }}" method="post">
+    @csrf
+                    <div class="modal-content">
+                        <div class="modal-header bg-light">
+                            <h1 class="modal-title fs-5" id="gatewayModalLabel">@lang('miscellaneous.admin.payment-gateway.add')</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="@lang('miscellaneous.close')"></button>
+                        </div>
+                        <div class="modal-body pb-0">
+                            <!-- Name -->
+                            <div class="form-floating mb-3">
+                                <input type="text" name="gateway_name" id="gateway_name" class="form-control" placeholder="@lang('miscellaneous.admin.payment-gateway.data.gateway_name')" required>
+                                <label for="gateway_name">@lang('miscellaneous.admin.payment-gateway.data.gateway_name')</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer d-block border-0">
+                            <button type="submit" class="btn btn-primary w-100 rounded-pill">@lang('miscellaneous.register')</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- End status -->
+@endif
+
 @if (Route::is('account.entity'))
         <!-- Start crop avatar image -->
         <div class="modal fade" id="cropModalUser" tabindex="-1" aria-labelledby="cropModalUserLabel" aria-hidden="true">

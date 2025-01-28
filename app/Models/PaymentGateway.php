@@ -23,6 +23,15 @@ class PaymentGateway extends Model
     protected $guarded = [];
 
     /**
+     * ONE-TO-MANY
+     * One status for several payment_methods
+     */
+    public function status()
+    {
+        return $this->belongsTo(Status::class, 'status_id');
+    }
+
+    /**
      * MANY-TO-ONE
      * Several payment_methods for a status
      */

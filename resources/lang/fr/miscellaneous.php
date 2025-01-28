@@ -459,6 +459,23 @@ return [
             ],
         ],
 
+        // Payment gateway
+        'payment-gateway' => [
+            'details' => 'Détails sur la passerelle',
+            'link' => 'Gérer les passerelles',
+            'add' => 'Ajouter une passerelle',
+            'edit' => 'Editer la passerelle',
+            'search' => 'Rechercher une passerelle',
+            'list' => 'Liste des passerelles',
+            'data' => [
+                'gateway_name' => 'Nom de la passerelle',
+                'status' => [
+                    'label' => 'Etat',
+                    'choose' => 'Choisir l’état',
+                ]
+            ],
+        ],
+
         // Group
         'group' => [
             'details' => 'Détails sur le groupe',

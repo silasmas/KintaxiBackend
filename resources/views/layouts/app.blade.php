@@ -283,11 +283,14 @@
                 /*
                  * Focus to specific input for each concerned modal
                  */
-                 $('#statusModal').on('shown.bs.modal', function () {
+                $('#statusModal').on('shown.bs.modal', function () {
                     $('#status_name').focus();
                 });
                 $('#roleModal').on('shown.bs.modal', function () {
                     $('#role_name').focus();
+                });
+                $('#gatewayModal').on('shown.bs.modal', function () {
+                    $('#gateway_name').focus();
                 });
                 $('#userModal').on('shown.bs.modal', function () {
                     $('#firstname').focus();
