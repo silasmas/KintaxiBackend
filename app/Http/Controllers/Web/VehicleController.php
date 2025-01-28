@@ -699,14 +699,17 @@ class VehicleController extends Controller
         if ($entity == 'image') {
             $file = File::find($id);
             $filePath = $_SERVER['DOCUMENT_ROOT'] . $file->file_url;
-            $directory = $_SERVER['DOCUMENT_ROOT'] . explode('/', $file->file_url)[3];
+            $directory = $_SERVER['DOCUMENT_ROOT'] . explode('/', $file->file_url)[10];
 
-            dd($filePath);
-            // $file->delete();
+            $file->delete();
 
-            // if (FacadesFile::exists($filePath)) {
-            //     FacadesFile::delete($filePath);
-            // }
+            if (FacadesFile::exists($filePath)) {
+                FacadesFile::delete($filePath);
+            }
+
+            if (Storage::exists($directory)) {
+                Storage::deleteDirectory($directory);
+            }
         }
 
         return redirect()->back()->with('success_message', __('miscellaneous.delete_success'));
