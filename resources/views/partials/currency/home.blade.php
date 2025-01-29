@@ -42,7 +42,7 @@
                                                 <tr>
                                                     <td><img src="{{ $currency['icon'] }}" alt="{{ $currency['currency_name'] }}" width="40"></td>
                                                     <td class="align-middle">{{ $currency['currency_name'] }}</td>
-                                                    <td class="align-middle">{{ formatDecimalNumber($currency['rating']) }}</td>
+                                                    <td class="align-middle">{{ formatIntegerNumber(round($currency['rating'])) }}</td>
                                                     <td class="align-middle">
                                                         <a href="{{ route('currency.show', ['id' => $currency['id']]) }}">
                                                             @lang('miscellaneous.details') <i class="fa fa-angle-double-right"></i>

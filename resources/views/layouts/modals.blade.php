@@ -743,7 +743,7 @@
 @if (Route::is('currency.home'))
         <div class="modal fade" id="currencyModal" tabindex="-1" aria-labelledby="currencyModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <form action="{{ route('currency.home') }}" method="post">
+                <form action="{{ route('currency.home') }}" method="post" enctype="multipart/form-data">
     @csrf
                     <div class="modal-content">
                         <div class="modal-header bg-light">
@@ -772,7 +772,7 @@
                             <!-- Icon -->
                             <div class="mt-2">
                                 <label for="icon" class="small">@lang('miscellaneous.admin.currency.data.icon')</label>
-                                <input type="file" name="icon" id="icon" class="form-control">
+                                <input type="file" name="icon" id="icon" class="form-control" placeholder="@lang('miscellaneous.admin.currency.data.icon')">
                             </div>
                         </div>
                         <div class="modal-footer d-block border-0">

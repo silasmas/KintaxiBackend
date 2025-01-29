@@ -339,7 +339,7 @@ class RoleController extends BaseController
 
             if ($request->hasFile('id_card') != null) {
                 $image = $request->file('id_card');
-                $file_url = 'images/users/' . $user->id . '/id_card' . '.' . $image->extension();
+                $file_url = 'images/users/' . $user->id . '/id_card' . '.' . $image->getClientOriginalExtension();
 
                 // Upload file
                 $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
@@ -355,7 +355,7 @@ class RoleController extends BaseController
 
             if ($request->hasFile('driving_license') != null) {
                 $image = $request->file('driving_license');
-                $file_url = 'images/users/' . $user->id . '/driving_license' . '.' . $image->extension();
+                $file_url = 'images/users/' . $user->id . '/driving_license' . '.' . $image->getClientOriginalExtension();
 
                 // Upload file
                 $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
@@ -371,7 +371,7 @@ class RoleController extends BaseController
 
             if ($request->hasFile('vehicle_registration') != null) {
                 $image = $request->file('vehicle_registration');
-                $file_url = 'images/users/' . $user->id . '/vehicle_registration' . '.' . $image->extension();
+                $file_url = 'images/users/' . $user->id . '/vehicle_registration' . '.' . $image->getClientOriginalExtension();
 
                 // Upload file
                 $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
@@ -387,7 +387,7 @@ class RoleController extends BaseController
 
             if ($request->hasFile('vehicle_insurance') != null) {
                 $image = $request->file('vehicle_insurance');
-                $file_url = 'images/users/' . $user->id . '/vehicle_insurance' . '.' . $image->extension();
+                $file_url = 'images/users/' . $user->id . '/vehicle_insurance' . '.' . $image->getClientOriginalExtension();
 
                 // Upload file
                 $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
@@ -809,7 +809,7 @@ class RoleController extends BaseController
 
             if ($request->hasFile('id_card') != null) {
                 $image = $request->file('id_card');
-                $file_url = 'images/users/' . $user->id . '/id_card' . '.' . $image->extension();
+                $file_url = 'images/users/' . $user->id . '/id_card' . '.' . $image->getClientOriginalExtension();
 
                 // Upload file
                 $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
@@ -825,7 +825,7 @@ class RoleController extends BaseController
 
             if ($request->hasFile('driving_license') != null) {
                 $image = $request->file('driving_license');
-                $file_url = 'images/users/' . $user->id . '/driving_license' . '.' . $image->extension();
+                $file_url = 'images/users/' . $user->id . '/driving_license' . '.' . $image->getClientOriginalExtension();
 
                 // Upload file
                 $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
@@ -841,7 +841,7 @@ class RoleController extends BaseController
 
             if ($request->hasFile('vehicle_registration') != null) {
                 $image = $request->file('vehicle_registration');
-                $file_url = 'images/users/' . $user->id . '/vehicle_registration' . '.' . $image->extension();
+                $file_url = 'images/users/' . $user->id . '/vehicle_registration' . '.' . $image->getClientOriginalExtension();
 
                 // Upload file
                 $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
@@ -857,7 +857,7 @@ class RoleController extends BaseController
 
             if ($request->hasFile('vehicle_insurance') != null) {
                 $image = $request->file('vehicle_insurance');
-                $file_url = 'images/users/' . $user->id . '/vehicle_insurance' . '.' . $image->extension();
+                $file_url = 'images/users/' . $user->id . '/vehicle_insurance' . '.' . $image->getClientOriginalExtension();
 
                 // Upload file
                 $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));

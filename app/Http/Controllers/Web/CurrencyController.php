@@ -54,25 +54,25 @@ class CurrencyController extends Controller
             'currency_name' => ['required', 'string', 'max:255', 'unique:currencies,currency_name',],
         ]);
 
-        // $currency = Currency::create([
-        //     'created_by' => Auth::user()->id,
-        //     'currency_name' => $request->currency_name,
-        //     'currency_acronym' => $request->currency_acronym,
-        //     'rating' => $request->rating
-        // ]);
+        $currency = Currency::create([
+            'created_by' => Auth::user()->id,
+            'currency_name' => $request->currency_name,
+            'currency_acronym' => $request->currency_acronym,
+            'rating' => $request->rating
+        ]);
 
         if ($request->hasFile('icon')) {
             $image = $request->file('icon');
-
-            dd($image);
-            $file_url = 'images/currencies/' . $currency->id . '/' . Str::random(3) . '.' . $image->getClientOriginalExtension();
+            $file_name = Str::random(3) . '.' . $image->getClientOriginalExtension();
+            $file_url = 'images/currencies/' . $currency->id . '/' . $file_name;
             // Upload file
-            $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
+            $dir_result = Storage::disk('public')->putFileAs('images/currencies/' . $currency->id, $image, $file_name);
+            $dir_result = Storage::url($file_url);
 
             $currency->update([
                 'updated_at' => now(),
                 'updated_by' => Auth::user()->id,
-                'icon' => getWebURL() . $dir_result,
+                'icon' => $dir_result,
             ]);
         }
 
@@ -113,12 +113,13 @@ class CurrencyController extends Controller
             ]);
         }
 
-        if ($request->has('icon')) {
+        if ($request->hasFile('icon')) {
             $image = $request->file('icon');
-
-            $file_url = 'images/currencies/' . $currency->id . '/' . Str::random(3) . '.' . $image->getClientOriginalExtension();
+            $file_name = Str::random(3) . '.' . $image->getClientOriginalExtension();
+            $file_url = 'images/currencies/' . $currency->id . '/' . $file_name;
             // Upload file
-            $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
+            $dir_result = Storage::disk('public')->putFileAs('images/currencies/' . $currency->id, $image, $file_name);
+            $dir_result = Storage::url($file_url);
 
             $currency->update([
                 'updated_at' => now(),
