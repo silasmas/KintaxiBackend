@@ -459,6 +459,22 @@ return [
             ],
         ],
 
+        // Currency
+        'currency' => [
+            'details' => 'Currency details',
+            'link' => 'Manage currencies',
+            'add' => 'Add a currency',
+            'edit' => 'Edit the currency',
+            'search' => 'Search a currency',
+            'list' => 'Currencies list',
+            'data' => [
+                'currency_name' => 'Currency name',
+                'currency_acronym' => 'Currency acronym',
+                'rating' => 'Rating (According to CDF)',
+                'icon' => 'Icon',
+            ],
+        ],
+
         // Payment gateway
         'payment-gateway' => [
             'details' => 'Gateway details',

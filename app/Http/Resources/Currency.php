@@ -23,7 +23,7 @@ class Currency extends JsonResource
             'currency_name' => $this->currency_name,
             'currency_acronym' => $this->currency_acronym,
             'rating' => $this->rating,
-            'icon' => $this->icon,
+            'icon' => !empty($this->icon) ? getWebURL() . $this->icon : getWebURL() . '/assets/img/blank-icon.png',
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
             'created_by' => $this->created_by,

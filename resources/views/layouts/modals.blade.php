@@ -740,6 +740,51 @@
         <!-- End status -->
 @endif
 
+@if (Route::is('currency.home'))
+        <div class="modal fade" id="currencyModal" tabindex="-1" aria-labelledby="currencyModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <form action="{{ route('currency.home') }}" method="post">
+    @csrf
+                    <div class="modal-content">
+                        <div class="modal-header bg-light">
+                            <h1 class="modal-title fs-5" id="currencyModalLabel">@lang('miscellaneous.admin.currency.add')</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="@lang('miscellaneous.close')"></button>
+                        </div>
+                        <div class="modal-body pb-0">
+                            <!-- Name -->
+                            <div class="form-floating">
+                                <input type="text" name="currency_name" id="currency_name" class="form-control" placeholder="@lang('miscellaneous.admin.currency.data.currency_name')" required>
+                                <label for="currency_name">@lang('miscellaneous.admin.currency.data.currency_name')</label>
+                            </div>
+
+                            <!-- Acronym -->
+                            <div class="form-floating mt-3">
+                                <input type="text" name="currency_acronym" id="currency_acronym" class="form-control" placeholder="@lang('miscellaneous.admin.currency.data.currency_acronym')">
+                                <label for="currency_acronym">@lang('miscellaneous.admin.currency.data.currency_acronym')</label>
+                            </div>
+
+                            <!-- Rating -->
+                            <div class="form-floating mt-3">
+                                <input type="number" name="rating" id="rating" class="form-control" placeholder="@lang('miscellaneous.admin.currency.data.rating')">
+                                <label for="rating">@lang('miscellaneous.admin.currency.data.rating')</label>
+                            </div>
+
+                            <!-- Icon -->
+                            <div class="mt-2">
+                                <label for="icon" class="small">@lang('miscellaneous.admin.currency.data.icon')</label>
+                                <input type="file" name="icon" id="icon" class="form-control">
+                            </div>
+                        </div>
+                        <div class="modal-footer d-block border-0">
+                            <button type="submit" class="btn btn-primary w-100 rounded-pill">@lang('miscellaneous.register')</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- End status -->
+@endif
+
 @if (Route::is('account.entity'))
         <!-- Start crop avatar image -->
         <div class="modal fade" id="cropModalUser" tabindex="-1" aria-labelledby="cropModalUserLabel" aria-hidden="true">

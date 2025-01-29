@@ -459,6 +459,22 @@ return [
             ],
         ],
 
+        // Currency
+        'currency' => [
+            'details' => 'Détails sur la devise',
+            'link' => 'Gérer les devises',
+            'add' => 'Ajouter une devise',
+            'edit' => 'Editer la devise',
+            'search' => 'Rechercher une devise',
+            'list' => 'Liste des devises',
+            'data' => [
+                'currency_name' => 'Nom de la devise',
+                'currency_acronym' => 'Acronyme de la devise',
+                'rating' => 'Taux (Par rapport au CDF)',
+                'icon' => 'Icône',
+            ],
+        ],
+
         // Payment gateway
         'payment-gateway' => [
             'details' => 'Détails sur la passerelle',

@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Currency as ResourcesCurrency;
+use App\Models\Currency;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 /**
  * @author Xanders
@@ -30,7 +35,11 @@ class CurrencyController extends Controller
      */
     public function show($id)
     {
-        return view('currency');
+        $currency_request = Currency::find($id);
+        $current_currency_resource = new ResourcesCurrency($currency_request);
+        $current_currency = $current_currency_resource->toArray(request());
+
+        return view('currency', compact('current_currency'));
     }
 
     // ==================================== HTTP POST METHODS ====================================
@@ -41,7 +50,33 @@ class CurrencyController extends Controller
      */
     public function store(Request $request)
     {
-        // 
+        $request->validate([
+            'currency_name' => ['required', 'string', 'max:255', 'unique:currencies,currency_name',],
+        ]);
+
+        // $currency = Currency::create([
+        //     'created_by' => Auth::user()->id,
+        //     'currency_name' => $request->currency_name,
+        //     'currency_acronym' => $request->currency_acronym,
+        //     'rating' => $request->rating
+        // ]);
+
+        if ($request->hasFile('icon')) {
+            $image = $request->file('icon');
+
+            dd($image);
+            $file_url = 'images/currencies/' . $currency->id . '/' . Str::random(3) . '.' . $image->getClientOriginalExtension();
+            // Upload file
+            $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
+
+            $currency->update([
+                'updated_at' => now(),
+                'updated_by' => Auth::user()->id,
+                'icon' => getWebURL() . $dir_result,
+            ]);
+        }
+
+        return redirect()->back()->with('success_message', __('miscellaneous.data_created'));
     }
 
     /**
@@ -52,7 +87,47 @@ class CurrencyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // 
+        $currency = Currency::find($id);
+
+        if ($request->currency_name != null) {
+            $currency->update([
+                'updated_at' => now(),
+                'updated_by' => Auth::user()->id,
+                'currency_name' => $request->currency_name,
+            ]);
+        }
+
+        if ($request->currency_acronym != null) {
+            $currency->update([
+                'updated_at' => now(),
+                'updated_by' => Auth::user()->id,
+                'currency_acronym' => $request->currency_acronym,
+            ]);
+        }
+
+        if ($request->rating != null) {
+            $currency->update([
+                'updated_at' => now(),
+                'updated_by' => Auth::user()->id,
+                'rating' => $request->rating,
+            ]);
+        }
+
+        if ($request->has('icon')) {
+            $image = $request->file('icon');
+
+            $file_url = 'images/currencies/' . $currency->id . '/' . Str::random(3) . '.' . $image->getClientOriginalExtension();
+            // Upload file
+            $dir_result = Storage::url(Storage::disk('public')->put($file_url, $image));
+
+            $currency->update([
+                'updated_at' => now(),
+                'updated_by' => Auth::user()->id,
+                'icon' => $dir_result,
+            ]);
+        }
+
+        return redirect()->back()->with('success_message', __('miscellaneous.data_updated'));
     }
 
     // ==================================== HTTP DELETE METHODS ====================================
@@ -64,6 +139,10 @@ class CurrencyController extends Controller
      */
     public function destroy($id)
     {
-        // 
+        $currency = Currency::find($id);
+
+        $currency->delete();
+
+        return redirect()->back()->with('success_message', __('miscellaneous.delete_success'));
     }
 }

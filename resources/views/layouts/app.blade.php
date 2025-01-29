@@ -292,6 +292,9 @@
                 $('#gatewayModal').on('shown.bs.modal', function () {
                     $('#gateway_name').focus();
                 });
+                $('#currencyModal').on('shown.bs.modal', function () {
+                    $('#currency_name').focus();
+                });
                 $('#userModal').on('shown.bs.modal', function () {
                     $('#firstname').focus();
 

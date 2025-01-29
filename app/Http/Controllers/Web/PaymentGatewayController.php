@@ -16,12 +16,10 @@ use Illuminate\Support\Facades\Auth;
 class PaymentGatewayController extends Controller
 {
     public static $activated_status;
-    public static $created_status;
 
     public function __construct()
     {
         $this::$activated_status = Status::where('status_name', 'activé/confirmé/récu')->first();
-        $this::$created_status = Status::where('status_name', 'créé/en attente de confirmation')->first();
     }
 
     // ==================================== HTTP GET METHODS ====================================

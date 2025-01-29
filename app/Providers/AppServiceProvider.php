@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Http\Resources\Currency as ResourcesCurrency;
 use App\Http\Resources\PaymentGateway as ResourcesPaymentGateway;
 use App\Http\Resources\Status as ResourcesStatus;
 use App\Http\Resources\User as ResourcesUser;
 use App\Http\Resources\UserRole as ResourcesUserRole;
+use App\Models\Currency;
 use App\Models\PaymentGateway;
 use App\Models\Status;
 use App\Models\User;
@@ -54,11 +56,15 @@ class AppServiceProvider extends ServiceProvider
                 // Payment gateways list
                 $payment_gateways_collection = PaymentGateway::all();
                 $payment_gateways = ResourcesPaymentGateway::collection($payment_gateways_collection)->toArray(request());
+                // Currencies list
+                $currencies_collection = Currency::all();
+                $currencies = ResourcesCurrency::collection($currencies_collection)->toArray(request());
 
                 $view->with('current_user', $user_data);
                 $view->with('roles', $roles);
                 $view->with('statuses', $statuses);
                 $view->with('payment_gateways', $payment_gateways);
+                $view->with('currencies', $currencies);
             }
 
             $view->with('admins', $admins);
