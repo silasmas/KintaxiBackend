@@ -297,8 +297,11 @@ return [
         ],
         'customers' => [
             'title' => 'Courses',
-            'ride-in-progress' => 'Courses en cours',
-            'ride-finished' => 'Courses terminées',
+            'ride-in-progress' => 'Course en cours',
+            'rides-in-progress' => 'Courses en cours',
+            'ride-finished' => 'Course terminée',
+            'rides-finished' => 'Courses terminées',
+            'rented-vehicle' => 'Véhicule loué',
             'rented-vehicles' => 'Véhicules loués',
         ],
         'currency' => 'Devise',

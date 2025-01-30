@@ -4,11 +4,13 @@ namespace App\Providers;
 
 use App\Http\Resources\Currency as ResourcesCurrency;
 use App\Http\Resources\PaymentGateway as ResourcesPaymentGateway;
+use App\Http\Resources\Ride as ResourcesRide;
 use App\Http\Resources\Status as ResourcesStatus;
 use App\Http\Resources\User as ResourcesUser;
 use App\Http\Resources\UserRole as ResourcesUserRole;
 use App\Models\Currency;
 use App\Models\PaymentGateway;
+use App\Models\Ride;
 use App\Models\Status;
 use App\Models\User;
 use App\Models\UserRole;
@@ -59,8 +61,20 @@ class AppServiceProvider extends ServiceProvider
                 // Currencies list
                 $currencies_collection = Currency::all();
                 $currencies = ResourcesCurrency::collection($currencies_collection)->toArray(request());
+                // Rides requested list
+                $requested_rides_collection = Ride::where('ride_status', 'requested')->get();
+                $requested_rides = ResourcesRide::collection($requested_rides_collection)->toArray(request());
+                // Rides in progress list
+                $in_progress_rides_collection = Ride::where('ride_status', 'in_progress')->get();
+                $in_progress_rides = ResourcesRide::collection($in_progress_rides_collection)->toArray(request());
+                // Rides completed list
+                $completed_rides_collection = Ride::where('ride_status', 'completed')->get();
+                $completed_rides = ResourcesRide::collection($completed_rides_collection)->toArray(request());
 
                 $view->with('current_user', $user_data);
+                $view->with('requested_rides', $requested_rides);
+                $view->with('in_progress_rides', $in_progress_rides);
+                $view->with('completed_rides', $completed_rides);
                 $view->with('roles', $roles);
                 $view->with('statuses', $statuses);
                 $view->with('payment_gateways', $payment_gateways);

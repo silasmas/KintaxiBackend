@@ -1,3 +1,4 @@
+{{ dd($completed_rides) }}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -43,6 +44,8 @@
         <link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}">
 
         <style>
+            /* Google Maps */
+            #map { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
             /* Image preview */
             #imagePreviewContainer { display: flex; flex-wrap: wrap; gap: 10px; }
             .imagePreview { position: relative; width: 100px; height: 100px; overflow: hidden; border: 1px solid #ccc; border-radius: 8px; }

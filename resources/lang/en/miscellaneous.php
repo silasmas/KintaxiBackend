@@ -298,7 +298,10 @@ return [
         'customers' => [
             'title' => 'Rides',
             'ride-in-progress' => 'Ride in progress',
+            'rides-in-progress' => 'Rides in progress',
             'ride-finished' => 'Ride finished',
+            'rides-finished' => 'Rides finished',
+            'rented-vehicle' => 'Rented vehicle',
             'rented-vehicles' => 'Rented vehicles',
         ],
         'currency' => 'Currency',
