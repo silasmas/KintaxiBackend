@@ -25,7 +25,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/customer/{id}', 'App\Http\Controllers\Web\CustomerController@show')->whereNumber('id')->name('customer.show');
     Route::post('/customer/{id}', 'App\Http\Controllers\Web\CustomerController@update')->whereNumber('id');
     Route::get('/customer/delete/{id}', 'App\Http\Controllers\Web\CustomerController@destroy')->whereNumber('id')->name('customer.destroy');
-    Route::get('/customer/{entity}', 'App\Http\Controllers\Web\CustomerController@indexEntity')->name('customer.entity.home');
     Route::get('/currency', 'App\Http\Controllers\Web\CurrencyController@index')->name('currency.home');
     Route::post('/currency', 'App\Http\Controllers\Web\CurrencyController@store');
     Route::get('/currency/{id}', 'App\Http\Controllers\Web\CurrencyController@show')->whereNumber('id')->name('currency.show');

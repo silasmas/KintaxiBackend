@@ -27,62 +27,56 @@
                             <div class="row m-t-25">
                                 <div class="col-sm-6 col-lg-4">
                                     <div class="overview-item overview-item--c1">
-                                        <a href="{{ route('customer.entity.home', ['entity' => 'ride-in-progress']) }}">
-                                            <div class="overview__inner">
-                                                <div class="overview-box clearfix">
-                                                    <div class="icon" style="margin-top: -25px;">
-                                                        <i class="bi bi-clock"></i>
-                                                    </div>
-                                                    <div class="text">
-                                                        <h2>10 368</h2>
-                                                        <span>@lang('miscellaneous.menu.customers.ride-in-progress')</span>
-                                                    </div>
+                                        <div class="overview__inner">
+                                            <div class="overview-box clearfix">
+                                                <div class="icon" style="margin-top: -25px;">
+                                                    <i class="bi bi-clock"></i>
                                                 </div>
-                                                <div class="overview-chart">
-                                                    <canvas id="widgetChart1"></canvas>
+                                                <div class="text">
+                                                    <h2>10 368</h2>
+                                                    <span>@lang('miscellaneous.menu.customers.ride-in-progress')</span>
                                                 </div>
                                             </div>
-                                        </a>
+                                            <div class="overview-chart">
+                                                <canvas id="widgetChart1"></canvas>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-4">
                                     <div class="overview-item overview-item--c2">
-                                        <a href="{{ route('customer.entity.home', ['entity' => 'ride-finished']) }}">
-                                            <div class="overview__inner">
-                                                <div class="overview-box clearfix">
-                                                    <div class="icon" style="margin-top: -25px;">
-                                                        <i class="bi bi-calendar-check"></i>
-                                                    </div>
-                                                    <div class="text">
-                                                        <h2>388 688</h2>
-                                                        <span>@lang('miscellaneous.menu.customers.ride-finished')</span>
-                                                    </div>
+                                        <div class="overview__inner">
+                                            <div class="overview-box clearfix">
+                                                <div class="icon" style="margin-top: -25px;">
+                                                    <i class="bi bi-calendar-check"></i>
                                                 </div>
-                                                <div class="overview-chart">
-                                                    <canvas id="widgetChart2"></canvas>
+                                                <div class="text">
+                                                    <h2>388 688</h2>
+                                                    <span>@lang('miscellaneous.menu.customers.ride-finished')</span>
                                                 </div>
                                             </div>
-                                        </a>
+                                            <div class="overview-chart">
+                                                <canvas id="widgetChart2"></canvas>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-4">
                                     <div class="overview-item overview-item--c3">
-                                        <a href="{{ route('customer.entity.home', ['entity' => 'rented-vehicles']) }}">
-                                            <div class="overview__inner">
-                                                <div class="overview-box clearfix">
-                                                    <div class="icon" style="margin-top: -25px;">
-                                                        <i class="bi bi-car-front"></i>
-                                                    </div>
-                                                    <div class="text">
-                                                        <h2>1 086</h2>
-                                                        <span>@lang('miscellaneous.menu.customers.rented-vehicles')</span>
-                                                    </div>
+                                        <div class="overview__inner">
+                                            <div class="overview-box clearfix">
+                                                <div class="icon" style="margin-top: -25px;">
+                                                    <i class="bi bi-car-front"></i>
                                                 </div>
-                                                <div class="overview-chart">
-                                                    <canvas id="widgetChart3"></canvas>
+                                                <div class="text">
+                                                    <h2>1 086</h2>
+                                                    <span>@lang('miscellaneous.menu.customers.rented-vehicles')</span>
                                                 </div>
                                             </div>
-                                        </a>
+                                            <div class="overview-chart">
+                                                <canvas id="widgetChart3"></canvas>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -24,24 +24,10 @@
                                 </a>
                             </li>
                             <!-- Customer -->
-                            <li class="has-sub{{ Route::is('customer.entity.home') ? ' active' : '' }}">
-                                <a class="js-arrow" href="#">
+                            <li class="{{ Route::is('customer.home') ? 'active' : '' }}">
+                                <a href="{{ route('customer.home') }}">
                                     <i class="fas fa-map-location"></i>@lang('miscellaneous.menu.customers.title')
-                                    <span class="arrow">
-                                        <i class="fas fa-angle-down"></i>
-                                    </span>
                                 </a>
-                                <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                    <li>
-                                        <a href="{{ route('customer.entity.home', ['entity' => 'ride-in-progress']) }}" class="ps-3">@lang('miscellaneous.menu.customers.ride-in-progress')</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('customer.entity.home', ['entity' => 'ride-finished']) }}" class="ps-3">@lang('miscellaneous.menu.customers.ride-finished')</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('customer.entity.home', ['entity' => 'rented-vehicles']) }}" class="ps-3">@lang('miscellaneous.menu.customers.rented-vehicles')</a>
-                                    </li>
-                                </ul>
                             </li>
                             <!-- Currency -->
                             <li class="{{ Route::is('currency.home') || Route::is('currency.show') ? 'active' : '' }}">
@@ -122,24 +108,10 @@
                                 </a>
                             </li>
                             <!-- Customer -->
-                            <li class="has-sub{{ Route::is('customer.entity.home') ? ' active' : '' }}">
-                                <a class="js-arrow" href="#">
+                            <li class="{{ Route::is('customer.home') ? 'active' : '' }}">
+                                <a href="{{ route('customer.home') }}">
                                     <i class="fas fa-map-location"></i>@lang('miscellaneous.menu.customers.title')
-                                    <span class="arrow">
-                                        <i class="fas fa-angle-down"></i>
-                                    </span>
                                 </a>
-                                <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                    <li>
-                                        <a href="{{ route('customer.entity.home', ['entity' => 'ride-in-progress']) }}" class="ps-3">@lang('miscellaneous.menu.customers.ride-in-progress')</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('customer.entity.home', ['entity' => 'ride-finished']) }}" class="ps-3">@lang('miscellaneous.menu.customers.ride-finished')</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('customer.entity.home', ['entity' => 'rented-vehicles']) }}" class="ps-3">@lang('miscellaneous.menu.customers.rented-vehicles')</a>
-                                    </li>
-                                </ul>
                             </li>
                             <!-- Currency -->
                             <li class="{{ Route::is('currency.home') || Route::is('currency.show') ? 'active' : '' }}">

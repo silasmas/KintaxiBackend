@@ -23,17 +23,6 @@ class CustomerController extends Controller
     }
 
     /**
-     * GET: Customer entity page
-     *
-     * @param  string $entity
-     * @return \Illuminate\View\View
-     */
-    public function indexEntity($entity)
-    {
-        return view('customer');
-    }
-
-    /**
      * GET: Customer datas page
      *
      * @param  int $id
