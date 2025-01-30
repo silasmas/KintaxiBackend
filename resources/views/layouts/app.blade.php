@@ -1,4 +1,4 @@
-{{ dd($completed_rides) }}
+{{-- {{ dd($completed_rides) }} --}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
