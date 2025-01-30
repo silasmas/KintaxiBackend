@@ -33,8 +33,8 @@
                                                     <i class="bi bi-clock"></i>
                                                 </div>
                                                 <div class="text">
-                                                    <h2>{{ formatIntegerNumber(count($in_progress_rides)) }}</h2>
-                                                    <span>{{ count($in_progress_rides) <= 1 ? __('miscellaneous.menu.customers.ride-in-progress') : __('miscellaneous.menu.customers.rides-in-progress') }}</span>
+                                                    <h2></h2>
+                                                    <span></span>
                                                 </div>
                                             </div>
                                             <div class="overview-chart">
@@ -51,8 +51,8 @@
                                                     <i class="bi bi-calendar-check"></i>
                                                 </div>
                                                 <div class="text">
-                                                    <h2>{{ formatIntegerNumber(count($completed_rides)) }}</h2>
-                                                    <span>{{ count($completed_rides) <= 1 ? __('miscellaneous.menu.customers.ride-finished') : __('miscellaneous.menu.customers.rides-finished') }}</span>
+                                                    <h2></h2>
+                                                    <span></span>
                                                 </div>
                                             </div>
                                             <div class="overview-chart">
@@ -69,8 +69,8 @@
                                                     <i class="bi bi-car-front"></i>
                                                 </div>
                                                 <div class="text">
-                                                    <h2>{{ formatIntegerNumber(count($requested_rides)) }}</h2>
-                                                    <span>{{ count($requested_rides) <= 1 ? __('miscellaneous.menu.customers.rented-vehicle') : __('miscellaneous.menu.customers.rented-vehicles') }}</span>
+                                                    <h2></h2>
+                                                    <span></span>
                                                 </div>
                                             </div>
                                             <div class="overview-chart">
