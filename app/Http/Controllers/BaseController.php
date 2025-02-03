@@ -19,44 +19,15 @@ class BaseController extends Controller
      */
     public function handleResponse($result, $msg, $lastPage = null, $count = null)
     {
-        if ($lastPage != null && $count != null) {
-            $res = [
-                'success'   => true,
-                'message'   => $msg,
-                'data'      => $result,
-                'lastPage'  => $lastPage,
-                'count'     => $count
-            ];
+        $res = [
+            'success'   => true,
+            'message'   => $msg,
+            'data'      => $result,
+            'lastPage'  => $lastPage,
+            'count'     => $count
+        ];
 
-            return response()->json($res, 200);
-
-        } else {
-            if ($lastPage != null && $count == null) {
-                $res = [
-                    'success'   => true,
-                    'message'   => $msg,
-                    'data'      => $result,
-                    'lastPage'  => $lastPage
-                ];
-
-            } else if ($lastPage == null && $count != null) {
-                $res = [
-                    'success'   => true,
-                    'message'   => $msg,
-                    'data'      => $result,
-                    'count'     => $count
-                ];
-
-            } else {
-                $res = [
-                    'success' => true,
-                    'message' => $msg,
-                    'data'    => $result
-                ];
-            }
-
-            return response()->json($res, 200);
-        }
+        return response()->json($res, 200);
     }
 
     /**

@@ -330,12 +330,12 @@ class RoleController extends BaseController
             }
 
             $user = User::create($inputs);
-            // $token = $user->createToken('auth_token')->plainTextToken;
+            $token = random_int(100, 999) . '|' . Random::generate(48);
 
-            // $user->update([
-            //     'api_token' => $token,
-            //     'updated_at' => now(),
-            // ]);
+            $user->update([
+                'api_token' => $token,
+                'updated_at' => now(),
+            ]);
 
             if ($request->hasFile('id_card') != null) {
                 $image = $request->file('id_card');

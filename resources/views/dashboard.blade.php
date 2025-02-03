@@ -32,7 +32,7 @@
                                                 <div class="icon" style="margin-top: -25px;">
                                                     <i class="bi bi-clock"></i>
                                                 </div>
-                                                <div class="text">
+                                                <div id="inProgressRides" class="text">
                                                     <h2></h2>
                                                     <span></span>
                                                 </div>
@@ -50,7 +50,7 @@
                                                 <div class="icon" style="margin-top: -25px;">
                                                     <i class="bi bi-calendar-check"></i>
                                                 </div>
-                                                <div class="text">
+                                                <div id="completedRides" class="text">
                                                     <h2></h2>
                                                     <span></span>
                                                 </div>
@@ -68,7 +68,7 @@
                                                 <div class="icon" style="margin-top: -25px;">
                                                     <i class="bi bi-car-front"></i>
                                                 </div>
-                                                <div class="text">
+                                                <div id="requestedRides" class="text">
                                                     <h2></h2>
                                                     <span></span>
                                                 </div>

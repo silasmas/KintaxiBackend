@@ -186,6 +186,13 @@ return [
     'create_payment_success' => 'Paiement créé',
     'update_payment_success' => 'Paiement modifié',
     'delete_payment_success' => 'Paiement supprimé',
+    // Ride
+    'find_all_rides_success' => 'Courses trouvées',
+    'find_ride_success' => 'Course trouvée',
+    'find_ride_404' => 'Course non trouvée',
+    'create_ride_success' => 'Course créée',
+    'update_ride_success' => 'Course modifiée',
+    'delete_ride_success' => 'Course supprimée',
 
     // ===== PUBLIC NOTIFICATIONS
     // Partnership

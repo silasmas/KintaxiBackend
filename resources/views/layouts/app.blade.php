@@ -1,4 +1,3 @@
-{{-- {{ dd($completed_rides) }} --}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -256,6 +255,20 @@
 
             $(function () {
                 /*
+                 * Rides count
+                 */
+                // Periodic reminder (every second) with setInterval for each status
+                setInterval(function() {
+                    countRidesByStatus('#inProgressRides h2', '#inProgressRides span', 'in_progress', window.Laravel.lang.menu.customers.ride_in_progress, window.Laravel.lang.menu.customers.rides_in_progress);
+                }, 10000);
+                setInterval(function() {
+                    countRidesByStatus('#completedRides h2', '#completedRides span', 'completed', window.Laravel.lang.menu.customers.ride_finished, window.Laravel.lang.menu.customers.rides_finished);
+                }, 10000);
+                setInterval(function() {
+                    countRidesByStatus('#requestedRides h2', '#requestedRides span', 'requested', window.Laravel.lang.menu.customers.rented_vehicle, window.Laravel.lang.menu.customers.rented_vehicles);
+                }, 10000);
+
+                /*
                  * File type validation (Image only)
                  */
                 $('#id_card, #driving_license, #vehicle_registration, #vehicle_insurance').on('change', function (event) {
@@ -368,23 +381,6 @@
                 });
                 $('#vehicleModal').on('shown.bs.modal', function () {
                     $('#mark').focus();
-
-                    // setTimeout(function () {
-                    //     flatpickr('#regis_num_exp', {
-                    //         minDate: '1980-01-01',  // Forbidden dates before now
-                    //         maxDate: '2050-12-31',  // Authorized ending date
-                    //         dateFormat: dateFormat,  // Format for user display
-                    //         locale: locale,  // Locale setting
-                    //         enableTime: true,  // Enable time selection
-                    //         noCalendar: false,  // Allows date selection
-                    //         defaultDate: $('#regis_num_exp').val(),  // Set default date for Flatpickr
-                    //         onChange: function (selectedDates, dateStr, instance) {
-                    //             // Formatting before sending to server
-                    //             var formattedDate = instance.formatDate(selectedDates[0], 'Y-m-d H:i:s');
-                    //             $('#regis_number_expiration').val(formattedDate);
-                    //         }
-                    //     });
-                    // }, 1000);
                 });
             });
 
@@ -405,12 +401,14 @@
                     modal.show();
                 });
             });
+        </script>
 
+@if (Route::is('vehicle.show'))
+        <script type="text/javascript">
             /*
              * Image preview from input:file multiple
              */
             let selectedFiles = []; // Table to maintain the list of selected files
-
             document.getElementById('imageInput').addEventListener('change', function(event) {
                 const newFiles = event.target.files;
                 const previewContainer = document.getElementById('imagePreviewContainer');
@@ -463,6 +461,9 @@
 
                 updateInput(); // Update the entry to reflect the list of files
             });
+        </script>
+@endif
+        <script type="text/javascript">
 
             // Function to update the input with the list of selected files
             function updateInput() {
@@ -475,11 +476,49 @@
                 document.getElementById('imageInput').files = dataTransfer.files;
             }
 
+            // Function to show rides by status
+            // var isRequestInProgress = false;
+
+            function countRidesByStatus(titleSelector, textSelector, status, textSingular, textPlural) {
+                var titleElement = document.querySelector(titleSelector);
+                var textElement = document.querySelector(textSelector);
+
+                $.ajax({
+                    headers: headers,
+                    type: 'GET',
+                    url: `${currentHost}/api/ride/rides_by_status/${status}`,
+                    dataType: 'json',
+                    success: function (response) {
+                        var text = response.count > 1 ? textPlural : textSingular;
+
+                        $(titleElement).html(response.count);
+                        $(textElement).html(text);
+                    },
+                    error: function (xhr, error, status_description) {
+                        console.log(xhr.responseJSON);
+                        console.log(xhr.status);
+                        console.log(error);
+                        console.log(status_description);
+                    }
+                });
+            }
+
             /*
              * Injected data from Laravel
              */
             window.Laravel = {
                 lang: {
+                    menu: {
+                        customers: {
+                            title: "@lang('miscellaneous.menu.customers.title')",
+                            ride_in_progress: "@lang('miscellaneous.menu.customers.ride-in-progress')",
+                            rides_in_progress: "@lang('miscellaneous.menu.customers.rides-in-progress')",
+                            ride_finished: "@lang('miscellaneous.menu.customers.ride-finished')",
+                            rides_finished: "@lang('miscellaneous.menu.customers.rides-finished')",
+                            rented_vehicle: "@lang('miscellaneous.menu.customers.rented-vehicle')",
+                            rented_vehicles: "@lang('miscellaneous.menu.customers.rented-vehicles')",
+                        },
+                    },
                     upload: {
                         use_camera: "@lang('miscellaneous.upload.use_camera')",
                         upload_file: "@lang('miscellaneous.upload.upload_file')",

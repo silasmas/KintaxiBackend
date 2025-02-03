@@ -186,6 +186,13 @@ return [
     'create_payment_success' => 'Payment created',
     'update_payment_success' => 'Payment updated',
     'delete_payment_success' => 'Payment deleted',
+    // Ride
+    'find_all_rides_success' => 'Rides found',
+    'find_ride_success' => 'Ride found',
+    'find_ride_404' => 'Ride not found',
+    'create_ride_success' => 'Ride created',
+    'update_ride_success' => 'Ride updated',
+    'delete_ride_success' => 'Ride deleted',
 
     // ===== PUBLIC NOTIFICATIONS
     // Partnership

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;
+use Nette\Utils\Random;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -78,6 +79,13 @@ class AuthenticatedSessionController extends Controller
                 return redirect()->back()->with('error_message', __('auth.unauthorized'));
             }
 
+            $token = random_int(100, 999) . '|' . Random::generate(48);
+
+            $user->update([
+                'api_token' => $token,
+                'updated_at' => now(),
+            ]);
+
             // Authentication datas (E-mail, Phone number or Username)
             $auth_phone = Auth::attempt(['phone' => $user->phone, 'password' => $inputs['password']], $request->remember);
             $auth_email = Auth::attempt(['email' => $user->email, 'password' => $inputs['password']], $request->remember);
@@ -108,6 +116,13 @@ class AuthenticatedSessionController extends Controller
             if (!$user->hasRole($roleIds)) {
                 return redirect()->back()->with('error_message', __('auth.unauthorized'));
             }
+
+            $token = random_int(100, 999) . '|' . Random::generate(48);
+
+            $user->update([
+                'api_token' => $token,
+                'updated_at' => now(),
+            ]);
 
             // Authentication datas (E-mail, Phone number or Username)
             $auth_phone = Auth::attempt(['phone' => $user->phone, 'password' => $inputs['password']], $request->remember);

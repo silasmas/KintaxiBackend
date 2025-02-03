@@ -1,19 +1,26 @@
 <?php
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes
+| Default API Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
 */
+Route::middleware('localization')->group(function () {
+    Route::apiResource('ride', 'App\Http\Controllers\API\RideController');
+});
+/*
+|--------------------------------------------------------------------------
+| Custom API resource
+|--------------------------------------------------------------------------
+ */
+Route::group(['middleware' => ['api', 'localization']], function () {
+    Route::resource('ride', 'App\Http\Controllers\API\RideController');
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::get('ride/rides_by_status/{status}', 'App\Http\Controllers\API\RideController@ridesByStatus')->name('ride.api.rides_by_status');
 });
