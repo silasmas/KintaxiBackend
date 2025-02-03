@@ -216,29 +216,28 @@
         <!-- END MODALS -->
 
         <!-- JavaScript Libraries -->
-        <script src="{{ asset('assets/addons/custom/jquery/js/jquery.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/custom/jquery/js/jquery-ui.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/custom/bootstrap/js/popper.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/custom/mdb/js/mdb.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/custom/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/cooladmin/slick/slick.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/cooladmin/wow/wow.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/cooladmin/animsition/animsition.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/cooladmin/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/cooladmin/counter-up/jquery.waypoints.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/cooladmin/counter-up/jquery.counterup.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/cooladmin/circle-progress/circle-progress.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/custom/perfect-scrollbar/dist/perfect-scrollbar.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/cooladmin/chartjs/Chart.bundle.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/cooladmin/select2/select2.min.js') }}"></script>
-        {{-- <script src="{{ asset('assets/addons/custom/flatpickr/dist/flatpickr.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/custom/flatpickr/dist/fr.js') }}"></script> --}}
-        <script src="{{ asset('assets/addons/custom/autosize/js/autosize.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/custom/dataTables/datatables.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/custom/dropzone/js/dropzone-min.js') }}"></script>
-        <script src="{{ asset('assets/addons/custom/cropper/js/cropper.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/custom/sweetalert2/dist/sweetalert2.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/custom/jquery/scroll4ever/js/jquery.scroll4ever.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/custom/jquery/js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/custom/jquery/js/jquery-ui.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/custom/bootstrap/js/popper.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/custom/mdb/js/mdb.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/custom/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/cooladmin/slick/slick.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/cooladmin/wow/wow.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/cooladmin/animsition/animsition.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/cooladmin/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/cooladmin/counter-up/jquery.waypoints.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/cooladmin/counter-up/jquery.counterup.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/cooladmin/circle-progress/circle-progress.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/custom/perfect-scrollbar/dist/perfect-scrollbar.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/cooladmin/chartjs/Chart.bundle.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/cooladmin/select2/select2.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/custom/autosize/js/autosize.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/custom/dataTables/datatables.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/custom/dropzone/js/dropzone-min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/custom/cropper/js/cropper.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/custom/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/custom/jquery/scroll4ever/js/jquery.scroll4ever.js') }}"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 
         <!-- CoolAdmin Javascript -->
         <script src="{{ asset('assets/js/main.js') }}"></script>
@@ -258,6 +257,10 @@
                  * Rides count
                  */
                 // Periodic reminder (every second) with setInterval for each status
+                countRidesByStatus('#inProgressRides h2', '#inProgressRides span', 'in_progress', window.Laravel.lang.menu.customers.ride_in_progress, window.Laravel.lang.menu.customers.rides_in_progress);
+                countRidesByStatus('#completedRides h2', '#completedRides span', 'completed', window.Laravel.lang.menu.customers.ride_finished, window.Laravel.lang.menu.customers.rides_finished);
+                countRidesByStatus('#requestedRides h2', '#requestedRides span', 'requested', window.Laravel.lang.menu.customers.rented_vehicle, window.Laravel.lang.menu.customers.rented_vehicles);
+
                 setInterval(function() {
                     countRidesByStatus('#inProgressRides h2', '#inProgressRides span', 'in_progress', window.Laravel.lang.menu.customers.ride_in_progress, window.Laravel.lang.menu.customers.rides_in_progress);
                 }, 10000);
