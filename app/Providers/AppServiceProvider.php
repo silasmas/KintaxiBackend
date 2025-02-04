@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\API\RideController;
 use App\Http\Resources\Currency as ResourcesCurrency;
 use App\Http\Resources\PaymentGateway as ResourcesPaymentGateway;
 use App\Http\Resources\Ride as ResourcesRide;
@@ -61,8 +62,19 @@ class AppServiceProvider extends ServiceProvider
                 // Currencies list
                 $currencies_collection = Currency::all();
                 $currencies = ResourcesCurrency::collection($currencies_collection)->toArray(request());
+                // Manage rides
+                $ride_controller = new RideController();
+                $rides_requested = $ride_controller->ridesByStatus('requested');
+                $rides_requested_data = $rides_requested->getData()->data;
+                $rides_in_progress = $ride_controller->ridesByStatus('in_progress');
+                $rides_in_progress_data = $rides_in_progress->getData()->data;
+                $rides_completed = $ride_controller->ridesByStatus('completed');
+                $rides_completed_data = $rides_completed->getData()->data;
 
                 $view->with('current_user', $user_data);
+                $view->with('rides_requested', $rides_requested_data);
+                $view->with('rides_in_progress', $rides_in_progress_data);
+                $view->with('rides_completed', $rides_completed_data);
                 $view->with('roles', $roles);
                 $view->with('statuses', $statuses);
                 $view->with('payment_gateways', $payment_gateways);

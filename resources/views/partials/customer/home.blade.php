@@ -17,6 +17,14 @@
                                                 </ul>
                                             </div>
                                         </div>
+
+                                        <div>
+                                            <select id="rideStatus" class="form-select form-control">
+                                                <option value="rides_in_progress">@lang('miscellaneous.menu.customers.ride-in-progress')</option>
+                                                <option value="rides_completed">@lang('miscellaneous.menu.customers.ride-finished')</option>
+                                                <option value="rides_requested">@lang('miscellaneous.menu.customers.rented-vehicle')</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -25,7 +33,7 @@
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-body position-relative">
-                                            <div id="maps"></div>
+                                            <div id="gmap" style="width: 100%; height: 400px;"></div>
                                         </div>
                                     </div>
                                 </div>

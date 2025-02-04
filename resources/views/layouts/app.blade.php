@@ -237,12 +237,99 @@
         <script type="text/javascript" src="{{ asset('assets/addons/custom/cropper/js/cropper.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/addons/custom/sweetalert2/dist/sweetalert2.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/addons/custom/jquery/scroll4ever/js/jquery.scroll4ever.js') }}"></script>
-        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+        <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyCDLqp2YpT47nBISIE0S--ay2oJ6401IVk"></script>
 
         <!-- CoolAdmin Javascript -->
         <script src="{{ asset('assets/js/main.js') }}"></script>
         <!-- Custom Javascript -->
         <script src="{{ asset('assets/js/script.custom.js') }}"></script>
+@if (Route::is('customer.home'))
+        <script type="text/javascript">
+            $(function () {
+                /*
+                 * Rides on Google Maps
+                 */
+                var map;
+                var markers = [];
+
+                function initMap() {
+                    var rides = window.Laravel.data.rides_completed;
+                    var latLng = (rides.length > 0)
+                                    ? new google.maps.LatLng(rides[0].start_location.location.lat, rides[0].start_location.location.lng)
+                                    : new google.maps.LatLng(-1.6586834, 29.1669084);
+
+                    map = new google.maps.Map(document.getElementById('gmap'), {
+                        zoom: 10,
+                        center: latLng,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    });
+
+                    updateMap('rides_completed'); // The default status
+                }
+
+                function updateMap(rideStatus) {
+                    markers.forEach(function(marker) {
+                        marker.setMap(null);
+                    });
+                    markers = [];
+
+                    var rides = window.Laravel.data[rideStatus];
+                    console.log(rides);
+
+                    if (rides.length > 0) {
+                        var latLng = new google.maps.LatLng(rides[0].start_location.location.lat, rides[0].start_location.location.lng);
+
+                        map.setCenter(latLng);
+                    }
+
+                    rides.forEach(function(ride) {
+                        var marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(ride.start_location.location.lat, ride.start_location.location.lng),
+                            map: map,
+                            draggable: false,
+                            animation: google.maps.Animation.DROP,
+                        });
+
+                        markers.push(marker);
+                    });
+                }
+
+                $('#rideStatus').change(function() {
+                    var status = $(this).val();
+
+                    updateMap(status);
+                });
+
+                initMap();
+
+                // $('#rideStatus').change(function (e) { 
+                //     e.preventDefault();
+
+                //     if ($('#rideStatus').val() === 'ride_in_progress') {
+                        
+                //     }
+                // });
+                // var latLng = new google.maps.LatLng(-1.6586834, 29.1669084);
+                // var map = new google.maps.Map(document.getElementById('gmap'), {
+                //     zoom: 12,
+                //     center: latLng,
+                //     mapTypeId: google.maps.MapTypeId.ROADMAP,
+                // });
+
+                // window.Laravel.data.rides_completed.forEach((item, index) => {
+                //     console.log(JSON.stringify(item.start_location));
+                //     var marker = new google.maps.Marker({
+                //         position: new google.maps.LatLng(item.start_location.location.lat, item.start_location.location.lng),
+                //         map: map,
+                //         draggable: false,
+                //         animation: google.maps.Animation.DROP,
+                //     });
+
+                //     marker.idEvent = item.id;
+                // });
+            });
+        </script>
+@endif
         <script type="text/javascript">
             /*
              * When the user clicks on the button, scroll to the top of the document
@@ -480,8 +567,6 @@
             }
 
             // Function to show rides by status
-            // var isRequestInProgress = false;
-
             function countRidesByStatus(titleSelector, textSelector, status, textSingular, textPlural) {
                 var titleElement = document.querySelector(titleSelector);
                 var textElement = document.querySelector(textSelector);
@@ -529,6 +614,11 @@
                         image_error: "@lang('miscellaneous.upload.image_error')",
                         document_error: "@lang('miscellaneous.upload.document_error')",
                     },
+                },
+                data: {
+                    rides_requested: @json($rides_requested),
+                    rides_in_progress: @json($rides_in_progress),
+                    rides_completed: @json($rides_completed),
                 }
             }
         </script>
