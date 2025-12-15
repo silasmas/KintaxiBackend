@@ -112,8 +112,18 @@ class StatusController extends Controller
     {
         $status = Status::find($id);
 
+        if (!$status) {
+            return response()->json([
+                'success' => false,
+                'message' => __('notifications.find_status_404'),
+            ], 404);
+        }
+
         $status->delete();
 
-        return redirect()->back()->with('success_message', __('miscellaneous.delete_success'));
+        return response()->json([
+            'success' => true,
+            'message' => __('miscellaneous.delete_success'),
+        ]);
     }
 }

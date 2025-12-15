@@ -63,7 +63,7 @@
                                                         <a href="{{ route('payment_gateway.show', ['id' => $gateway['id']]) }}" class="d-inline-block me-3">
                                                             @lang('miscellaneous.details') <i class="fa fa-angle-double-right"></i>
                                                         </a>
-                                                        <a href="{{ route('payment_gateway.destroy', ['id' => $gateway['id']]) }}" class="text-danger">
+                                                        <a role="button" class="text-danger" onclick="event.preventDefault(); deleteEntity('payment-gateway', {{ $gateway['id'] }})">
                                                             @lang('miscellaneous.delete')
                                                         </a>
                                                     </td>

@@ -186,6 +186,13 @@ return [
     'create_payment_success' => 'Payment created',
     'update_payment_success' => 'Payment updated',
     'delete_payment_success' => 'Payment deleted',
+    // PaymentGateway
+    'find_all_payment_gateways_success' => 'Payments gateways found',
+    'find_payment_gateway_success' => 'Payment gateway found',
+    'find_payment_gateway_404' => 'Payment gateway not found',
+    'create_payment_gateway_success' => 'Payment gateway created',
+    'update_payment_gateway_success' => 'Payment gateway updated',
+    'delete_payment_gateway_success' => 'Payment gateway deleted',
     // Ride
     'find_all_rides_success' => 'Rides found',
     'find_ride_success' => 'Ride found',
@@ -193,6 +200,27 @@ return [
     'create_ride_success' => 'Ride created',
     'update_ride_success' => 'Ride updated',
     'delete_ride_success' => 'Ride deleted',
+    // Vehicle
+    'find_all_vehicles_success' => 'Vehicles found',
+    'find_vehicle_success' => 'Vehicle found',
+    'find_vehicle_404' => 'Vehicle not found',
+    'create_vehicle_success' => 'Vehicle created',
+    'update_vehicle_success' => 'Vehicle updated',
+    'delete_vehicle_success' => 'Vehicle deleted',
+    // VehicleFeature
+    'find_all_vehicles_features_success' => 'Vehicles features found',
+    'find_vehicle_features_success' => 'Vehicle features found',
+    'find_vehicle_features_404' => 'Vehicle features not found',
+    'create_vehicle_features_success' => 'Vehicle features created',
+    'update_vehicle_features_success' => 'Vehicle features updated',
+    'delete_vehicle_features_success' => 'Vehicle features deleted',
+    // VehicleShape
+    'find_all_vehicles_shapes_success' => 'Vehicles shapes found',
+    'find_vehicle_shape_success' => 'Vehicle shape found',
+    'find_vehicle_shape_404' => 'Vehicle shape not found',
+    'create_vehicle_shape_success' => 'Vehicle shape created',
+    'update_vehicle_shape_success' => 'Vehicle shape updated',
+    'delete_vehicle_shape_success' => 'Vehicle shape deleted',
 
     // ===== PUBLIC NOTIFICATIONS
     // Partnership

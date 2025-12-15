@@ -652,17 +652,31 @@ class VehicleController extends Controller
     public function destroy($id)
     {
         $vehicle = Vehicle::find($id);
+
+        if (!$vehicle) {
+            return response()->json([
+                'success' => false,
+                'message' => __('notifications.find_vehicle_404'),
+            ], 404);
+        }
+
         $directory = $_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/vehicles/' . $vehicle->id;
         $feature = VehicleFeature::where('vehicle_id', $vehicle->id)->first();
 
-        $feature->delete();
+        if ($feature) {
+            $feature->delete();
+        }
+
         $vehicle->delete();
 
         if (Storage::exists($directory)) {
             Storage::deleteDirectory($directory);
         }
 
-        return redirect()->back()->with('success_message', __('miscellaneous.delete_success'));
+        return response()->json([
+            'success' => true,
+            'message' => __('miscellaneous.delete_success'),
+        ]);
     }
 
     /**
@@ -676,6 +690,14 @@ class VehicleController extends Controller
     {
         if ($entity == 'shape') {
             $shape = VehicleShape::find($id);
+
+            if (!$shape) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('notifications.find_vehicle_shape_404'),
+                ], 404);
+            }
+
             $directory = $_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/vehicles/shapes/' . $shape->id;
 
             $shape->delete();
@@ -687,6 +709,14 @@ class VehicleController extends Controller
 
         if ($entity == 'category') {
             $category = VehicleCategory::find($id);
+
+            if (!$category) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('notifications.find_category_404'),
+                ], 404);
+            }
+
             $directory = $_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/vehicles/categories/' . $category->id;
 
             $category->delete();
@@ -698,6 +728,14 @@ class VehicleController extends Controller
 
         if ($entity == 'image') {
             $file = File::find($id);
+
+            if (!$file) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('notifications.find_file_404'),
+                ], 404);
+            }
+
             $filePath = $_SERVER['DOCUMENT_ROOT'] . $file->file_url;
 
             $file->delete();
@@ -707,6 +745,9 @@ class VehicleController extends Controller
             }
         }
 
-        return redirect()->back()->with('success_message', __('miscellaneous.delete_success'));
+        return response()->json([
+            'success' => true,
+            'message' => __('miscellaneous.delete_success'),
+        ]);
     }
 }

@@ -87,6 +87,88 @@ return [
     'deactivate' => 'Désactiver',
     'lock' => 'Bloquer',
     'unlock' => 'Débloquer',
+    'alert' => [
+        'oups' => 'Oups !',
+        'perfect' => 'Parfait !',
+        'yes' => [
+            'account' => [
+                'activate' => 'Oui, réactiver',
+                'deactivate' => 'Oui, désactiver'
+            ],
+            'role' => 'Oui, changer',
+            'status' => 'Oui, changer',
+            'deactive' => 'Oui, désactiver',
+            'lock' => 'Oui, bloquer',
+            'unlock' => 'Oui, activer',
+            'delete' => 'Oui, supprimer',
+            'presence_payment' => 'Oui, changer'
+        ],
+        'attention' => [
+            'account' => [
+                'activate' => 'Réactivation de compte',
+                'deactivate' => 'Désactivation de compte'
+            ],
+            'role' => 'Attention changement de rôle',
+            'status' => 'Attention changement d’état',
+            'deactive' => 'Attention désactivation',
+            'lock' => 'Attention blocage',
+            'unlock' => 'Attention activation',
+            'delete' => 'Attention suppression',
+            'presence_payment' => 'Attention nouveau changement'
+        ],
+        'confirm' => [
+            'account' => [
+                'activate' => 'Voulez-vous vraiment réactiver ?',
+                'deactivate' => 'Voulez-vous vraiment désactiver ?'
+            ],
+            'role' => 'Voulez-vous vraiment changer le rôle ?',
+            'status' => 'Voulez-vous vraiment changer l’état ?',
+            'deactive' => 'Voulez-vous vraiment désactiver ?',
+            'lock' => 'Voulez-vous vraiment bloquer ?',
+            'unlock' => 'Voulez-vous vraiment activer ?',
+            'delete' => 'Voulez-vous vraiment supprimer ?',
+            'presence_payment' => 'Acceptez-vous ce nouveau changement ?'
+        ],
+        'success' => [
+            'account' => [
+                'activate' => 'Réactivation réussie',
+                'deactivate' => 'Désactivation réussie'
+            ],
+            'role' => 'Changement de rôle réussi',
+            'status' => 'Changement d’état réussi',
+            'deactive' => 'Désactivation réussie',
+            'lock' => 'Blocage réussi',
+            'unlock' => 'Activation réussie',
+            'delete' => 'Suppression réussie',
+            'presence_payment' => 'Changement effectué'
+        ],
+        'canceled' => [
+            'account' => [
+                'activate' => 'Réactivation annulée',
+                'deactivate' => 'Désactivation annulée'
+            ],
+            'role' => 'Changement de rôle annulé',
+            'status' => 'Changement d’état annulé',
+            'deactive' => 'Désactivation annulée',
+            'lock' => 'Blocage annulé',
+            'unlock' => 'Activation annulée',
+            'delete' => 'Suppression annulée',
+            'presence_payment' => 'Changement annulé'
+        ],
+        'failed' => [
+            'account' => [
+                'activate' => 'Réactivation échouée',
+                'deactivate' => 'Désactivation échouée'
+            ],
+            'role' => 'Changement de rôle échoué',
+            'status' => 'Changement d’état échoué',
+            'deactive' => 'Désactivation échouée',
+            'lock' => 'Blocage échoué',
+            'unlock' => 'Activation échouée',
+            'delete' => 'Suppression échouée',
+            'presence_payment' => 'Changement annulé'
+        ],
+    ],
     'search_input' => 'Rechercher ici',
     'search' => 'Rechercher',
     'all_categories' => 'Toute catégorie',

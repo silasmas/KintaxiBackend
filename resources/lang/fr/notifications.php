@@ -186,6 +186,13 @@ return [
     'create_payment_success' => 'Paiement créé',
     'update_payment_success' => 'Paiement modifié',
     'delete_payment_success' => 'Paiement supprimé',
+    // PaymentGateway
+    'find_all_payment_gateways_success' => 'Passerelles de paiement trouvés',
+    'find_payment_gateway_success' => 'Passerelle de paiement trouvé',
+    'find_payment_gateway_404' => 'Passerelle de paiement non trouvé',
+    'create_payment_gateway_success' => 'Passerelle de paiement créé',
+    'update_payment_gateway_success' => 'Passerelle de paiement modifié',
+    'delete_payment_gateway_success' => 'Passerelle de paiement supprimé',
     // Ride
     'find_all_rides_success' => 'Courses trouvées',
     'find_ride_success' => 'Course trouvée',
@@ -193,6 +200,27 @@ return [
     'create_ride_success' => 'Course créée',
     'update_ride_success' => 'Course modifiée',
     'delete_ride_success' => 'Course supprimée',
+    // Vehicle
+    'find_all_vehicles_success' => 'Véhicules trouvés',
+    'find_vehicle_success' => 'Véhicule trouvé',
+    'find_vehicle_404' => 'Véhicule non trouvé',
+    'create_vehicle_success' => 'Véhicule créé',
+    'update_vehicle_success' => 'Véhicule modifié',
+    'delete_vehicle_success' => 'Véhicule supprimé',
+    // VehicleFeature
+    'find_all_vehicles_features_success' => 'Caractéristiques des véhicules trouvés',
+    'find_vehicle_features_success' => 'Caractéristiques du véhicule trouvés',
+    'find_vehicle_features_404' => 'Caractéristiques du véhicule non trouvés',
+    'create_vehicle_features_success' => 'Caractéristiques du véhicule créés',
+    'update_vehicle_features_success' => 'Caractéristiques du véhicule modifiés',
+    'delete_vehicle_features_success' => 'Caractéristiques du véhicule supprimés',
+    // VehicleShape
+    'find_all_vehicles_shapes_success' => 'Formes des véhicules trouvées',
+    'find_vehicle_shape_success' => 'Forme du véhicule trouvée',
+    'find_vehicle_shape_404' => 'Forme du véhicule non trouvée',
+    'create_vehicle_shape_success' => 'Forme du véhicule créée',
+    'update_vehicle_shape_success' => 'Forme du véhicule modifiée',
+    'delete_vehicle_shape_success' => 'Forme du véhicule supprimée',
 
     // ===== PUBLIC NOTIFICATIONS
     // Partnership

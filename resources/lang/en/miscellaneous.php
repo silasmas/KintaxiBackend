@@ -87,6 +87,88 @@ return [
     'deactivate' => 'Deactivate',
     'lock' => 'Lock',
     'unlock' => 'Unlock',
+    'alert' => [
+        'oups' => 'Oops !',
+        'perfect' => 'Perfect !',
+        'yes' => [
+            'account' => [
+                'activate' => 'Yes, reactivate',
+                'deactivate' => 'Yes, disable'
+            ],
+            'role' => 'Yes, change',
+            'status' => 'Yes, change',
+            'deactive' => 'Yes, disable',
+            'lock' => 'Yes, block',
+            'unlock' => 'Yes, activate',
+            'delete' => 'Yes, delete',
+            'presence_payment' => 'Yes, change'
+        ],
+        'attention' => [
+            'account' => [
+                'activate' => 'Account reactivation',
+                'deactivate' => 'Account deactivation'
+            ],
+            'role' => 'Warning: role change',
+            'status' => 'Warning: status change',
+            'deactive' => 'Warning: deactivation',
+            'lock' => 'Warning: blockage',
+            'unlock' => 'Warning: activation',
+            'delete' => 'Warning: deletion',
+            'presence_payment' => 'Warning: new change'
+        ],
+        'confirm' => [
+            'account' => [
+                'activate' => 'Are you sure you want to reactivate?',
+                'deactivate' => 'Are you sure you want to disable?'
+            ],
+            'role' => 'Do you really want to change the role?',
+            'status' => 'Do you really want to change the status?',
+            'deactive' => 'Are you sure you want to disable?',
+            'lock' => 'Are you sure you want to block?',
+            'unlock' => 'Do you really want to activate?',
+            'delete' => 'Are you sure you want to delete?',
+            'presence_payment' => 'Do you accept this new change?'
+        ],
+        'success' => [
+            'account' => [
+                'activate' => 'Reactivation successful',
+                'deactivate' => 'Deactivation successful'
+            ],
+            'role' => 'Successful role change',
+            'status' => 'Status change successful',
+            'deactive' => 'Deactivation successful',
+            'lock' => 'Blocking successful',
+            'unlock' => 'Activation successful',
+            'delete' => 'Deletion successful',
+            'presence_payment' => 'Change made'
+        ],
+        'canceled' => [
+            'account' => [
+                'activate' => 'Reactivation canceled',
+                'deactivate' => 'Deactivation canceled'
+            ],
+            'role' => 'Role change canceled',
+            'status' => 'Status change canceled',
+            'deactive' => 'Deactivation canceled',
+            'lock' => 'Blocking canceled',
+            'unlock' => 'Activation canceled',
+            'delete' => 'Deletion canceled',
+            'presence_payment' => 'Change canceled'
+        ],
+        'failed' => [
+            'account' => [
+                'activate' => 'Reactivation failed',
+                'deactivate' => 'Deactivation failed'
+            ],
+            'role' => 'Role change failed',
+            'status' => 'Status change failed',
+            'deactive' => 'Deactivation failed',
+            'lock' => 'Blocking failed',
+            'unlock' => 'Activation failed',
+            'delete' => 'Deletion failed',
+            'presence_payment' => 'Change canceled'
+        ],
+    ],
     'search_input' => 'Search here',
     'search' => 'Search',
     'all_categories' => 'Any category',

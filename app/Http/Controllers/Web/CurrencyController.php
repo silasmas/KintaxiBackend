@@ -142,8 +142,18 @@ class CurrencyController extends Controller
     {
         $currency = Currency::find($id);
 
+        if (!$currency) {
+            return response()->json([
+                'success' => false,
+                'message' => __('notifications.find_currency_404'),
+            ], 404);
+        }
+
         $currency->delete();
 
-        return redirect()->back()->with('success_message', __('miscellaneous.delete_success'));
+        return response()->json([
+            'success' => true,
+            'message' => __('miscellaneous.delete_success'),
+        ]);
     }
 }

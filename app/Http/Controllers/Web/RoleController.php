@@ -906,7 +906,21 @@ class RoleController extends BaseController
      */
     public function destroy($id)
     {
-        // 
+        $role = UserRole::find($id);
+
+        if (!$role) {
+            return response()->json([
+                'success' => false,
+                'message' => __('notifications.find_role_404'),
+            ], 404);
+        }
+
+        $role->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => __('miscellaneous.delete_success'),
+        ]);
     }
 
     /**
@@ -921,11 +935,26 @@ class RoleController extends BaseController
         if ($entity == 'manage-roles') {
             $role = UserRole::find($id);
 
+            if (!$role) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('notifications.find_role_404'),
+                ], 404);
+            }
+
             $role->delete();
         }
 
         if ($entity == 'users') {
             $user = User::find($id);
+
+            if (!$user) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('notifications.find_user_404'),
+                ], 404);
+            }
+
             $directory = $_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $user->id;
 
             $user->delete();
@@ -938,9 +967,19 @@ class RoleController extends BaseController
         if ($entity == 'document') {
             $document = Document::find($id);
 
+            if (!$document) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('notifications.find_file_404'),
+                ], 404);
+            }
+
             $document->delete();
         }
 
-        return redirect()->back()->with('success_message', __('miscellaneous.delete_success'));
+        return response()->json([
+            'success' => true,
+            'message' => __('miscellaneous.delete_success'),
+        ]);
     }
 }

@@ -63,7 +63,7 @@
                                                         <a href="{{ route('status.show', ['id' => $status['id']]) }}">
                                                             @lang('miscellaneous.change') <i class="fa fa-angle-double-right"></i>
                                                         </a><br>
-                                                        <a href="{{ route('status.destroy', ['id' => $status['id']]) }}" class="text-danger">
+                                                        <a role="button" class="text-danger" onclick="event.preventDefault(); deleteEntity('status', {{ $status['id'] }})">
                                                             @lang('miscellaneous.delete')
                                                         </a>
                                                     </td>

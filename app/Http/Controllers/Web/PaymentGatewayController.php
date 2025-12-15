@@ -109,8 +109,18 @@ class PaymentGatewayController extends Controller
     {
         $gateway = PaymentGateway::find($id);
 
+        if (!$gateway) {
+            return response()->json([
+                'success' => false,
+                'message' => __('notifications.find_payment_gateway_404'),
+            ], 404);
+        }
+
         $gateway->delete();
 
-        return redirect()->back()->with('success_message', __('miscellaneous.delete_success'));
+        return response()->json([
+            'success' => true,
+            'message' => __('miscellaneous.delete_success'),
+        ]);
     }
 }

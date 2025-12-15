@@ -243,6 +243,138 @@
         <script src="{{ asset('assets/js/main.js') }}"></script>
         <!-- Custom Javascript -->
         <script src="{{ asset('assets/js/script.custom.js') }}"></script>
+        <script type="text/javascript">
+            /**
+             * Delete entity
+             * 
+             * @param string entity
+             * @param int entityId
+             * @param string|null additionalEntity
+             * 
+             * SOME EXAMPLES
+             * ==================
+             * To delete a customer with ID "123" : deleteEntity('customer', 123);
+             * To delete a vehicle with ID "456" and entity "car" : deleteEntity('vehicle', 456, 'car');
+             * To delete a role with ID "789" and the entity "admin" : deleteEntity('role', 789, 'admin');
+             */
+            function deleteEntity(entity, entityId, additionalEntity = null) {
+                // Routes object
+                const routes = {
+                    customer: '/customer/delete/{id}',
+                    currency: '/currency/delete/{id}',
+                    'payment-gateway': '/payment-gateway/delete/{id}',
+                    vehicle: '/vehicle/delete/{id}',
+                    'vehicle-entity': '/vehicle/delete/{entity}/{id}',
+                    role: '/role/delete/{id}',
+                    'role-entity': '/role/delete/{entity}/{id}',
+                    status: '/status/delete/{id}'
+                };
+
+                // Checking for the existence of the entity in the object
+                if (!routes[entity] && !routes[`${entity}-entity`]) {
+                    console.error('{{ __("validation.custom.owner.required") }}');
+                    return;
+                }
+
+                // URL construction based on the entity
+                let url;
+
+                if (routes[`${entity}-entity`] && additionalEntity) {
+                    url = routes[`${entity}-entity`].replace('{entity}', additionalEntity).replace('{id}', entityId);
+
+                } else {
+                    url = routes[entity].replace('{id}', entityId);
+                }
+
+                // Confirmation request with SweetAlert
+                Swal.fire({
+                    title: '{{ __("miscellaneous.alert.attention.delete") }}',
+                    text: '{{ __("miscellaneous.alert.confirm.delete") }}',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '{{ __("miscellaneous.alert.yes.delete") }}',
+                    cancelButtonText: '{{ __("miscellaneous.cancel") }}'
+                }).then(function (result) {
+                    if (result.isConfirmed) {
+                        // Ajax request
+                        $.ajax({
+                            headers: headers, // Headers are set in the "assets/js/script.custom.js"
+                            type: 'GET',
+                            url: url,
+                            contentType: 'application/json',
+                            // contentType: false,
+                            // processData: false,
+                            data: JSON.stringify({ 'entity': entity, 'id': entityId }),
+                            success: function (result) {
+                                if (!result.success) {
+                                    Swal.fire({
+                                        title: '{{ __("miscellaneous.alert.oups") }}',
+                                        text: result.message,
+                                        icon: 'error'
+                                    });
+
+                                } else {
+                                    Swal.fire({
+                                        title: '{{ __("miscellaneous.alert.perfect") }}',
+                                        text: result.message,
+                                        icon: 'success'
+                                    });
+                                    location.reload();
+                                }
+                            },
+                            error: function (xhr, error, status_description) {
+                                console.log(xhr.responseJSON);
+                                console.log(xhr.status);
+                                console.log(error);
+                                console.log(status_description);
+                            }
+                        });
+
+                    } else {
+                        Swal.fire({
+                            title: '{{ __("miscellaneous.cancel") }}',
+                            text: '{{ __("miscellaneous.alert.canceled.delete") }}',
+                            icon: 'error'
+                        });
+                    }
+                });
+            }
+
+            /**
+             * Show alert
+             * 
+             * @param boolean success
+             * @param string message
+             */
+            const showAlert = (success, message) => {
+                const color = success === true ? 'success' : 'danger';
+                const icon = success === true ? 'bi bi-info-circle' : 'bi bi-exclamation-triangle';
+
+                // Delete old alerts
+                $('#ajax-alert-container .alert').alert('close');
+
+                const alert = `<div class="position-relative">
+                                    <div class="row position-fixed w-100" style="opacity: 0.9; z-index: 999;">
+                                        <div class="col-lg-4 col-sm-6 mx-auto">
+                                            <div class="alert alert-${color} alert-dismissible fade show rounded-0" role="alert">
+                                                <i class="${icon} me-2 fs-4" style="vertical-align: -3px;"></i> ${message}
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`;
+
+                // Adding alert to do DOM
+                $('#ajax-alert-container').append(alert);
+
+                // Automatic closing after 6 seconds
+                setTimeout(() => {
+                    $('#ajax-alert-container .alert').alert('close');
+                }, 6000);
+            };
+        </script>
 @if (Route::is('customer.home'))
         <script type="text/javascript">
             $(function () {
