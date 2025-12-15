@@ -62,7 +62,7 @@
                                                         <a href="{{ route('vehicle.entity.show', ['entity' => 'shape', 'id' => $shape['id']]) }}">
                                                             @lang('miscellaneous.change') <i class="fa fa-angle-double-right"></i>
                                                         </a><br>
-                                                        <a href="{{ route('vehicle.entity.destroy', ['entity' => 'shape', 'id' => $shape['id']]) }}" class="text-danger">
+                                                        <a role="button" class="text-danger" onclick="event.preventDefault(); deleteEntity('vehicle', {{ $shape['id'] }}, 'shape')">
                                                             @lang('miscellaneous.delete')
                                                         </a>
                                                     </td>
@@ -110,7 +110,7 @@
                                                         <a href="{{ route('vehicle.entity.show', ['entity' => 'category', 'id' => $category['id']]) }}">
                                                             @lang('miscellaneous.change') <i class="fa fa-angle-double-right"></i>
                                                         </a><br>
-                                                        <a href="{{ route('vehicle.entity.destroy', ['entity' => 'category', 'id' => $category['id']]) }}" class="text-danger">
+                                                        <a role="button" class="text-danger" onclick="event.preventDefault(); deleteEntity('vehicle', {{ $category['id'] }}, 'category')">
                                                             @lang('miscellaneous.delete')
                                                         </a>
                                                     </td>

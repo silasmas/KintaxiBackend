@@ -243,7 +243,164 @@
         <script src="{{ asset('assets/js/main.js') }}"></script>
         <!-- Custom Javascript -->
         <script src="{{ asset('assets/js/script.custom.js') }}"></script>
+@if (Route::is('customer.home'))
         <script type="text/javascript">
+            $(function () {
+                /*
+                 * Rides on Google Maps
+                 */
+                let map;
+                let markers = [];
+
+                const initMap = () => {
+                    const rides = window.Laravel.data.rides_completed;
+                    const latLng = (rides.length > 0)
+                                    ? new google.maps.LatLng(rides[0].start_location.location.lat, rides[0].start_location.location.lng)
+                                    : new google.maps.LatLng(-1.6586834, 29.1669084);
+
+                    map = new google.maps.Map(document.getElementById('gmap'), {
+                        zoom: 12,
+                        center: latLng,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    });
+
+                    updateMap('rides_completed'); // The default status
+                };
+
+                const updateMap = (rideStatus) => {
+                    markers.forEach(function(marker) {
+                        marker.setMap(null);
+                    });
+                    markers = [];
+
+                    var rides = window.Laravel.data[rideStatus];
+                    console.log(rides);
+
+                    if (rides.length > 0) {
+                        var latLng = new google.maps.LatLng(rides[0].start_location.location.lat, rides[0].start_location.location.lng);
+
+                        map.setCenter(latLng);
+                    }
+
+                    rides.forEach(function(ride) {
+                        var marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(ride.start_location.location.lat, ride.start_location.location.lng),
+                            map: map,
+                            draggable: false,
+                            animation: google.maps.Animation.DROP,
+                        });
+
+                        markers.push(marker);
+                    });
+                };
+
+                $('#rideStatus').change(function() {
+                    var status = $(this).val();
+
+                    updateMap(status);
+                });
+
+                initMap();
+
+                // $('#rideStatus').change(function (e) { 
+                //     e.preventDefault();
+
+                //     if ($('#rideStatus').val() === 'ride_in_progress') {
+                        
+                //     }
+                // });
+                // var latLng = new google.maps.LatLng(-1.6586834, 29.1669084);
+                // var map = new google.maps.Map(document.getElementById('gmap'), {
+                //     zoom: 12,
+                //     center: latLng,
+                //     mapTypeId: google.maps.MapTypeId.ROADMAP,
+                // });
+
+                // window.Laravel.data.rides_completed.forEach((item, index) => {
+                //     console.log(JSON.stringify(item.start_location));
+                //     var marker = new google.maps.Marker({
+                //         position: new google.maps.LatLng(item.start_location.location.lat, item.start_location.location.lng),
+                //         map: map,
+                //         draggable: false,
+                //         animation: google.maps.Animation.DROP,
+                //     });
+
+                //     marker.idEvent = item.id;
+                // });
+            });
+        </script>
+@endif
+@if (Route::is('vehicle.show'))
+        <script type="text/javascript">
+            /*
+             * Image preview from input:file multiple
+             */
+            let selectedFiles = []; // Table to maintain the list of selected files
+
+            document.getElementById('imageInput').addEventListener('change', function(event) {
+                const newFiles = event.target.files;
+                const previewContainer = document.getElementById('imagePreviewContainer');
+
+                // Add new files to the existing list (without deleting old ones)
+                selectedFiles = [...selectedFiles, ...Array.from(newFiles)];
+
+                // Show previews for all files (old and new)
+                previewContainer.innerHTML = ''; // Clear existing previews to update the list
+
+                previewContainer.classList.remove('d-none');
+
+                selectedFiles.forEach((file, index) => {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        const imagePreview = document.createElement('div');
+
+                        imagePreview.classList.add('imagePreview');
+            
+                        const img = document.createElement('img');
+
+                        img.src = e.target.result;
+
+                        const removeBtn = document.createElement('button');
+
+                        removeBtn.classList.add('remove-btn');
+
+                        removeBtn.innerHTML = '<i class="bi bi-x-lg"></i>';
+
+                        removeBtn.addEventListener('click', () => {
+                            // Delete the file from the table and update the entry
+                            selectedFiles.splice(index, 1); // Remove file from table
+                            imagePreview.remove(); // Remove DOM preview
+                            updateInput(); // Update the input with the new list of files
+
+                            // If the file list is empty, reset the input
+                            if (selectedFiles.length === 0 || !previewContainer.hasChildNodes()) {
+                                document.getElementById('imageInput').value = ''; // Reset the input
+
+                                previewContainer.classList.add('d-none');
+                            }
+                        });
+
+                        imagePreview.appendChild(img);
+                        imagePreview.appendChild(removeBtn);
+                        previewContainer.appendChild(imagePreview);
+                    };
+                    reader.readAsDataURL(file);
+                });
+
+                updateInput(); // Update the entry to reflect the list of files
+            });
+        </script>
+@endif
+        <script type="text/javascript">
+            /*
+             * When the user clicks on the button, scroll to the top of the document
+             */
+            const backToTop = () => {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            };
+
             /**
              * Delete entity
              * 
@@ -257,7 +414,7 @@
              * To delete a vehicle with ID "456" and entity "car" : deleteEntity('vehicle', 456, 'car');
              * To delete a role with ID "789" and the entity "admin" : deleteEntity('role', 789, 'admin');
              */
-            function deleteEntity(entity, entityId, additionalEntity = null) {
+            const deleteEntity = (entity, entityId, additionalEntity = null) => {
                 // Routes object
                 const routes = {
                     customer: '/customer/delete/{id}',
@@ -340,136 +497,53 @@
                         });
                     }
                 });
-            }
+            };
 
             /**
-             * Show alert
-             * 
-             * @param boolean success
-             * @param string message
+             * Function to update the input with the list of selected files
              */
-            const showAlert = (success, message) => {
-                const color = success === true ? 'success' : 'danger';
-                const icon = success === true ? 'bi bi-info-circle' : 'bi bi-exclamation-triangle';
+            const updateInput = () => {
+                const dataTransfer = new DataTransfer();
 
-                // Delete old alerts
-                $('#ajax-alert-container .alert').alert('close');
-
-                const alert = `<div class="position-relative">
-                                    <div class="row position-fixed w-100" style="opacity: 0.9; z-index: 999;">
-                                        <div class="col-lg-4 col-sm-6 mx-auto">
-                                            <div class="alert alert-${color} alert-dismissible fade show rounded-0" role="alert">
-                                                <i class="${icon} me-2 fs-4" style="vertical-align: -3px;"></i> ${message}
-                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>`;
-
-                // Adding alert to do DOM
-                $('#ajax-alert-container').append(alert);
-
-                // Automatic closing after 6 seconds
-                setTimeout(() => {
-                    $('#ajax-alert-container .alert').alert('close');
-                }, 6000);
-            };
-        </script>
-@if (Route::is('customer.home'))
-        <script type="text/javascript">
-            $(function () {
-                /*
-                 * Rides on Google Maps
-                 */
-                var map;
-                var markers = [];
-
-                function initMap() {
-                    var rides = window.Laravel.data.rides_completed;
-                    var latLng = (rides.length > 0)
-                                    ? new google.maps.LatLng(rides[0].start_location.location.lat, rides[0].start_location.location.lng)
-                                    : new google.maps.LatLng(-1.6586834, 29.1669084);
-
-                    map = new google.maps.Map(document.getElementById('gmap'), {
-                        zoom: 12,
-                        center: latLng,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                    });
-
-                    updateMap('rides_completed'); // The default status
-                }
-
-                function updateMap(rideStatus) {
-                    markers.forEach(function(marker) {
-                        marker.setMap(null);
-                    });
-                    markers = [];
-
-                    var rides = window.Laravel.data[rideStatus];
-                    console.log(rides);
-
-                    if (rides.length > 0) {
-                        var latLng = new google.maps.LatLng(rides[0].start_location.location.lat, rides[0].start_location.location.lng);
-
-                        map.setCenter(latLng);
-                    }
-
-                    rides.forEach(function(ride) {
-                        var marker = new google.maps.Marker({
-                            position: new google.maps.LatLng(ride.start_location.location.lat, ride.start_location.location.lng),
-                            map: map,
-                            draggable: false,
-                            animation: google.maps.Animation.DROP,
-                        });
-
-                        markers.push(marker);
-                    });
-                }
-
-                $('#rideStatus').change(function() {
-                    var status = $(this).val();
-
-                    updateMap(status);
+                selectedFiles.forEach(file => {
+                    dataTransfer.items.add(file);
                 });
 
-                initMap();
+                document.getElementById('imageInput').files = dataTransfer.files;
+            };
 
-                // $('#rideStatus').change(function (e) { 
-                //     e.preventDefault();
-
-                //     if ($('#rideStatus').val() === 'ride_in_progress') {
-                        
-                //     }
-                // });
-                // var latLng = new google.maps.LatLng(-1.6586834, 29.1669084);
-                // var map = new google.maps.Map(document.getElementById('gmap'), {
-                //     zoom: 12,
-                //     center: latLng,
-                //     mapTypeId: google.maps.MapTypeId.ROADMAP,
-                // });
-
-                // window.Laravel.data.rides_completed.forEach((item, index) => {
-                //     console.log(JSON.stringify(item.start_location));
-                //     var marker = new google.maps.Marker({
-                //         position: new google.maps.LatLng(item.start_location.location.lat, item.start_location.location.lng),
-                //         map: map,
-                //         draggable: false,
-                //         animation: google.maps.Animation.DROP,
-                //     });
-
-                //     marker.idEvent = item.id;
-                // });
-            });
-        </script>
-@endif
-        <script type="text/javascript">
-            /*
-             * When the user clicks on the button, scroll to the top of the document
+            /**
+             * Function to show rides by status
+             * 
+             * @param string titleSelector
+             * @param string textSelector
+             * @param string status
+             * @param string textSingular
+             * @param string textPlural
              */
-            function backToTop() {
-                document.body.scrollTop = 0; // For Safari
-                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-            }
+            const countRidesByStatus = (titleSelector, textSelector, status, textSingular, textPlural) => {
+                const titleElement = document.querySelector(titleSelector);
+                const textElement = document.querySelector(textSelector);
+
+                $.ajax({
+                    headers: headers,
+                    type: 'GET',
+                    url: `${currentHost}/api/ride/rides_by_status/${status}`,
+                    dataType: 'json',
+                    success: function (response) {
+                        const text = response.count > 1 ? textPlural : textSingular;
+
+                        $(titleElement).html(response.count);
+                        $(textElement).html(text);
+                    },
+                    error: function (xhr, error, status_description) {
+                        console.log(xhr.responseJSON);
+                        console.log(xhr.status);
+                        console.log(error);
+                        console.log(status_description);
+                    }
+                });
+            };
 
             $(function () {
                 /*
@@ -568,15 +642,15 @@
                             complete: function () {
                                 $('#userModal form button').removeClass('disabled');
                                 $('#userModal form button .spinner-border').addClass('opacity-0');
-
+                            },
+                            success: function (res) {
                                 if (!$('#errorMessageWrapper').hasClass('d-none')) {
                                     $('#errorMessageWrapper').addClass('d-none');
                                 }
 
                                 $('#successMessageWrapper').removeClass('d-none');
                                 $('#successMessageWrapper .custom-message').html(res.message);
-                            },
-                            success: function (res) {
+
                                 window.location.href = window.location.href;
                             },
                             cache: false,
@@ -623,105 +697,6 @@
                     modal.show();
                 });
             });
-        </script>
-
-@if (Route::is('vehicle.show'))
-        <script type="text/javascript">
-            /*
-             * Image preview from input:file multiple
-             */
-            let selectedFiles = []; // Table to maintain the list of selected files
-            document.getElementById('imageInput').addEventListener('change', function(event) {
-                const newFiles = event.target.files;
-                const previewContainer = document.getElementById('imagePreviewContainer');
-
-                // Add new files to the existing list (without deleting old ones)
-                selectedFiles = [...selectedFiles, ...Array.from(newFiles)];
-
-                // Show previews for all files (old and new)
-                previewContainer.innerHTML = ''; // Clear existing previews to update the list
-
-                previewContainer.classList.remove('d-none');
-
-                selectedFiles.forEach((file, index) => {
-                    const reader = new FileReader();
-
-                    reader.onload = function(e) {
-                        const imagePreview = document.createElement('div');
-
-                        imagePreview.classList.add('imagePreview');
-            
-                        const img = document.createElement('img');
-
-                        img.src = e.target.result;
-
-                        const removeBtn = document.createElement('button');
-
-                        removeBtn.classList.add('remove-btn');
-                        removeBtn.innerHTML = '<i class="bi bi-x-lg"></i>';
-
-                        removeBtn.addEventListener('click', () => {
-                            // Delete the file from the table and update the entry
-                            selectedFiles.splice(index, 1); // Remove file from table
-                            imagePreview.remove(); // Remove DOM preview
-                            updateInput(); // Update the input with the new list of files
-
-                            // If the file list is empty, reset the input
-                            if (selectedFiles.length === 0 || !previewContainer.hasChildNodes()) {
-                                document.getElementById('imageInput').value = ''; // Reset the input
-
-                                previewContainer.classList.add('d-none');
-                            }
-                        });
-
-                        imagePreview.appendChild(img);
-                        imagePreview.appendChild(removeBtn);
-                        previewContainer.appendChild(imagePreview);
-                    };
-                    reader.readAsDataURL(file);
-                });
-
-                updateInput(); // Update the entry to reflect the list of files
-            });
-        </script>
-@endif
-        <script type="text/javascript">
-
-            // Function to update the input with the list of selected files
-            function updateInput() {
-                const dataTransfer = new DataTransfer();
-
-                selectedFiles.forEach(file => {
-                    dataTransfer.items.add(file);
-                });
-
-                document.getElementById('imageInput').files = dataTransfer.files;
-            }
-
-            // Function to show rides by status
-            function countRidesByStatus(titleSelector, textSelector, status, textSingular, textPlural) {
-                var titleElement = document.querySelector(titleSelector);
-                var textElement = document.querySelector(textSelector);
-
-                $.ajax({
-                    headers: headers,
-                    type: 'GET',
-                    url: `${currentHost}/api/ride/rides_by_status/${status}`,
-                    dataType: 'json',
-                    success: function (response) {
-                        var text = response.count > 1 ? textPlural : textSingular;
-
-                        $(titleElement).html(response.count);
-                        $(textElement).html(text);
-                    },
-                    error: function (xhr, error, status_description) {
-                        console.log(xhr.responseJSON);
-                        console.log(xhr.status);
-                        console.log(error);
-                        console.log(status_description);
-                    }
-                });
-            }
 
             /*
              * Injected data from Laravel

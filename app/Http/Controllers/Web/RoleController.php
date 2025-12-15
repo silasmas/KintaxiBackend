@@ -202,14 +202,14 @@ class RoleController extends BaseController
 
             // If "email" and "phone" are NULL, return error
             if (trim($inputs['email']) == null and trim($inputs['phone']) == null) {
-                return redirect()->back()->with('error_message', __('validation.custom.email_or_phone.required'));
+                return $this->handleError(__('validation.custom.email_or_phone.required'));
             }
 
             if ($inputs['email'] != null) {
                 // Check if user phone already exists
                 foreach ($users as $another_user):
                     if ($another_user->phone == $inputs['email']) {
-                        return redirect()->back()->with('error_message', __('validation.custom.email.exists'));
+                        return $this->handleError(__('validation.custom.email.exists'));
                     }
                 endforeach;
 
@@ -227,7 +227,7 @@ class RoleController extends BaseController
                 // Check if user phone already exists
                 foreach ($users as $another_user):
                     if ($another_user->phone == $inputs['phone']) {
-                        return redirect()->back()->with('error_message', __('validation.custom.phone.exists'));
+                        return $this->handleError(__('validation.custom.phone.exists'));
                     }
                 endforeach;
 
@@ -245,7 +245,7 @@ class RoleController extends BaseController
                 // Check if username already exists
                 foreach ($users as $another_user):
                     if ($another_user->username == $inputs['username']) {
-                        return redirect()->back()->with('error_message', __('validation.custom.phone.exists'));
+                        return $this->handleError(__('validation.custom.username.exists'));
                     }
                 endforeach;
             }
@@ -255,13 +255,13 @@ class RoleController extends BaseController
                 $parent = User::find($inputs['belongs_to']);
 
                 if (is_null($parent)) {
-                    return redirect()->back()->with('error_message', __('notifications.find_user_404' . ': PARENT'));
+                    return $this->handleError(__('notifications.find_user_404' . ': PARENT'));
                 }
             }
 
             if ($inputs['password'] != null) {
-                if ($request->confirm_password != $request->password or $request->confirm_password == null) {
-                    return redirect()->back()->with('error_message', __('notifications.confirm_password_error'));
+                if ($request->confirm_password != $request->password or trim($request->confirm_password) == null) {
+                    return $this->handleError(__('notifications.confirm_password_error'));
                 }
 
                 $random_int_stringified = (string) random_int(1000000, 9999999);
