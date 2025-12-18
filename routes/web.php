@@ -30,6 +30,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/currency/{id}', 'App\Http\Controllers\Web\CurrencyController@show')->whereNumber('id')->name('currency.show');
     Route::post('/currency/{id}', 'App\Http\Controllers\Web\CurrencyController@update')->whereNumber('id');
     Route::get('/currency/delete/{id}', 'App\Http\Controllers\Web\CurrencyController@destroy')->whereNumber('id')->name('currency.destroy');
+    Route::get('/pricing', 'App\Http\Controllers\Web\PricingController@index')->name('pricing.home');
+    Route::post('/pricing', 'App\Http\Controllers\Web\PricingController@store');
+    Route::get('/pricing/{id}', 'App\Http\Controllers\Web\PricingController@show')->whereNumber('id')->name('pricing.show');
+    Route::post('/pricing/{id}', 'App\Http\Controllers\Web\PricingController@update')->whereNumber('id');
+    Route::get('/pricing/delete/{id}', 'App\Http\Controllers\Web\PricingController@destroy')->whereNumber('id')->name('pricing.destroy');
     Route::get('/payment-gateway', 'App\Http\Controllers\Web\PaymentGatewayController@index')->name('payment_gateway.home');
     Route::post('/payment-gateway', 'App\Http\Controllers\Web\PaymentGatewayController@store');
     Route::get('/payment-gateway/{id}', 'App\Http\Controllers\Web\PaymentGatewayController@show')->whereNumber('id')->name('payment_gateway.show');

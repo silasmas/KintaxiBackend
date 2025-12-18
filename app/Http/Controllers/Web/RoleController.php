@@ -508,16 +508,54 @@ class RoleController extends BaseController
             $users = User::all();
 
             if ($request->status_id != null) {
+                if (!$user) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => __('notifications.find_user_404'),
+                    ]);
+                }
+
+                if (trim($request->status_id) == null OR !is_numeric($request->status_id)) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => __('validation.numeric', ['attribute' => 'status_id']),
+                    ]);
+                }
+
                 $user->update([
-                    'status_id' => $request->status_id,
+                    'status_id' => $request->status_id == -5 ? 0 : $request->status_id,
                     'updated_at' => now(),
+                ]);
+
+                return response()->json([
+                    'success' => true,
+                    'message' => __('notifications.update_status_success'),
                 ]);
             }
 
             if ($request->role_id != null) {
+                if (!$user) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => __('notifications.find_user_404'),
+                    ]);
+                }
+
+                if (trim($request->role_id) == null OR !is_numeric($request->role_id)) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => __('validation.numeric', ['attribute' => 'role_id']),
+                    ]);
+                }
+
                 $user->update([
                     'role_id' => $request->role_id,
                     'updated_at' => now(),
+                ]);
+
+                return response()->json([
+                    'success' => true,
+                    'message' => __('notifications.update_role_success'),
                 ]);
             }
 

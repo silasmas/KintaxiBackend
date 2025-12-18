@@ -86,6 +86,20 @@ return [
     'create_country_success' => 'Country created',
     'update_country_success' => 'Country updated',
     'delete_country_success' => 'Country deleted',
+    // Currency
+    'find_all_currencies_success' => 'Currencies found',
+    'find_currency_success' => 'Currency found',
+    'find_currency_404' => 'Currency not found',
+    'create_currency_success' => 'Currency created',
+    'update_currency_success' => 'Currency updated',
+    'delete_currency_success' => 'Currency deleted',
+    // PricingRule
+    'find_all_pricing_rules_success' => 'Pricing rules found',
+    'find_pricing_rule_success' => 'Pricing rule found',
+    'find_pricing_rule_404' => 'Pricing rule not found',
+    'create_pricing_rule_success' => 'Pricing rule created',
+    'update_pricing_rule_success' => 'Pricing rule updated',
+    'delete_pricing_rule_success' => 'Pricing rule deleted',
     // Partner
     'find_all_partners_success' => 'Partners found',
     'find_partner_success' => 'Partner found',

@@ -48,6 +48,7 @@
                                                             @lang('miscellaneous.details') <i class="fa fa-angle-double-right"></i>
                                                         </a><br>
                                                         <a href="{{ route('currency.destroy', ['id' => $currency['id']]) }}" class="text-danger">
+                                                        <a role="button" class="text-danger" onclick="event.preventDefault(); deleteEntity('currency', {{ $currency['id'] }})">
                                                             @lang('miscellaneous.delete')
                                                         </a>
                                                     </td>

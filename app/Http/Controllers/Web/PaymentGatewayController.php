@@ -80,10 +80,29 @@ class PaymentGatewayController extends Controller
         $gateway = PaymentGateway::find($id);
 
         if ($request->status_id != null) {
+            if (!$gateway) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('notifications.find_vehicle_404'),
+                ]);
+            }
+
+            if (trim($request->status_id) == null OR !is_numeric($request->status_id)) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('validation.numeric', ['attribute' => 'status_id']),
+                ]);
+            }
+
             $gateway->update([
                 'updated_at' => now(),
                 'updated_by' => Auth::user()->id,
-                'status_id' => $request->status_id,
+                'status_id' => $request->status_id == -5 ? 0 : $request->status_id,
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => __('notifications.update_status_success'),
             ]);
         }
 

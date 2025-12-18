@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Xanders
  * @see https://team.xsamtech.com/xanderssamoth
@@ -387,6 +388,7 @@ return [
             'rented-vehicles' => 'Véhicules loués',
         ],
         'currency' => 'Devise',
+        'pricing' => 'Tarification',
         'payment-gateway' => 'Passerelle de paiement',
         'vehicle' => [
             'title' => 'Véhicule',
@@ -557,6 +559,42 @@ return [
                 'currency_acronym' => 'Acronyme de la devise',
                 'rating' => 'Taux (Par rapport au CDF)',
                 'icon' => 'Icône',
+            ],
+        ],
+
+        // Pricing
+        'pricing' => [
+            'details' => 'Détails des tarifs',
+            'link' => 'Gérer les tarifs',
+            'add' => 'Ajouter un tarif',
+            'edit' => 'Modifier le tarif',
+            'search' => 'Rechercher un tarif',
+            'list' => 'Liste des tarifs',
+            'data' => [
+                'rule_type' => [
+                    'title' => 'Type de règle',
+                    'base_fare' => 'Tarif de base',
+                    'distance' => 'Distance',
+                    'time' => 'Temps',
+                    'waiting_time' => 'Temps d’attente',
+                    'traffic' => 'Trafic',
+                ],
+                'min_value' => 'Valeur minimale',
+                'max_value' => 'Valeur maximale',
+                'cost' => 'Coût',
+                'vehicle_category' => 'Catégorie de véhicule',
+                'surge_multiplier' => 'Multiplicateur de surcharge',
+                'unit' => [
+                    'title' => 'Unité',
+                    'km' => 'Kilomètre',
+                    'min' => 'Minute',
+                    'fixed' => 'Fixe',
+                    'percentage' => 'Pourcentage',
+                ],
+                'zone_id' => 'Zone',
+                'valid_from' => 'Valide à partir du',
+                'valid_to' => 'Valide jusqu’au',
+                'is_default' => 'Par défaut',
             ],
         ],
 

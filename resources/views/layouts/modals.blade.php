@@ -785,6 +785,33 @@
         <!-- End status -->
 @endif
 
+@if (Route::is('pricing.home'))
+        <div class="modal fade" id="pricingModal" tabindex="-1" aria-labelledby="pricingModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <form action="{{ route('pricing.home') }}" method="post" enctype="multipart/form-data">
+    @csrf
+                    <div class="modal-content">
+                        <div class="modal-header bg-light">
+                            <h1 class="modal-title fs-5" id="pricingModalLabel">@lang('miscellaneous.admin.pricing.add')</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="@lang('miscellaneous.close')"></button>
+                        </div>
+                        <div class="modal-body pb-0">
+                            <!-- Rating -->
+                            <div class="form-floating mt-3">
+                                <input type="number" name="rating" id="rating" class="form-control" placeholder="@lang('miscellaneous.admin.currency.data.rating')">
+                                <label for="rating">@lang('miscellaneous.admin.currency.data.rating')</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer d-block border-0">
+                            <button type="submit" class="btn btn-primary w-100 rounded-pill">@lang('miscellaneous.register')</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- End status -->
+@endif
+
 @if (Route::is('account.entity'))
         <!-- Start crop avatar image -->
         <div class="modal fade" id="cropModalUser" tabindex="-1" aria-labelledby="cropModalUserLabel" aria-hidden="true">

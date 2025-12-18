@@ -111,12 +111,9 @@
                                                             <ul class="dropdown-menu">
         @foreach ($statuses as $status)
                                                                 <li>
-                                                                    <span class="dropdown-item{{ $status['id'] === $vehicle['status']['id'] ? ' active' : '' }}">
-                                                                        <form action="{{ route('vehicle.entity.home', ['entity' => 'update_status']) }}" method="POST">
-                                                                            <input type="hidden" name="status_id" value="{{ $status['id'] }}">
-                                                                            <button type="submit">@lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')</button>
-                                                                        </form>
-                                                                    </span>
+                                                                    <a id="vehicleStatus-{{ $vehicle['id'] }}-{{ $status['id'] }}" class="dropdown-item{{ $status['id'] === $vehicle['status']['id'] ? ' active' : '' }}" data-object-id="{{ $vehicle['id'] }}" data-status-id="{{ $status['id'] }}" onclick="event.preventDefault(); changeStatus('vehicle', this)">
+                                                                        @lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')
+                                                                    </a>
                                                                 </li>
         @endforeach
                                                             </ul>
@@ -169,7 +166,7 @@
                                                     <td class="align-middle">{{ $user['firstname'] . ' ' . $user['lastname'] }}</td>
                                                     <td class="align-middle">{{ $user['phone'] }}</td>
                                                     <td>
-                                                        <select class="form-select form-select-sm" aria-label="@lang('miscellaneous.choose_role')">
+                                                        <select id="userRole-{{ $user['id'] }}" class="form-select form-select-sm" aria-label="@lang('miscellaneous.choose_role')" data-user-id="{{ $user['id'] }}" onchange="changeRole(this);">
                                                             <option class="small" disabled>@lang('miscellaneous.choose_role')</option>
         @foreach ($roles as $role)
                                                             <option value="{{ $role['id'] }}"{{ $user['role']['id'] == $role['id'] ? ' selected' : '' }}>{{ $role['role_name'] }}</option>

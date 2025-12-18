@@ -86,6 +86,20 @@ return [
     'create_country_success' => 'Pays créé',
     'update_country_success' => 'Pays modifié',
     'delete_country_success' => 'Pays supprimé',
+    // Currency
+    'find_all_currencies_success' => 'Devises trouvées',
+    'find_currency_success' => 'Devise trouvée',
+    'find_currency_404' => 'Devise non trouvée',
+    'create_currency_success' => 'Devise créée',
+    'update_currency_success' => 'Devise modifiée',
+    'delete_currency_success' => 'Devise supprimée',
+    // PricingRule
+    'find_all_pricing_rules_success' => 'Règles de tarification trouvées',
+    'find_pricing_rule_success' => 'Règle de tarification trouvée',
+    'find_pricing_rule_404' => 'Règle de tarification non trouvée',
+    'create_pricing_rule_success' => 'Règle de tarification créée',
+    'update_pricing_rule_success' => 'Règle de tarification modifiée',
+    'delete_pricing_rule_success' => 'Règle de tarification supprimée',
     // Partner
     'find_all_partners_success' => 'Partenaires trouvés',
     'find_partner_success' => 'Partenaire trouvé',

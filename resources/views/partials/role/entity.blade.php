@@ -93,7 +93,7 @@
                                                     <td class="align-middle">{{ $user['firstname'] . ' ' . $user['lastname'] }}</td>
                                                     <td class="align-middle">{{ $user['phone'] }}</td>
                                                     <td>
-                                                        <select class="form-select form-select-sm" aria-label="@lang('miscellaneous.choose_role')">
+                                                        <select id="userRole-{{ $user['id'] }}" class="form-select form-select-sm" aria-label="@lang('miscellaneous.choose_role')" data-user-id="{{ $user['id'] }}" onchange="changeRole(this);">
                                                             <option class="small" disabled>@lang('miscellaneous.choose_role')</option>
         @foreach ($roles as $role)
                                                             <option value="{{ $role['id'] }}"{{ $user['role']['id'] == $role['id'] ? ' selected' : '' }}>{{ $role['role_name'] }}</option>

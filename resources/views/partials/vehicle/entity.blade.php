@@ -102,9 +102,20 @@
                                                         </p>
                                                     </td>
                                                     <td>
-                                                        <span class="btn btn-{{ __('miscellaneous.admin.group.status.icon_color.' . $category['status']['id'] . '.color') }} rounded-pill" style="min-width: 120px;">
-                                                            {{ ucfirst(explode('/', $category['status']['status_name'])[0]) }}
-                                                        </span>
+                                                        <div class="btn-group rounded-pill shadow-0">
+                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.group.status.icon_color.' . $category['status']['id'] . '.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="@lang('miscellaneous.admin.group.status.icon_color.' . $category['status']['id'] . '.icon') me-1"></i> @lang('miscellaneous.admin.group.status.icon_color.' . $category['status']['id'] . '.name')
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+    @foreach ($statuses as $status)
+                                                                <li>
+                                                                    <a id="categoryStatus-{{ $category['id'] }}-{{ $status['id'] }}" class="dropdown-item{{ $status['id'] === $category['status']['id'] ? ' active' : '' }}" data-object-id="{{ $category['id'] }}" data-status-id="{{ $status['id'] }}" onclick="event.preventDefault(); changeStatus('category', this)">
+                                                                        @lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')
+                                                                    </a>
+                                                                </li>
+    @endforeach
+                                                            </ul>
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <a href="{{ route('vehicle.entity.show', ['entity' => 'category', 'id' => $category['id']]) }}">

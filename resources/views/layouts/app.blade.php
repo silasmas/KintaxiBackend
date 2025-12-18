@@ -61,6 +61,7 @@
                 #vehicleModal .modal-body { max-height: 430px; overflow: hidden; overflow-y: auto; }
             }
             @media (min-width: 768px) {
+                #itemsList { overflow: visible; }
                 #updateUserStatus { position: absolute; top: 0.9rem; right: 0.9rem; cursor: pointer; }
             }
             @media (max-width: 899px) and (min-width: 768px) {
@@ -402,6 +403,170 @@
             };
 
             /**
+             * Change user role
+             */
+            const changeRole = (element) => {
+                const _this = document.getElementById(element.id);
+                const element_value = parseInt(_this.value);
+                const user_id = parseInt(_this.getAttribute('data-user-id'));
+
+                Swal.fire({
+                    title: '{{ __("miscellaneous.alert.attention.role") }}',
+                    text: '{{ __("miscellaneous.alert.confirm.role") }}',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '{{ __("miscellaneous.alert.yes.role") }}',
+                    cancelButtonText: '{{ __("miscellaneous.cancel") }}'
+
+                }).then(function (result) {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            headers: headers,
+                            type: 'POST',
+                            contentType: 'application/json',
+                            url: '/role/users/' + user_id,
+                            dataType: 'json',
+                            data: JSON.stringify({ _token : csrfToken, 'id' : user_id, 'role_id' : element_value }),
+                            success: function (result) {
+                                if (!result.success) {
+                                    Swal.fire({
+                                        title: '{{ __("miscellaneous.alert.oups") }}',
+                                        text: result.message,
+                                        icon: 'error'
+                                    });
+
+                                } else {
+                                    Swal.fire({
+                                        title: '{{ __("miscellaneous.alert.perfect") }}',
+                                        text: result.message,
+                                        icon: 'success'
+                                    });
+                                    location.reload();
+                                }
+                            },
+                            error: function (xhr, error, status_description) {
+                                console.log(xhr.responseJSON);
+                                console.log(xhr.status);
+                                console.log(error);
+                                console.log(status_description);
+
+                                Swal.fire({
+                                    title: '{{ __("notifications.500_title") }}',
+                                    text: xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : (xhr.responseText && xhr.responseText.message ? xhr.responseText.message : status_description),
+                                    icon: 'error'
+                                });
+                            }
+                        });
+
+                    } else {
+                        Swal.fire({
+                            title: '{{ __("miscellaneous.cancel") }}',
+                            text: '{{ __("miscellaneous.alert.canceled.role") }}',
+                            icon: 'error'
+                        });
+                    }
+                });
+            };
+
+            /**
+             * Change status of an entity
+             */
+            const changeStatus = (entity, element) => {
+                const _this = document.getElementById(element.id);
+                const status_id = parseInt(_this.dataset.statusId);
+                const object_id = parseInt(_this.dataset.objectId);
+                // Routes object
+                const routes = {
+                    vehicle: '/vehicle/{id}',
+                    category: '/vehicle/category/{id}',
+                    gateway: '/payment-gateway/{id}',
+                };
+
+                if (isNaN(status_id) || status_id === '' || typeof status_id !== 'number') {
+                    Swal.fire({
+                        title: '{{ __("miscellaneous.alert.oups") }}',
+                        text: '{{ __("validation.numeric", ["attribute" => "status_id"]) }}',
+                        icon: 'error'
+                    });
+
+                    return;
+                }
+
+                if (isNaN(object_id) || object_id === '' || typeof object_id !== 'number') {
+                    Swal.fire({
+                        title: '{{ __("miscellaneous.alert.oups") }}',
+                        text: '{{ __("validation.numeric", ["attribute" => "object_id"]) }}',
+                        icon: 'error'
+                    });
+
+                    return;
+                }
+
+                Swal.fire({
+                    title: '{{ __("miscellaneous.alert.attention.status") }}',
+                    text: '{{ __("miscellaneous.alert.confirm.status") }}',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '{{ __("miscellaneous.alert.yes.status") }}',
+                    cancelButtonText: '{{ __("miscellaneous.cancel") }}'
+
+                }).then(function (result) {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            headers: headers,
+                            type: 'POST',
+                            contentType: 'application/json',
+                            url: currentHost + routes[entity].replace('{id}', object_id),
+                            dataType: 'json',
+                            data: JSON.stringify({ _token : csrfToken, 'id' : object_id, 'status_id' : (status_id == 0 ? -5 : status_id) }),
+                            success: function (result) {
+                                console.log(result);
+
+                                if (!result.success) {
+                                    Swal.fire({
+                                        title: '{{ __("miscellaneous.alert.oups") }}',
+                                        text: result.message,
+                                        icon: 'error'
+                                    });
+
+                                } else {
+                                    Swal.fire({
+                                        title: '{{ __("miscellaneous.alert.perfect") }}',
+                                        text: result.message,
+                                        icon: 'success'
+                                    });
+                                    location.reload();
+                                }
+                            },
+                            error: function (xhr, error, status_description) {
+                                console.log(xhr.responseJSON);
+                                console.log(xhr.status);
+                                console.log(error);
+                                console.log(status_description);
+
+                                Swal.fire({
+                                    title: '{{ __("notifications.500_title") }}',
+                                    text: xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : (xhr.responseText && xhr.responseText.message ? xhr.responseText.message : status_description),
+                                    icon: 'error'
+                                });
+                            }
+                        });
+
+                    } else {
+                        Swal.fire({
+                            title: '{{ __("miscellaneous.cancel") }}',
+                            text: '{{ __("miscellaneous.alert.canceled.status") }}',
+                            icon: 'error'
+                        });
+                    }
+                });
+            };
+
+            /**
              * Delete entity
              * 
              * @param string entity
@@ -486,6 +651,12 @@
                                 console.log(xhr.status);
                                 console.log(error);
                                 console.log(status_description);
+
+                                Swal.fire({
+                                    title: '{{ __("notifications.500_title") }}',
+                                    text: xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : (xhr.responseText && xhr.responseText.message ? xhr.responseText.message : status_description),
+                                    icon: 'error'
+                                });
                             }
                         });
 

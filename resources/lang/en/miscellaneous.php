@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Xanders
  * @see https://team.xsamtech.com/xanderssamoth
@@ -387,6 +388,7 @@ return [
             'rented-vehicles' => 'Rented vehicles',
         ],
         'currency' => 'Currency',
+        'pricing' => 'Pricing',
         'payment-gateway' => 'Payment gateway',
         'vehicle' => [
             'title' => 'Vehicle',
@@ -557,6 +559,42 @@ return [
                 'currency_acronym' => 'Currency acronym',
                 'rating' => 'Rating (According to CDF)',
                 'icon' => 'Icon',
+            ],
+        ],
+
+        // Pricing
+        'pricing' => [
+            'details' => 'Prices details',
+            'link' => 'Manage price',
+            'add' => 'Add a price',
+            'edit' => 'Edit the price',
+            'search' => 'Search a price',
+            'list' => 'Prices list',
+            'data' => [
+                'rule_type' => [
+                    'title' => 'Rule type',
+                    'base_fare' => 'Base_fare',
+                    'distance' => 'Distance',
+                    'time' => 'Time',
+                    'waiting_time' => 'Waiting_time',
+                    'traffic' => 'Traffic',
+                ],
+                'min_value' => 'Min value',
+                'max_value' => 'Max value',
+                'cost' => 'Cost',
+                'vehicle_category' => 'Vehicle category',
+                'surge_multiplier' => 'Surge multiplier',
+                'unit' => [
+                    'title' => 'Unit',
+                    'km' => 'Kilometer',
+                    'min' => 'Minute',
+                    'fixed' => 'Fixed',
+                    'percentage' => 'Percentage',
+                ],
+                'zone_id' => 'Zone',
+                'valid_from' => 'Valid from',
+                'valid_to' => 'Valid to',
+                'is_default' => 'Is default',
             ],
         ],
 

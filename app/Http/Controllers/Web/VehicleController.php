@@ -298,9 +298,28 @@ class VehicleController extends Controller
         $vehicle = Vehicle::find($id);
 
         if ($request->status_id != null) {
+            if (!$vehicle) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('notifications.find_vehicle_404'),
+                ]);
+            }
+
+            if (trim($request->status_id) == null OR !is_numeric($request->status_id)) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('validation.numeric', ['attribute' => 'status_id']),
+                ]);
+            }
+
             $vehicle->update([
-                'status_id' => $request->status_id,
+                'status_id' => $request->status_id == -5 ? 0 : $request->status_id,
                 'updated_by' => Auth::user()->id,
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => __('notifications.update_status_success'),
             ]);
         }
 
@@ -592,10 +611,29 @@ class VehicleController extends Controller
             $category = VehicleCategory::find($id);
 
             if ($request->status_id != null) {
+                if (!$category) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => __('notifications.find_category_404'),
+                    ]);
+                }
+
+                if (trim($request->status_id) == null OR !is_numeric($request->status_id)) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => __('validation.numeric', ['attribute' => 'status_id']),
+                    ]);
+                }
+
                 $category->update([
                     'updated_at' => now(),
                     'updated_by' => Auth::user()->id,
-                    'status_id' => $request->status_id,
+                    'status_id' => $request->status_id == -5 ? 0 : $request->status_id,
+                ]);
+
+                return response()->json([
+                    'success' => true,
+                    'message' => __('notifications.update_status_success'),
                 ]);
             }
 

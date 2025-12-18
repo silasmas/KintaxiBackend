@@ -4,7 +4,7 @@
                                     <div class="overview-wrap">
                                         <div class="au-breadcrumb-content mb-sm-0 mb-3">
                                             <div class="au-breadcrumb-left text-sm-start text-center">
-                                                <h2 class="title-1">@lang('miscellaneous.menu.payment-gateway')</h2>
+                                                <h2 class="title-1">@lang('miscellaneous.menu.pricing')</h2>
 
                                                 <ul class="list-unstyled list-inline au-breadcrumb__list ms-0">
                                                     <li class="list-inline-item">
@@ -13,13 +13,13 @@
                                                     <li class="list-inline-item seprate">
                                                         <span><i class="fa fa-angle-right"></i></span>
                                                     </li>
-                                                    <li class="list-inline-item">@lang('miscellaneous.menu.payment-gateway')</li>
+                                                    <li class="list-inline-item">@lang('miscellaneous.menu.pricing')</li>
                                                 </ul>
                                             </div>
                                         </div>
 
-                                        <button class="au-btn au-btn-icon au-btn--blue mb-sm-0 mb-2" data-bs-toggle="modal" data-bs-target="#gatewayModal">
-                                            <i class="zmdi zmdi-plus"></i>@lang('miscellaneous.admin.payment-gateway.add')
+                                        <button class="au-btn au-btn-icon au-btn--blue mb-sm-0 mb-2" data-bs-toggle="modal" data-bs-target="#pricingModal">
+                                            <i class="zmdi zmdi-plus"></i>@lang('miscellaneous.admin.pricing.add')
                                         </button>
                                     </div>
                                 </div>
