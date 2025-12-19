@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PricingRule as ResourcesPricingRule;
+use App\Http\Resources\VehicleCategory as ResourcesVehicleCategory;
 use App\Models\PricingRule;
+use App\Models\VehicleCategory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 /**
  * @author Xanders
@@ -24,7 +25,10 @@ class PricingController extends Controller
      */
     public function index()
     {
-        return view('pricing');
+        $vehicle_categories_collection = VehicleCategory::orderByDesc('created_at')->get();
+        $vehicle_categories = ResourcesVehicleCategory::collection($vehicle_categories_collection)->toArray(request());
+
+        return view('pricing', compact('vehicle_categories'));
     }
 
     /**
@@ -38,8 +42,13 @@ class PricingController extends Controller
         $pricing_request = PricingRule::find($id);
         $current_pricing_resource = new ResourcesPricingRule($pricing_request);
         $current_pricing = $current_pricing_resource->toArray(request());
+        $vehicle_categories_collection = VehicleCategory::orderByDesc('created_at')->get();
+        $vehicle_categories_data = ResourcesVehicleCategory::collection($vehicle_categories_collection)->toArray(request());
 
-        return view('pricing', compact('current_pricing'));
+        return view('pricing', [
+            'current_pricing' => $current_pricing,
+            'vehicle_categories' => $vehicle_categories_data,
+        ]);
     }
 
     // ==================================== HTTP POST METHODS ====================================
@@ -50,6 +59,11 @@ class PricingController extends Controller
      */
     public function store(Request $request)
     {
+        $formattedValidFrom = !empty($request->valid_from) ? 
+                            Carbon::createFromFormat('d/m/Y H:i', $request->valid_from)->format('Y-m-d H:i:s') : null;
+        $formattedValidTo = !empty($request->valid_to) ? 
+                            Carbon::createFromFormat('d/m/Y H:i', $request->valid_to)->format('Y-m-d H:i:s') : null;
+
         PricingRule::create([
             'created_by' => Auth::user()->id,
             'rule_type' => $request->rule_type,
@@ -60,8 +74,8 @@ class PricingController extends Controller
             'surge_multiplier' => $request->surge_multiplier,
             'unit' => $request->unit,
             'zone_id' => $request->zone_id,
-            'valid_from' => $request->valid_from,
-            'valid_to' => $request->valid_to,
+            'valid_from' => $formattedValidFrom,
+            'valid_to' => $formattedValidTo,
             'is_default' => $request->is_default,
         ]);
 
@@ -79,29 +93,10 @@ class PricingController extends Controller
         $pricing = PricingRule::find($id);
 
         if ($request->rule_type != null) {
-            if (!$pricing) {
-                return response()->json([
-                    'success' => false,
-                    'message' => __('notifications.find_pricing_rule_404'),
-                ]);
-            }
-
-            if (trim($request->rule_type) == null) {
-                return response()->json([
-                    'success' => false,
-                    'message' => __('validation.required', ['attribute' => __('miscellaneous.admin.pricing.data.rule_type.title')]),
-                ]);
-            }
-
             $pricing->update([
                 'updated_at' => now(),
                 'updated_by' => Auth::user()->id,
                 'rule_type' => $request->rule_type,
-            ]);
-
-            return response()->json([
-                'success' => true,
-                'message' => __('notifications.update_pricing_rule_success'),
             ]);
         }
 
@@ -130,29 +125,10 @@ class PricingController extends Controller
         }
 
         if ($request->vehicle_category != null) {
-            if (!$pricing) {
-                return response()->json([
-                    'success' => false,
-                    'message' => __('notifications.find_pricing_rule_404'),
-                ]);
-            }
-
-            if (trim($request->vehicle_category) == null OR !is_numeric($request->vehicle_category)) {
-                return response()->json([
-                    'success' => false,
-                    'message' => __('validation.numeric', ['attribute' => __('miscellaneous.admin.pricing.data.vehicle_category')]),
-                ]);
-            }
-
             $pricing->update([
                 'updated_at' => now(),
                 'updated_by' => Auth::user()->id,
                 'vehicle_category' => $request->vehicle_category,
-            ]);
-
-            return response()->json([
-                'success' => true,
-                'message' => __('notifications.update_pricing_rule_success'),
             ]);
         }
 
@@ -165,10 +141,29 @@ class PricingController extends Controller
         }
 
         if ($request->unit != null) {
+            if (!$pricing) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('notifications.find_pricing_rule_404'),
+                ]);
+            }
+
+            if (trim($request->unit) == null) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('validation.required', ['attribute' => __('miscellaneous.admin.pricing.data.unit.title')]),
+                ]);
+            }
+
             $pricing->update([
                 'updated_at' => now(),
                 'updated_by' => Auth::user()->id,
                 'unit' => $request->unit,
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => __('notifications.update_pricing_rule_success'),
             ]);
         }
 
@@ -200,18 +195,22 @@ class PricingController extends Controller
         }
 
         if ($request->valid_from != null) {
+            $formattedValidFrom = $request->valid_from != $pricing->valid_from ? Carbon::createFromFormat('d/m/Y H:i', $request->valid_from)->format('Y-m-d H:i:s') : $request->valid_from;
+
             $pricing->update([
                 'updated_at' => now(),
                 'updated_by' => Auth::user()->id,
-                'valid_from' => $request->valid_from,
+                'valid_from' => $formattedValidFrom,
             ]);
         }
 
         if ($request->valid_to != null) {
+            $formattedValidTo = $request->valid_to != $pricing->valid_to ? Carbon::createFromFormat('d/m/Y H:i', $request->valid_to)->format('Y-m-d H:i:s') : $request->valid_to;
+
             $pricing->update([
                 'updated_at' => now(),
                 'updated_by' => Auth::user()->id,
-                'valid_to' => $request->valid_to,
+                'valid_to' => $formattedValidTo,
             ]);
         }
 
@@ -233,7 +232,7 @@ class PricingController extends Controller
             $pricing->update([
                 'updated_at' => now(),
                 'updated_by' => Auth::user()->id,
-                'is_default' => $request->is_default,
+                'is_default' => $request->is_default == -5 ? 0 : $request->is_default,
             ]);
 
             return response()->json([

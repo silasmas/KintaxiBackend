@@ -25,6 +25,7 @@
         <link rel="stylesheet" href="{{ asset('assets/addons/custom/mdb/css/mdb.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/addons/custom/bootstrap/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/addons/custom/jquery/jquery-ui/jquery-ui.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/addons/custom/jquery/datetimepicker/css/jquery.datetimepicker.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/addons/cooladmin/animsition/animsition.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/addons/cooladmin/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/addons/cooladmin/wow/animate.css') }}">
@@ -219,6 +220,7 @@
         <!-- JavaScript Libraries -->
         <script type="text/javascript" src="{{ asset('assets/addons/custom/jquery/js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/addons/custom/jquery/js/jquery-ui.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/addons/custom/jquery/datetimepicker/js/jquery.datetimepicker.full.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/addons/custom/bootstrap/js/popper.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/addons/custom/mdb/js/mdb.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/addons/custom/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -471,6 +473,74 @@
             };
 
             /**
+             * Change pricing unit
+             */
+            const changeUnit = (element) => {
+                const _this = document.getElementById(element.id);
+                const element_value = _this.value;
+                const pricing_id = parseInt(_this.getAttribute('data-pricing-id'));
+
+                Swal.fire({
+                    title: '{{ __("miscellaneous.alert.attention.unit") }}',
+                    text: '{{ __("miscellaneous.alert.confirm.unit") }}',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '{{ __("miscellaneous.alert.yes.unit") }}',
+                    cancelButtonText: '{{ __("miscellaneous.cancel") }}'
+
+                }).then(function (result) {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            headers: headers,
+                            type: 'POST',
+                            contentType: 'application/json',
+                            url: '/pricing/' + pricing_id,
+                            dataType: 'json',
+                            data: JSON.stringify({ _token : csrfToken, 'id' : pricing_id, 'unit' : element_value }),
+                            success: function (result) {
+                                if (!result.success) {
+                                    Swal.fire({
+                                        title: '{{ __("miscellaneous.alert.oups") }}',
+                                        text: result.message,
+                                        icon: 'error'
+                                    });
+
+                                } else {
+                                    Swal.fire({
+                                        title: '{{ __("miscellaneous.alert.perfect") }}',
+                                        text: result.message,
+                                        icon: 'success'
+                                    });
+                                    location.reload();
+                                }
+                            },
+                            error: function (xhr, error, status_description) {
+                                console.log(xhr.responseJSON);
+                                console.log(xhr.status);
+                                console.log(error);
+                                console.log(status_description);
+
+                                Swal.fire({
+                                    title: '{{ __("notifications.500_title") }}',
+                                    text: xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : (xhr.responseText && xhr.responseText.message ? xhr.responseText.message : status_description),
+                                    icon: 'error'
+                                });
+                            }
+                        });
+
+                    } else {
+                        Swal.fire({
+                            title: '{{ __("miscellaneous.cancel") }}',
+                            text: '{{ __("miscellaneous.alert.canceled.unit") }}',
+                            icon: 'error'
+                        });
+                    }
+                });
+            };
+
+            /**
              * Change status of an entity
              */
             const changeStatus = (entity, element) => {
@@ -482,6 +552,7 @@
                     vehicle: '/vehicle/{id}',
                     category: '/vehicle/category/{id}',
                     gateway: '/payment-gateway/{id}',
+                    pricing: '/pricing/{id}',
                 };
 
                 if (isNaN(status_id) || status_id === '' || typeof status_id !== 'number') {
@@ -522,7 +593,7 @@
                             contentType: 'application/json',
                             url: currentHost + routes[entity].replace('{id}', object_id),
                             dataType: 'json',
-                            data: JSON.stringify({ _token : csrfToken, 'id' : object_id, 'status_id' : (status_id == 0 ? -5 : status_id) }),
+                            data: entity === 'pricing' ? JSON.stringify({ _token : csrfToken, 'id' : object_id, 'is_default' : (status_id == 0 ? -5 : status_id) }) : JSON.stringify({ _token : csrfToken, 'id' : object_id, 'status_id' : (status_id == 0 ? -5 : status_id) }),
                             success: function (result) {
                                 console.log(result);
 
@@ -584,6 +655,7 @@
                 const routes = {
                     customer: '/customer/delete/{id}',
                     currency: '/currency/delete/{id}',
+                    pricing: '/pricing/delete/{id}',
                     'payment-gateway': '/payment-gateway/delete/{id}',
                     vehicle: '/vehicle/delete/{id}',
                     'vehicle-entity': '/vehicle/delete/{entity}/{id}',
@@ -594,7 +666,12 @@
 
                 // Checking for the existence of the entity in the object
                 if (!routes[entity] && !routes[`${entity}-entity`]) {
-                    console.error('{{ __("validation.custom.owner.required") }}');
+                    Swal.fire({
+                        title: '{{ __("miscellaneous.alert.oups") }}',
+                        text: '{{ __("validation.custom.owner.required") }}',
+                        icon: 'error'
+                    });
+
                     return;
                 }
 

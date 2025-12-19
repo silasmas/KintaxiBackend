@@ -102,7 +102,7 @@ return [
             'lock' => 'Oui, bloquer',
             'unlock' => 'Oui, activer',
             'delete' => 'Oui, supprimer',
-            'presence_payment' => 'Oui, changer'
+            'unit' => 'Oui, changer'
         ],
         'attention' => [
             'account' => [
@@ -115,7 +115,7 @@ return [
             'lock' => 'Attention blocage',
             'unlock' => 'Attention activation',
             'delete' => 'Attention suppression',
-            'presence_payment' => 'Attention nouveau changement'
+            'unit' => 'Attention nouveau changement'
         ],
         'confirm' => [
             'account' => [
@@ -128,7 +128,7 @@ return [
             'lock' => 'Voulez-vous vraiment bloquer ?',
             'unlock' => 'Voulez-vous vraiment activer ?',
             'delete' => 'Voulez-vous vraiment supprimer ?',
-            'presence_payment' => 'Acceptez-vous ce nouveau changement ?'
+            'unit' => 'Acceptez-vous ce nouveau changement ?'
         ],
         'success' => [
             'account' => [
@@ -141,7 +141,7 @@ return [
             'lock' => 'Blocage réussi',
             'unlock' => 'Activation réussie',
             'delete' => 'Suppression réussie',
-            'presence_payment' => 'Changement effectué'
+            'unit' => 'Changement effectué'
         ],
         'canceled' => [
             'account' => [
@@ -154,7 +154,7 @@ return [
             'lock' => 'Blocage annulé',
             'unlock' => 'Activation annulée',
             'delete' => 'Suppression annulée',
-            'presence_payment' => 'Changement annulé'
+            'unit' => 'Changement annulé'
         ],
         'failed' => [
             'account' => [
@@ -167,7 +167,7 @@ return [
             'lock' => 'Blocage échoué',
             'unlock' => 'Activation échouée',
             'delete' => 'Suppression échouée',
-            'presence_payment' => 'Changement annulé'
+            'unit' => 'Changement annulé'
         ],
     ],
     'search_input' => 'Rechercher ici',

@@ -795,13 +795,88 @@
                             <h1 class="modal-title fs-5" id="pricingModalLabel">@lang('miscellaneous.admin.pricing.add')</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="@lang('miscellaneous.close')"></button>
                         </div>
+
                         <div class="modal-body pb-0">
-                            <!-- Rating -->
+                            <!-- Rule type -->
+                            <div class="form-floating">
+                                <select name="rule_type" id="rule_type" class="form-select" aria-label="@lang('miscellaneous.admin.pricing.data.rule_type.title')">
+                                    <option value="base_fare">@lang('miscellaneous.admin.pricing.data.rule_type.base_fare')</option>
+                                    <option value="distance">@lang('miscellaneous.admin.pricing.data.rule_type.distance')</option>
+                                    <option value="time">@lang('miscellaneous.admin.pricing.data.rule_type.time')</option>
+                                    <option value="waiting_time">@lang('miscellaneous.admin.pricing.data.rule_type.waiting_time')</option>
+                                    <option value="traffic">@lang('miscellaneous.admin.pricing.data.rule_type.traffic')</option>
+                                </select>
+                                <label class="form-label" for="rule_type">@lang('miscellaneous.admin.pricing.data.rule_type.title')</label>
+                            </div>
+
+                            <!-- Minimum value -->
                             <div class="form-floating mt-3">
-                                <input type="number" name="rating" id="rating" class="form-control" placeholder="@lang('miscellaneous.admin.currency.data.rating')">
-                                <label for="rating">@lang('miscellaneous.admin.currency.data.rating')</label>
+                                <input type="number" name="min_value" id="min_value" step="0.01" class="form-control" placeholder="@lang('miscellaneous.admin.pricing.data.min_value')">
+                                <label for="min_value">@lang('miscellaneous.admin.pricing.data.min_value')</label>
+                            </div>
+
+                            <!-- Maximum value -->
+                            <div class="form-floating mt-3">
+                                <input type="number" name="max_value" id="max_value" step="0.01" class="form-control" placeholder="@lang('miscellaneous.admin.pricing.data.max_value')">
+                                <label for="max_value">@lang('miscellaneous.admin.pricing.data.max_value')</label>
+                            </div>
+
+                            <!-- Cost -->
+                            <div class="form-floating mt-3">
+                                <input type="number" name="cost" id="cost" step="0.01" class="form-control" placeholder="@lang('miscellaneous.admin.pricing.data.cost')">
+                                <label for="cost">@lang('miscellaneous.admin.pricing.data.cost')</label>
+                            </div>
+
+                            <!-- vehicle_category -->
+                            <div class="form-floating mt-3">
+                                <select name="vehicle_category" id="vehicle_category" class="form-select" aria-label="@lang('miscellaneous.admin.pricing.data.vehicle_category')">
+    @forelse ($vehicle_categories as $category)
+                                    <option value="{{ $category['id'] }}">{{ ucfirst($category['category_name']) }}</option>
+    @empty
+    @endforelse
+                                </select>
+                                <label class="form-label" for="vehicle_category">@lang('miscellaneous.admin.pricing.data.vehicle_category')</label>
+                            </div>
+
+                            <!-- Surge multiplier -->
+                            <div class="form-floating mt-3">
+                                <input type="number" name="surge_multiplier" id="surge_multiplier" step="0.01" class="form-control" placeholder="@lang('miscellaneous.admin.pricing.data.surge_multiplier')">
+                                <label for="surge_multiplier">@lang('miscellaneous.admin.pricing.data.surge_multiplier')</label>
+                            </div>
+
+                            <!-- unit -->
+                            <div class="form-floating mt-3">
+                                <select name="unit" id="unit" class="form-select" aria-label="@lang('miscellaneous.admin.pricing.data.unit.title')">
+                                    <option value="km">@lang('miscellaneous.admin.pricing.data.unit.km')</option>
+                                    <option value="min">@lang('miscellaneous.admin.pricing.data.unit.min')</option>
+                                    <option value="fixed">@lang('miscellaneous.admin.pricing.data.unit.fixed')</option>
+                                    <option value="percentage">@lang('miscellaneous.admin.pricing.data.unit.percentage')</option>
+                                </select>
+                                <label class="form-label" for="unit">@lang('miscellaneous.admin.pricing.data.unit.title')</label>
+                            </div>
+
+                            <!-- Valid from -->
+                            <div class="form-floating mt-3">
+                                <input type="datetime" name="valid_from" id="valid_from" class="form-control" placeholder="@lang('miscellaneous.admin.pricing.data.valid_from')">
+                                <label for="valid_from">@lang('miscellaneous.admin.pricing.data.valid_from')</label>
+                            </div>
+
+                            <!-- Valid to -->
+                            <div class="form-floating mt-3">
+                                <input type="datetime" name="valid_to" id="valid_to" class="form-control" placeholder="@lang('miscellaneous.admin.pricing.data.valid_to')">
+                                <label for="valid_to">@lang('miscellaneous.admin.pricing.data.valid_to')</label>
+                            </div>
+
+                            <!-- Is default -->
+                            <div class="form-floating mt-3">
+                                <select name="is_default" id="is_default" class="form-select" aria-label="@lang('miscellaneous.admin.pricing.data.is_default')">
+                                    <option value="0">@lang('miscellaneous.no')</option>
+                                    <option value="1">@lang('miscellaneous.yes')</option>
+                                </select>
+                                <label class="form-label" for="is_default">@lang('miscellaneous.admin.pricing.data.is_default')</label>
                             </div>
                         </div>
+
                         <div class="modal-footer d-block border-0">
                             <button type="submit" class="btn btn-primary w-100 rounded-pill">@lang('miscellaneous.register')</button>
                         </div>

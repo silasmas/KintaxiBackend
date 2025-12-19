@@ -84,6 +84,12 @@ $(document).ready(function () {
         }
     });
 
+    /* jQuery DateTime picker */
+    jQuery('[id^="valid_"]').datetimepicker({
+        format: 'd/m/Y H:i'
+    });
+    jQuery.datetimepicker.setLocale('fr');
+
     /* Card hover effect */
     $('.card .stretched-link').each(function () {
         $(this).hover(function () {

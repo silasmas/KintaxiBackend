@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\VehicleCategory as ModelsVehicleCategory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,6 +19,8 @@ class PricingRule extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $vehicle_category = ModelsVehicleCategory::find($this->vehicle_category);
+
         return [
             'id' => $this->id,
             'rule_type' => $this->rule_type,
@@ -25,7 +28,7 @@ class PricingRule extends JsonResource
             'min_value' => $this->min_value,
             'max_value' => $this->max_value,
             'cost' => $this->cost,
-            'vehicle_category' => $this->vehicle_category,
+            'vehicle_category' => $vehicle_category,
             'surge_multiplier' => $this->surge_multiplier,
             'unit' => $this->unit,
             'unit_STRING' => !empty($this->unit) ? __('miscellaneous.admin.pricing.data.unit.'. $this->unit) : null,
@@ -37,7 +40,8 @@ class PricingRule extends JsonResource
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
             'created_by' => $this->created_by,
-            'updated_by' => $this->updated_by
+            'updated_by' => $this->updated_by,
+            'vehicle_category_id' => $this->vehicle_category
         ];
     }
 }

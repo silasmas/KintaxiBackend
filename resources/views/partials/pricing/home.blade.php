@@ -27,59 +27,81 @@
 
                             <div class="row m-t-25">
                                 <div class="col-md-12">
-                                    <div id="itemsList" class="table-responsive table--no-card mb-3">
+                                    <div id="itemsList" class="table-responsive table--no-card mb-3 overflow-auto">
                                         <table class="table table-borderless table-striped table-earning">
                                             <thead>
                                                 <tr>
-                                                    <th>@lang('miscellaneous.admin.payment-gateway.data.gateway_name')</th>
-                                                    <th>@lang('miscellaneous.admin.payment-gateway.data.status.label')</th>
+                                                    <th>@lang('miscellaneous.admin.pricing.data.rule_type.title')</th>
+                                                    <th>@lang('miscellaneous.admin.pricing.data.min_value')</th>
+                                                    <th>@lang('miscellaneous.admin.pricing.data.max_value')</th>
+                                                    <th>@lang('miscellaneous.admin.pricing.data.cost')</th>
+                                                    <th>@lang('miscellaneous.admin.pricing.data.vehicle_category')</th>
+                                                    <th>@lang('miscellaneous.admin.pricing.data.surge_multiplier')</th>
+                                                    <th style="min-width: 14rem;">@lang('miscellaneous.admin.pricing.data.unit.title')</th>
+                                                    <th>@lang('miscellaneous.admin.pricing.data.valid_from')</th>
+                                                    <th>@lang('miscellaneous.admin.pricing.data.valid_to')</th>
+                                                    <th>@lang('miscellaneous.admin.pricing.data.is_default')</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-    @forelse ($payment_gateways as $gateway)
+    @forelse ($pricing_rules as $pricing)
                                                 <tr>
-                                                    <td class="align-middle">{{ $gateway['gateway_name'] }}</td>
+                                                    <td class="align-middle">{{ $pricing['rule_type_STRING'] }}</td>
+                                                    <td class="align-middle">{{ !empty($pricing['min_value']) ? formatDecimalNumber($pricing['min_value']) : '- - - - -' }}</td>
+                                                    <td class="align-middle">{{ !empty($pricing['max_value']) ? formatDecimalNumber($pricing['max_value']) : '- - - - -' }}</td>
+                                                    <td class="align-middle">{{ !empty($pricing['cost']) ? formatDecimalNumber($pricing['cost']) : '- - - - -' }}</td>
+                                                    <td class="align-middle">{{ !empty($pricing['vehicle_category']) ? $pricing['vehicle_category']['category_name'] : '- - - - -' }}</td>
+                                                    <td class="align-middle">{{ !empty($pricing['surge_multiplier']) ? formatDecimalNumber($pricing['surge_multiplier']) : '- - - - -' }}</td>
+                                                    <td>
+                                                        <select id="pricingUnit-{{ $pricing['id'] }}" class="form-select form-select-sm" aria-label="@lang('miscellaneous.admin.pricing.data.unit.title')" data-pricing-id="{{ $pricing['id'] }}" onchange="changeUnit(this);">
+                                                            <option value="km"{{ $pricing['unit'] == 'km' ? ' selected' : '' }}>@lang('miscellaneous.admin.pricing.data.unit.km')</option>
+                                                            <option value="min"{{ $pricing['unit'] == 'min' ? ' selected' : '' }}>@lang('miscellaneous.admin.pricing.data.unit.min')</option>
+                                                            <option value="fixed"{{ $pricing['unit'] == 'fixed' ? ' selected' : '' }}>@lang('miscellaneous.admin.pricing.data.unit.fixed')</option>
+                                                            <option value="percentage"{{ $pricing['unit'] == 'percentage' ? ' selected' : '' }}>@lang('miscellaneous.admin.pricing.data.unit.percentage')</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="align-middle">{{ !empty($pricing['valid_from']) ? explicitDateTime($pricing['valid_from']) : '- - - - -' }}</td>
+                                                    <td class="align-middle">{{ !empty($pricing['valid_to']) ? explicitDateTime($pricing['valid_to']) : '- - - - -' }}</td>
                                                     <td>
                                                         <div class="btn-group rounded-pill shadow-0">
-                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ __('miscellaneous.admin.group.status.icon_color.' . $gateway['status']['id'] . '.color') }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <i class="@lang('miscellaneous.admin.group.status.icon_color.' . $gateway['status']['id'] . '.icon') me-1"></i> @lang('miscellaneous.admin.group.status.icon_color.' . $gateway['status']['id'] . '.name')
+                                                            <button type="button" style="min-width: 120px;" class="btn btn-sm btn-{{ $pricing['is_default'] == 1 ? 'success' : 'danger' }} pb-1 rounded-pill text-start" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="bi bi-{{ $pricing['is_default'] == 1 ? 'check-lg' : 'x-lg' }} me-1"></i> {{ $pricing['is_default_STRING'] }}
                                                             </button>
                                                             <ul class="dropdown-menu">
-        @foreach ($statuses as $status)
                                                                 <li>
-                                                                    {{-- <span class="dropdown-item{{ $status['id'] === $gateway['status']['id'] ? ' active' : '' }}">
-                                                                        <form action="{{ route('payment_gateway.show', ['id' => $gateway['id']]) }}" method="POST">
-                                                                            <input type="hidden" name="status_id" value="{{ $status['id'] }}">
-                                                                            <button type="submit">@lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')</button>
-                                                                        </form>
-                                                                    </span> --}}
-                                                                    <a id="gatewayStatus-{{ $gateway['id'] }}-{{ $status['id'] }}" class="dropdown-item{{ $status['id'] === $gateway['status']['id'] ? ' active' : '' }}" data-object-id="{{ $gateway['id'] }}" data-status-id="{{ $status['id'] }}" onclick="event.preventDefault(); changeStatus('gateway', this)">
-                                                                        @lang('miscellaneous.admin.group.status.icon_color.' . $status['id'] . '.name')
+                                                                    <a id="pricingIsDefault-{{ $pricing['id'] }}-0" class="dropdown-item{{ $pricing['is_default'] == 0 ? ' active' : '' }}" data-object-id="{{ $pricing['id'] }}" data-status-id="0" onclick="event.preventDefault(); changeStatus('pricing', this)">
+                                                                        @lang('miscellaneous.no')
                                                                     </a>
                                                                 </li>
-        @endforeach
+                                                                <li>
+                                                                    <a id="pricingIsDefault-{{ $pricing['id'] }}-1" class="dropdown-item{{ $pricing['is_default'] == 1 ? ' active' : '' }}" data-object-id="{{ $pricing['id'] }}" data-status-id="1" onclick="event.preventDefault(); changeStatus('pricing', this)">
+                                                                        @lang('miscellaneous.yes')
+                                                                    </a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                     <td class="align-middle">
-                                                        <a href="{{ route('payment_gateway.show', ['id' => $gateway['id']]) }}" class="d-inline-block me-3">
+                                                        <a href="{{ route('pricing.show', ['id' => $pricing['id']]) }}" class="d-inline-block me-3">
                                                             @lang('miscellaneous.details') <i class="fa fa-angle-double-right"></i>
                                                         </a>
-                                                        <a role="button" class="text-danger" onclick="event.preventDefault(); deleteEntity('payment-gateway', {{ $gateway['id'] }})">
+                                                        <a role="button" class="text-danger" onclick="event.preventDefault(); deleteEntity('pricing', {{ $pricing['id'] }})">
                                                             @lang('miscellaneous.delete')
                                                         </a>
                                                     </td>
                                                 </tr>
     @empty
                                                 <tr>
-                                                    <td colspan="5" class="text-center fst-italic">@lang('miscellaneous.empty_list')</td>
+                                                    <td colspan="11" class="text-center fst-italic">@lang('miscellaneous.empty_list')</td>
                                                 </tr>
     @endforelse
                                             </tbody>
                                         </table>
                                     </div>
-
+                                </div>
+                                <div class="col-12 d-flex justify-content-center">
+                                    {{ $pricing_rules_req->links() }}
                                 </div>
                             </div>
 

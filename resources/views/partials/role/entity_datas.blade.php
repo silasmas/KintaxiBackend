@@ -430,8 +430,8 @@ $user_drivers = $user_drivers_resource->toArray(request());
     @else
                                                 <form action="{{ route('role.entity.show', ['entity' => 'users', 'id' => $user['id']]) }}" method="post">
         @csrf
-                                                    <input type="file" name="id_card" id="id_card" class="form-control" placeholder="@lang('miscellaneous.account.identity_document.choose_type.identity_card')" />
-                                                    <button type="submit" class="btn btn-block btn-primary mt-2 py-1 rounded-pill float-end">@lang('miscellaneous.register')</button>
+                                                    <input type="file" name="id_card" id="id_card" class="form-control" placeholder="@lang('miscellaneous.account.identity_document.choose_type.identity_card')" onchange="document.getElementById('submitIdCard').classList.remove('disabled')" />
+                                                    <button type="submit" id="submitIdCard" class="btn btn-block btn-primary mt-2 py-1 rounded-pill disabled">@lang('miscellaneous.register')</button>
                                                 </form>
     @endif
                                             </div>
@@ -478,7 +478,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                 <form action="{{ route('role.entity.show', ['entity' => 'users', 'id' => $user['id']]) }}" method="post">
         @csrf
                                                     <input type="file" name="driving_license" id="driving_license" class="form-control" placeholder="@lang('miscellaneous.account.identity_document.choose_type.driving_license')" />
-                                                    <button type="submit" class="btn btn-block btn-primary mt-2 py-1 rounded-pill float-end">@lang('miscellaneous.register')</button>
+                                                    <button type="submit" class="btn btn-block btn-primary mt-2 py-1 rounded-pill disabled">@lang('miscellaneous.register')</button>
                                                 </form>
     @endif
                                             </div>
@@ -525,7 +525,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                 <form action="{{ route('role.entity.show', ['entity' => 'users', 'id' => $user['id']]) }}" method="post">
         @csrf
                                                     <input type="file" name="vehicle_registration" id="vehicle_registration" class="form-control" placeholder="@lang('miscellaneous.account.identity_document.choose_type.vehicle_registration')" />
-                                                    <button type="submit" class="btn btn-block btn-primary mt-2 py-1 rounded-pill float-end">@lang('miscellaneous.register')</button>
+                                                    <button type="submit" class="btn btn-block btn-primary mt-2 py-1 rounded-pill disabled">@lang('miscellaneous.register')</button>
                                                 </form>
     @endif
                                             </div>
@@ -572,7 +572,7 @@ $user_drivers = $user_drivers_resource->toArray(request());
                                                 <form action="{{ route('role.entity.show', ['entity' => 'users', 'id' => $user['id']]) }}" method="post">
         @csrf
                                                     <input type="file" name="vehicle_insurance" id="vehicle_insurance" class="form-control" placeholder="@lang('miscellaneous.account.identity_document.choose_type.vehicle_insurance')" />
-                                                    <button type="submit" class="btn btn-block btn-primary mt-2 py-1 rounded-pill float-end">@lang('miscellaneous.register')</button>
+                                                    <button type="submit" class="btn btn-block btn-primary mt-2 py-1 rounded-pill disabled">@lang('miscellaneous.register')</button>
                                                 </form>
     @endif
                                             </div>

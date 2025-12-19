@@ -5,13 +5,13 @@ namespace App\Providers;
 use App\Http\Controllers\API\RideController;
 use App\Http\Resources\Currency as ResourcesCurrency;
 use App\Http\Resources\PaymentGateway as ResourcesPaymentGateway;
-use App\Http\Resources\Ride as ResourcesRide;
+use App\Http\Resources\PricingRule as ResourcesPricingRule;
 use App\Http\Resources\Status as ResourcesStatus;
 use App\Http\Resources\User as ResourcesUser;
 use App\Http\Resources\UserRole as ResourcesUserRole;
 use App\Models\Currency;
 use App\Models\PaymentGateway;
-use App\Models\Ride;
+use App\Models\PricingRule;
 use App\Models\Status;
 use App\Models\User;
 use App\Models\UserRole;
@@ -62,6 +62,9 @@ class AppServiceProvider extends ServiceProvider
                 // Currencies list
                 $currencies_collection = Currency::all();
                 $currencies = ResourcesCurrency::collection($currencies_collection)->toArray(request());
+                // Pricing rules list
+                $pricing_rules_collection = PricingRule::orderByDesc('created_at')->paginate(5);
+                $pricing_rules = ResourcesPricingRule::collection($pricing_rules_collection)->toArray(request());
                 // Manage rides
                 $ride_controller = new RideController();
                 $rides_requested = $ride_controller->ridesByStatus('requested');
@@ -79,6 +82,8 @@ class AppServiceProvider extends ServiceProvider
                 $view->with('statuses', $statuses);
                 $view->with('payment_gateways', $payment_gateways);
                 $view->with('currencies', $currencies);
+                $view->with('pricing_rules_req', $pricing_rules_collection);
+                $view->with('pricing_rules', $pricing_rules);
             }
 
             $view->with('admins', $admins);

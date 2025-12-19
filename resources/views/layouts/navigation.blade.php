@@ -32,7 +32,13 @@
                             <!-- Currency -->
                             <li class="{{ Route::is('currency.home') || Route::is('currency.show') ? 'active' : '' }}">
                                 <a href="{{ route('currency.home') }}">
-                                    <i class="fas fa-file-invoice-dollar"></i>@lang('miscellaneous.menu.currency')
+                                    <i class="fas fa-dollar-sign"></i>@lang('miscellaneous.menu.currency')
+                                </a>
+                            </li>
+                            <!-- Pricing rule -->
+                            <li class="{{ Route::is('pricing.home') || Route::is('pricing.show') ? 'active' : '' }}">
+                                <a href="{{ route('pricing.home') }}">
+                                    <i class="fas fa-file-invoice-dollar"></i>@lang('miscellaneous.menu.pricing')
                                 </a>
                             </li>
                             <!-- Payment gateway -->
@@ -116,7 +122,13 @@
                             <!-- Currency -->
                             <li class="{{ Route::is('currency.home') || Route::is('currency.show') ? 'active' : '' }}">
                                 <a href="{{ route('currency.home') }}">
-                                    <i class="fas fa-file-invoice-dollar"></i>@lang('miscellaneous.menu.currency')
+                                    <i class="fas fa-dollar-sign"></i>@lang('miscellaneous.menu.currency')
+                                </a>
+                            </li>
+                            <!-- Pricing rule -->
+                            <li class="{{ Route::is('pricing.home') || Route::is('pricing.show') ? 'active' : '' }}">
+                                <a href="{{ route('pricing.home') }}">
+                                    <i class="fas fa-file-invoice-dollar"></i>@lang('miscellaneous.menu.pricing')
                                 </a>
                             </li>
                             <!-- Payment gateway -->

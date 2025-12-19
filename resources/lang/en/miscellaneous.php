@@ -102,7 +102,7 @@ return [
             'lock' => 'Yes, block',
             'unlock' => 'Yes, activate',
             'delete' => 'Yes, delete',
-            'presence_payment' => 'Yes, change'
+            'unit' => 'Yes, change'
         ],
         'attention' => [
             'account' => [
@@ -115,7 +115,7 @@ return [
             'lock' => 'Warning: blockage',
             'unlock' => 'Warning: activation',
             'delete' => 'Warning: deletion',
-            'presence_payment' => 'Warning: new change'
+            'unit' => 'Warning: new change'
         ],
         'confirm' => [
             'account' => [
@@ -128,7 +128,7 @@ return [
             'lock' => 'Are you sure you want to block?',
             'unlock' => 'Do you really want to activate?',
             'delete' => 'Are you sure you want to delete?',
-            'presence_payment' => 'Do you accept this new change?'
+            'unit' => 'Do you accept this new change?'
         ],
         'success' => [
             'account' => [
@@ -141,7 +141,7 @@ return [
             'lock' => 'Blocking successful',
             'unlock' => 'Activation successful',
             'delete' => 'Deletion successful',
-            'presence_payment' => 'Change made'
+            'unit' => 'Change made'
         ],
         'canceled' => [
             'account' => [
@@ -154,7 +154,7 @@ return [
             'lock' => 'Blocking canceled',
             'unlock' => 'Activation canceled',
             'delete' => 'Deletion canceled',
-            'presence_payment' => 'Change canceled'
+            'unit' => 'Change canceled'
         ],
         'failed' => [
             'account' => [
@@ -167,7 +167,7 @@ return [
             'lock' => 'Blocking failed',
             'unlock' => 'Activation failed',
             'delete' => 'Deletion failed',
-            'presence_payment' => 'Change canceled'
+            'unit' => 'Change canceled'
         ],
     ],
     'search_input' => 'Search here',
