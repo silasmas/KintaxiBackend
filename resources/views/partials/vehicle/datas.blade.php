@@ -40,7 +40,7 @@
                                         <div class="card-body">
                                             <form action="{{ route('vehicle.show', ['id' => $vehicle['id']]) }}" method="POST">
     @csrf
-                                                <!-- Status -->
+                                                {{-- <!-- Status -->
                                                 <div class="form-floating">
                                                     <select name="status_id" id="status" class="form-select" aria-label="@lang('miscellaneous.admin.work.data.choose_status')">
     @foreach ($statuses as $status)
@@ -48,7 +48,7 @@
     @endforeach
                                                     </select>
                                                     <label class="form-label" for="status">@lang('miscellaneous.admin.status')</label>
-                                                </div>
+                                                </div> --}}
 
                                                 <!-- Owner -->
                                                 <div class="form-floating mt-3">
