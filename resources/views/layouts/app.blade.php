@@ -240,13 +240,13 @@
         <script type="text/javascript" src="{{ asset('assets/addons/custom/cropper/js/cropper.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/addons/custom/sweetalert2/dist/sweetalert2.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/addons/custom/jquery/scroll4ever/js/jquery.scroll4ever.js') }}"></script>
-        <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyCDLqp2YpT47nBISIE0S--ay2oJ6401IVk"></script>
 
         <!-- CoolAdmin Javascript -->
         <script src="{{ asset('assets/js/main.js') }}"></script>
         <!-- Custom Javascript -->
         <script src="{{ asset('assets/js/script.custom.js') }}"></script>
 @if (Route::is('customer.home'))
+        <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyCDLqp2YpT47nBISIE0S--ay2oJ6401IVk"></script>
         <script type="text/javascript">
             $(function () {
                 /*
